@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:35:15 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/09 00:03:27 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/09 11:01:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_putnegnbr(int nb)
 {
 	if (nb <= -10)
 		ft_putnegnbr(nb / 10);
-	ft_putchar(-nb % 10 + '0');
+	ft_putchar(-(nb % 10) + '0');
 }
 
 void	ft_putnbr(int nb)
