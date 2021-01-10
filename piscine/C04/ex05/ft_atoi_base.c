@@ -6,9 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 15:06:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/10 15:44:23 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/10 17:10:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int	ft_is_space(char c)
 {
@@ -52,7 +54,7 @@ int	ft_is_base(char c, char *base)
 	while (base[i])
 	{
 		if (c == base[i])
-			return (i);
+			return (i + 1);
 		i++;
 	}
 	return (0);
@@ -66,8 +68,7 @@ int	ft_atoi_base(char *str, char *base)
 	int nb;
 	int i_base;
 
-	base_size = ft_is_valid(base);
-	if (!base_size)
+	if (!(base_size = ft_is_valid(base)))
 		return (0);
 	i = 0;
 	signal = 1;
@@ -82,7 +83,7 @@ int	ft_atoi_base(char *str, char *base)
 	}
 	while (str[i] && (i_base = ft_is_base(str[i], base)))
 	{
-		nb = nb * base_size + i_base;
+		nb = nb * base_size + (i_base - 1);
 		i++;
 	}
 	return (nb * signal);
