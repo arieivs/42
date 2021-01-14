@@ -6,14 +6,14 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 20:02:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/14 16:46:49 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/14 18:52:48 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-//int		grid[10][10] = {{0}};
-int		grid[10][10] = {{0,0,0,0,0,0,0,0,0,0},
+int		grid[10][10] = {{0}};
+/*int		grid[10][10] = {{0,0,0,0,0,0,0,0,0,0},
 						{0,0,0,0,0,0,0,0,0,0},
 						{0,0,0,0,0,0,0,0,0,0},
 						{0,0,0,0,0,0,0,0,0,0},
@@ -22,7 +22,7 @@ int		grid[10][10] = {{0,0,0,0,0,0,0,0,0,0},
 						{0,1,0,0,0,0,0,0,0,0},
 						{0,0,0,0,0,0,0,0,0,0},
 						{0,0,0,0,0,0,0,0,0,0},
-						{0,0,0,0,0,0,0,0,0,0}};
+						{0,0,0,0,0,0,0,0,0,0}};*/
 
 int		is_possible(int row, int col)
 {
@@ -46,6 +46,28 @@ int		is_possible(int row, int col)
 	return (1);
 }
 
+int		is_valid(void)
+{
+	int row;
+	int col;
+	int queens_count;
+
+	queens_count = 0;
+	row = 0;
+	while (row < 10)
+	{
+		col = 0;
+		while (col < 10)
+		{
+			if (grid[row][col] != 0)
+				queens_count++;
+			col++;
+		}
+		row++;
+	}
+	return (queens_count == 10);
+}
+
 void	display_solution(void)
 {
 	int		row;
@@ -65,36 +87,42 @@ void	display_solution(void)
 	write(1, "\n", 1);
 }
 
-void	solve(void)
+void	solve(int *nb_sols)
 {
 	int row;
 	int col;
 
-	row = 0;
 	col = 0;
-	while (row < 10)
+	while (col < 10)
 	{
-		while (col < 10)
+		row = 0;
+		while (row < 10)
 		{
 			if (is_possible(row, col))
 			{
 				grid[row][col] = 1;
-				solve();
+				solve(nb_sols);
 				grid[row][col] = 0;
 			}
-			// return ('?');
-			col++;
+			// return (void);
+			row++;
 		}
-		row++;
+		col++;
 	}
-	display_solution();
+	if (is_valid())
+	{
+		*nb_sols += 1;
+		display_solution();
+	}
 }
 
 int		ft_ten_queens_puzzle(void)
 {
-	int	nb_solutions;
+	int	nb_sols;
+	int	*pt_nb_sols;
 
-	nb_solutions = 0;
-	
-	return (nb_solutions);
+	nb_sols = 0;
+	pt_nb_sols = &nb_sols;
+	solve(pt_nb_sols);
+	return (nb_sols);
 }
