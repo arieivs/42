@@ -6,11 +6,12 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 20:02:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/14 18:52:48 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/15 00:11:01 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 int		grid[10][10] = {{0}};
 /*int		grid[10][10] = {{0,0,0,0,0,0,0,0,0,0},
@@ -87,42 +88,46 @@ void	display_solution(void)
 	write(1, "\n", 1);
 }
 
-void	solve(int *nb_sols)
+void	solve(int *nb_queens, int *nb_sols)
 {
 	int row;
 	int col;
 
-	col = 0;
-	while (col < 10)
+	while (*nb_queens < 10)
 	{
-		row = 0;
-		while (row < 10)
+		col = 0;
+		while (col < 10)
 		{
-			if (is_possible(row, col))
+			row = 0;
+			while (row < 10)
 			{
-				grid[row][col] = 1;
-				solve(nb_sols);
-				grid[row][col] = 0;
+				if (is_possible(row, col))
+				{
+					grid[row][col] = 1;
+					*nb_queens += 1;
+					//printf("nb queens %d\n", *nb_queens);
+					solve(nb_queens, nb_sols);
+					//printf("hein\n");
+					grid[row][col] = 0;
+					*nb_queens -= 1;
+				}
+				row++;
 			}
-			// return (void);
-			row++;
+			col++;
 		}
-		col++;
+		return ;
 	}
-	if (is_valid())
-	{
-		*nb_sols += 1;
-		display_solution();
-	}
+	*nb_sols += 1;
+	display_solution();
 }
 
 int		ft_ten_queens_puzzle(void)
 {
 	int	nb_sols;
-	int	*pt_nb_sols;
+	int nb_queens;
 
 	nb_sols = 0;
-	pt_nb_sols = &nb_sols;
-	solve(pt_nb_sols);
+	nb_queens = 0;
+	solve(&nb_queens, &nb_sols);
 	return (nb_sols);
 }
