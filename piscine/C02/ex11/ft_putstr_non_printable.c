@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 10:37:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/18 12:10:12 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/18 16:07:14 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_putstr_non_printable(char *str)
 		if (is_non_printable(*str))
 		{
 			dec = *str;
+			if (dec > 127)
+				dec = 255 - (4294967295 - dec);
 			ft_puthexa(dec);
 		}
 		else
