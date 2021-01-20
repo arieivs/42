@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 18:50:06 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/20 20:03:55 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/20 22:38:04 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_is_base(char c, char *base)
 	while (base[i])
 	{
 		if (c == base[i])
-			return (i);
+			return (i + 1);
 		i++;
 	}
 	return (0);
@@ -61,7 +61,7 @@ int	ft_atoi_base(char *nbr, char *base_from)
 	}
 	while (nbr[i] && (index = ft_is_base(nbr[i], base_from)))
 	{
-		nb = nb * base_len + index;
+		nb = nb * base_len + index - 1;
 		i++;
 	}
 	return (nb * signal);

@@ -6,12 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 19:48:53 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/20 20:34:11 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/20 22:51:30 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 int		ft_strlen(char *str);
 int		ft_is_space(char c);
@@ -55,34 +54,29 @@ char	*ft_rev_str(char *str, int str_len)
 	return (str);
 }
 
-char	*ft_itoa_base(int nb, char *base_to)
+char	*ft_itoa_base(int nb, char *base_to, char *str)
 {
 	int		i;
 	int		base_len;
-	char	*str;
 	int		signal;
 
 	i = 0;
 	base_len = ft_strlen(base_to);
-	str = (char *)malloc(sizeof(str) * 34);
 	signal = nb >= 0 ? 1 : -1;
 	if (nb > 0)
 		nb *= -1;
+	if (nb == 0)
+		str[i++] = base_to[0];
 	while (nb < 0)
 	{
-		str[i] = base_to[-nb % base_len];
+		str[i] = base_to[-(nb % base_len)];
 		nb /= base_len;
 		i++;
 	}
 	if (signal < 0)
-	{
-		str[i] = '-';
-		i++;
-	}
+		str[i++] = '-';
 	str[i] = 0;
-	printf("before rev: %s\n", str);
 	ft_rev_str(str, i);
-	printf("after rev: %s\n", str);
 	return (str);
 }
 
@@ -94,6 +88,9 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	if (!ft_is_valid(base_from) || !ft_is_valid(base_to))
 		return (NULL);
 	nb = ft_atoi_base(nbr, base_from);
-	str = ft_itoa_base(nb, base_to);
+	str = (char *)malloc(sizeof(str) * 34);
+	if (!str)
+		return (NULL);
+	ft_itoa_base(nb, base_to, str);
 	return (str);
 }
