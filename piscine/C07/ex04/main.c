@@ -5,7 +5,7 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 int	main(void)
 {
 	char base_to[5];
-	//char *base_to = "poney";
+	//char *base_to = "01";
 	char *nbr = "  -+--2147483648def";
 	//char *nbr = "320";
 	char *base_from = "0123456789";

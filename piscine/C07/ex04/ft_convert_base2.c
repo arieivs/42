@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 19:48:53 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/20 22:51:30 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/20 23:21:40 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,27 @@ char	*ft_rev_str(char *str, int str_len)
 	return (str);
 }
 
+int		ft_nbrlen(int nb, char *base_to)
+{
+	int i;
+	int base_len;
+
+	i = 0;
+	base_len = ft_strlen(base_to);
+	if (nb == 0)
+		return (1);
+	// for the '-' char:
+	if (nb < 0)
+		i++;
+	while (nb != 0)
+	{
+		nb /= base_len;
+		i++;
+	}
+	// for the null termination:
+	return (i + 1);
+}
+
 char	*ft_itoa_base(int nb, char *base_to, char *str)
 {
 	int		i;
@@ -83,14 +104,14 @@ char	*ft_itoa_base(int nb, char *base_to, char *str)
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
 	int		nb;
-	char	*str;
+	char	*nbr_conv;
 
 	if (!ft_is_valid(base_from) || !ft_is_valid(base_to))
 		return (NULL);
 	nb = ft_atoi_base(nbr, base_from);
-	str = (char *)malloc(sizeof(str) * 34);
-	if (!str)
+	nbr_conv = (char *)malloc(sizeof(nbr_conv) * ft_nbrlen(nb, base_to));
+	if (!nbr_conv)
 		return (NULL);
-	ft_itoa_base(nb, base_to, str);
-	return (str);
+	ft_itoa_base(nb, base_to, nbr_conv);
+	return (nbr_conv);
 }
