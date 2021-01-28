@@ -1,6 +1,6 @@
 INCDIR	= ft_cat.h
 
-SRCS	= ft_cat.c
+SRCS	= ft_cat.c	ft_cat2.c
 
 OBJS	= ${SRCS:.c=.o}
 

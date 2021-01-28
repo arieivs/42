@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:32:04 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/28 12:02:05 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/28 14:56:26 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <errno.h>
+# include <string.h>
 
 int		is_op(char *str);
 void	rd_wr(int fd_src, int fd_dest, int buff_size);
