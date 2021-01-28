@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 20:42:58 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/28 15:03:32 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/28 16:42:37 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	display(int ac, char **av)
 	int	i;
 	int	buff_size;
 
-	buff_size = 30;
+	buff_size = 29998;
 	// if we only have 'cat' the source is the stdin
 	if (ac == 1)
 		rd_wr(0, 1, buff_size);
@@ -82,7 +82,7 @@ void	write_file(int ac, char **av, int i_op, int op)
 		put_strerr(strerror(errno));
 		return ;
 	}
-	buff_size = 30;
+	buff_size = 29998;
 	// if we have 'cat > file' the source is the stdin
 	if (ac == 3)
 		rd_wr(1, fd_dest, buff_size);
