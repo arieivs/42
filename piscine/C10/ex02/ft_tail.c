@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 20:42:58 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/29 16:47:18 by svieira          ###   ########.fr       */
+/*   Updated: 2021/01/29 17:22:40 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,22 @@ int		get_size(char *path, int buff_size)
 	return (file_size);
 }
 
-void	rd_wr(int fd_src, int fd_dest, int head_size, int tail_size)
+void	rd_stdin_wr(int f_dest, int buff_size)
 {
 	int		read_size;
-	char	head[head_size + 1];
-	char	tail[tail_size + 1];
+	char	buff[buff_size + 1];
 
-	while ((read_size = read(fd_src, head, head_size)) != 0)
-		head[read_size] = 0;
-	while ((read_size = read(fd_src, tail, tail_size)) != 0)
-	{
-		tail[read_size] = 0;
-		write(fd_dest, tail, read_size);
-	}
+	while ((read_size = read(0, buff, buff_size)) != 0)
+		buff[read_size] = 0;
+	write(f_dest, 0, 1);
 }
 
 void	o_rd_wr_c(char *path_src, int fd_dest, int head_size, int tail_size)
 {
-	int	fd_src;
+	int		fd_src;
+	int		read_size;
+	char	head[head_size + 1];
+	char	tail[tail_size + 1];
 
 	fd_src = open(path_src, O_RDONLY);
 	if (fd_src == -1)
@@ -74,7 +72,13 @@ void	o_rd_wr_c(char *path_src, int fd_dest, int head_size, int tail_size)
 		put_strerr(strerror(errno));
 		return ;
 	}
-	rd_wr(fd_src, fd_dest, head_size, tail_size);
+	if ((read_size = read(fd_src, head, head_size)) != 0)
+		head[read_size] = 0;
+	if ((read_size = read(fd_src, tail, tail_size)) != 0)
+	{
+		tail[read_size] = 0;
+		write(fd_dest, tail, read_size);
+	}
 	if (close(fd_src) == -1)
 		put_strerr(strerror(errno));
 }
@@ -87,7 +91,7 @@ void	display(int ac, char **av)
 	// if we only have 'tail -c nb' the source is the stdin
 	if (ac == 3)
 	{
-		rd_wr(0, 1, 29998, 0);
+		rd_stdin_wr(1, 29998);
 		return ;
 	}
 	// else the sources are all the given files
@@ -118,7 +122,7 @@ void	write_file(int ac, char **av, int i_op, int op)
 	// if we have 'tail -c nb > file' the source is the stdin
 	if (ac == 5)
 	{
-		rd_wr(1, fd_dest, 29998, 0);
+		rd_stdin_wr(fd_dest, 29998);
 		return ;
 	}
 	// else the sources are all the other files
