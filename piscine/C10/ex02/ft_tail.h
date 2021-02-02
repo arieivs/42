@@ -6,13 +6,14 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 12:39:18 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/29 17:20:22 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/02 12:26:33 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_TAIL_H
 # define FT_TAIL_H
 
+# include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/types.h>

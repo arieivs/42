@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 10:38:12 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/02 11:53:49 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/02 12:47:48 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,11 @@ int		invalid_input(int ac, char **av)
 {
 	int i;
 
-	i = 0;
-	if (ac >= 2)
-	{
-		while (av[1][i])
-			i++;
-	}
-	// all tests will be with -c option and it requires an argument
 	if (ac < 3 || av[1][0] != '-' || av[1][1] != 'c' || av[1][2] != 0)
 	{
 		put_strerr("option -c followed by offset is required");
 		return (1);
 	}
-	// the argument needs to be a number
 	i = 0;
 	if (is_signal(av[2][0]))
 		i++;
