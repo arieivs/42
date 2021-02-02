@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 20:42:58 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/02 18:48:37 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/02 21:03:54 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	header(char *path_src, int fd_dest)
 	char *file_name;
 
 	write(fd_dest, "\n==> ", 5);
-	write(1, "\n==> \n", 6);
 	file_name = basename(path_src);
 	while (*file_name)
 	{
