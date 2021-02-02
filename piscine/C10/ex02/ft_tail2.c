@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 10:38:12 by svieira           #+#    #+#             */
-/*   Updated: 2021/01/29 16:34:28 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/02 11:53:49 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,16 @@ int		invalid_input(int ac, char **av)
 {
 	int i;
 
-	if (is_op(av[ac - 1]))
-		return (1);
-	// all tests will be with -c option
-	if (ac < 2 && av[1][0] != '-' && av[1][1] != 'c')
-		return (1);
-	// -c option requires an argument
-	if (ac < 3)
+	i = 0;
+	if (ac >= 2)
 	{
-		put_strerr(strerror(errno));
+		while (av[1][i])
+			i++;
+	}
+	// all tests will be with -c option and it requires an argument
+	if (ac < 3 || av[1][0] != '-' || av[1][1] != 'c' || av[1][2] != 0)
+	{
+		put_strerr("option -c followed by offset is required");
 		return (1);
 	}
 	// the argument needs to be a number
@@ -53,7 +54,7 @@ int		invalid_input(int ac, char **av)
 	{
 		if (!is_number(av[2][i]))
 		{
-			put_strerr(strerror(errno));
+			put_strerr("illegal offset, a number is required");
 			return (1);
 		}
 		i++;
