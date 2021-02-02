@@ -6,11 +6,21 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 10:38:12 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/02 12:47:48 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/02 18:04:48 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tail.h"
+
+void	put_strerr(char *str)
+{
+	while (*str)
+	{
+		write(2, str, 1);
+		str++;
+	}
+	write(2, "\n", 1);
+}
 
 int		is_op(char *str)
 {
