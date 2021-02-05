@@ -11,7 +11,7 @@ t_list	*ft_create_elem(void *data)
 	list = (t_list *)malloc(sizeof(t_list));
 	if (!list)
 		return (NULL);
-	list->data = data
+	list->data = data;
 	list->next = 0;
 	return (list);
 }
@@ -20,11 +20,16 @@ int main(void)
 {
 	int data1;
 	int data2;
-	t_list list;
+	t_list *list;
 
 	data1 = 10;
 	data2 = 20;
 	list = ft_create_elem((void *)&data1);
 	ft_list_push_front(&list, (void *)&data2);
-	printf("front list %p with data %d\n", 
-
+	printf("front list %p ", list);
+	printf("with data %d\n", *((int *)list->data));
+	printf("end list %p ", list->next);
+	printf("with data %d\n", *((int *)list->next->data));
+	printf("end/null %p\n", list->next->next);
+	return (0);
+}
