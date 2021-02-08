@@ -4,6 +4,7 @@
 int	ft_isalpha(int c);
 int	ft_isdigit(int c);
 int	ft_isalnum(int c);
+int	ft_isascii(int c);
 
 int	main(int ac, char **av)
 {
@@ -22,6 +23,8 @@ int	main(int ac, char **av)
 			printf("DIGIT ");
 		if (isalnum(c))
 			printf("Alphanumeric ");
+		if (isascii(c))
+			printf("ASCII ");
 		printf("\n");
 
 		printf("my ft: %c is ", av[i][0]);
@@ -31,7 +34,9 @@ int	main(int ac, char **av)
 			printf("DIGIT ");
 		if (ft_isalnum(c))
 			printf("Alphanumeric ");
-			printf("\n\n");
+		if (ft_isascii(c))
+			printf("ASCII ");
+		printf("\n\n");
 		i++;
 	}
 	return (0);
