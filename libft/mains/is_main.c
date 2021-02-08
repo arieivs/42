@@ -3,6 +3,7 @@
 
 int	ft_isalpha(int c);
 int	ft_isdigit(int c);
+int	ft_isalnum(int c);
 
 int	main(int ac, char **av)
 {
@@ -13,20 +14,24 @@ int	main(int ac, char **av)
 	while (i < ac)
 	{
 		c = av[i][0];
-		printf("original: %c is ", av[i][0]);
+
+		printf("orgnl: %c is ", av[i][0]);
 		if (isalpha(c))
-			printf("ALPHA\n");
-		else if (isdigit(c))
-			printf("DIGIT\n");
-		else
-			printf("a thing\n");
+			printf("ALPHA ");
+		if (isdigit(c))
+			printf("DIGIT ");
+		if (isalnum(c))
+			printf("Alphanumeric ");
+		printf("\n");
+
 		printf("my ft: %c is ", av[i][0]);
 		if (ft_isalpha(c))
-			printf("ALPHA\n\n");
-		else if (ft_isdigit(c))
-			printf("DIGIT\n\n");
-		else
-			printf("a thing\n\n");
+			printf("ALPHA ");
+		if (ft_isdigit(c))
+			printf("DIGIT ");
+		if (ft_isalnum(c))
+			printf("Alphanumeric ");
+			printf("\n\n");
 		i++;
 	}
 	return (0);
