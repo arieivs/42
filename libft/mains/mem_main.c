@@ -1,18 +1,19 @@
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 
 void	*ft_memset(void *b, int c, size_t len);
 
 int main(void)
 {
-	size_t	len;
-	int		c;
-	void	*b;
+	size_t	len = 5;
+	int		c = 65;
+	char	my_b[6] = "";
+	char	or_b[6] = "";
 
-	len = 5;
-	c = 65;
-	b = (void *)malloc(sizeof(void) * (len + 1));
-	ft_memset(b, c, len);
-	printf("%s\n", (char *)b);
+	ft_memset((void *)my_b, c, len);
+	memset((void *)or_b, c, len);
+	printf("mine: %s\n", my_b);
+	printf("orgn: %s\n", or_b);
 	return (0);
 }
