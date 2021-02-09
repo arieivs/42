@@ -4,6 +4,7 @@
 
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 
 int main(void)
@@ -13,6 +14,8 @@ int main(void)
 	void	*or_b;
 	void	*my_d;
 	void	*or_d;
+	void	*or_ccpy;
+	void	*my_ccpy;
 
 	my_b = (void *)malloc(sizeof(void) * (len + 1));
 	or_b = (void *)malloc(sizeof(void) * (len + 1));
@@ -28,8 +31,8 @@ int main(void)
 	memset(or_b + 3, 62, 6);
 	printf("2 - orgn: %s\n", (char *)or_b);
 	printf("    mine: %s\n", (char *)my_b);
-	ft_memset(my_b + 9, 126, 6);
-	memset(or_b + 9, 126, 6);
+	ft_memset(my_b + 9, -1, 6);
+	memset(or_b + 9, -1, 6);
 	printf("3 - orgn: %s\n", (char *)or_b);
 	printf("    mine: %s\n", (char *)my_b);
 
@@ -38,6 +41,16 @@ int main(void)
 	ft_memcpy(my_d, my_b, 6);
 	printf("orgn: %s\n", (char *)or_d);
 	printf("mine: %s\n", (char *)my_d);
+
+	printf("\nMEMCCPY\n");
+	or_ccpy = memccpy(or_d, or_b + 6, -1, 6);
+	my_ccpy = ft_memccpy(my_d, my_b + 6, -1, 6);
+	printf("1 - orgn: dst: %s  res ptr: %s\n", (char *)or_d, (char *)or_ccpy);
+	printf("    mine: dst: %s  res ptr: %s\n", (char *)my_d, (char *)my_ccpy);
+	or_ccpy = memccpy(or_d, or_b + 6, 126, 6);
+	my_ccpy = ft_memccpy(my_d, my_b + 6, 126, 6);
+	printf("2 - orgn: dst: %s  res ptr: %s\n", (char *)or_d, (char *)or_ccpy);
+	printf("    mine: dst: %s  res ptr: %s\n", (char *)my_d, (char *)my_ccpy);
 
 	printf("\nBZERO\n");
 	ft_bzero(my_b, 6);
