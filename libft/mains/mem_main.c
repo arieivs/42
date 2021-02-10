@@ -82,13 +82,17 @@ int main(void)
 	printf("    mine: %d\n", ft_memcmp(my_d, my_b, len));
 	printf("2 - orgn: %d\n", memcmp(or_d, my_d, len));
 	printf("    mine: %d\n", ft_memcmp(or_d, my_d, len));
+	memset(or_b, 66, 1);
+	memset(my_b, 66, 1);
+	printf("3 - orgn: %d\n", memcmp(or_d, or_b, 0));
+	printf("    mine: %d\n", ft_memcmp(my_d, my_b, 0));
 	bzero(or_d, len);
 	bzero(my_d, len);
-	printf("3 - orgn: %d\n", memcmp(or_d, or_b, len));
+	printf("4 - orgn: %d\n", memcmp(or_d, or_b, len));
 	printf("    mine: %d\n", ft_memcmp(my_d, my_b, len));
-	printf("4 - orgn: %d\n", memcmp(or_b, or_d, len));
+	printf("5 - orgn: %d\n", memcmp(or_b, or_d, len));
 	printf("    mine: %d\n", ft_memcmp(my_b, my_d, len));
-	printf("5 - orgn: %d\n", memcmp(or_d, my_d, len));
+	printf("6 - orgn: %d\n", memcmp(or_d, my_d, len));
 	printf("    mine: %d\n", ft_memcmp(or_d, my_d, len));
 
 	printf("\nBZERO\n");
