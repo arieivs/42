@@ -7,6 +7,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memchr(const void *s, int c, size_t n);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	ft_bzero(void *s, size_t n);
 
 int main(void)
@@ -75,6 +76,20 @@ int main(void)
 	printf("2 - orgn: res ptr: %s\n", or_res);
 	my_res = ft_memchr(my_b, 122, len);
 	printf("    mine: res ptr: %s\n", my_res);
+
+	printf("\nMEMCMP\n");
+	printf("1 - orgn: %d\n", memcmp(or_d, or_b, len));
+	printf("    mine: %d\n", ft_memcmp(my_d, my_b, len));
+	printf("2 - orgn: %d\n", memcmp(or_d, my_d, len));
+	printf("    mine: %d\n", ft_memcmp(or_d, my_d, len));
+	bzero(or_d, len);
+	bzero(my_d, len);
+	printf("3 - orgn: %d\n", memcmp(or_d, or_b, len));
+	printf("    mine: %d\n", ft_memcmp(my_d, my_b, len));
+	printf("4 - orgn: %d\n", memcmp(or_b, or_d, len));
+	printf("    mine: %d\n", ft_memcmp(my_b, my_d, len));
+	printf("5 - orgn: %d\n", memcmp(or_d, my_d, len));
+	printf("    mine: %d\n", ft_memcmp(or_d, my_d, len));
 
 	printf("\nBZERO\n");
 	ft_bzero(my_b, 6);
