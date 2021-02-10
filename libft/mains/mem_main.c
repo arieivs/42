@@ -6,6 +6,7 @@ void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
+void	*ft_memchr(const void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 
 int main(void)
@@ -15,8 +16,8 @@ int main(void)
 	void	*or_b;
 	void	*my_d;
 	void	*or_d;
-	void	*or_ccpy;
-	void	*my_ccpy;
+	void	*or_res;
+	void	*my_res;
 
 	my_b = (void *)malloc(sizeof(void) * (len + 1));
 	or_b = (void *)malloc(sizeof(void) * (len + 1));
@@ -44,24 +45,36 @@ int main(void)
 	printf("mine: %s\n", (char *)my_d);
 
 	printf("\nMEMCCPY\n");
-	or_ccpy = memccpy(or_d, or_b + 6, -1, 6);
-	my_ccpy = ft_memccpy(my_d, my_b + 6, -1, 6);
-	printf("1 - orgn: dst: %s  res ptr: %s\n", (char *)or_d, (char *)or_ccpy);
-	printf("    mine: dst: %s  res ptr: %s\n", (char *)my_d, (char *)my_ccpy);
-	or_ccpy = memccpy(or_d, or_b + 6, 126, 6);
-	my_ccpy = ft_memccpy(my_d, my_b + 6, 126, 6);
-	printf("2 - orgn: dst: %s  res ptr: %s\n", (char *)or_d, (char *)or_ccpy);
-	printf("    mine: dst: %s  res ptr: %s\n", (char *)my_d, (char *)my_ccpy);
+	or_res = memccpy(or_d, or_b + 6, -1, 6);
+	my_res = ft_memccpy(my_d, my_b + 6, -1, 6);
+	printf("1 - orgn: dst: %s  res ptr: %s\n", (char *)or_d, (char *)or_res);
+	printf("    mine: dst: %s  res ptr: %s\n", (char *)my_d, (char *)my_res);
+	or_res = memccpy(or_d, or_b + 6, 126, 6);
+	my_res = ft_memccpy(my_d, my_b + 6, 126, 6);
+	printf("2 - orgn: dst: %s  res ptr: %s\n", (char *)or_d, (char *)or_res);
+	printf("    mine: dst: %s  res ptr: %s\n", (char *)my_d, (char *)my_res);
 
 	printf("\nMEMMOVE\n");
-	memmove(or_d, or_b, 12);
+	memmove(or_d, or_b, len);
 	printf("1 - orgn: %s\n", or_d);
-	ft_memmove(my_d, my_b, 12);
+	ft_memmove(my_d, my_b, len);
 	printf("    mine: %s\n", my_d);
 	memmove(or_d + 3, or_d, 6);
 	printf("2 - orgn: %s\n", or_d);
 	ft_memmove(my_d + 3, my_d, 6);
 	printf("    mine: %s\n", my_d);
+
+	printf("\nMEMCHR\n");
+	memset(or_b + 5, 126, 2);
+	memset(my_b + 5, 126, 2);
+	or_res = memchr(or_b, 126, len);
+	printf("1 - orgn: res ptr: %s\n", or_res);
+	my_res = ft_memchr(my_b, 126, len);
+	printf("    mine: res ptr: %s\n", my_res);
+	or_res = memchr(or_b, 122, len);
+	printf("2 - orgn: res ptr: %s\n", or_res);
+	my_res = ft_memchr(my_b, 122, len);
+	printf("    mine: res ptr: %s\n", my_res);
 
 	printf("\nBZERO\n");
 	ft_bzero(my_b, 6);
