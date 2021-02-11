@@ -5,7 +5,7 @@ size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-//char	*ft_strcht(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 
 int main(void)
 {
@@ -68,6 +68,14 @@ int main(void)
 	my_res = ft_strncmp(s1, s3, 0);
 	printf("3 - orgn: diff %d\n", or_res);
 	printf("    mine: diff %d\n", my_res);
+
+	printf("\nSTRCHR\n");
+	printf("1 - orgn: res ptr: %s\n", strchr(s1, 105));
+	printf("    mine: res ptr: %s\n", ft_strchr(s1, 105));
+	printf("2 - orgn: res ptr: %s\n", strchr(s1, 0));
+	printf("    mine: res ptr: %s\n", ft_strchr(s1, 0));
+	printf("3 - orgn: res ptr: %s\n", strchr(s1, 104));
+	printf("    mine: res ptr: %s\n", ft_strchr(s1, 104));
 
 	return (0);
 }
