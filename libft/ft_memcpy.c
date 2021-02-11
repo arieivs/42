@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 17:01:09 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/09 20:58:02 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/11 15:31:49 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	unsigned char	*csrc;
 	unsigned char	*cdst;
 
+	if (!dst && !src)
+		return (0);
 	i = 0;
 	csrc = (unsigned char *)src;
 	cdst = (unsigned char *)dst;

@@ -99,11 +99,17 @@ int main(void)
 	ft_bzero(my_b, 6);
 	bzero(or_b, 6);
 	printf("mine: %s\n", (char *)my_b);
-	printf("orgn: %s\n\n", (char *)or_b);
+	printf("orgn: %s\n", (char *)or_b);
 
 	free(my_b);
 	free(or_b);
 	free(my_d);
 	free(or_d);
+
+	printf("\nNULL PROTECTION\n");
+	ft_memcpy(NULL, NULL, len);
+	ft_memmove(NULL, NULL, len);
+	printf("All good\n\n");
+	
 	return (0);
 }
