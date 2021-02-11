@@ -4,6 +4,8 @@
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+//char	*ft_strcht(const char *s, int c);
 
 int main(void)
 {
@@ -12,6 +14,9 @@ int main(void)
 	char	or_s2[20] = "";
 	size_t	my_len;
 	size_t	or_len;
+	int		my_res;
+	int		or_res;
+	char	s3[20] = "";
 
 	printf("\nSTRLEN\n");
 	my_len = ft_strlen(s1);
@@ -49,6 +54,20 @@ int main(void)
 	or_len = strlcat(or_s2, s1, 18);
 	printf("4 - orgn: length %zu   dst %s\n", or_len, or_s2);
 	printf("    mine: length %zu   dst %s\n", my_len, my_s2);
+
+	printf("\nSTRCMP\n");
+	or_res = strncmp(s1, or_s2, 5);
+	my_res = ft_strncmp(s1, or_s2, 5);
+	printf("1 - orgn: diff %d\n", or_res);
+	printf("    mine: diff %d\n", my_res);
+	or_res = strncmp(s1, s3, 5);
+	my_res = ft_strncmp(s1, s3, 5);
+	printf("2 - orgn: diff %d\n", or_res);
+	printf("    mine: diff %d\n", my_res);
+	or_res = strncmp(s1, s3, 0);
+	my_res = ft_strncmp(s1, s3, 0);
+	printf("3 - orgn: diff %d\n", or_res);
+	printf("    mine: diff %d\n", my_res);
 
 	return (0);
 }
