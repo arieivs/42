@@ -7,6 +7,7 @@ size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 int main(void)
 {
@@ -85,6 +86,16 @@ int main(void)
 	printf("    mine: res ptr: %s\n", ft_strrchr(s1, 0));
 	printf("3 - orgn: res ptr: %s\n", strrchr(s1, 104));
 	printf("    mine: res ptr: %s\n", ft_strrchr(s1, 104));
+
+	printf("\nSTRNSTR\n");
+	printf("1 - orgn: res ptr: %s\n", strnstr(or_s2, "rst", 15));
+	printf("    mine: res ptr: %s\n", ft_strnstr(or_s2, "rst", 15));
+	printf("2 - orgn: res ptr: %s\n", strnstr(or_s2, "rst", 10));
+	printf("    mine: res ptr: %s\n", ft_strnstr(or_s2, "rst", 10));
+	printf("3 - orgn: res ptr: %s\n", strnstr(s1, "", 15));
+	printf("    mine: res ptr: %s\n", ft_strnstr(s1, "", 15));
+	printf("4 - orgn: res ptr: %s\n", strnstr(s1, "s", 0));
+	printf("    mine: res ptr: %s\n", ft_strnstr(s1, "s", 0));
 
 	return (0);
 }
