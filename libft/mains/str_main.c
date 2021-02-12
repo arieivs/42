@@ -96,6 +96,7 @@ int main(void)
 	printf("    mine: res ptr: %s\n", ft_strnstr(s1, "", 15));
 	printf("4 - orgn: res ptr: %s\n", strnstr(s1, "s", 0));
 	printf("    mine: res ptr: %s\n", ft_strnstr(s1, "s", 0));
-
+	printf("5 - orgn: res ptr: %s\n", strnstr("every", "yeah", 15));
+	printf("    mine: res ptr: %s\n", ft_strnstr("every", "yeah", 15));
 	return (0);
 }
