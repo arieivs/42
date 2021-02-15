@@ -1,13 +1,6 @@
 #include <ctype.h>
 #include <stdio.h>
-
-int	ft_isalpha(int c);
-int	ft_isdigit(int c);
-int	ft_isalnum(int c);
-int	ft_isascii(int c);
-int ft_isprint(int c);
-int	ft_toupper(int c);
-int	ft_tolower(int c);
+#include "../libft.h"
 
 int	main(void)
 {
@@ -15,12 +8,15 @@ int	main(void)
 	char	is[] = "a0[ ";
 	char	bel = 7;
 	char	to[] = "abRa C4D58rA";
+	char	x[] = "  \n  0325 6";
+	char	y[] = "  \t -870abc";
+	char	z[] = "  ++89-";
 
 	i = 0;
 	printf("\nIS\n");
 	while (is[i])
 	{
-		printf("orgnl: %c is ", is[i]);
+		printf("%d - orgnl: %c is ", i + 1, is[i]);
 		if (isalpha(is[i]))
 			printf("ALPHA ");
 		if (isdigit(is[i]))
@@ -31,7 +27,7 @@ int	main(void)
 			printf("ASCII ");
 		printf("\n");
 
-		printf("my ft: %c is ", is[i]);
+		printf("    my ft: %c is ", is[i]);
 		if (ft_isalpha(is[i]))
 			printf("ALPHA ");
 		if (ft_isdigit(is[i]))
@@ -43,12 +39,12 @@ int	main(void)
 		printf("\n\n");
 		i++;
 	}
-	printf("orgnl: bel is ");
+	printf("%d - orgnl: bel is ", i + 1);
 	if (!isprint(bel))
 		printf("non printable\n");
-	printf("my ft: bel is ");
+	printf("    my ft: bel is ");
 	if (!ft_isprint(bel))
-		printf("non printable\n\n");
+		printf("non printable\n");
 
 	printf("\nTOUPPER\norgnl: ");
 	i = 0;
@@ -80,5 +76,13 @@ int	main(void)
 		i++;
 	}
 	printf("\n");
+
+	printf("\nATOI\n");
+	printf("1 - orgn: %d\n", atoi(x));
+	printf("    mine: %d\n", ft_atoi(x));
+	printf("2 - orgn: %d\n", atoi(y));
+	printf("    mine: %d\n", ft_atoi(y));
+	printf("3 - orgn: %d\n", atoi(z));
+	printf("    mine: %d\n\n", ft_atoi(z));
 	return (0);
 }
