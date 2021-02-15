@@ -1,13 +1,6 @@
 #include <string.h>
 #include <stdio.h>
-
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
-size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strrchr(const char *s, int c);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+#include "../libft.h"
 
 int main(void)
 {
@@ -19,6 +12,8 @@ int main(void)
 	int		my_res;
 	int		or_res;
 	char	s3[20] = "";
+	char	*my_s4;
+	char	*or_s4;
 
 	printf("\nSTRLEN\n");
 	my_len = ft_strlen(s1);
@@ -98,5 +93,11 @@ int main(void)
 	printf("    mine: res ptr: %s\n", ft_strnstr(s1, "s", 0));
 	printf("5 - orgn: res ptr: %s\n", strnstr("every", "yeah", 15));
 	printf("    mine: res ptr: %s\n", ft_strnstr("every", "yeah", 15));
+
+	printf("\nSTRDUP\n");
+	or_s4 = strdup("I am a string\n");
+	my_s4 = ft_strdup("I am a string\n");
+	printf("orgn: %s", or_s4);
+	printf("mine: %s", my_s4);
 	return (0);
 }
