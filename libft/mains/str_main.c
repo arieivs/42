@@ -98,6 +98,6 @@ int main(void)
 	or_s4 = strdup("I am a string\n");
 	my_s4 = ft_strdup("I am a string\n");
 	printf("orgn: %s", or_s4);
-	printf("mine: %s", my_s4);
+	printf("mine: %s\n", my_s4);
 	return (0);
 }
