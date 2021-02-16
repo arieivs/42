@@ -111,7 +111,7 @@ int main(void)
 	printf("1 - from %s, should get dark => %s\n", "Hello darkness", s5);
 	s5 = ft_substr("Hello darkness", 10, 6);
 	printf("2 - from %s, should get ness => %s\n", "Hello darkness", s5);
-	s5 = ft_substr("Hello darkness", 14, 6);
+	s5 = ft_substr("Hello darkness", 18, 6);
 	printf("3 - from %s, should get nothing => %s\n", "Hello darkness", s5);
 
 	printf("\nSTRJOIN\n");
