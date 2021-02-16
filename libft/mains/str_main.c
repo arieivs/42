@@ -14,6 +14,7 @@ int main(void)
 	char	s3[20] = "";
 	char	*my_s4;
 	char	*or_s4;
+	char	*s5;
 
 	printf("\nSTRLEN\n");
 	my_len = ft_strlen(s1);
@@ -98,6 +99,27 @@ int main(void)
 	or_s4 = strdup("I am a string\n");
 	my_s4 = ft_strdup("I am a string\n");
 	printf("orgn: %s", or_s4);
-	printf("mine: %s\n", my_s4);
+	printf("mine: %s", my_s4);
+	free(or_s4);
+	free(my_s4);
+
+	printf("\nSUBSTR\n");
+	s5 = ft_substr("Hello darkness", 6, 4);
+	printf("from %s, should get dark => %s\n", "Hello darkness", s5);
+	s5 = ft_substr("Hello darkness", 10, 6);
+	printf("from %s, should get ness => %s\n", "Hello darkness", s5);
+	s5 = ft_substr("Hello darkness", 14, 6);
+	printf("from %s, should get nothing => %s\n", "Hello darkness", s5);
+
+	printf("\nSTRJOIN\n");
+	s5 = ft_strjoin("hello", " world");
+	printf("%s + %s = %s\n", "hello", " world", s5);
+	s5 = ft_strjoin("", " world");
+	printf("%s + %s = %s\n", "empty", " world", s5);
+	s5 = ft_strjoin("hello", "");
+	printf("%s + %s = %s\n", "hello", "empty", s5);
+	s5 = ft_strjoin("", "");
+	printf("%s + %s = %s\n", "empty", "empty", s5);
+
 	return (0);
 }
