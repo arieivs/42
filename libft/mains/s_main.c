@@ -137,6 +137,9 @@ int main(void)
 	s6 = "    Nothing to trim     ";
 	s5 = ft_strtrim(s6, "");
 	printf("4 - orgn: \"%s\", trimmed: \"%s\"\n", s6, s5);
+	s6 = "  \t  \t";
+	s5 = ft_strtrim(s6, " \t\n");
+	printf("5 - orgn: \"%s\", trimmed: \"%s\"\n", s6, s5);
 
 	printf("\nSPLIT\n");
 	s6 = "     I am floating   in space   ";

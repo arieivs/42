@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:32:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/16 16:29:48 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/16 19:28:23 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char		*ft_strtrim(const char *s1, const char *set)
 	end = ft_strlen(s1) - 1;
 	while (end > 0 && is_set(s1[end], set))
 		end--;
+	if (start >= end)
+		return (ft_strdup(""));
 	trimmed = (char *)malloc(sizeof(s1) * (end + 2 - start));
 	if (!trimmed)
 		return (NULL);
