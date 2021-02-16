@@ -83,6 +83,9 @@ int	main(void)
 	printf("2 - orgn: %d\n", atoi(y));
 	printf("    mine: %d\n", ft_atoi(y));
 	printf("3 - orgn: %d\n", atoi(z));
-	printf("    mine: %d\n\n", ft_atoi(z));
+	printf("    mine: %d\n", ft_atoi(z));
+
+	printf("\nITOA\n");
+	printf("1 - i: %d, a: %s\n", 0, ft_itoa(0));
 	return (0);
 }
