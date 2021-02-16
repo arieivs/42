@@ -15,6 +15,7 @@ int main(void)
 	char	*my_s4;
 	char	*or_s4;
 	char	*s5;
+	char	*s6;
 
 	printf("\nSTRLEN\n");
 	my_len = ft_strlen(s1);
@@ -105,21 +106,34 @@ int main(void)
 
 	printf("\nSUBSTR\n");
 	s5 = ft_substr("Hello darkness", 6, 4);
-	printf("from %s, should get dark => %s\n", "Hello darkness", s5);
+	printf("1 - from %s, should get dark => %s\n", "Hello darkness", s5);
 	s5 = ft_substr("Hello darkness", 10, 6);
-	printf("from %s, should get ness => %s\n", "Hello darkness", s5);
+	printf("2 - from %s, should get ness => %s\n", "Hello darkness", s5);
 	s5 = ft_substr("Hello darkness", 14, 6);
-	printf("from %s, should get nothing => %s\n", "Hello darkness", s5);
+	printf("3 - from %s, should get nothing => %s\n", "Hello darkness", s5);
 
 	printf("\nSTRJOIN\n");
 	s5 = ft_strjoin("hello", " world");
-	printf("%s + %s = %s\n", "hello", " world", s5);
+	printf("1 - %s + %s = %s\n", "hello", " world", s5);
 	s5 = ft_strjoin("", " world");
-	printf("%s + %s = %s\n", "empty", " world", s5);
+	printf("2 - %s + %s = %s\n", "empty", " world", s5);
 	s5 = ft_strjoin("hello", "");
-	printf("%s + %s = %s\n", "hello", "empty", s5);
+	printf("3 - %s + %s = %s\n", "hello", "empty", s5);
 	s5 = ft_strjoin("", "");
-	printf("%s + %s = %s\n", "empty", "empty", s5);
+	printf("4 - %s + %s = %s\n", "empty", "empty", s5);
 
+	printf("\nSTRTRIM\n");
+	s6 = "  \t   I am floating in space  \t  ";
+	s5 = ft_strtrim(s6, " \t\n");
+	printf("1 - orgn: \"%s\", trimmed: \"%s\"\n", s6, s5);
+	s6 = "Too much space on the right \t ";
+	s5 = ft_strtrim(s6, " \t\n");
+	printf("2 - orgn: \"%s\", trimmed: \"%s\"\n", s6, s5);
+	s6 = "   \t Too much space on the left";
+	s5 = ft_strtrim(s6, " \t\n");
+	printf("3 - orgn: \"%s\", trimmed: \"%s\"\n", s6, s5);
+	s6 = "    Nothing to trim     ";
+	s5 = ft_strtrim(s6, "");
+	printf("4 - orgn: \"%s\", trimmed: \"%s\"\n", s6, s5);
 	return (0);
 }
