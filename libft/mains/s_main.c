@@ -16,6 +16,8 @@ int main(void)
 	char	*or_s4;
 	char	*s5;
 	char	*s6;
+	char	**strs;
+	int		i;
 
 	printf("\nSTRLEN\n");
 	my_len = ft_strlen(s1);
@@ -135,5 +137,35 @@ int main(void)
 	s6 = "    Nothing to trim     ";
 	s5 = ft_strtrim(s6, "");
 	printf("4 - orgn: \"%s\", trimmed: \"%s\"\n", s6, s5);
+
+	printf("\nSPLIT\n");
+	s6 = "     I am floating   in space   ";
+	printf("1 - original: %s\n    splitted: ", s6);
+	strs = ft_split(s6, ' ');
+	i = 0;
+	while(strs[i])
+	{
+		printf("%d-%s; ", i, strs[i]);
+		i++;
+	}
+	s6 = "Too  much  space    in between";
+	printf("\n2 - original: %s\n    splitted: ", s6);
+	strs = ft_split(s6, ' ');
+	i = 0;
+	while(strs[i])
+	{
+		printf("%d-%s; ", i, strs[i]);
+		i++;
+	}
+	s6 = "No separator at all";
+	printf("\n3 - original: %s\n    splitted: ", s6);
+	strs = ft_split(s6, (char)NULL);
+	i = 0;
+	while(strs[i])
+	{
+		printf("%d-%s; ", i, strs[i]);
+		i++;
+	}
+	printf("\n");
 	return (0);
 }
