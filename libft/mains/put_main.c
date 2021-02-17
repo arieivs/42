@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 		printf("Please give one filename as argument\n");
 		return (0);
 	}
-	fd = open(av[1], O_WRONLY);
+	fd = open(av[1], O_RDWR | O_CREAT);
 	if (fd == -1)
 	{
 		write(2, "Cannot open file.\n", 18);
