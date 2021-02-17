@@ -106,7 +106,6 @@ int main(void)
 	my_arr = (int *)calloc(4, sizeof(int));
 	printf("orgn: %d %d\n", ((int *)or_arr)[0], ((int *)or_arr)[3]);
 	printf("mine: %d %d\n", ((int *)my_arr)[0], ((int *)my_arr)[3]);
-
 	free(or_arr);
 	free(my_arr);
 
