@@ -1,7 +1,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdio.h>
-#include "../libft.h"
+#include "../libft/libft.h"
 
 static char	ft_alt_caps(unsigned int i, char c)
 {

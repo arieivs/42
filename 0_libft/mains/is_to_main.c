@@ -1,6 +1,6 @@
 #include <ctype.h>
 #include <stdio.h>
-#include "../libft.h"
+#include "../libft/libft.h"
 
 int	main(void)
 {

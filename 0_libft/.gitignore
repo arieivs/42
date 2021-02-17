@@ -1,4 +1,6 @@
-a.out
 text_file
 *.o
+a.out
 libft.a
+nomalloc
+malloc

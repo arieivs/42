@@ -1,7 +1,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "../libft.h"
+#include "../libft/libft.h"
 #include <stdio.h>
 
 int	main(int ac, char **av)
