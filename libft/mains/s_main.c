@@ -1,6 +1,14 @@
+#include <ctype.h>
 #include <string.h>
 #include <stdio.h>
 #include "../libft.h"
+
+static char	ft_alt_caps(unsigned int i, char c)
+{
+	if (i % 2 == 0)
+		return (toupper(c));
+	return (tolower(c));
+}
 
 int main(void)
 {
@@ -18,6 +26,7 @@ int main(void)
 	char	*s6;
 	char	**strs;
 	int		i;
+	char	(*pt_alt_caps)(unsigned int, char);
 
 	printf("\nSTRLEN\n");
 	my_len = ft_strlen(s1);
@@ -169,6 +178,14 @@ int main(void)
 		printf("%d-%s; ", i, strs[i]);
 		i++;
 	}
+	printf("\n");
+
+	printf("\nSTRMAPI\n");
+	pt_alt_caps = &ft_alt_caps;
+	s6 = "aLICe in WoNDerlAnD";
+	s5 = ft_strmapi(s6, pt_alt_caps);
+	printf("orgn: %s, alternating caps: %s\n", s6, s5);
+
 	printf("\n");
 	return (0);
 }
