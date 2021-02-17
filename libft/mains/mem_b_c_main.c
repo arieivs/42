@@ -12,6 +12,8 @@ int main(void)
 	void	*or_d;
 	void	*or_res;
 	void	*my_res;
+	int		*or_arr;
+	int		*my_arr;
 
 	my_b = (void *)malloc(sizeof(void) * (len + 1));
 	or_b = (void *)malloc(sizeof(void) * (len + 1));
@@ -91,13 +93,22 @@ int main(void)
 	printf("\nBZERO\n");
 	ft_bzero(my_b, 6);
 	bzero(or_b, 6);
-	printf("mine: %s\n", (char *)my_b);
-	printf("orgn: %s\n", (char *)or_b);
+	printf("orgn: %s %s\n", (char *)or_b, (char *)or_b + 5);
+	printf("mine: %s %s\n", (char *)my_b, (char *)my_b + 5);
 
 	free(my_b);
 	free(or_b);
 	free(my_d);
 	free(or_d);
+
+	printf("\nCALLOC\n");
+	or_arr = (int *)calloc(4, sizeof(int));
+	my_arr = (int *)calloc(4, sizeof(int));
+	printf("orgn: %d %d\n", ((int *)or_arr)[0], ((int *)or_arr)[3]);
+	printf("mine: %d %d\n", ((int *)my_arr)[0], ((int *)my_arr)[3]);
+
+	free(or_arr);
+	free(my_arr);
 
 	printf("\nNULL PROTECTION\n");
 	ft_memcpy(NULL, NULL, len);
