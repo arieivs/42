@@ -65,7 +65,7 @@ int main(void)
 	printf("4 - orgn: length %zu   dst %s\n", or_len, or_s2);
 	printf("    mine: length %zu   dst %s\n", my_len, my_s2);
 
-	printf("\nSTRCMP\n");
+	printf("\nSTRNCMP\n");
 	or_res = strncmp(s1, or_s2, 5);
 	my_res = ft_strncmp(s1, or_s2, 5);
 	printf("1 - orgn: diff %d\n", or_res);
