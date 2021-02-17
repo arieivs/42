@@ -171,7 +171,7 @@ int main(void)
 	}
 	s6 = "No separator at all";
 	printf("\n3 - original: %s\n    splitted: ", s6);
-	strs = ft_split(s6, (char)NULL);
+	strs = ft_split(s6, 0);
 	i = 0;
 	while(strs[i])
 	{
@@ -179,8 +179,8 @@ int main(void)
 		i++;
 	}
 	s6 = "";
-	printf("\n3 - original: %s\n    splitted: ", s6);
-	strs = ft_split(s6, (char)NULL);
+	printf("\n4 - original: %s\n    splitted: ", s6);
+	strs = ft_split(s6, ' ');
 	i = 0;
 	while(strs[i])
 	{
