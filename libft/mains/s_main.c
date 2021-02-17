@@ -178,6 +178,15 @@ int main(void)
 		printf("%d-%s; ", i, strs[i]);
 		i++;
 	}
+	s6 = "";
+	printf("\n3 - original: %s\n    splitted: ", s6);
+	strs = ft_split(s6, (char)NULL);
+	i = 0;
+	while(strs[i])
+	{
+		printf("%d-%s; ", i, strs[i]);
+		i++;
+	}
 	printf("\n");
 
 	printf("\nSTRMAPI\n");
