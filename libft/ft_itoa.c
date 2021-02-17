@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 21:10:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/17 00:04:23 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/17 16:25:46 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	find_strlen(int n)
 	int	strlen;
 
 	strlen = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 		strlen++;
 	while (n != 0)
