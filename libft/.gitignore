@@ -1,2 +1,4 @@
 a.out
 text_file
+*.o
+libft.a
