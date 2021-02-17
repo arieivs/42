@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 21:10:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/16 22:05:21 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/17 00:04:23 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	find_strlen(int n)
 
 static char	*str_inv(char *str, int strlen)
 {
-	int 	i;
+	int		i;
 	char	buff;
 
 	i = 0;
@@ -43,25 +43,24 @@ static char	*str_inv(char *str, int strlen)
 	return (str);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
-	int		strlen;
 	char	*str;
 	int		signal;
 	int		i;
 
-	strlen = find_strlen(n);
-	str = (char *)malloc(sizeof(char) * strlen + 1);
+	str = (char *)malloc(sizeof(char) * find_strlen(n) + 1);
 	if (!str)
 		return (NULL);
-	signal = 1;
+	signal = -1;
 	i = 0;
 	if (n == 0)
 		str[i++] = '0';
-	else if (n < 0)
-		signal = -1;
-	else if (n > 0)
+	if (n >= 0)
+	{
+		signal = 1;
 		n *= -1;
+	}
 	while (n < 0)
 	{
 		str[i++] = -(n % 10) + '0';
