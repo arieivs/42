@@ -1,4 +1,4 @@
-SRCS	= malloc_main.c
+SRCS	= withmalloc_main.c
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -8,18 +8,18 @@ MAKE	= make
 
 CC		= gcc
 
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -fsanitize=address
 
 RM		= rm -f
 
-NAME	= malloc
+NAME	= withmalloc
 
 .c.o:
 			${CC} ${CFLAGS} -I${LIBDIR} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
 			${MAKE} -C ${LIBDIR}
-			${CC} -o ${NAME} ${OBJS} -L${LIBDIR} -lft
+			${CC} -fsanitize=address -o ${NAME} ${OBJS} -L${LIBDIR} -lft
 
 all:		${NAME}
 

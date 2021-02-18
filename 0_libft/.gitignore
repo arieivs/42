@@ -3,4 +3,4 @@ text_file
 a.out
 libft.a
 nomalloc
-malloc
+withmalloc

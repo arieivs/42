@@ -112,6 +112,11 @@ int main(void)
 	}
 	printf("\n");
 
+	printf("\nITOA\n");
+	printf("1 - i: %d, a: %s\n", 0, ft_itoa(0));
+	printf("2 - i: %d, a: %s\n", 3510, ft_itoa(3510));
+	printf("3 - i: %ld, a: %s\n\n", -2147483648, ft_itoa(-2147483648));
+
 	printf("\nSTRMAPI\n");
 	pt_alt_caps = &ft_alt_caps;
 	s6 = "aLICe in WoNDerlAnD";
