@@ -6,4 +6,5 @@ nomalloc
 withmalloc
 Libftest/
 libft-unit-tests/
+libftTester/
 .DS_Store
