@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:32:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/16 19:28:23 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/18 15:31:24 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char		*ft_strtrim(const char *s1, const char *set)
 		end--;
 	if (start >= end)
 		return (ft_strdup(""));
-	trimmed = (char *)malloc(sizeof(s1) * (end + 2 - start));
+	trimmed = (char *)malloc(sizeof(char) * (end + 2 - start));
 	if (!trimmed)
 		return (NULL);
 	i = 0;

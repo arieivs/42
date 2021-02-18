@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 12:42:22 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/16 18:41:18 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/18 15:30:49 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	unsigned int	i;
 	size_t			s_len;
 
-	sub = (char *)malloc(sizeof(s) * (len + 1));
+	sub = (char *)malloc(sizeof(char) * (len + 1));
 	if (!sub)
 		return (NULL);
 	i = 0;
