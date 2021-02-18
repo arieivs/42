@@ -112,6 +112,8 @@ int	main(void)
 	printf("    mine: %d\n", ft_memcmp(my_b, my_d, len));
 	printf("6 - orgn: %d\n", memcmp(or_d, my_d, len));
 	printf("    mine: %d\n", ft_memcmp(or_d, my_d, len));
+	printf("7 - orgn: %d\n", memcmp("abcdefghij", "abcdefgxyz", 7));
+	printf("    mine: %d\n", ft_memcmp("abcdefghij", "abcdefgxyz", 7));
 
 	printf("\nBZERO\n");
 	ft_bzero(my_b, 6);
@@ -172,6 +174,10 @@ int	main(void)
 	or_dif = strncmp(s1, s3, 0);
 	my_dif = ft_strncmp(s1, s3, 0);
 	printf("3 - orgn: diff %d\n", or_dif);
+	printf("    mine: diff %d\n", my_dif);
+	or_dif = strncmp("abcdefgh", "abcdwxyz", 4);
+	my_dif = ft_strncmp("abcdefgh", "abcdwxyz", 4);
+	printf("4 - orgn: diff %d\n", or_dif);
 	printf("    mine: diff %d\n", my_dif);
 
 	printf("\nSTRCHR\n");

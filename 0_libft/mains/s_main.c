@@ -78,6 +78,10 @@ int main(void)
 	my_res = ft_strncmp(s1, s3, 0);
 	printf("3 - orgn: diff %d\n", or_res);
 	printf("    mine: diff %d\n", my_res);
+	or_res = strncmp("abcdefgh", "abcdwxyz", 4);
+	my_res = ft_strncmp("abcdefgh", "abcdwxyz", 4);
+	printf("4 - orgn: diff %d\n", or_res);
+	printf("    mine: diff %d\n", my_res);
 
 	printf("\nSTRCHR\n");
 	printf("1 - orgn: res ptr: %s\n", strchr(or_s2, 105));

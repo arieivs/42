@@ -89,6 +89,8 @@ int main(void)
 	printf("    mine: %d\n", ft_memcmp(my_b, my_d, len));
 	printf("6 - orgn: %d\n", memcmp(or_d, my_d, len));
 	printf("    mine: %d\n", ft_memcmp(or_d, my_d, len));
+	printf("7 - orgn: %d\n", memcmp("abcdefghij", "abcdefgxyz", 7));
+	printf("    mine: %d\n", ft_memcmp("abcdefghij", "abcdefgxyz", 7));
 
 	printf("\nBZERO\n");
 	ft_bzero(my_b, 6);
