@@ -4,5 +4,6 @@ a.out
 libft.a
 nomalloc
 withmalloc
-Libftest-master
+Libftest/
+libft-unit-tests/
 .DS_Store
