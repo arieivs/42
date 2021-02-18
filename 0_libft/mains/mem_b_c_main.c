@@ -91,6 +91,10 @@ int main(void)
 	printf("    mine: %d\n", ft_memcmp(or_d, my_d, len));
 	printf("7 - orgn: %d\n", memcmp("abcdefghij", "abcdefgxyz", 7));
 	printf("    mine: %d\n", ft_memcmp("abcdefghij", "abcdefgxyz", 7));
+	printf("8 - orgn: %d\n", memcmp("atoms\0\0\0\0", "atoms\0abc", 8));
+	printf("    mine: %d\n", ft_memcmp("atoms\0\0\0\0", "atoms\0abc", 8));
+	printf("9 - orgn: %d\n", memcmp("\xff\0\0\xaa\0\xde\xffMACOSX\xff", "\xff\0\0\xaa\0\xde\x00MBS", 9));
+	printf("    mine: %d\n", ft_memcmp("\xff\0\0\xaa\0\xde\xffMACOSX\xff", "\xff\0\0\xaa\0\xde\x00MBS", 9));
 
 	printf("\nBZERO\n");
 	ft_bzero(my_b, 6);
