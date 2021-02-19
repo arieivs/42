@@ -21,5 +21,8 @@ int	main(void)
 	printf("\nLST SIZE\n");
 	printf("expect: 2, got %d\n", ft_lstsize(list1));
 
+	printf("\nLST LAST\n");
+	printf("expect: 5, got %d\n", *(int *)(ft_lstlast(list1)->content));
+
 	return (0);
 }
