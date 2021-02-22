@@ -1,15 +1,24 @@
 #include <stdio.h>
 #include "../libft/libft.h"
 
-void	ft_print_del(void *content)
+static void	ft_print_del(void *content)
 {
 	printf("deleting %d\n", *(int *)content);
 	*(int *)content = 0;
 }
 
-void	ft_print_double(void *content)
+static void	ft_print_double(void *content)
 {
 	printf("%d x 2 = %d\n", *(int *)content, *(int *)content * 2);
+}
+
+static void	*ft_double(void *content)
+{
+	void	*doub;
+
+	doub = malloc(sizeof(int));
+	*(int *)doub = *(int *)content * 2;
+	return (doub);
 }
 
 int	main(void)
@@ -22,8 +31,10 @@ int	main(void)
 	t_list	*list2;
 	t_list	*list3;
 	t_list	*list4;
+	t_list	*listmapped;
 	void	(*pt_print_del)(void*);
 	void	(*pt_print_double)(void *);
+	void	*(*pt_double)(void *);
 
 	printf("\nLST NEW\n");
 	list1 = ft_lstnew((void *)&x1);
@@ -59,6 +70,13 @@ int	main(void)
 	pt_print_double = &ft_print_double;
 	printf("\nLST ITER\n");
 	ft_lstiter(list1, pt_print_double);
+
+	pt_double = &ft_double;
+	printf("\nLST MAP\n");
+	listmapped = ft_lstmap(list1, pt_double, pt_print_del);
+	printf("lst->cntt - expect: 20, got %d\n", *(int *)list1->content);
+	printf("lst->next->cntt - expect: 30, got %d\n", *(int *)list1->next->content);
+	printf("lst->next->next->cntt - expect: 40, got %d\n", *(int *)list1->next->next->content);
 
 	printf("\nLST CLEAR\n");
 	ft_lstclear(&list1, pt_print_del);
