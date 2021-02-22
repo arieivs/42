@@ -45,11 +45,13 @@ int	main(void)
 	printf("\nLST LAST\n");
 	printf("expect: 20, got %d\n", *(int *)(ft_lstlast(list1)->content));
 
-	printf("\nLST DEL ONE\n");
 	pt_print_del = &ft_print_del;
-	//ft_lstdelone(list1, pt_print_del);
-	//printf("lst->next->cntt - expect: 5, got %d\n", *(int *)list1->next->content);
-	ft_lstdelone(ft_lstlast(list1), pt_print_del);
+	printf("\nLST DEL ONE\n");
+	ft_lstdelone(list1->next, pt_print_del);
+	list1->next = list3;
+
+	printf("\nLST CLEAR\n");
+	ft_lstclear(&list1, pt_print_del);
 
 	return (0);
 }
