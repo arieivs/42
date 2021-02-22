@@ -74,9 +74,9 @@ int	main(void)
 	pt_double = &ft_double;
 	printf("\nLST MAP\n");
 	listmapped = ft_lstmap(list1, pt_double, pt_print_del);
-	printf("lst->cntt - expect: 20, got %d\n", *(int *)list1->content);
-	printf("lst->next->cntt - expect: 30, got %d\n", *(int *)list1->next->content);
-	printf("lst->next->next->cntt - expect: 40, got %d\n", *(int *)list1->next->next->content);
+	printf("lst->cntt - expect: 20, got %d\n", *(int *)listmapped->content);
+	printf("lst->next->cntt - expect: 30, got %d\n", *(int *)listmapped->next->content);
+	printf("lst->next->next->cntt - expect: 40, got %d\n", *(int *)listmapped->next->next->content);
 
 	printf("\nLST CLEAR\n");
 	ft_lstclear(&list1, pt_print_del);
