@@ -7,6 +7,11 @@ void	ft_print_del(void *content)
 	*(int *)content = 0;
 }
 
+void	ft_print_double(void *content)
+{
+	printf("%d x 2 = %d\n", *(int *)content, *(int *)content * 2);
+}
+
 int	main(void)
 {
 	int		x1 = 5;
@@ -18,6 +23,7 @@ int	main(void)
 	t_list	*list3;
 	t_list	*list4;
 	void	(*pt_print_del)(void*);
+	void	(*pt_print_double)(void *);
 
 	printf("\nLST NEW\n");
 	list1 = ft_lstnew((void *)&x1);
@@ -49,6 +55,10 @@ int	main(void)
 	printf("\nLST DEL ONE\n");
 	ft_lstdelone(list1->next, pt_print_del);
 	list1->next = list3;
+
+	pt_print_double = &ft_print_double;
+	printf("\nLST ITER\n");
+	ft_lstiter(list1, pt_print_double);
 
 	printf("\nLST CLEAR\n");
 	ft_lstclear(&list1, pt_print_del);
