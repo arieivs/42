@@ -4,6 +4,7 @@ a.out
 libft.a
 nomalloc
 withmalloc
+bonus
 Libftest/
 libft-unit-tests/
 libftTester/

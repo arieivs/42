@@ -309,6 +309,6 @@ int	main(void)
 		write(2, "Cannot close file.\n", 19);
 		return (-1);
 	}
-	printf("\n");
+	printf("\nEND\n");
 	return (0);
 }

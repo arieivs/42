@@ -81,5 +81,6 @@ int	main(void)
 	printf("\nLST CLEAR\n");
 	ft_lstclear(&list1, pt_print_del);
 
+	printf("\nEND\n");
 	return (0);
 }

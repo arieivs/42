@@ -121,7 +121,8 @@ int main(void)
 	pt_alt_caps = &ft_alt_caps;
 	s6 = "aLICe in WoNDerlAnD";
 	s5 = ft_strmapi(s6, pt_alt_caps);
-	printf("orgn: %s, alternating caps: %s\n\n", s6, s5);
+	printf("orgn: %s, alternating caps: %s\n", s6, s5);
 
+	printf("\nEND\n");
 	return (0);
 }
