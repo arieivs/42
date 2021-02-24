@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 11:13:52 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/24 13:05:13 by svieira          ###   ########.fr       */
+/*   Updated: 2021/02/24 20:11:58 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	get_next_line(int fd, char **line)
 {
-	char	*buff;
 	int		read_size;
 
-	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	read_size = read(fd, buff, BUFFER_SIZE);
-	buff[read_size] = 0;
-	if (read_size < 0)
-		return (-1);
-	if (BUFFER_SIZE >= read_size)
-		return (0)
+	read_size = read(fd, *line, BUFFER_SIZE);
+	*line[read_size] = 0;
+	// assim recebo a mais:
+	if (read_size <= 0)
+		return (read_size);
+	// assim recebo a menos:
+	/*if (BUFFER_SIZE > read_size)
+		return (0);*/
 	return (1);
 }

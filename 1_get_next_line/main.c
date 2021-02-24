@@ -1,17 +1,20 @@
 #include "get_next_line.h"
-#include <unistd.h>
+# include <fcntl.h>
+#include <stdio.h>
+
+int	get_next_line(int fd, char **line);
 
 int	main(void)
 {
 	int		fd;
-	char	buff[BUFFER_SIZE + 1];
-	int		read_size;
-	char	*next_line;
+	char	*buff;
 
 	fd = open("text_file", O_RDWR | O_CREAT);
-	read_size = read(fd, buff, BUFFER_SIZE);
-	buff[read_size] = 0;
-	next_line = get_next_line(fd, buff);
-	write(1, buff, read_size);
+	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	while (get_next_line(fd, &buff) > 0)
+		write(1, buff, BUFFER_SIZE);
+	write(1, "\n", 1);
+	close(fd);
+	free(buff);
 	return (0);
 }
