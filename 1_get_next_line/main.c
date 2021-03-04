@@ -8,12 +8,14 @@ int	main(void)
 {
 	int		fd;
 	char	*buff;
+	int		ret;
+	int		line;
 
 	fd = open("text_file", O_RDWR | O_CREAT);
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	while (get_next_line(fd, &buff) > 0)
-		write(1, buff, BUFFER_SIZE);
-	write(1, "\n", 1);
+	line = 1;
+	while ((ret = get_next_line(fd, &buff)) > 0)
+		printf("%d - %s - returned %d\n", line++, buff, ret);
 	close(fd);
 	free(buff);
 	return (0);
