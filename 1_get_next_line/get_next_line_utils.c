@@ -6,11 +6,22 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:51:24 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/04 19:15:56 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/05 17:03:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_strnew_empty(void)
+{
+	char *str;
+
+	str = (char *)malloc(sizeof(char));
+	if (!str)
+		return (NULL);
+	str[0] = 0;
+	return (str);
+}
 
 char	*ft_strchr(const char *s, int c)
 {
