@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 11:13:52 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/05 17:04:31 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/05 23:59:43 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ int		read_file(int fd, char **line, char **curr_line)
 int		get_next_line(int fd, char **line)
 {
 	static char	*curr_line = NULL;
+	int	rd;
 
+	if (fd < 0)
+		return (-1);
 	if (!curr_line)
 	{
 		if (!(curr_line = ft_strnew_empty()))
@@ -61,5 +64,8 @@ int		get_next_line(int fd, char **line)
 	}
 	if (ft_strchr(curr_line, '\n'))
 		return (use_curr_line(line, &curr_line));
-	return (read_file(fd, line, &curr_line));
+	rd = read_file(fd, line, &curr_line);
+	//if (rd == 0 && curr_line[0])
+	//	return (use_curr_line(line, &curr_line));
+	return (rd);
 }
