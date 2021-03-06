@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	line = 1;
 	if (ac == 1)
 	{
-		fd = 1;
+		fd = 0;
 		while ((ret = get_next_line(fd, &buff)) > 0)
 			printf("%d-%d: %s\n", ret, line++, buff);
 	}
