@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:51:24 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/05 17:03:42 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/05 22:38:05 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ char	*ft_strdup_chr(const char *s1, char c)
 	char	*s2;
 	int		i;
 
+	if (!s1)
+	{
+		s2 = (char *)malloc(sizeof(char));
+		s2[0] = 0;
+		return (s2);
+	}
 	size = 0;
 	while (s1[size] && s1[size] != c)
 		size++;
