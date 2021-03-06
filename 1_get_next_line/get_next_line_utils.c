@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:51:24 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/05 22:38:05 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/06 17:33:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,14 @@ char	*ft_strdup_chr(const char *s1, char c)
 	return (s2);
 }
 
-char	*ft_strjoin_chr(const char *s1, const char *s2, char c)
+char	*ft_strjoin_chr(char *s1, char *s2, char c)
 {
 	int		size1;
-	int		size2;
 	char	*s3;
 	int		i;
 
 	size1 = ft_strlen_chr(s1, 0);
-	size2 = ft_strlen_chr(s2, c);
-	s3 = (char *)malloc(sizeof(char) * (size1 + size2 + 1));
+	s3 = (char *)malloc(sizeof(char) * (size1 + ft_strlen_chr(s2, c) + 1));
 	if (!s3)
 		return (NULL);
 	i = 0;
@@ -102,5 +100,6 @@ char	*ft_strjoin_chr(const char *s1, const char *s2, char c)
 		i++;
 	}
 	s3[size1 + i] = 0;
+	free(s1);
 	return (s3);
 }
