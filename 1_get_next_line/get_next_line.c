@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 11:13:52 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/06 18:21:44 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/07 21:05:36 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		get_next_line(int fd, char **line)
 	static char	*curr_line = NULL;
 	int	rd;
 
-	if (fd < 0)
+	if (read(fd, 0, 0) == -1)
 		return (-1);
 	if (!curr_line)
 	{
