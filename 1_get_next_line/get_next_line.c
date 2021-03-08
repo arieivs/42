@@ -5,67 +5,91 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 11:13:52 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/07 21:05:36 by svieira          ###   ########.fr       */
+/*   Created: 2021/03/08 00:26:59 by svieira           #+#    #+#             */
+/*   Updated: 2021/03/08 01:52:18 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		use_curr_line(char **line, char **curr_line)
+char		*ft_strnew_empty(void)
 {
-	*line = ft_strdup_chr(*curr_line, '\n');
-	if (!*line)
-		return (-1);
-	*curr_line = ft_strdup_chr(ft_strchr(*curr_line, '\n'), 0);
-	if (!*curr_line)
-		return (-1);
+	char *str;
+
+	str = (char *)malloc(sizeof(char));
+	if (!str)
+		return (NULL);
+	str[0] = 0;
+	return (str);
+}
+
+void		*ft_memset(void *b, int c, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		((unsigned char *)b)[i] = c;
+		i++;
+	}
+	return (b);
+}
+
+int			ft_memdel(void **ptr)
+{
+	if (!*ptr)
+		return (0);
+	ft_memset(*ptr, 0, ft_strlen(*ptr));
+	free(*ptr);
+	*ptr = NULL;
 	return (1);
 }
 
-int		read_file(int fd, char **line, char **curr_line)
+static int	gnl_core(int fd, char **line, char **cur_line, char *buf)
 {
-	char	*buff;
 	int		rd;
+	char	*temp;
 
-	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	*line = *curr_line;
-	while ((rd = read(fd, buff, BUFFER_SIZE)) > 0)
+	rd = 1;
+	while (!ft_strchr(*cur_line, '\n') && (rd = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
-		buff[rd] = 0;
-		*line = ft_strjoin_chr(*line, buff, '\n');
-		if (!*line)
-			return (-1);
-		if (ft_strchr(buff, '\n'))
-		{
-			*curr_line = ft_strdup_chr(ft_strchr(buff, '\n'), 0);
-			if (!*curr_line)
-				return (-1);
-			break ;
-		}
+		buf[rd] = 0;
+		temp = ft_strjoin(*cur_line, buf);
+		free(*cur_line);
+		*cur_line = temp;
 	}
-	free(buff);
-	if (rd <= 0)
-		return (rd);
+	if (rd == -1)
+		return (-1);
+	if (rd == 0)
+	{
+		*line = ft_strdup(*cur_line);
+		ft_memdel((void **)cur_line);
+		return (0);
+	}
+	*line = ft_substr(*cur_line, 0, ft_strchr(*cur_line, '\n') - *cur_line);
+	temp = ft_strdup(ft_strchr(*cur_line, '\n') + 1);
+	free(*cur_line);
+	*cur_line = temp;
 	return (1);
 }
 
-int		get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
-	static char	*curr_line = NULL;
-	int	rd;
+	static char	*cur_line = NULL;
+	char		*buf;
+	int			rd;
 
-	if (read(fd, 0, 0) == -1)
+	if (read(fd, 0, 0) == -1 || !line || BUFFER_SIZE < 1)
 		return (-1);
-	if (!curr_line)
+	if (!cur_line)
 	{
-		if (!(curr_line = ft_strnew_empty()))
+		if (!(cur_line = ft_strnew_empty()))
 			return (-1);
 	}
-	if (ft_strchr(curr_line, '\n'))
-		return (use_curr_line(line, &curr_line));
-	rd = read_file(fd, line, &curr_line);
-	//if (rd == 0 && curr_line[0])
-	//	return (use_curr_line(line, &curr_line));
+	if (!(buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1)))
+		return (-1);
+	rd = gnl_core(fd, line, &cur_line, buf);
+	free(buf);
 	return (rd);
 }
