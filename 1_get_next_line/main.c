@@ -2,8 +2,6 @@
 # include <fcntl.h>
 #include <stdio.h>
 
-int	get_next_line(int fd, char **line);
-
 int	main(int ac, char **av)
 {
 	int		fd;
