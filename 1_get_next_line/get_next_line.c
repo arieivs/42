@@ -6,41 +6,16 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 00:26:59 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/08 01:52:18 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/08 12:20:03 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char		*ft_strnew_empty(void)
-{
-	char *str;
-
-	str = (char *)malloc(sizeof(char));
-	if (!str)
-		return (NULL);
-	str[0] = 0;
-	return (str);
-}
-
-void		*ft_memset(void *b, int c, size_t len)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < len)
-	{
-		((unsigned char *)b)[i] = c;
-		i++;
-	}
-	return (b);
-}
-
 int			ft_memdel(void **ptr)
 {
 	if (!*ptr)
 		return (0);
-	ft_memset(*ptr, 0, ft_strlen(*ptr));
 	free(*ptr);
 	*ptr = NULL;
 	return (1);
@@ -84,8 +59,9 @@ int			get_next_line(int fd, char **line)
 		return (-1);
 	if (!cur_line)
 	{
-		if (!(cur_line = ft_strnew_empty()))
+		if (!(cur_line = (char *)malloc(sizeof(char))))
 			return (-1);
+		cur_line[0] = 0;
 	}
 	if (!(buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1)))
 		return (-1);
