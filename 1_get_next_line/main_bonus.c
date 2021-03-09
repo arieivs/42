@@ -19,8 +19,10 @@ int	main(int ac, char **av)
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (ac == 1)
 	{
+		ret = get_next_line(42, &buff);
+		printf("invalid fd: %d\n", ret);
 		while ((ret = get_next_line(fd3, &buff)) > 0)
-			printf("%d-%d: %s\n", ret, line3++, buff);
+			printf("stdin-%d: %s\n", ret, buff);
 	}
 	else
 	{

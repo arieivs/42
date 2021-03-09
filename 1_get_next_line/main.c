@@ -18,9 +18,11 @@ int	main(int ac, char **av)
 	line = 1;
 	if (ac == 1)
 	{
+		ret = get_next_line(42, &buff);
+		printf("invalid fd: %d\n", ret);
 		fd = 0;
 		while ((ret = get_next_line(fd, &buff)) > 0)
-			printf("%d-%d: %s\n", ret, line++, buff);
+			printf("stdin-%d: %s\n", ret, buff);
 	}
 	else
 	{
