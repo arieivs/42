@@ -19,6 +19,8 @@ typedef struct	s_fmt
 	int		left_align;
 	char	fill;
 	int		width;
+	int		point;
+	int		precision;
 }				t_fmt;
 
 t_fmt	*init_fmt(void)
@@ -30,6 +32,8 @@ t_fmt	*init_fmt(void)
 	fmt->left_align = 0;
 	fmt->fill = ' ';
 	fmt->width = 0;
+	fmt->point = 0;
+	fmt->precision = 0;
 	return (fmt);
 }
 
@@ -64,6 +68,21 @@ int	parse(char *str)
 		}
 		i++;
 	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		fmt->width = fmt->width * 10 + (str[i++] - '0');
+		printf("width %d ", fmt->width);
+	}
+	if (str[i] == '.' && str[i++])
+	{
+		fmt->point = 1;
+		printf("precision is here! ");
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		fmt->precision = fmt->precision * 10 + (str[i++] - '0');
+		printf("precision %d ", fmt->precision);
+	}
 	free(fmt);
 	return (i);
 }
@@ -95,7 +114,8 @@ void	iter_str(char *str)
 int	main(void)
 {
 	//ft_putstr("I like \'100\\ \a \b \f \r \t \v discounts\n");
-	//printf("I like you %  - + 5d too\n", 4);
-	iter_str("100%+ -05 -40%%discount % 0+-mm\n");
+	//printf("I like you %.f. too\n", 4.54);
+	//iter_str("100%+ -05 -40%%discount % 0+-mm\n");
+	iter_str("hey %+-110.20%f\n");
 	return (0);
 }
