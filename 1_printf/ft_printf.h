@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/29 19:41:09 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/30 15:12:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 
 typedef struct	s_fmt
 {
-	char	plus;
 	int		left_align;
 	char	fill;
+	char	plus;
+	int		hash;
 	int		width;
 	int		point;
 	int		precision;

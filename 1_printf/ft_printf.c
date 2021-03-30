@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/29 19:52:17 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/30 15:17:27 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ t_fmt	*init_fmt(void)
 	t_fmt	*fmt;
 
 	fmt = (t_fmt *)malloc(sizeof(t_fmt));
-	fmt->plus = 0;
 	fmt->left_align = 0;
 	fmt->fill = ' ';
+	fmt->plus = 0;
+	fmt->hash = 0;
 	fmt->width = 0;
 	fmt->point = 0;
 	fmt->precision = 0;
@@ -33,8 +34,19 @@ int		parse(char *str, t_fmt *fmt, va_list ap)
 	int		i;
 
 	i = 0;
-	while (str[i] == '+' || str[i] == ' ' || str[i] == '-' || str[i] == '0')
+	while (str[i] == '-' || str[i] == '0' || str[i] == '+' || str[i] == ' ' ||
+		str[i] == '#')
 	{
+		if (str[i] == '-')
+		{
+			fmt->left_align = 1;
+			printf("left ");
+		}
+		if (!fmt->left_align && str[i] == '0')
+		{
+			fmt->fill = '0';
+			printf("zero ");
+		}
 		if (str[i] == '+')
 		{
 			fmt->plus = '+';
@@ -45,15 +57,10 @@ int		parse(char *str, t_fmt *fmt, va_list ap)
 			fmt->plus = ' ';
 			printf("space ");
 		}
-		if (str[i] == '-')
+		if (str[i] == '#')
 		{
-			fmt->left_align = 1;
-			printf("left ");
-		}
-		if (!fmt->left_align && str[i] == '0')
-		{
-			fmt->fill = '0';
-			printf("zero ");
+			fmt->hash = 1;
+			printf("hash ");
 		}
 		i++;
 	}
@@ -121,8 +128,8 @@ int		ft_printf(char *str, ...)
 int	main(void)
 {
 	//ft_putstr("I like \'100\\ \a \b \f \r \t \v discounts\n");
-	//printf("I like you %.2-5f too\n", 4.756);
+	//printf("I like you % #5.2f too\n", 4.756);
 	//iter_str("100%+ -05 -40%%discount % 0+-mm\n");
-	ft_printf("hey %+-*.*d\n", 589, 600);
+	ft_printf("hey %+#-*.*d\n", 589, 600);
 	return (0);
 }
