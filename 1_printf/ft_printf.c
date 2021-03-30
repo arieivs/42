@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/30 15:17:27 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/30 19:53:46 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,16 @@ int		parse(char *str, t_fmt *fmt, va_list ap)
 	return (i);
 }
 
-//int		print_fmt(t_list *fmt, va_list ap)
-//{
+int		print_fmt(t_fmt *fmt, va_list ap)
+{
+	int	printed;
+
+	printed = 0;
+	if (fmt->conv == 'd')
+		printed = d_print(fmt, ap);
+	
+	return (printed);
+}
 
 int		ft_printf(char *str, ...)
 {
@@ -114,7 +122,7 @@ int		ft_printf(char *str, ...)
 			}
 			fmt = init_fmt();
 			i += parse(str + i, fmt, ap);
-			//printed += print_fmt(fmt, ap);
+			printed += print_fmt(fmt, ap);
 			free(fmt);
 			continue ;
 		}
@@ -128,8 +136,8 @@ int		ft_printf(char *str, ...)
 int	main(void)
 {
 	//ft_putstr("I like \'100\\ \a \b \f \r \t \v discounts\n");
-	//printf("I like you % #5.2f too\n", 4.756);
+	printf("I like you %+06.7d too\n", 45);
 	//iter_str("100%+ -05 -40%%discount % 0+-mm\n");
-	ft_printf("hey %+#-*.*d\n", 589, 600);
+	//ft_printf("hey % 6d\n", -730);
 	return (0);
 }
