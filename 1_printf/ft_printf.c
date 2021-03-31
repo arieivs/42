@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/31 17:00:13 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/31 20:21:29 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,36 +43,21 @@ int		str_include(char *str, char c)
 	return (0);
 }
 
-void	parse_flags(char flag, t_fmt *fmt)
+static void	parse_flags(char flag, t_fmt *fmt)
 {
 	if (flag == '-')
-	{
 		fmt->left_align = 1;
-		printf("left ");
-	}
 	if (!fmt->left_align && flag == '0') // - wins over 0
-	{
 		fmt->fill = '0';
-		printf("zero ");
-	}
 	if (flag == '+')
-	{
 		fmt->plus = '+';
-		printf("plus ");
-	}
 	if (!fmt->plus && flag == ' ') // + wins over space
-	{
 		fmt->plus = ' ';
-		printf("space ");
-	}
 	if (flag == '#')
-	{
 		fmt->hash = 1;
-		printf("hash ");
-	}
 }
 
-int		parse(char *str, t_fmt *fmt, va_list ap)
+int			parse(char *str, t_fmt *fmt, va_list ap)
 {
 	int		i;
 
@@ -88,12 +73,8 @@ int		parse(char *str, t_fmt *fmt, va_list ap)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 		fmt->width = fmt->width * 10 + (str[i++] - '0');
-	printf("width %d ", fmt->width);
 	if (str[i] == '.' && str[i++])
-	{
 		fmt->point = 1;
-		printf("precision is here! ");
-	}
 	if (str[i] == '*' && str[i++]) // precision is given as an argument
 		fmt->precision = va_arg(ap, int);
 	if (fmt->precision < 0) // if precision is negative, ignore the .
@@ -103,10 +84,8 @@ int		parse(char *str, t_fmt *fmt, va_list ap)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 		fmt->precision = fmt->precision * 10 + (str[i++] - '0');
-	printf("precision %d ", fmt->precision);
 	if (str_include("cspdiuxX", str[i]))
 		fmt->conv = str[i++];
-	printf("conversion %c", fmt->conv);
 	return (i);
 }
 
@@ -115,9 +94,8 @@ int		print_fmt(t_fmt *fmt, va_list ap)
 	int	printed;
 
 	printed = 0;
-	if (fmt->conv == 'd')
+	if (fmt->conv == 'd' || fmt->conv == 'i')
 		printed = d_print(fmt, ap);
-	
 	return (printed);
 }
 
@@ -159,11 +137,15 @@ int		ft_printf(char *str, ...)
 
 int	main(void)
 {
+	int	printed;
+
 	//ft_putstr("I like \'100\\ \a \b \f \r \t \v discounts\n");
-	printf("I like you %-+*.*dtoo\n", 4, 4, -5982);
-	//printf("I like you %*d too\n", 10, 5982);
+	//printf("I like you %.*dtoo\n", 0, 0);
+	printed = printf("you %- *.dtoo\n", 4, 0);
+	//printf("printed %d\n", printed);
 	//iter_str("100%+ -05 -40%%discount % 0+-mm\n");
 	//ft_printf("hey %0+2.2d yo %*.*d\n", 42, 10, 6, 5982);
-	ft_printf("hey %-+4.4d", -5982);
+	//ft_printf("hey %.0d", 0);
+	ft_printf("hey %- 4.dyaa ", 0);
 	return (0);
 }
