@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/31 12:56:47 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/31 17:00:13 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parse_flags(char flag, t_fmt *fmt)
 		fmt->left_align = 1;
 		printf("left ");
 	}
-	if (!fmt->left_align && flag == '0')
+	if (!fmt->left_align && flag == '0') // - wins over 0
 	{
 		fmt->fill = '0';
 		printf("zero ");
@@ -60,7 +60,7 @@ void	parse_flags(char flag, t_fmt *fmt)
 		fmt->plus = '+';
 		printf("plus ");
 	}
-	if (!fmt->plus && flag == ' ')
+	if (!fmt->plus && flag == ' ') // + wins over space
 	{
 		fmt->plus = ' ';
 		printf("space ");
@@ -79,9 +79,9 @@ int		parse(char *str, t_fmt *fmt, va_list ap)
 	i = 0;
 	while (str_include("-0+ #", str[i]))
 		parse_flags(str[i++], fmt);
-	if (str[i] == '*' && str[i++])
+	if (str[i] == '*' && str[i++]) // width is given as an argument
 		fmt->width = va_arg(ap, int);
-	if (fmt->width < 0)
+	if (fmt->width < 0) // if width is negative, take - as if it was a flag
 	{
 		fmt->width *= -1;
 		fmt->left_align = 1;
@@ -94,9 +94,9 @@ int		parse(char *str, t_fmt *fmt, va_list ap)
 		fmt->point = 1;
 		printf("precision is here! ");
 	}
-	if (str[i] == '*' && str[i++])
+	if (str[i] == '*' && str[i++]) // precision is given as an argument
 		fmt->precision = va_arg(ap, int);
-	if (fmt->precision < 0)
+	if (fmt->precision < 0) // if precision is negative, ignore the .
 	{
 		fmt->point = 0;
 		fmt->precision = 0;
@@ -160,9 +160,10 @@ int		ft_printf(char *str, ...)
 int	main(void)
 {
 	//ft_putstr("I like \'100\\ \a \b \f \r \t \v discounts\n");
-	printf("I like you %+0*.*d too\n", 10, 6, 5982);
-	printf("I like you %+*.*d too\n", 10, 6, 5982);
+	printf("I like you %-+*.*dtoo\n", 4, 4, -5982);
+	//printf("I like you %*d too\n", 10, 5982);
 	//iter_str("100%+ -05 -40%%discount % 0+-mm\n");
-	//ft_printf("hey %0+2.2d yo %- *.*d\n", 42, -6, -3, -730);
+	//ft_printf("hey %0+2.2d yo %*.*d\n", 42, 10, 6, 5982);
+	ft_printf("hey %-+4.4d", -5982);
 	return (0);
 }

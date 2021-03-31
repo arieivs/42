@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/30 18:48:28 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/31 16:09:55 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ typedef struct	s_fmt
 t_fmt			*init_fmt(void);
 int				parse(char *str, t_fmt *fmt, va_list ap);
 int				print_fmt(t_fmt *fmt, va_list ap);
+
+//d_print
 int				d_print(t_fmt *fmt, va_list ap);
+
+//d_print_utils
+int	num_len(int n, char plus);
+void	ft_putnbr_nosign(int n);
+
+//from libft - to erase
+void	ft_putchar_fd(char c, int fd);
+void		ft_putnbr_fd(int n, int fd);
 
 #endif
