@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/30 19:53:46 by svieira          ###   ########.fr       */
+/*   Updated: 2021/03/31 12:56:47 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,43 +29,63 @@ t_fmt	*init_fmt(void)
 	return (fmt);
 }
 
+int		str_include(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	parse_flags(char flag, t_fmt *fmt)
+{
+	if (flag == '-')
+	{
+		fmt->left_align = 1;
+		printf("left ");
+	}
+	if (!fmt->left_align && flag == '0')
+	{
+		fmt->fill = '0';
+		printf("zero ");
+	}
+	if (flag == '+')
+	{
+		fmt->plus = '+';
+		printf("plus ");
+	}
+	if (!fmt->plus && flag == ' ')
+	{
+		fmt->plus = ' ';
+		printf("space ");
+	}
+	if (flag == '#')
+	{
+		fmt->hash = 1;
+		printf("hash ");
+	}
+}
+
 int		parse(char *str, t_fmt *fmt, va_list ap)
 {
 	int		i;
 
 	i = 0;
-	while (str[i] == '-' || str[i] == '0' || str[i] == '+' || str[i] == ' ' ||
-		str[i] == '#')
-	{
-		if (str[i] == '-')
-		{
-			fmt->left_align = 1;
-			printf("left ");
-		}
-		if (!fmt->left_align && str[i] == '0')
-		{
-			fmt->fill = '0';
-			printf("zero ");
-		}
-		if (str[i] == '+')
-		{
-			fmt->plus = '+';
-			printf("plus ");
-		}
-		if (!fmt->plus && str[i] == ' ')
-		{
-			fmt->plus = ' ';
-			printf("space ");
-		}
-		if (str[i] == '#')
-		{
-			fmt->hash = 1;
-			printf("hash ");
-		}
-		i++;
-	}
+	while (str_include("-0+ #", str[i]))
+		parse_flags(str[i++], fmt);
 	if (str[i] == '*' && str[i++])
 		fmt->width = va_arg(ap, int);
+	if (fmt->width < 0)
+	{
+		fmt->width *= -1;
+		fmt->left_align = 1;
+	}
 	while (str[i] >= '0' && str[i] <= '9')
 		fmt->width = fmt->width * 10 + (str[i++] - '0');
 	printf("width %d ", fmt->width);
@@ -76,11 +96,15 @@ int		parse(char *str, t_fmt *fmt, va_list ap)
 	}
 	if (str[i] == '*' && str[i++])
 		fmt->precision = va_arg(ap, int);
+	if (fmt->precision < 0)
+	{
+		fmt->point = 0;
+		fmt->precision = 0;
+	}
 	while (str[i] >= '0' && str[i] <= '9')
 		fmt->precision = fmt->precision * 10 + (str[i++] - '0');
 	printf("precision %d ", fmt->precision);
-	if (str[i] == 'c' || str[i] == 's' || str[i] == 'p' || str[i] == 'd' ||
-		str[i] == 'i' || str[i] == 'u' || str[i] == 'x' || str[i] == 'X')
+	if (str_include("cspdiuxX", str[i]))
 		fmt->conv = str[i++];
 	printf("conversion %c", fmt->conv);
 	return (i);
@@ -136,8 +160,9 @@ int		ft_printf(char *str, ...)
 int	main(void)
 {
 	//ft_putstr("I like \'100\\ \a \b \f \r \t \v discounts\n");
-	printf("I like you %+06.7d too\n", 45);
+	printf("I like you %+0*.*d too\n", 10, 6, 5982);
+	printf("I like you %+*.*d too\n", 10, 6, 5982);
 	//iter_str("100%+ -05 -40%%discount % 0+-mm\n");
-	//ft_printf("hey % 6d\n", -730);
+	//ft_printf("hey %0+2.2d yo %- *.*d\n", 42, -6, -3, -730);
 	return (0);
 }
