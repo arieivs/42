@@ -8,7 +8,7 @@ OBJS	= ${SRCS:.c=.o}
 
 OBJS_B	= ${SRCS_B:.c=.o}
 
-AR		= ar rc
+AR		= ar rcs
 
 CC		= gcc
 
