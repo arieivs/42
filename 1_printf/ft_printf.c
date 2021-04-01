@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/01 16:12:24 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/01 19:18:17 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ int		str_include(char *str, char c)
 
 static void	parse_flags(char flag, t_fmt *fmt)
 {
-	if (flag == '-')
+	if (flag == '-') // - wins over 0
+	{
 		fmt->left_align = 1;
-	if (!fmt->left_align && flag == '0') // - wins over 0
+		fmt->fill = ' ';
+	}
+	if (!fmt->left_align && flag == '0')
 		fmt->fill = '0';
 	if (flag == '+')
 		fmt->plus = '+';
@@ -57,7 +60,7 @@ static void	parse_flags(char flag, t_fmt *fmt)
 		fmt->hash = 1;
 }
 
-int			parse(char *str, t_fmt *fmt, va_list ap)
+int			parse(const char *str, t_fmt *fmt, va_list ap)
 {
 	int		i;
 
@@ -114,7 +117,6 @@ int		ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			printed++;
 			if (str[i] == '%')
 			{
 				write(1, "%", 1);
@@ -130,6 +132,7 @@ int		ft_printf(const char *str, ...)
 		}
 		write(1, &str[i], 1);
 		i++;
+		printed++;
 	}
 	va_end(ap);
 	return (printed);

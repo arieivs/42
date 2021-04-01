@@ -6,12 +6,27 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/31 20:25:47 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/01 19:03:47 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+static int	calc_width(int n_len, int width, int preci)
+{
+	int	extra_width;
+
+	extra_width = 0;
+	if (width > n_len && width > preci)
+	{
+		if (preci > n_len)
+			extra_width = width - preci;
+		else
+			extra_width = width - n_len; // width counts with -/+/space
+	}
+	return (extra_width);
+}
 
 static void	d_zero_print(int n, t_fmt *fmt, int extra)
 {
@@ -33,7 +48,8 @@ static void	d_actual_print(int n, t_fmt *fmt, int extra_width, int extra_preci)
 	{
 		// putting the space on the right side of the + in the special case
 		// special case being n = 0 with explicit 0 precision
-		if (n == 0 && fmt->point && fmt->precision == 0)
+		// if there's no width, we want to keep it that way
+		if (n == 0 && fmt->point && fmt->precision == 0 && fmt->width != 0)
 			extra_width++;
 		if (!fmt->left_align)
 		{
@@ -59,20 +75,16 @@ int			d_print(t_fmt *fmt, va_list ap)
 
 	n = va_arg(ap, int);
 	n_len = num_len(n, fmt->plus); // n_len includes -/+/space
+	// if there's no width and we have special case, we return 0
+	if (n == 0 && fmt->point && fmt->precision == 0 && fmt->width == 0)
+		n_len = 0;
 	real_preci = fmt->precision;
 	if (n < 0 || fmt->plus) // force total precision to count with -/+/space
 		real_preci++;
 	extra_preci = 0;
 	if (real_preci > n_len)
 		extra_preci = real_preci - n_len;
-	extra_width = 0;
-	if (fmt->width > n_len && fmt->width > real_preci)
-	{
-		if (real_preci > n_len)
-			extra_width = fmt->width - real_preci;
-		else
-			extra_width = fmt->width - n_len; // width counts with -/+/space
-	}
+	extra_width = calc_width(n_len, fmt->width, real_preci);
 	if (fmt->point && fmt->fill != ' ') // ignore 0 when precision exists
 		fmt->fill = ' ';
 	d_actual_print(n, fmt, extra_width, extra_preci);
