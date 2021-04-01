@@ -21,11 +21,9 @@ NAME	= libftprintf.a
 .c.o:
 			${CC} ${CFLAGS} -I${INCDIR} -c $< -o ${<:.c=.o}
 
-libft:
+${NAME}:	${OBJS}
 			${MAKE} -C ${LIBDIR}
 			cp ${LIBDIR}/libft.a ./${NAME}
-
-${NAME}:	libft ${OBJS}
 			${AR} ${NAME} ${OBJS}
 
 test:
@@ -41,4 +39,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		libft all clean fclean re
+.PHONY:		all clean fclean re

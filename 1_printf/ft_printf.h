@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/01 15:11:45 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/01 15:56:32 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int				ft_printf(char *str, ...);
 int				d_print(t_fmt *fmt, va_list ap);
 
 //d_print_utils
-int	num_len(int n, char plus);
+int		num_len(int n, char plus);
 void	ft_putnbr_nosign(int n);
 
 //from libft - to erase
-void	ft_putchar_fd(char c, int fd);
-void		ft_putnbr_fd(int n, int fd);
+//void	ft_putchar_fd(char c, int fd);
+//void		ft_putnbr_fd(int n, int fd);
 
 #endif

@@ -6,12 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:06:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/01 15:13:32 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/01 16:04:52 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
 
 int			num_len(int n, char plus)
 {
