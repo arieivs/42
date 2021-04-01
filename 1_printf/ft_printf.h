@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/01 15:56:32 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/01 16:12:37 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_fmt			*init_fmt(void);
 int				str_include(char *str, char c);
 int				parse(char *str, t_fmt *fmt, va_list ap);
 int				print_fmt(t_fmt *fmt, va_list ap);
-int				ft_printf(char *str, ...);
+int				ft_printf(const char *str, ...);
 
 //d_print
 int				d_print(t_fmt *fmt, va_list ap);

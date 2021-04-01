@@ -1,4 +1,5 @@
 a.out
+*.o
 libftprintf.a
 libft/
 printfTester/

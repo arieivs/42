@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/01 14:31:42 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/01 16:12:24 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int		print_fmt(t_fmt *fmt, va_list ap)
 	return (printed);
 }
 
-int		ft_printf(char *str, ...)
+int		ft_printf(const char *str, ...)
 {
 	va_list	ap;
 	int		i;
