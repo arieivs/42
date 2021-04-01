@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/03/31 20:21:29 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/01 14:31:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int		ft_printf(char *str, ...)
 	return (printed);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int	printed;
 
@@ -148,4 +148,4 @@ int	main(void)
 	//ft_printf("hey %.0d", 0);
 	ft_printf("hey %- 4.dyaa ", 0);
 	return (0);
-}
+}*/
