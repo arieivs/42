@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   d_print.c                                          :+:      :+:    :+:   */
+/*   di_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/01 19:03:47 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:58:40 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	calc_width(int n_len, int width, int preci)
+static int	num_len(int n, char plus)
 {
-	int	extra_width;
+	int	len;
 
-	extra_width = 0;
-	if (width > n_len && width > preci)
+	len = 0;
+	if (n == 0)
+		len = 1;
+	if (n < 0 || plus)
+		len++;
+	while (n != 0)
 	{
-		if (preci > n_len)
-			extra_width = width - preci;
-		else
-			extra_width = width - n_len; // width counts with -/+/space
+		len++;
+		n = n / 10;
 	}
-	return (extra_width);
+	return (len);
 }
 
 static void	d_zero_print(int n, t_fmt *fmt, int extra)
