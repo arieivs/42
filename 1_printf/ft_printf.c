@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/02 14:36:03 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/02 15:16:54 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			parse(const char *str, t_fmt *fmt, va_list ap)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 		fmt->precision = fmt->precision * 10 + (str[i++] - '0');
-	if (str_include("cspdiuxX", str[i]))
+	if (str_include("cspdiuxX%", str[i]))
 		fmt->conv = str[i++];
 	return (i);
 }
@@ -97,6 +97,8 @@ int		print_fmt(t_fmt *fmt, va_list ap)
 	int	printed;
 
 	printed = 0;
+	if (fmt->conv == 'c' || fmt->conv == '%')
+		printed = c_print(fmt, ap);
 	if (fmt->conv == 'd' || fmt->conv == 'i')
 		printed = d_print(fmt, ap);
 	if (fmt->conv == 'u' || fmt->conv == 'x' || fmt->conv == 'X')
@@ -118,16 +120,8 @@ int		ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			i++;
-			if (str[i] == '%')
-			{
-				write(1, "%", 1);
-				i++;
-				printed++;
-				continue ;
-			}
 			fmt = init_fmt();
-			i += parse(str + i, fmt, ap);
+			i += 1 + parse(str + i + 1, fmt, ap);
 			printed += print_fmt(fmt, ap);
 			free(fmt);
 			continue ;
