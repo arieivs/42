@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   u_print.c                                          :+:      :+:    :+:   */
+/*   ux_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/02 12:31:50 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/02 14:34:08 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	unum_len(unsigned int n, char plus)
+static int	ux_num_len(unsigned int n, char plus, char conv)
 {
 	int	len;
+	int	base;
 
 	len = 0;
+	base = 16;
+	if (conv == 'u')
+		base = 10;
 	if (n == 0)
 		len = 1;
 	if (plus)
@@ -25,25 +29,31 @@ static int	unum_len(unsigned int n, char plus)
 	while (n != 0)
 	{
 		len++;
-		n = n / 10;
+		n = n / base;
 	}
 	return (len);
 }
 
-static void	u_zero_print(unsigned int n, t_fmt *fmt, int extra)
+static void	ux_zero_print(unsigned int n, t_fmt *fmt, int extra)
 {
 	if (fmt->plus && n >= 0)
 		write(1, &fmt->plus, 1);
 	while (extra-- > 0)
 		write(1, "0", 1);
-	if (n != 0 || !fmt->point || fmt->precision != 0)
-		ft_putunbr(n);
+	if (n == 0 && fmt->point && fmt->precision == 0)
+		return ;
+	if (fmt->conv == 'u')
+		ft_put_unbr(n);
+	else if (fmt->conv == 'x')
+		ft_put_xnbr(n, "0123456789abcdef");
+	else
+		ft_put_xnbr(n, "0123456789ABCDEF");
 }
 
-static void	u_actual_print(unsigned int n, t_fmt *fmt, int xwidth, int xpreci)
+static void	ux_actual_print(unsigned int n, t_fmt *fmt, int xwidth, int xpreci)
 {
 	if (fmt->fill == '0')
-		u_zero_print(n, fmt, xwidth);
+		ux_zero_print(n, fmt, xwidth);
 	else
 	{
 		// putting the space on the right side of the + in the special case
@@ -56,7 +66,7 @@ static void	u_actual_print(unsigned int n, t_fmt *fmt, int xwidth, int xpreci)
 			while (xwidth-- > 0)
 				write(1, " ", 1);
 		}
-		u_zero_print(n, fmt, xpreci);
+		ux_zero_print(n, fmt, xpreci);
 		if (fmt->left_align)
 		{
 			while (xwidth-- > 0)
@@ -65,7 +75,7 @@ static void	u_actual_print(unsigned int n, t_fmt *fmt, int xwidth, int xpreci)
 	}
 }
 
-int			u_print(t_fmt *fmt, va_list ap)
+int			ux_print(t_fmt *fmt, va_list ap)
 {
 	unsigned int	n;
 	int				n_len;
@@ -74,7 +84,7 @@ int			u_print(t_fmt *fmt, va_list ap)
 	int				extra_width;
 
 	n = va_arg(ap, unsigned int);
-	n_len = unum_len(n, fmt->plus); // n_len includes +/space
+	n_len = ux_num_len(n, fmt->plus, fmt->conv); // n_len includes +/space
 	// if there's no width and we have special case, we return 0
 	if (n == 0 && fmt->point && fmt->precision == 0 && fmt->width == 0)
 		n_len = 0;
@@ -87,6 +97,6 @@ int			u_print(t_fmt *fmt, va_list ap)
 	extra_width = calc_width(n_len, fmt->width, real_preci);
 	if (fmt->point && fmt->fill != ' ') // ignore 0 when precision exists
 		fmt->fill = ' ';
-	u_actual_print(n, fmt, extra_width, extra_preci);
+	ux_actual_print(n, fmt, extra_width, extra_preci);
 	return (extra_preci + extra_width + n_len);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   diu_print_utils.c                                  :+:      :+:    :+:   */
+/*   diux_print_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:06:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/02 12:39:41 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/02 14:37:39 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,16 @@ void		ft_putnbr_nosign(int n)
 		ft_putnegnbr(-n);
 }
 
-void		ft_putunbr(unsigned int n)
+void		ft_put_unbr(unsigned int n)
 {
 	if (n >= 10)
-		ft_putunbr(n / 10);
+		ft_put_unbr(n / 10);
 	ft_putchar_fd(n % 10 + '0', 1);
+}
+
+void		ft_put_xnbr(unsigned int n, char *base)
+{
+	if (n >= 16)
+		ft_put_xnbr(n / 16, base);
+	ft_putchar_fd(base[n % 16], 1);
 }
