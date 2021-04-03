@@ -1,6 +1,6 @@
 INCDIR	= .
 
-SRCS	= ft_printf.c di_print.c ux_print.c diux_print_utils.c
+SRCS	= ft_printf.c c_print.c di_print.c ux_print.c diux_print_utils.c
 
 OBJS	= ${SRCS:.c=.o}
 
