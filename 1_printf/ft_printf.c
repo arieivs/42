@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/02 15:16:54 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/04 14:45:30 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int		print_fmt(t_fmt *fmt, va_list ap)
 	printed = 0;
 	if (fmt->conv == 'c' || fmt->conv == '%')
 		printed = c_print(fmt, ap);
+	if (fmt->conv == 's')
+		printed = s_print(fmt, ap);
 	if (fmt->conv == 'd' || fmt->conv == 'i')
 		printed = d_print(fmt, ap);
 	if (fmt->conv == 'u' || fmt->conv == 'x' || fmt->conv == 'X')
