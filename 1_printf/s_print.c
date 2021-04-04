@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/04 14:44:53 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/04 17:00:43 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int			s_print(t_fmt *fmt, va_list ap)
 	int		extra_width;
 
 	s = va_arg(ap, char *);
+	if (!s)
+		s = "(null)";
 	s_len = ft_strlen(s);
 	real_len = s_len;
 	if (fmt->point && fmt->precision < s_len)
