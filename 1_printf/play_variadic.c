@@ -19,6 +19,8 @@ void	var_ft(char *str, ...)
 	va_list	pa;
 	char	c;
 	char	*s;
+	void	*p;
+	unsigned long	mem;
 
 	va_start(pa, str);
 	while (str[i])
@@ -36,6 +38,12 @@ void	var_ft(char *str, ...)
 				s = va_arg(pa, char *);
 				ft_putstr(s);
 			}
+			else if (str[i] == 'p')
+			{
+				p = va_arg(pa, void *);
+				mem = (unsigned long)p;
+				printf("\nadd: %p my way: %#lx\n", (void *)p, mem);
+			}
 		}
 		else
 			write(1, &str[i], 1);
@@ -46,6 +54,7 @@ void	var_ft(char *str, ...)
 
 int	main(void)
 {
-	var_ft("hel%co %s%cess\n", 'l', "dark", 'n');
+	char	a = 'a';
+	var_ft("hel%co %s%pess\n", 'l', "dark", &a);
 	return (0);
 }
