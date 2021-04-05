@@ -6,21 +6,23 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/02 11:58:40 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/05 13:41:36 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	num_len(int n, char plus)
+static int	num_len(int n, t_fmt *fmt)
 {
 	int	len;
 
 	len = 0;
-	if (n == 0)
+	// don't count the number in special case
+	// special case being when n is 0 and precision is explicitly 0
+	if (n == 0 && !(fmt->point && fmt->precision == 0))
 		len = 1;
-	if (n < 0 || plus)
+	if (n < 0 || fmt->plus)
 		len++;
 	while (n != 0)
 	{
@@ -48,11 +50,6 @@ static void	d_actual_print(int n, t_fmt *fmt, int extra_width, int extra_preci)
 		d_zero_print(n, fmt, extra_width);
 	else
 	{
-		// putting the space on the right side of the + in the special case
-		// special case being n = 0 with explicit 0 precision
-		// if there's no width, we want to keep it that way
-		if (n == 0 && fmt->point && fmt->precision == 0 && fmt->width != 0)
-			extra_width++;
 		if (!fmt->left_align)
 		{
 			while (extra_width-- > 0)
@@ -76,12 +73,10 @@ int			d_print(t_fmt *fmt, va_list ap)
 	int	extra_width;
 
 	n = va_arg(ap, int);
-	n_len = num_len(n, fmt->plus); // n_len includes -/+/space
-	// if there's no width and we have special case, we return 0
-	if (n == 0 && fmt->point && fmt->precision == 0 && fmt->width == 0)
-		n_len = 0;
+	n_len = num_len(n, fmt); // n_len includes -/+/space
 	real_preci = fmt->precision;
-	if (n < 0 || fmt->plus) // force total precision to count with -/+/space
+	// force real precision to count with -/+/space except in special case
+	if (n < 0 || (fmt->plus && !(n == 0 && fmt->point && fmt->precision == 0)))
 		real_preci++;
 	extra_preci = 0;
 	if (real_preci > n_len)
