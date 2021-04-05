@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 10:42:12 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/05 15:55:08 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,10 @@ int				calc_width(int n_len, int width, int preci);
 void			ft_putnbr_nosign(int n);
 void			ft_put_unbr(unsigned int n);
 void			ft_put_xnbr(unsigned int n, char *base);
+
+//p_print
+int				p_print(t_fmt *fmt, va_list ap);
+//p_print_utils
+void			ft_put_xl(unsigned long n, char *base);
 
 #endif
