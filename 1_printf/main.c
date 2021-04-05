@@ -3,24 +3,35 @@
 
 int	main(void)
 {
-	int	a = 2;
+	//int	a = 2;
 	int	orig;
 	int	mine;
 
-	printf("\n** d **\n");
+	/*printf("\n** d **\n");
 	orig = printf("you%.*dtoo\n", 0, 0);
 	mine = ft_printf("you%.*dtoo\n", 0, 0);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	orig = printf("hey %0+2.2d yo %*.*d\n", 42, 10, 6, 5982);
 	mine = ft_printf("hey %0+2.2d yo %*.*d\n", 42, 10, 6, 5982);
-	printf("orig: %d mine: %d\n\n", orig, mine);
+	printf("orig: %d mine: %d\n\n", orig, mine);*/
 	
+	printf("\n** u **\n");
+	orig = printf("%+uolare% -5uihu%0.3uolare\n", 21, 21, 1);
+	mine = ft_printf("%+uolare% -5uihu%0.3uolare\n", 21, 21, 1);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("%.uolare%+.1uihu\n", 0, 0);
+	mine = ft_printf("%.uolare%+.1uihu\n", 0, 0);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+
 	printf("\n** x and X **\n");
 	orig = printf("0*%-*x*0 0*%0*X*0 \n", 21, 1021, 21, 1011);
 	mine = ft_printf("0*%-*x*0 0*%0*X*0 \n", 21, 1021, 21, 1011);
 	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("%+xolare% -5Xihu\n", 21, 21);
+	mine = ft_printf("%+xolare% -5Xihu\n", 21, 21);
+	printf("orig: %d mine: %d\n\n", orig, mine);
 
-	printf("\n** c **\n");
+	/*printf("\n** c **\n");
 	orig = printf("hey%5cyou\n", 345);
 	mine = ft_printf("hey%5cyou\n", 345);
 	printf("orig: %d mine: %d\n\n", orig, mine);
@@ -43,6 +54,6 @@ int	main(void)
 	printf("orig: %d mine: %d\n\n", orig, mine);
 
 	printf("\n** p **\n");
-	printf("testing %p\n", &a);
+	printf("testing %p\n", &a);*/
 	return (0);
 }
