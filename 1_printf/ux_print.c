@@ -6,14 +6,14 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 11:18:05 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/05 11:34:06 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	ux_num_len(unsigned int n, char conv)
+static int	ux_num_len(unsigned int n, char conv, int hash)
 {
 	int	len;
 	int	base;
@@ -24,6 +24,8 @@ static int	ux_num_len(unsigned int n, char conv)
 		base = 10;
 	if (n == 0)
 		len = 1;
+	if (hash && conv != 'u' && n != 0)
+		len += 2;
 	while (n != 0)
 	{
 		len++;
@@ -34,6 +36,11 @@ static int	ux_num_len(unsigned int n, char conv)
 
 static void	ux_zero_print(unsigned int n, t_fmt *fmt, int extra)
 {
+	if (fmt->hash && fmt->conv != 'u' && n != 0)
+	{
+		write(1, "0", 1);
+		write(1, &fmt->conv, 1);
+	}
 	while (extra-- > 0)
 		write(1, "0", 1);
 	if (n == 0 && fmt->point && fmt->precision == 0)
@@ -79,8 +86,8 @@ int			ux_print(t_fmt *fmt, va_list ap)
 	int				extra_width;
 
 	n = va_arg(ap, unsigned int);
-	n_len = ux_num_len(n, fmt->conv);
-	// if there's no width and we have special case, we return 0
+	n_len = ux_num_len(n, fmt->conv, fmt->hash); // n_len counts with 0x
+	// if there's no width and we have special case, we n_len is 0
 	if (n == 0 && fmt->point && fmt->precision == 0 && fmt->width == 0)
 		n_len = 0;
 	extra_preci = 0;
