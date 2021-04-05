@@ -7,7 +7,7 @@ int	main(void)
 	int	orig;
 	int	mine;
 
-	/*printf("\n** d **\n");
+	printf("\n** d **\n");
 	orig = printf("you%.*dtoo\n", 0, 0);
 	mine = ft_printf("you%.*dtoo\n", 0, 0);
 	printf("orig: %d mine: %d\n\n", orig, mine);
@@ -52,12 +52,15 @@ int	main(void)
 	mine = ft_printf("%#-03.2xolare%#-03.*Xihu\n", 1, 3, 1);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 
-	printf("\n** c **\n");
-	orig = printf("hey%5cyou\n", 345);
-	mine = ft_printf("hey%5cyou\n", 345);
+	printf("\n** c and %% **\n");
+	orig = printf("hey%5cjude\n", 345);
+	mine = ft_printf("hey%5cjude\n", 345);
 	printf("orig: %d mine: %d\n\n", orig, mine);
-	orig = printf("hey%5cyou\n", 0);
-	mine = ft_printf("hey%5cyou\n", 0);
+	orig = printf("dont%05%make\n");
+	mine = ft_printf("dont%05%make\n");
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("me%5ccry\n", 0);
+	mine = ft_printf("me%5ccry\n", 0);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 
 	printf("\n** s **\n");
@@ -72,7 +75,7 @@ int	main(void)
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	orig = printf("36<%.*s>\n", -2, NULL);
 	mine = ft_printf("36<%.*s>\n", -2, NULL);
-	printf("orig: %d mine: %d\n\n", orig, mine);*/
+	printf("orig: %d mine: %d\n\n", orig, mine);
 
 	printf("\n** p **\n");
 	orig = printf("<%p>\n", 0);

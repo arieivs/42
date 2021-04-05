@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/03 11:39:25 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/05 18:47:41 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int			c_print(t_fmt *fmt, va_list ap)
 	if (!fmt->left_align)
 	{
 		while (extra_width-- > 0)
-			write(1, " ", 1);
+			write(1, &fmt->fill, 1);
 	}
 	write(1, &c, 1);
 	if (fmt->left_align)
 	{
 		while (extra_width-- > 0)
-			write(1, " ", 1);
+			write(1, &fmt->fill, 1);
 	}
 	return (total_width);
 }
