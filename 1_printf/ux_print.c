@@ -6,25 +6,27 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 12:19:09 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/05 13:53:53 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	ux_num_len(unsigned int n, char conv, int hash)
+static int	ux_num_len(unsigned int n, t_fmt *fmt)
 {
 	int	len;
 	int	base;
 
 	len = 0;
 	base = 16;
-	if (conv == 'u')
+	if (fmt->conv == 'u')
 		base = 10;
-	if (n == 0)
+	// don't count the number in special case
+	// special case being when n is 0 and precision is explicitly 0
+	if (n == 0 && !(fmt->point && fmt->precision == 0))
 		len = 1;
-	if (hash && conv != 'u' && n != 0)
+	if (fmt->hash && fmt->conv != 'u' && n != 0)
 		len += 2;
 	while (n != 0)
 	{
@@ -59,11 +61,6 @@ static void	ux_actual_print(unsigned int n, t_fmt *fmt, int xwidth, int xpreci)
 		ux_zero_print(n, fmt, xwidth);
 	else
 	{
-		// putting the space on the right side of the + in the special case
-		// special case being n = 0 with explicit 0 precision
-		// if there's no width, we want to keep it that way
-		if (n == 0 && fmt->point && fmt->precision == 0 && fmt->width != 0)
-			xwidth++;
 		if (!fmt->left_align)
 		{
 			while (xwidth-- > 0)
@@ -87,12 +84,9 @@ int			ux_print(t_fmt *fmt, va_list ap)
 	int				extra_width;
 
 	n = va_arg(ap, unsigned int);
-	n_len = ux_num_len(n, fmt->conv, fmt->hash); // n_len counts with 0x
-	// if there's no width and we have special case, we n_len is 0
-	if (n == 0 && fmt->point && fmt->precision == 0 && fmt->width == 0)
-		n_len = 0;
+	n_len = ux_num_len(n, fmt); // n_len counts with 0x
 	real_preci = fmt->precision;
-	if (fmt->hash && fmt->conv != 'u' && n != 0) // force it to count with 0x
+	if (fmt->hash && fmt->conv != 'u' && n != 0) // force preci to count with 0x
 		real_preci += 2;
 	extra_preci = 0;
 	if (real_preci > n_len)
