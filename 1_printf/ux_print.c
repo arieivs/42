@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 11:34:06 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/05 12:19:09 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int			ux_print(t_fmt *fmt, va_list ap)
 {
 	unsigned int	n;
 	int				n_len;
+	int				real_preci;
 	int				extra_preci;
 	int				extra_width;
 
@@ -90,10 +91,13 @@ int			ux_print(t_fmt *fmt, va_list ap)
 	// if there's no width and we have special case, we n_len is 0
 	if (n == 0 && fmt->point && fmt->precision == 0 && fmt->width == 0)
 		n_len = 0;
+	real_preci = fmt->precision;
+	if (fmt->hash && fmt->conv != 'u' && n != 0) // force it to count with 0x
+		real_preci += 2;
 	extra_preci = 0;
-	if (fmt->precision > n_len)
-		extra_preci = fmt->precision - n_len;
-	extra_width = calc_width(n_len, fmt->width, fmt->precision);
+	if (real_preci > n_len)
+		extra_preci = real_preci - n_len;
+	extra_width = calc_width(n_len, fmt->width, real_preci);
 	if (fmt->point && fmt->fill != ' ') // ignore 0 when precision exists
 		fmt->fill = ' ';
 	ux_actual_print(n, fmt, extra_width, extra_preci);

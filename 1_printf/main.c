@@ -42,6 +42,9 @@ int	main(void)
 	orig = printf("%#.xolare%#+.1Xihu\n", 0, 0);
 	mine = ft_printf("%#.xolare%#+.1Xihu\n", 0, 0);
 	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("%#-03.2xolare%#-03.*Xihu\n", 1, 3, 1);
+	mine = ft_printf("%#-03.2xolare%#-03.*Xihu\n", 1, 3, 1);
+	printf("orig: %d mine: %d\n\n", orig, mine);
 
 	/*printf("\n** c **\n");
 	orig = printf("hey%5cyou\n", 345);

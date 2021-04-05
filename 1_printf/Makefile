@@ -29,6 +29,9 @@ ${NAME}:	${OBJS}
 test:
 			${CC} ${CFLAGS} main.c -L. -lftprintf
 
+# bonus rule needs to be changed
+bonus:		${NAME}
+
 all:		${NAME}
 
 clean:
