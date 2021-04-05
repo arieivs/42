@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/04 14:46:01 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/05 10:42:12 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@ typedef struct	s_fmt
 	char	conv;
 }				t_fmt;
 
+//ft_printf
 t_fmt			*init_fmt(void);
-int				str_include(char *str, char c);
-int				parse(const char *str, t_fmt *fmt, va_list ap);
 int				print_fmt(t_fmt *fmt, va_list ap);
 int				ft_printf(const char *str, ...);
+
+//parse
+int				str_include(char *str, char c);
+int				parse(const char *str, t_fmt *fmt, va_list ap);
 
 //c_print
 int				c_print(t_fmt *fmt, va_list ap);
