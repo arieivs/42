@@ -4,3 +4,5 @@ libftprintf.a
 libft/
 printfTester/
 pft/
+42TESTERS-PRINTF/
+ft_printf_test/
