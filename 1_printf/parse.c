@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 10:37:18 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 10:43:09 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/05 11:44:25 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	deal_neg_width(t_fmt *fmt)
 {
 	fmt->width *= -1;
 	fmt->left_align = 1;
+	fmt->fill = ' ';
 }
 
 static void	deal_neg_preci(t_fmt *fmt)
