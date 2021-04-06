@@ -136,9 +136,9 @@ int	main(void)
 	orig = printf("%#-03.2lxolare%#-03.*lXihu\n", (long int)1, 3, (long int)1);
 	mine = ft_printf("%#-03.2lxolare%#-03.*lXihu\n", (long int)1, 3, (long int)1);
 	printf("orig: %d mine: %d\n\n", orig, mine);
-	/*printf("hellooo%ln suckerrrs\n", &la);
+	printf("hellooo%ln suckerrrs\n", &la);
 	ft_printf("hellooo%ln suckerrrs\n", &lb);
-	printf("orig: %ld mine: %ld\n\n", la, lb);*/
+	printf("orig: %ld mine: %ld\n\n", la, lb);
 	orig = printf("<%ld>\n", LONG_MAX);
 	mine = ft_printf("<%ld>\n", LONG_MAX);
 	printf("orig: %d mine: %d\n\n", orig, mine);
