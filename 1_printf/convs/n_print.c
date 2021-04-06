@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 09:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 10:02:36 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 12:51:29 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,12 @@ void	n_print(va_list ap, int printed)
 
 	n = (int *)va_arg(ap, int *);
 	*n = printed;
+}
+
+void	nh_print(va_list ap, int printed)
+{
+	short int	*n;
+
+	n = (short int *)va_arg(ap, int *);
+	*n = (short int)printed;
 }

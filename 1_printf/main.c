@@ -5,10 +5,12 @@ int	main(void)
 {
 	int	orig;
 	int	mine;
-	/*int	a = 2;
+	int	a = 2;
 	int	b = 3;
+	short int sa = 2;
+	short int sb = 3;
 
-	printf("\n** d **\n");
+	/*printf("\n** d **\n");
 	orig = printf("you%.*dtoo\n", 0, 0);
 	mine = ft_printf("you%.*dtoo\n", 0, 0);
 	printf("orig: %d mine: %d\n\n", orig, mine);
@@ -101,5 +103,8 @@ int	main(void)
 	orig = printf("%#-03.2hxolare%#-03.*hXihu\n", (short int)1, 3, (short int)1);
 	mine = ft_printf("%#-03.2hxolare%#-03.*hXihu\n", 1, 3, 1);
 	printf("orig: %d mine: %d\n\n", orig, mine);
+	printf("hellooo%hn suckerrrs\n", &sa);
+	ft_printf("hellooo%hn suckerrrs\n", &sb);
+	printf("orig: %hd mine: %hd\n\n", sa, sb);
 	return (0);
 }

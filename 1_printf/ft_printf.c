@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 12:21:47 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 12:55:49 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int		print_fmt(t_fmt *fmt, va_list ap, int printed)
 		printed += p_print(fmt, ap);
 	if (fmt->conv == 'n' && !fmt->size)
 		n_print(ap, printed);
-	//if (fmt->conv == 'n' && fmt->size == 'h')
-	//	nh_print(ap, printed);
+	if (fmt->conv == 'n' && fmt->size == 'h')
+		nh_print(ap, printed);
 	return (printed);
 }
 
