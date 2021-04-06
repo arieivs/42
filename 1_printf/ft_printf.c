@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 16:20:07 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 16:44:06 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int		print_fmt(t_fmt *fmt, va_list ap, int printed)
 		printed += uxll_print(fmt, ap);
 	if (fmt->conv == 'p')
 		printed += p_print(fmt, ap);
-	if (fmt->conv == 'n' && (!fmt->size || fmt->size == 'H'))
-		n_print(ap, printed, fmt->size);
+	if (fmt->conv == 'n' && !fmt->size)
+		n_print(ap, printed);
+	if (fmt->conv == 'n' && fmt->size == 'H')
+		nhh_print(ap, printed);
 	if (fmt->conv == 'n' && fmt->size == 'h')
 		nh_print(ap, printed);
 	if (fmt->conv == 'n' && fmt->size == 'L')
