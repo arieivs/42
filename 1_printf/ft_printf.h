@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 14:25:59 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 14:39:55 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ int				uxh_print(t_fmt *fmt, va_list ap);
 int				dill_print(t_fmt *fmt, va_list ap);
 //uxll_print
 int				uxll_print(t_fmt *fmt, va_list ap);
+//diux_print_utils
+void			ft_put_llnbr_nosign(long long int n);
+void			ft_put_ullnbr(unsigned long long int n);
+void			ft_put_xllnbr(unsigned long long int n, char *base);
 
 //p_print
 int				p_print(t_fmt *fmt, va_list ap);

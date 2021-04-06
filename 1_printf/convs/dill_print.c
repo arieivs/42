@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 14:07:47 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 14:41:39 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	dill_zero_print(long long int n, t_fmt *fmt, int extra)
 	while (extra-- > 0)
 		write(1, "0", 1);
 	if (n != 0 || !fmt->point || fmt->precision != 0)
-		ft_putnbr_nosign(n);
+		ft_put_llnbr_nosign(n);
 }
 
 static void	dill_actual_print(long long int n, t_fmt *fmt, int xwd, int xprec)
