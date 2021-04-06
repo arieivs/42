@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 15:44:54 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 16:19:52 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int				p_print(t_fmt *fmt, va_list ap);
 void			ft_put_xl(unsigned long n, char *base);
 
 //n_print
-void			n_print(va_list ap, int printed);
+void			n_print(va_list ap, int printed, char hh);
 void			nh_print(va_list ap, int printed);
 void			nll_print(va_list ap, int printed);
 
