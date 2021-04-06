@@ -6,25 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 10:37:18 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 10:10:22 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 11:50:00 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int			str_include(char *str, char c)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 static void	parse_flags(char flag, t_fmt *fmt)
 {
@@ -56,6 +42,18 @@ static void	deal_neg_preci(t_fmt *fmt)
 	fmt->precision = 0;
 }
 
+static void	parse_size(char flag, t_fmt *fmt)
+{
+	if (fmt->size == 'l' && flag == 'l') // ll will be L
+		fmt->size = 'L';
+	if (fmt->size == 'h' && flag == 'h') // hh will be H
+		fmt->size = 'H';
+	if (!fmt->size && flag == 'l')
+		fmt->size = 'l';
+	if (!fmt->size && flag == 'h')
+		fmt->size = 'h';
+}
+
 int			parse(const char *str, t_fmt *fmt, va_list ap)
 {
 	int		i;
@@ -77,6 +75,8 @@ int			parse(const char *str, t_fmt *fmt, va_list ap)
 		deal_neg_preci(fmt);
 	while (str[i] >= '0' && str[i] <= '9')
 		fmt->precision = fmt->precision * 10 + (str[i++] - '0');
+	while (str[i] == 'l' || str[i] == 'h')
+		parse_size(str[i++], fmt);
 	if (str_include("cspdiuxXn%", str[i]))
 		fmt->conv = str[i++];
 	return (i);
