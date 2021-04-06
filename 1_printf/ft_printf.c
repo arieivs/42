@@ -6,13 +6,13 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 18:47:11 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 22:03:29 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_fmt	*init_fmt(void)
+t_fmt		*init_fmt(void)
 {
 	t_fmt	*fmt;
 
@@ -43,7 +43,31 @@ int			str_include(char *str, char c)
 	return (0);
 }
 
-int		print_fmt(t_fmt *fmt, va_list ap, int printed)
+static int	print_diux_size(t_fmt *fmt, va_list ap)
+{
+	int	printed;
+
+	printed = 0;
+	if (str_include("di", fmt->conv) && (!fmt->size || fmt->size == 'H'))
+		printed = di_print(fmt, ap);
+	if (str_include("di", fmt->conv) && fmt->size == 'h')
+		printed = dih_print(fmt, ap);
+	if (str_include("di", fmt->conv) && fmt->size == 'l')
+		printed = dil_print(fmt, ap);
+	if (str_include("di", fmt->conv) && fmt->size == 'L')
+		printed = dill_print(fmt, ap);
+	if (str_include("uxX", fmt->conv) && (!fmt->size || fmt->size == 'H'))
+		printed = ux_print(fmt, ap);
+	if (str_include("uxX", fmt->conv) && fmt->size == 'h')
+		printed = uxh_print(fmt, ap);
+	if (str_include("uxX", fmt->conv) && fmt->size == 'l')
+		printed = uxl_print(fmt, ap);
+	if (str_include("uxX", fmt->conv) && fmt->size == 'L')
+		printed = uxll_print(fmt, ap);
+	return (printed);
+}
+
+int			print_fmt(t_fmt *fmt, va_list ap, int printed)
 {
 	if ((fmt->conv == 'c' || fmt->conv == '%') && fmt->size == 'l')
 		printed += cl_print(fmt, ap);
@@ -51,22 +75,8 @@ int		print_fmt(t_fmt *fmt, va_list ap, int printed)
 		printed += c_print(fmt, ap);
 	if (fmt->conv == 's')
 		printed += s_print(fmt, ap);
-	if (str_include("di", fmt->conv) && (!fmt->size || fmt->size == 'H'))
-		printed += di_print(fmt, ap);
-	if (str_include("di", fmt->conv) && fmt->size == 'h')
-		printed += dih_print(fmt, ap);
-	if (str_include("di", fmt->conv) && fmt->size == 'l')
-		printed += dil_print(fmt, ap);
-	if (str_include("di", fmt->conv) && fmt->size == 'L')
-		printed += dill_print(fmt, ap);
-	if (str_include("uxX", fmt->conv) && (!fmt->size || fmt->size == 'H'))
-		printed += ux_print(fmt, ap);
-	if (str_include("uxX", fmt->conv) && fmt->size == 'h')
-		printed += uxh_print(fmt, ap);
-	if (str_include("uxX", fmt->conv) && fmt->size == 'l')
-		printed += uxl_print(fmt, ap);
-	if (str_include("uxX", fmt->conv) && fmt->size == 'L')
-		printed += uxll_print(fmt, ap);
+	if (str_include("diuxX", fmt->conv))
+		printed += print_diux_size(fmt, ap);
 	if (fmt->conv == 'p')
 		printed += p_print(fmt, ap);
 	if (fmt->conv == 'n' && !fmt->size)
@@ -82,7 +92,7 @@ int		print_fmt(t_fmt *fmt, va_list ap, int printed)
 	return (printed);
 }
 
-int		ft_printf(const char *str, ...)
+int			ft_printf(const char *str, ...)
 {
 	va_list	ap;
 	int		i;
