@@ -1,8 +1,12 @@
 INCDIR	= .
 
-SRCS	= ft_printf.c parse.c c_print.c s_print.c di_print.c ux_print.c diux_print_utils.c p_print.c p_print_utils.c n_print.c
+SRCS	= ft_printf.c parse.c c_print.c s_print.c di_print.c ux_print.c diux_print_utils.c p_print.c p_print_utils.c
+
+SRCS_B	= n_print.c
 
 OBJS	= ${SRCS:.c=.o}
+
+OBJS_B	= ${SRCS_B:.c=.o}
 
 LIBDIR	= ./libft
 
@@ -26,11 +30,14 @@ ${NAME}:	${OBJS}
 			cp ${LIBDIR}/libft.a ./${NAME}
 			${AR} ${NAME} ${OBJS}
 
-test:
-			${CC} ${CFLAGS} main.c -L. -lftprintf
+bonus:		${OBJS} ${OBJS_B}
+			${MAKE} -C ${LIBDIR}
+			cp ${LIBDIR}/libft.a ./${NAME}
+			${AR} ${NAME} ${OBJS} ${OBJS_B}
 
-# bonus rule needs to be changed
-bonus:		${NAME}
+test:
+			${CC} -Wall -Wextra main.c -L. -lftprintf -o test.out
+			./test.out
 
 all:		${NAME}
 
