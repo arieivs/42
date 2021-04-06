@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <limits.h>
 #include <stdio.h>
 
 int	main(void)
@@ -9,6 +10,8 @@ int	main(void)
 	int	b = 3;
 	short int sa = 2;
 	short int sb = 3;
+	long long int lla = 2;
+	long long int llb = 3;
 
 	/*printf("\n** d **\n");
 	orig = printf("you%.*dtoo\n", 0, 0);
@@ -116,6 +119,12 @@ int	main(void)
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	orig = printf("%#-03.2llxolare%#-03.*llXihu\n", (long long int)1, 3, (long long int)1);
 	mine = ft_printf("%#-03.2llxolare%#-03.*llXihu\n", (long long int)1, 3, (long long int)1);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	printf("hellooo%lln suckerrrs\n", &lla);
+	ft_printf("hellooo%lln suckerrrs\n", &llb);
+	printf("orig: %lld mine: %lld\n\n", lla, llb);
+	orig = printf("<%lld>\n", LONG_MAX + 1);
+	mine = ft_printf("<%lld>\n", LONG_MAX + 1);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	return (0);
 }
