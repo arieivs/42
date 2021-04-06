@@ -126,5 +126,10 @@ int	main(void)
 	orig = printf("<%lld>\n", LONG_MAX + 1);
 	mine = ft_printf("<%lld>\n", LONG_MAX + 1);
 	printf("orig: %d mine: %d\n\n", orig, mine);
+
+	printf("\n** hh **\n");
+	orig = printf("hey%5hhdjude%.10hhd.\n", 345, -129);
+	mine = ft_printf("hey%5hhdjude%.10hhd.\n", 345, -129);
+	printf("orig: %d mine: %d\n\n", orig, mine);
 	return (0);
 }

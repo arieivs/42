@@ -6,12 +6,21 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 12:08:49 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 15:45:58 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+static int	conv_hh(int n)
+{
+	char	c;
+
+	c = (char)n;
+	n = (int)c;
+	return (n);
+}
 
 static int	num_len(int n, t_fmt *fmt)
 {
@@ -73,6 +82,8 @@ int			di_print(t_fmt *fmt, va_list ap)
 	int	extra_width;
 
 	n = va_arg(ap, int);
+	if (fmt->size == 'H')
+		n = conv_hh(n);
 	n_len = num_len(n, fmt); // n_len includes -/+/space
 	real_preci = fmt->precision;
 	// force real precision to count with -/+/space except in special case
