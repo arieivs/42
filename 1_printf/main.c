@@ -142,6 +142,12 @@ int	main(void)
 	orig = printf("<%ld>\n", LONG_MAX);
 	mine = ft_printf("<%ld>\n", LONG_MAX);
 	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("hey%5lcjude\n", u'ɐ');
+	mine = ft_printf("hey%5lcjude\n", u'ɐ');
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("dont%05l%make\n");
+	mine = ft_printf("dont%05l%make\n");
+	printf("orig: %d mine: %d\n\n", orig, mine);
 
 	/*printf("\n** ll **\n");
 	orig = printf("hey%0+2.2lldyo%*.*lld\n", (long long int)42, 9, 6, (long long int)5);

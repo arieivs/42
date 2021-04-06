@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 18:00:40 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 18:47:11 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int			str_include(char *str, char c)
 
 int		print_fmt(t_fmt *fmt, va_list ap, int printed)
 {
-	if (fmt->conv == 'c' || fmt->conv == '%')
+	if ((fmt->conv == 'c' || fmt->conv == '%') && fmt->size == 'l')
+		printed += cl_print(fmt, ap);
+	else if (fmt->conv == 'c' || fmt->conv == '%')
 		printed += c_print(fmt, ap);
 	if (fmt->conv == 's')
 		printed += s_print(fmt, ap);

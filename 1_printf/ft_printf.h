@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 18:00:55 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 18:48:41 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <wchar.h>
 # include "libft/libft.h"
 
 typedef struct	s_fmt
@@ -42,6 +43,7 @@ int				parse(const char *str, t_fmt *fmt, va_list ap);
 
 //c_print
 int				c_print(t_fmt *fmt, va_list ap);
+int				cl_print(t_fmt *fmt, va_list ap);
 
 //s_print
 int				s_print(t_fmt *fmt, va_list ap);
