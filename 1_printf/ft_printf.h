@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 15:55:08 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 10:11:25 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_fmt
 
 //ft_printf
 t_fmt			*init_fmt(void);
-int				print_fmt(t_fmt *fmt, va_list ap);
+int				print_fmt(t_fmt *fmt, va_list ap, int printed);
 int				ft_printf(const char *str, ...);
 
 //parse
@@ -59,5 +59,8 @@ void			ft_put_xnbr(unsigned int n, char *base);
 int				p_print(t_fmt *fmt, va_list ap);
 //p_print_utils
 void			ft_put_xl(unsigned long n, char *base);
+
+//n_print
+void			n_print(va_list ap, int printed);
 
 #endif

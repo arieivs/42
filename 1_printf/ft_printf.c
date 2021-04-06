@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 16:01:49 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 10:09:48 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_fmt	*init_fmt(void)
 	return (fmt);
 }
 
-int		print_fmt(t_fmt *fmt, va_list ap)
+int		print_fmt(t_fmt *fmt, va_list ap, int sofar)
 {
 	int	printed;
 
@@ -43,6 +43,8 @@ int		print_fmt(t_fmt *fmt, va_list ap)
 		printed = ux_print(fmt, ap);
 	if (fmt->conv == 'p')
 		printed = p_print(fmt, ap);
+	if (fmt->conv == 'n')
+		n_print(ap, sofar);
 	return (printed);
 }
 
@@ -62,7 +64,7 @@ int		ft_printf(const char *str, ...)
 		{
 			fmt = init_fmt();
 			i += 1 + parse(str + i + 1, fmt, ap);
-			printed += print_fmt(fmt, ap);
+			printed += print_fmt(fmt, ap, printed);
 			free(fmt);
 			continue ;
 		}

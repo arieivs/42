@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 10:37:18 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 11:44:25 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 10:10:22 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			parse(const char *str, t_fmt *fmt, va_list ap)
 		deal_neg_preci(fmt);
 	while (str[i] >= '0' && str[i] <= '9')
 		fmt->precision = fmt->precision * 10 + (str[i++] - '0');
-	if (str_include("cspdiuxX%", str[i]))
+	if (str_include("cspdiuxXn%", str[i]))
 		fmt->conv = str[i++];
 	return (i);
 }

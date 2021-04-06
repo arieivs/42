@@ -3,9 +3,10 @@
 
 int	main(void)
 {
-	int	a = 2;
 	int	orig;
 	int	mine;
+	int	a = 2;
+	int	b = 3;
 
 	printf("\n** d **\n");
 	orig = printf("you%.*dtoo\n", 0, 0);
@@ -84,5 +85,10 @@ int	main(void)
 	orig = printf("hey%20pyou%-20pnow\n", &a, &a);
 	mine = ft_printf("hey%20pyou%-20pnow\n", &a, &a);
 	printf("orig: %d mine: %d\n\n", orig, mine);
+
+	printf("\n** n  **\n");
+	printf("hellooo%n suckerrrs\n", &a);
+	ft_printf("hellooo%n suckerrrs\n", &b);
+	printf("orig: %d mine: %d\n\n", a, b);
 	return (0);
 }
