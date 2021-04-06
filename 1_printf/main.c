@@ -111,5 +111,11 @@ int	main(void)
 	orig = printf("hey%0+2.2lldyo%*.*lld\n", (long long int)42, 9, 6, (long long int)5);
 	mine = ft_printf("hey%0+2.2lldyo%*.*lld\n", (long long int)42, 9, 6, (long long int)5);
 	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("%+lluolare% -5lluihu\n", (long long int)21, (long long int)21);
+	mine = ft_printf("%+lluolare% -5lluihu\n", (long long int)21, (long long int)21);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("%#-03.2llxolare%#-03.*llXihu\n", (long long int)1, 3, (long long int)1);
+	mine = ft_printf("%#-03.2llxolare%#-03.*llXihu\n", (long long int)1, 3, (long long int)1);
+	printf("orig: %d mine: %d\n\n", orig, mine);
 	return (0);
 }
