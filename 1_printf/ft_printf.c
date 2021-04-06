@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 10:43:30 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 12:21:47 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,23 @@ t_fmt	*init_fmt(void)
 	fmt->width = 0;
 	fmt->point = 0;
 	fmt->precision = 0;
+	fmt->size = 0;
 	fmt->conv = 0;
 	return (fmt);
+}
+
+int			str_include(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 int		print_fmt(t_fmt *fmt, va_list ap, int printed)
@@ -34,14 +49,20 @@ int		print_fmt(t_fmt *fmt, va_list ap, int printed)
 		printed += c_print(fmt, ap);
 	if (fmt->conv == 's')
 		printed += s_print(fmt, ap);
-	if (fmt->conv == 'd' || fmt->conv == 'i')
-		printed += d_print(fmt, ap);
-	if (fmt->conv == 'u' || fmt->conv == 'x' || fmt->conv == 'X')
+	if (str_include("di", fmt->conv) && !fmt->size)
+		printed += di_print(fmt, ap);
+	if (str_include("di", fmt->conv) && fmt->size == 'h')
+		printed += dih_print(fmt, ap);
+	if (str_include("uxX", fmt->conv) && !fmt->size)
 		printed += ux_print(fmt, ap);
+	if (str_include("uxX", fmt->conv) && fmt->size == 'h')
+		printed += uxh_print(fmt, ap);
 	if (fmt->conv == 'p')
 		printed += p_print(fmt, ap);
-	if (fmt->conv == 'n')
+	if (fmt->conv == 'n' && !fmt->size)
 		n_print(ap, printed);
+	//if (fmt->conv == 'n' && fmt->size == 'h')
+	//	nh_print(ap, printed);
 	return (printed);
 }
 

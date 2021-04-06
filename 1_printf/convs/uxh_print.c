@@ -1,89 +1,99 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   di_print.c                                         :+:      :+:    :+:   */
+/*   uxh_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 12:08:49 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 12:20:08 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	num_len(int n, t_fmt *fmt)
+static int	short_ux_num_len(unsigned short int n, t_fmt *fmt)
 {
 	int	len;
+	int	base;
 
 	len = 0;
+	base = 16;
+	if (fmt->conv == 'u')
+		base = 10;
 	// don't count the number in special case
 	// special case being when n is 0 and precision is explicitly 0
 	if (n == 0 && !(fmt->point && fmt->precision == 0))
 		len = 1;
-	if (n < 0 || fmt->plus)
-		len++;
+	if (fmt->hash && fmt->conv != 'u' && n != 0)
+		len += 2;
 	while (n != 0)
 	{
 		len++;
-		n = n / 10;
+		n = n / base;
 	}
 	return (len);
 }
 
-static void	di_zero_print(int n, t_fmt *fmt, int extra)
+static void	uxh_zero_print(unsigned short int n, t_fmt *fmt, int extra)
 {
-	if (fmt->plus && n >= 0)
-		write(1, &fmt->plus, 1);
-	if (n < 0)
-		write(1, "-", 1);
+	if (fmt->hash && fmt->conv != 'u' && n != 0)
+	{
+		write(1, "0", 1);
+		write(1, &fmt->conv, 1);
+	}
 	while (extra-- > 0)
 		write(1, "0", 1);
-	if (n != 0 || !fmt->point || fmt->precision != 0)
-		ft_putnbr_nosign(n);
+	if (n == 0 && fmt->point && fmt->precision == 0)
+		return ;
+	if (fmt->conv == 'u')
+		ft_put_unbr(n);
+	else if (fmt->conv == 'x')
+		ft_put_xnbr(n, "0123456789abcdef");
+	else
+		ft_put_xnbr(n, "0123456789ABCDEF");
 }
 
-static void	di_actual_print(int n, t_fmt *fmt, int extra_width, int extra_preci)
+static void	uxh_actual_print(unsigned short int n, t_fmt *fmt, int xwd, int xpr)
 {
 	if (fmt->fill == '0')
-		di_zero_print(n, fmt, extra_width);
+		uxh_zero_print(n, fmt, xwd);
 	else
 	{
 		if (!fmt->left_align)
 		{
-			while (extra_width-- > 0)
+			while (xwd-- > 0)
 				write(1, " ", 1);
 		}
-		di_zero_print(n, fmt, extra_preci);
+		uxh_zero_print(n, fmt, xpr);
 		if (fmt->left_align)
 		{
-			while (extra_width-- > 0)
+			while (xwd-- > 0)
 				write(1, " ", 1);
 		}
 	}
 }
 
-int			di_print(t_fmt *fmt, va_list ap)
+int			uxh_print(t_fmt *fmt, va_list ap)
 {
-	int	n;
-	int	n_len;
-	int	real_preci;
-	int	extra_preci;
-	int	extra_width;
+	unsigned short int	n;
+	int					n_len;
+	int					real_preci;
+	int					extra_preci;
+	int					extra_width;
 
-	n = va_arg(ap, int);
-	n_len = num_len(n, fmt); // n_len includes -/+/space
+	n = (unsigned short int)va_arg(ap, unsigned int);
+	n_len = short_ux_num_len(n, fmt); // n_len counts with 0x
 	real_preci = fmt->precision;
-	// force real precision to count with -/+/space except in special case
-	if (n < 0 || (fmt->plus && !(n == 0 && fmt->point && fmt->precision == 0)))
-		real_preci++;
+	if (fmt->hash && fmt->conv != 'u' && n != 0) // force preci to count with 0x
+		real_preci += 2;
 	extra_preci = 0;
 	if (real_preci > n_len)
 		extra_preci = real_preci - n_len;
 	extra_width = calc_width(n_len, fmt->width, real_preci);
 	if (fmt->point && fmt->fill != ' ') // ignore 0 when precision exists
 		fmt->fill = ' ';
-	di_actual_print(n, fmt, extra_width, extra_preci);
+	uxh_actual_print(n, fmt, extra_width, extra_preci);
 	return (extra_preci + extra_width + n_len);
 }

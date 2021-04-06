@@ -5,7 +5,7 @@ int	main(void)
 {
 	int	orig;
 	int	mine;
-	int	a = 2;
+	/*int	a = 2;
 	int	b = 3;
 
 	printf("\n** d **\n");
@@ -89,6 +89,17 @@ int	main(void)
 	printf("\n** n  **\n");
 	printf("hellooo%n suckerrrs\n", &a);
 	ft_printf("hellooo%n suckerrrs\n", &b);
-	printf("orig: %d mine: %d\n\n", a, b);
+	printf("orig: %d mine: %d\n\n", a, b);*/
+
+	printf("\n** SIZE **\n** h **\n");
+	orig = printf("hey%0+2.2hdyo%*.*hd\n", (short int)42, 9, 6, (short int)5);
+	mine = ft_printf("hey%0+2.2hdyo%*.*hd\n", (short int)42, 9, 6, (short int)5);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("%+huolare% -5huihu\n", (short int)21, (short int)21);
+	mine = ft_printf("%+huolare% -5huihu\n", 21, 21);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("%#-03.2hxolare%#-03.*hXihu\n", (short int)1, 3, (short int)1);
+	mine = ft_printf("%#-03.2hxolare%#-03.*hXihu\n", 1, 3, 1);
+	printf("orig: %d mine: %d\n\n", orig, mine);
 	return (0);
 }
