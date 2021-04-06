@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 15:34:14 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 17:42:10 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ static void	uxl_zero_print(unsigned long n, t_fmt *fmt, int extra)
 	if (n == 0 && fmt->point && fmt->precision == 0)
 		return ;
 	if (fmt->conv == 'u')
-		ft_put_unbr(n);
+		ft_put_ulnbr(n);
 	else if (fmt->conv == 'x')
-		ft_put_xnbr(n, "0123456789abcdef");
+		ft_put_xlnbr(n, "0123456789abcdef");
 	else
-		ft_put_xnbr(n, "0123456789ABCDEF");
+		ft_put_xlnbr(n, "0123456789ABCDEF");
 }
 
 static void	uxl_actual_print(unsigned long n, t_fmt *fmt, int xwidth, int xprec)
