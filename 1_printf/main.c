@@ -106,5 +106,10 @@ int	main(void)
 	printf("hellooo%hn suckerrrs\n", &sa);
 	ft_printf("hellooo%hn suckerrrs\n", &sb);
 	printf("orig: %hd mine: %hd\n\n", sa, sb);
+
+	printf("\n** ll **\n");
+	orig = printf("hey%0+2.2lldyo%*.*lld\n", (long long int)42, 9, 6, (long long int)5);
+	mine = ft_printf("hey%0+2.2lldyo%*.*lld\n", (long long int)42, 9, 6, (long long int)5);
+	printf("orig: %d mine: %d\n\n", orig, mine);
 	return (0);
 }

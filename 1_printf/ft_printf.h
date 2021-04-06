@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 12:56:07 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 14:08:59 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void			ft_put_xnbr(unsigned int n, char *base);
 int				dih_print(t_fmt *fmt, va_list ap);
 //uxh_print
 int				uxh_print(t_fmt *fmt, va_list ap);
+//dill_print
+int				dill_print(t_fmt *fmt, va_list ap);
 
 //p_print
 int				p_print(t_fmt *fmt, va_list ap);
