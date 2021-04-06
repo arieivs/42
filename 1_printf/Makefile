@@ -1,8 +1,8 @@
 INCDIR	= .
 
-SRCS	= ft_printf.c parse.c c_print.c s_print.c di_print.c ux_print.c diux_print_utils.c p_print.c p_print_utils.c
+SRCS	= ft_printf.c parse.c convs/c_print.c convs/s_print.c convs/di_print.c convs/ux_print.c convs/diux_print_utils.c convs/p_print.c convs/p_print_utils.c
 
-SRCS_B	= n_print.c
+SRCS_B	= convs/n_print.c
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -42,7 +42,7 @@ test:
 all:		${NAME}
 
 clean:
-			${RM} ${OBJS}
+			${RM} ${OBJS} ${OBJS_B}
 
 fclean:		clean
 			${RM} ${NAME}
