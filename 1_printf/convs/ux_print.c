@@ -6,12 +6,21 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 13:53:53 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 15:54:53 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+static int	conv_uhh(unsigned int n)
+{
+	unsigned char	c;
+
+	c = (unsigned char)n;
+	n = (unsigned int)c;
+	return (n);
+}
 
 static int	ux_num_len(unsigned int n, t_fmt *fmt)
 {
@@ -84,6 +93,8 @@ int			ux_print(t_fmt *fmt, va_list ap)
 	int				extra_width;
 
 	n = va_arg(ap, unsigned int);
+	if (fmt->size == 'H')
+		n = conv_uhh(n);
 	n_len = ux_num_len(n, fmt); // n_len counts with 0x
 	real_preci = fmt->precision;
 	if (fmt->hash && fmt->conv != 'u' && n != 0) // force preci to count with 0x

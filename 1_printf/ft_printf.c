@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 15:49:49 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/06 15:53:18 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		print_fmt(t_fmt *fmt, va_list ap, int printed)
 		printed += dih_print(fmt, ap);
 	if (str_include("di", fmt->conv) && fmt->size == 'L')
 		printed += dill_print(fmt, ap);
-	if (str_include("uxX", fmt->conv) && !fmt->size)
+	if (str_include("uxX", fmt->conv) && (!fmt->size || fmt->size == 'H'))
 		printed += ux_print(fmt, ap);
 	if (str_include("uxX", fmt->conv) && fmt->size == 'h')
 		printed += uxh_print(fmt, ap);
