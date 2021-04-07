@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 22:03:29 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:02:24 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,7 @@ static int	print_diux_size(t_fmt *fmt, va_list ap)
 
 int			print_fmt(t_fmt *fmt, va_list ap, int printed)
 {
-	if ((fmt->conv == 'c' || fmt->conv == '%') && fmt->size == 'l')
-		printed += cl_print(fmt, ap);
-	else if (fmt->conv == 'c' || fmt->conv == '%')
+	if (fmt->conv == 'c' || fmt->conv == '%')
 		printed += c_print(fmt, ap);
 	if (fmt->conv == 's')
 		printed += s_print(fmt, ap);
