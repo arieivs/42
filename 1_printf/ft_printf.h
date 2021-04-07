@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/07 12:08:33 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 23:08:37 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,8 @@ void			nhh_print(va_list ap, int printed);
 void			nh_print(va_list ap, int printed);
 void			nl_print(va_list ap, int printed);
 void			nll_print(va_list ap, int printed);
+
+//f_print
+int				f_print(t_fmt *fmt, va_list ap);
 
 #endif

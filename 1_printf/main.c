@@ -6,7 +6,7 @@ int	main(void)
 {
 	int	orig;
 	int	mine;
-	int	a = 2;
+	/*int	a = 2;
 	int	b = 3;
 	short int sa = 2;
 	short int sb = 3;
@@ -96,9 +96,17 @@ int	main(void)
 	printf("\n** n  **\n");
 	printf("hellooo%n suckerrrs\n", &a);
 	ft_printf("hellooo%n suckerrrs\n", &b);
-	printf("orig: %d mine: %d\n\n", a, b);
+	printf("orig: %d mine: %d\n\n", a, b);*/
 
-	printf("\n** SIZE **\n** hh **\n");
+	printf("\n** f **\n");
+	orig = printf("floating%faround\n", 0.1);
+	mine = ft_printf("floating%faround\n", 0.1);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("floating% 012.faround\n", 99.7358);
+	mine = ft_printf("floating% 012.faround\n", 99.7358);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+
+	/*printf("\n** SIZE **\n** hh **\n");
 	orig = printf("hey%5hhdjude%.10hhd.\n", 255, -127);
 	mine = ft_printf("hey%5hhdjude%.10hhd.\n", 255, -127);
 	printf("orig: %d mine: %d\n\n", orig, mine);
@@ -158,6 +166,6 @@ int	main(void)
 	printf("orig: %lld mine: %lld\n\n", lla, llb);
 	orig = printf("<%lld>\n", LONG_MAX + 1);
 	mine = ft_printf("<%lld>\n", LONG_MAX + 1);
-	printf("orig: %d mine: %d\n\n", orig, mine);
+	printf("orig: %d mine: %d\n\n", orig, mine);*/
 	return (0);
 }
