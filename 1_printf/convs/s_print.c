@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/04 17:00:43 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:15:11 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	ft_putstr_untiln(char *s, int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] && i < n)
@@ -43,7 +43,7 @@ static void	s_actual_print(char *s, t_fmt *fmt, int extra_width)
 	}
 }
 
-int			s_print(t_fmt *fmt, va_list ap)
+int	s_print(t_fmt *fmt, va_list ap)
 {
 	char	*s;
 	int		s_len;

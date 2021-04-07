@@ -6,13 +6,13 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:34:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/07 12:02:24 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:06:04 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_fmt		*init_fmt(void)
+t_fmt	*init_fmt(void)
 {
 	t_fmt	*fmt;
 
@@ -29,9 +29,9 @@ t_fmt		*init_fmt(void)
 	return (fmt);
 }
 
-int			str_include(char *str, char c)
+int	str_include(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -67,7 +67,7 @@ static int	print_diux_size(t_fmt *fmt, va_list ap)
 	return (printed);
 }
 
-int			print_fmt(t_fmt *fmt, va_list ap, int printed)
+int	print_fmt(t_fmt *fmt, va_list ap, int printed)
 {
 	if (fmt->conv == 'c' || fmt->conv == '%')
 		printed += c_print(fmt, ap);
@@ -90,7 +90,7 @@ int			print_fmt(t_fmt *fmt, va_list ap, int printed)
 	return (printed);
 }
 
-int			ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
 	int		i;

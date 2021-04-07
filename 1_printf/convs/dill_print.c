@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 14:41:39 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:10:26 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	dill_actual_print(long long int n, t_fmt *fmt, int xwd, int xprec)
 	}
 }
 
-int			dill_print(t_fmt *fmt, va_list ap)
+int	dill_print(t_fmt *fmt, va_list ap)
 {
 	long long int	n;
 	int				n_len;

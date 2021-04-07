@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 17:42:10 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:15:51 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	uxl_actual_print(unsigned long n, t_fmt *fmt, int xwidth, int xprec)
 	}
 }
 
-int			uxl_print(t_fmt *fmt, va_list ap)
+int	uxl_print(t_fmt *fmt, va_list ap)
 {
 	unsigned long	n;
 	int				n_len;

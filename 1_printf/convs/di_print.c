@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 15:45:58 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:09:24 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	di_actual_print(int n, t_fmt *fmt, int extra_width, int extra_preci)
 	}
 }
 
-int			di_print(t_fmt *fmt, va_list ap)
+int	di_print(t_fmt *fmt, va_list ap)
 {
 	int	n;
 	int	n_len;

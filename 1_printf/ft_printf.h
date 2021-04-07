@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/07 12:02:36 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:08:33 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <wchar.h>
 # include "libft/libft.h"
 
-typedef struct	s_fmt
+typedef struct s_fmt
 {
 	int		left_align;
 	char	fill;

@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/05 16:15:53 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:13:55 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	p_num_len(unsigned long n)
 	return (len);
 }
 
-int			p_print(t_fmt *fmt, va_list ap)
+int	p_print(t_fmt *fmt, va_list ap)
 {
 	unsigned long	p;
 	int				p_len;

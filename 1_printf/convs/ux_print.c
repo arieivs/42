@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 15:54:53 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:15:25 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	ux_actual_print(unsigned int n, t_fmt *fmt, int xwidth, int xpreci)
 	}
 }
 
-int			ux_print(t_fmt *fmt, va_list ap)
+int	ux_print(t_fmt *fmt, va_list ap)
 {
 	unsigned int	n;
 	int				n_len;

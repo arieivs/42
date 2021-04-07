@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 12:20:08 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:15:40 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	uxh_actual_print(unsigned short int n, t_fmt *fmt, int xwd, int xpr)
 	}
 }
 
-int			uxh_print(t_fmt *fmt, va_list ap)
+int	uxh_print(t_fmt *fmt, va_list ap)
 {
 	unsigned short int	n;
 	int					n_len;

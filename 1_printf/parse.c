@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 10:37:18 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/06 11:50:00 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:06:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	parse_size(char flag, t_fmt *fmt)
 		fmt->size = 'h';
 }
 
-int			parse(const char *str, t_fmt *fmt, va_list ap)
+int	parse(const char *str, t_fmt *fmt, va_list ap)
 {
 	int		i;
 
