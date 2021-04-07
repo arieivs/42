@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:32:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/18 15:31:24 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:26:58 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	is_set(char c, const char *set)
 	return (0);
 }
 
-char		*ft_strtrim(const char *s1, const char *set)
+char	*ft_strtrim(const char *s1, const char *set)
 {
 	int		start;
 	int		end;

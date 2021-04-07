@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 17:06:15 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/16 17:34:25 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:25:55 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	words_count(const char *str, char c)
 {
-	int i;
-	int words;
+	int	i;
+	int	words;
 
 	i = 0;
 	words = 0;
@@ -30,9 +30,9 @@ static int	words_count(const char *str, char c)
 
 static char	**fill_arr(const char *str, char c, int words, char **strs)
 {
-	int i;
-	int word;
-	int letters;
+	int	i;
+	int	word;
+	int	letters;
 
 	i = 0;
 	word = 0;
@@ -55,13 +55,13 @@ static char	**fill_arr(const char *str, char c, int words, char **strs)
 	return (strs);
 }
 
-char		**ft_split(const char *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	int		words;
 	char	**strs;
 
 	words = words_count(s, c);
-	strs = (char **)malloc(sizeof(char*) * (words + 1));
+	strs = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!strs)
 		return (NULL);
 	fill_arr(s, c, words, strs);

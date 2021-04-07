@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:35:15 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/15 19:10:07 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:25:06 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_putnegnbr_fd(int n, int fd)
 	ft_putchar_fd(-(n % 10) + '0', fd);
 }
 
-void		ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	if (n < 0)
 	{

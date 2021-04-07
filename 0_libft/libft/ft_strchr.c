@@ -6,13 +6,13 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:03:55 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/11 18:46:45 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:26:14 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strchr(const char *s, int c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])

@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 16:27:22 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/23 12:23:47 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:26:37 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (dstsize > 0)
