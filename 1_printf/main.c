@@ -31,10 +31,10 @@ int	main(void)
 	orig = printf("<%0*.0d*0 0*%0*.10d>\n", -2, 0, 21, 1);
 	mine = ft_printf("<%0*.0d*0 0*%0*.10d>\n", -2, 0, 21, 1);
 	printf("orig: %d mine: %d\n\n", orig, mine);
-	
+
 	printf("\n** u **\n");
-	orig = printf("%+uolare% -5uihu%0.3uolare\n", 21, 21, 1);
-	mine = ft_printf("%+uolare% -5uihu%0.3uolare\n", 21, 21, 1);
+	orig = printf("%+uolare% -5uihu%0.3uolare\n", 21, 21, -54);
+	mine = ft_printf("%+uolare% -5uihu%0.3uolare\n", 21, 21, -54);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	orig = printf("%.uolare%+.1uihu\n", 0, 0);
 	mine = ft_printf("%.uolare%+.1uihu\n", 0, 0);
