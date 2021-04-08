@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 19:16:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/07 23:08:37 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/08 23:50:34 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <wchar.h>
+# include <limits.h>
+# include <math.h>
 # include "libft/libft.h"
 
 typedef struct s_fmt
@@ -34,11 +35,11 @@ typedef struct s_fmt
 
 //ft_printf
 t_fmt			*init_fmt(void);
+int				str_include(char *str, char c);
 int				print_fmt(t_fmt *fmt, va_list ap, int printed);
 int				ft_printf(const char *str, ...);
 
 //parse
-int				str_include(char *str, char c);
 int				parse(const char *str, t_fmt *fmt, va_list ap);
 
 //c_print
@@ -94,5 +95,9 @@ void			nll_print(va_list ap, int printed);
 
 //f_print
 int				f_print(t_fmt *fmt, va_list ap);
+long int		ft_recursive_power(int nb, int power);
+//f_print_utils
+int				fnum_len(double f, t_fmt *fmt);
+void			ft_putfloat_nosign(double f, int precision, int hash);
 
 #endif
