@@ -1,21 +1,21 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	ft_tail_rec_power(int nb, int power, int acc)
+static int	_ft_tail_rec_power(int nb, int power, int acc)
 {
 	if (power == 0)
 		return (acc);
-	return (ft_tail_rec_power(nb, power - 1, nb * acc));
+	return (_ft_tail_rec_power(nb, power - 1, nb * acc));
 }
 
-int	ft_recursive_power(int nb, int power)
+static int	_ft_recursive_power(int nb, int power)
 {
 	if (power < 0)
 		return (0);
-	return (ft_tail_rec_power(nb, power, 1));
+	return (_ft_tail_rec_power(nb, power, 1));
 }
 
-static int	fnum_len(float f, int precision)
+static int	_fnum_len(float f, int precision)
 {
 	int	len;
 	int	bef;
@@ -30,8 +30,8 @@ static int	fnum_len(float f, int precision)
 	if (f > 0)
 		f *= -1;
 	bef = (int)f;
-	aft = (f - bef) * ft_recursive_power(10, precision);
-	next = (aft * 10) - (f - bef) * ft_recursive_power(10, precision + 1);
+	aft = (f - bef) * _ft_recursive_power(10, precision);
+	next = (aft * 10) - (f - bef) * _ft_recursive_power(10, precision + 1);
 	while (bef != 0)
 	{
 		len++;
@@ -44,7 +44,7 @@ static int	fnum_len(float f, int precision)
 	return (len + precision);
 }
 
-void	ft_putfloat_nosign(float f, int precision)
+static void	_ft_putfloat_nosign(float f, int precision)
 {
 	int	bef;
 	int	aft;
@@ -53,8 +53,8 @@ void	ft_putfloat_nosign(float f, int precision)
 	if (f > 0)
 		f *= -1;
 	bef = (int)f;
-	aft = (f - bef) * ft_recursive_power(10, precision);
-	next = (aft * 10) - (f - bef) * ft_recursive_power(10, precision + 1);
+	aft = (f - bef) * _ft_recursive_power(10, precision);
+	next = (aft * 10) - (f - bef) * _ft_recursive_power(10, precision + 1);
 	if (!precision && next >= 5)
 		bef--;
 	else if (next >= 5)
@@ -70,12 +70,12 @@ void	ft_putfloat_nosign(float f, int precision)
 int	main(void)
 {
 	float	a = 99.7358;
-	int	precision = 0;
+	int	precision = 12;
 	int	len;
 
-	ft_putfloat_nosign(a, precision);
+	_ft_putfloat_nosign(a, precision);
 	printf(" orig: <%.*f>\n", precision, a);
-	len = fnum_len(a, precision);
+	len = _fnum_len(a, precision);
 	printf("just len %d len %d\n", fnum_len(a, 0), len);
 	return (0);
 }
