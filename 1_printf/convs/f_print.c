@@ -6,21 +6,23 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/08 12:31:12 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/08 16:31:01 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <limits.h>
+#include <math.h>
 #include <stdio.h>
 
-static int	ft_tail_rec_power(int nb, int power, int acc)
+static long int	ft_tail_rec_power(int nb, int power, long int acc)
 {
 	if (power == 0)
 		return (acc);
-	return (ft_tail_rec_power(nb, power - 1, nb * acc));
+	return (ft_tail_rec_power(nb, power - 1, (long int)nb * acc));
 }
 
-int	ft_recursive_power(int nb, int power)
+long int	ft_recursive_power(int nb, int power)
 {
 	if (power < 0)
 		return (0);
@@ -75,17 +77,17 @@ void	ft_putfloat_nosign(double f, int precision)
 {
 	long int	bef;
 	long int	aft;
-	long int	next;
+	double		nextn;
 	int			extra_zeros;
 
 	if (f > 0)
 		f *= -1;
 	bef = (long int)f;
 	aft = (f - bef) * ft_recursive_power(10, precision);
-	next = (aft * 10) - (f - bef) * ft_recursive_power(10, precision + 1);
-	if (!precision && next >= 5)
+	nextn = (aft * 100) - (f - bef) * ft_recursive_power(10, precision + 2);
+	if (!precision && (nextn > 50 || (nextn >= 50 && bef % 2 != 0)))
 		bef--;
-	else if (next >= 5)
+	else if (nextn >= 50)
 		aft--;
 	ft_put_lnbr_nosign(bef);
 	if (precision)
@@ -114,7 +116,12 @@ static void	f_actual_print(double f, t_fmt *fmt, int extra_width)
 		while (extra_width-- > 0)
 			write(1, "0", 1);
 	}
-	ft_putfloat_nosign(f, fmt->precision);
+	if (f == INFINITY || f == -INFINITY)
+		write(1, "inf", 3);
+	else if (f != f)
+		write(1, "nan", 3);
+	else
+		ft_putfloat_nosign(f, fmt->precision);
 	if (fmt->left_align)
 	{
 		while (extra_width-- > 0)
@@ -131,7 +138,15 @@ int	f_print(t_fmt *fmt, va_list ap)
 	f = va_arg(ap, double); // float is promoted to double, thus undefined behv
 	if (!fmt->point)
 		fmt->precision = 6;
-	f_len = fnum_len(f, fmt); // f_len includes -/+/space, . and precision
+	if (f == INFINITY || f == -INFINITY || f != f)
+	{
+		f_len = 3;
+		if (f == -INFINITY || fmt->plus)
+			f_len = 4;
+		fmt->fill = ' '; // 0 flag is ignored in these cases
+	}
+	else
+		f_len = fnum_len(f, fmt); // f_len includes -/+/space, . and precision
 	extra_width = 0;
 	if (fmt->width > f_len)
 		extra_width = fmt->width - f_len;

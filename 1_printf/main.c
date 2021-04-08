@@ -1,5 +1,6 @@
 #include "ft_printf.h"
 #include <limits.h>
+#include <math.h>
 #include <stdio.h>
 
 int	main(void)
@@ -99,8 +100,8 @@ int	main(void)
 	printf("orig: %d mine: %d\n\n", a, b);*/
 
 	printf("\n** f **\n");
-	orig = printf("floating%faround\n", 42.0);
-	mine = ft_printf("floating%faround\n", 42.0);
+	orig = printf("floating%.0faround%.fand%fagain\n", 44.5, 44.51, 42.0);
+	mine = ft_printf("floating%.0faround%.fand%fagain\n", 44.5, 44.51, 42.0);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	orig = printf("floating% 012.faround\n", 99.7358);
 	mine = ft_printf("floating% 012.faround\n", 99.7358);
@@ -110,6 +111,9 @@ int	main(void)
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	orig = printf("long%fmax%fmin\n", LONG_MAX * 1.0, LONG_MIN * 1.0);
 	mine = ft_printf("long%fmax%fmin\n", LONG_MAX * 1.0, LONG_MIN * 1.0);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("|%+f|%06f|%-6.1f|\n", INFINITY, -INFINITY, NAN);
+	mine = ft_printf("|%+f|%06f|%-6f|\n", INFINITY, -INFINITY, NAN);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 
 	/*printf("\n** SIZE **\n** hh **\n");
