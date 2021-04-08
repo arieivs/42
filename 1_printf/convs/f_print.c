@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/07 23:15:54 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/08 12:31:12 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,45 @@ int	ft_recursive_power(int nb, int power)
 	return (ft_tail_rec_power(nb, power, 1));
 }
 
-static int	fnum_len(double f, t_fmt *fmt)
+static int	lnum_len(long int n)
 {
-	int	len;
-	int	bef;
-	int	aft;
-	int	next;
+	int len;
 
 	len = 0;
-	if (f == 0)
+	if (n == 0)
 		len = 1;
+	while (n != 0)
+	{
+		len++;
+		n = n / 10;
+	}
+	return (len);
+}
+
+static int	fnum_len(double f, t_fmt *fmt)
+{
+	int			len;
+	long int	bef;
+	long int	aft;
+	long int	next;
+
+	len = 0;
 	if (f < 0 || fmt->plus)
 		len++;
 	if (f > 0)
 		f *= -1;
-	bef = (int)f;
+	bef = (long int)f;
 	aft = (f - bef) * ft_recursive_power(10, fmt->precision);
 	next = (aft * 10) - (f - bef) * ft_recursive_power(10, fmt->precision + 1);
+	if (!fmt->precision && (bef % 10) == -9 && next >= 5) //e.g: 9.5 -> 10
+		len++;
+	if (bef == 0)
+		len++;
 	while (bef != 0)
 	{
 		len++;
 		bef = bef / 10;
 	}
-	if (!fmt->precision && next >= 5) //rounding demands an extra digit
-		len++;
 	if (fmt->precision) //counting with the .
 		len++;
 	return (len + fmt->precision);
@@ -58,24 +73,28 @@ static int	fnum_len(double f, t_fmt *fmt)
 
 void	ft_putfloat_nosign(double f, int precision)
 {
-	int	bef;
-	int	aft;
-	int	next;
+	long int	bef;
+	long int	aft;
+	long int	next;
+	int			extra_zeros;
 
 	if (f > 0)
 		f *= -1;
-	bef = (int)f;
+	bef = (long int)f;
 	aft = (f - bef) * ft_recursive_power(10, precision);
 	next = (aft * 10) - (f - bef) * ft_recursive_power(10, precision + 1);
 	if (!precision && next >= 5)
 		bef--;
 	else if (next >= 5)
 		aft--;
-	ft_putnbr_nosign(bef);
+	ft_put_lnbr_nosign(bef);
 	if (precision)
 	{
 		write(1, ".", 1);
-		ft_putnbr_nosign(aft);
+		extra_zeros = precision - lnum_len(aft);
+		while (extra_zeros-- > 0)
+			write(1, "0", 1);
+		ft_put_lnbr_nosign(aft);
 	}
 }
 

@@ -99,11 +99,17 @@ int	main(void)
 	printf("orig: %d mine: %d\n\n", a, b);*/
 
 	printf("\n** f **\n");
-	orig = printf("floating%faround\n", 0.1);
-	mine = ft_printf("floating%faround\n", 0.1);
+	orig = printf("floating%faround\n", 42.0);
+	mine = ft_printf("floating%faround\n", 42.0);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	orig = printf("floating% 012.faround\n", 99.7358);
 	mine = ft_printf("floating% 012.faround\n", 99.7358);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("floating%.16faround\n", 0.01234567890123456789012345678901);
+	mine = ft_printf("floating%.16faround\n", 0.01234567890123456789012345678901);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("long%fmax%fmin\n", LONG_MAX * 1.0, LONG_MIN * 1.0);
+	mine = ft_printf("long%fmax%fmin\n", LONG_MAX * 1.0, LONG_MIN * 1.0);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 
 	/*printf("\n** SIZE **\n** hh **\n");
