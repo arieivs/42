@@ -103,8 +103,8 @@ int	main(void)
 	orig = printf("floating%.0faround%.fand%fagain\n", 44.5, 44.51, 42.0);
 	mine = ft_printf("floating%.0faround%.fand%fagain\n", 44.5, 44.51, 42.0);
 	printf("orig: %d mine: %d\n\n", orig, mine);
-	orig = printf("floating% 012.faround\n", 99.7358);
-	mine = ft_printf("floating% 012.faround\n", 99.7358);
+	orig = printf("floating% 012.faround%.2fand%.2fagain\n", 99.7358, 3.999, 9.999);
+	mine = ft_printf("floating% 012.faround%.2fand%.2fagain\n", 99.7358, 3.999, 9.999);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	orig = printf("floating%.16faround\n", 0.01234567890123456789012345678901);
 	mine = ft_printf("floating%.16faround\n", 0.01234567890123456789012345678901);
@@ -114,6 +114,15 @@ int	main(void)
 	printf("orig: %d mine: %d\n\n", orig, mine);
 	orig = printf("|%+f|%06f|%-6.1f|\n", INFINITY, -INFINITY, NAN);
 	mine = ft_printf("|%+f|%06f|%-6f|\n", INFINITY, -INFINITY, NAN);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("wtf%.16f-.- %.16f\n", -0.000, 0.0);
+	mine = ft_printf("wtf%.16f-.- %.16f\n", -0.000, 0.0);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("sharp%#.fbemol\n", 54.5);
+	mine = ft_printf("sharp%#.fbemol\n", 54.5);
+	printf("orig: %d mine: %d\n\n", orig, mine);
+	orig = printf("%.0f|%.0f|%.0f\n", -4.5, -2.5, -0.5);
+	mine = ft_printf("%.0f|%.0f|%.0f\n", -4.5, -2.5, -0.5);
 	printf("orig: %d mine: %d\n\n", orig, mine);
 
 	/*printf("\n** SIZE **\n** hh **\n");

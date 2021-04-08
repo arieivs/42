@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/08 16:31:01 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/08 22:06:16 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,16 @@ static int	fnum_len(double f, t_fmt *fmt)
 	long int	next;
 
 	len = 0;
-	if (f < 0 || fmt->plus)
+	if (f < 0 || 1 / f == -INFINITY || fmt->plus)
 		len++;
 	if (f > 0)
 		f *= -1;
 	bef = (long int)f;
 	aft = (f - bef) * ft_recursive_power(10, fmt->precision);
 	next = (aft * 10) - (f - bef) * ft_recursive_power(10, fmt->precision + 1);
-	if (!fmt->precision && (bef % 10) == -9 && next >= 5) //e.g: 9.5 -> 10
+	// rounding needs extra digit, 1st e.g: 9.5 -> 10, 2nd e.g: 9.99 -> 10.0
+	if (next >= 5 && (bef % 10) == -9 &&
+		(!fmt->precision || lnum_len(aft - 1) > fmt->precision))
 		len++;
 	if (bef == 0)
 		len++;
@@ -68,12 +70,12 @@ static int	fnum_len(double f, t_fmt *fmt)
 		len++;
 		bef = bef / 10;
 	}
-	if (fmt->precision) //counting with the .
+	if (fmt->precision || fmt->hash) //counting with the .
 		len++;
 	return (len + fmt->precision);
 }
 
-void	ft_putfloat_nosign(double f, int precision)
+void	ft_putfloat_nosign(double f, int precision, int hash)
 {
 	long int	bef;
 	long int	aft;
@@ -85,14 +87,25 @@ void	ft_putfloat_nosign(double f, int precision)
 	bef = (long int)f;
 	aft = (f - bef) * ft_recursive_power(10, precision);
 	nextn = (aft * 100) - (f - bef) * ft_recursive_power(10, precision + 2);
+	// rounding to units, 4.5 -> 4 but 4.51 -> 5 and 5.5 -> 6
 	if (!precision && (nextn > 50 || (nextn >= 50 && bef % 2 != 0)))
 		bef--;
 	else if (nextn >= 50)
-		aft--;
+	{
+		// rouding if aft is all 9s 3.999 -> 4.00
+		if (lnum_len(aft - 1) > precision)
+		{
+			bef--;
+			aft = 0;
+		}
+		else
+			aft--;
+	}
 	ft_put_lnbr_nosign(bef);
+	if (precision || hash)
+		write(1, ".", 1);
 	if (precision)
 	{
-		write(1, ".", 1);
 		extra_zeros = precision - lnum_len(aft);
 		while (extra_zeros-- > 0)
 			write(1, "0", 1);
@@ -107,9 +120,9 @@ static void	f_actual_print(double f, t_fmt *fmt, int extra_width)
 		while (extra_width-- > 0)
 			write(1, " ", 1);
 	}
-	if (fmt->plus && f >= 0)
+	if (fmt->plus && (f > 0 || 1 / f == INFINITY))
 		write(1, &fmt->plus, 1);
-	if (f < 0)
+	if (f < 0 || 1 / f == -INFINITY )
 		write(1, "-", 1);
 	if (fmt->fill == '0')
 	{
@@ -121,7 +134,7 @@ static void	f_actual_print(double f, t_fmt *fmt, int extra_width)
 	else if (f != f)
 		write(1, "nan", 3);
 	else
-		ft_putfloat_nosign(f, fmt->precision);
+		ft_putfloat_nosign(f, fmt->precision, fmt->hash);
 	if (fmt->left_align)
 	{
 		while (extra_width-- > 0)
