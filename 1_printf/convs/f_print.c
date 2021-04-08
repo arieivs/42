@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/08 22:06:16 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/08 22:26:06 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_putfloat_nosign(double f, int precision, int hash)
 	// rounding to units, 4.5 -> 4 but 4.51 -> 5 and 5.5 -> 6
 	if (!precision && (nextn > 50 || (nextn >= 50 && bef % 2 != 0)))
 		bef--;
-	else if (nextn >= 50)
+	else if (precision && nextn >= 50)
 	{
 		// rouding if aft is all 9s 3.999 -> 4.00
 		if (lnum_len(aft - 1) > precision)
