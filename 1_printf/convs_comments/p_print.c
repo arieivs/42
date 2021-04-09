@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/09 10:55:56 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:13:55 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	p_num_len(unsigned long n)
 		len++;
 		n = n / 16;
 	}
+	// counting with the initial 0x, which is always there
 	len += 2;
 	return (len);
 }
@@ -37,7 +38,7 @@ int	p_print(t_fmt *fmt, va_list ap)
 	int				total_width;
 
 	p = (unsigned long)va_arg(ap, void *);
-	p_len = p_num_len(p);
+	p_len = p_num_len(p); // p_len counts with 0x
 	extra_width = 0;
 	if (fmt->width > p_len)
 		extra_width = fmt->width - p_len;

@@ -6,12 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/07 12:15:11 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/09 10:56:17 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static void	ft_putstr_untiln(char *s, int n)
 {

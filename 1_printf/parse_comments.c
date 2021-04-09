@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 10:37:18 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/09 11:03:15 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 23:03:28 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	parse_flags(char flag, t_fmt *fmt)
 {
-	if (flag == '-')
+	if (flag == '-') // - wins over 0
 	{
 		fmt->left_align = 1;
 		fmt->fill = ' ';
@@ -23,7 +23,7 @@ static void	parse_flags(char flag, t_fmt *fmt)
 		fmt->fill = '0';
 	if (flag == '+')
 		fmt->plus = '+';
-	if (!fmt->plus && flag == ' ')
+	if (!fmt->plus && flag == ' ') // + wins over space
 		fmt->plus = ' ';
 	if (flag == '#')
 		fmt->hash = 1;
@@ -44,9 +44,9 @@ static void	deal_neg_preci(t_fmt *fmt)
 
 static void	parse_size(char flag, t_fmt *fmt)
 {
-	if (fmt->size == 'l' && flag == 'l')
+	if (fmt->size == 'l' && flag == 'l') // ll will be L
 		fmt->size = 'L';
-	if (fmt->size == 'h' && flag == 'h')
+	if (fmt->size == 'h' && flag == 'h') // hh will be H
 		fmt->size = 'H';
 	if (!fmt->size && flag == 'l')
 		fmt->size = 'l';
@@ -61,17 +61,17 @@ int	parse(const char *str, t_fmt *fmt, va_list ap)
 	i = 0;
 	while (str_include("-0+ #", str[i]))
 		parse_flags(str[i++], fmt);
-	if (str[i] == '*' && str[i++])
+	if (str[i] == '*' && str[i++]) // width is given as an argument
 		fmt->width = va_arg(ap, int);
-	if (fmt->width < 0)
+	if (fmt->width < 0) // if width is negative, take - as if it was a flag
 		deal_neg_width(fmt);
 	while (str[i] >= '0' && str[i] <= '9')
 		fmt->width = fmt->width * 10 + (str[i++] - '0');
 	if (str[i] == '.' && str[i++])
 		fmt->point = 1;
-	if (str[i] == '*' && str[i++])
+	if (str[i] == '*' && str[i++]) // precision is given as an argument
 		fmt->precision = va_arg(ap, int);
-	if (fmt->precision < 0)
+	if (fmt->precision < 0) // if precision is negative, ignore the .
 		deal_neg_preci(fmt);
 	while (str[i] >= '0' && str[i] <= '9')
 		fmt->precision = fmt->precision * 10 + (str[i++] - '0');

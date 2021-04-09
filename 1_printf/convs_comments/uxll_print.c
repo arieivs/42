@@ -6,11 +6,12 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/09 10:58:30 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:16:02 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	uxll_num_len(unsigned long long n, t_fmt *fmt)
 {
@@ -21,6 +22,8 @@ static int	uxll_num_len(unsigned long long n, t_fmt *fmt)
 	base = 16;
 	if (fmt->conv == 'u')
 		base = 10;
+	// don't count the number in special case
+	// special case being when n is 0 and precision is explicitly 0
 	if (n == 0 && !(fmt->point && fmt->precision == 0))
 		len = 1;
 	if (fmt->hash && fmt->conv != 'u' && n != 0)
@@ -81,15 +84,15 @@ int	uxll_print(t_fmt *fmt, va_list ap)
 	int					extra_width;
 
 	n = (unsigned long long)va_arg(ap, unsigned long long);
-	n_len = uxll_num_len(n, fmt);
+	n_len = uxll_num_len(n, fmt); // n_len counts with 0x
 	real_preci = fmt->precision;
-	if (fmt->hash && fmt->conv != 'u' && n != 0)
+	if (fmt->hash && fmt->conv != 'u' && n != 0) // force preci to count with 0x
 		real_preci += 2;
 	extra_preci = 0;
 	if (real_preci > n_len)
 		extra_preci = real_preci - n_len;
 	extra_width = calc_width(n_len, fmt->width, real_preci);
-	if (fmt->point && fmt->fill != ' ')
+	if (fmt->point && fmt->fill != ' ') // ignore 0 when precision exists
 		fmt->fill = ' ';
 	uxll_actual_print(n, fmt, extra_width, extra_preci);
 	return (extra_preci + extra_width + n_len);

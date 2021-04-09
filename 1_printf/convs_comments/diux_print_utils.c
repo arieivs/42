@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 16:06:40 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/09 10:59:06 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:10:58 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	calc_width(int n_len, int width, int preci)
 		if (preci > n_len)
 			extra_width = width - preci;
 		else
-			extra_width = width - n_len;
+			extra_width = width - n_len; // width counts with -/+/space
 	}
 	return (extra_width);
 }

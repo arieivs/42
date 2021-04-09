@@ -6,17 +6,20 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/09 10:51:28 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:10:26 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	ll_num_len(long long int n, t_fmt *fmt)
 {
 	int	len;
 
 	len = 0;
+	// don't count the number in special case
+	// special case being when n is 0 and precision is explicitly 0
 	if (n == 0 && !(fmt->point && fmt->precision == 0))
 		len = 1;
 	if (n < 0 || fmt->plus)
@@ -70,15 +73,16 @@ int	dill_print(t_fmt *fmt, va_list ap)
 	int				extra_width;
 
 	n = (long long int)va_arg(ap, long long int);
-	n_len = ll_num_len(n, fmt);
+	n_len = ll_num_len(n, fmt); // n_len includes -/+/space
 	real_preci = fmt->precision;
+	// force real precision to count with -/+/space except in special case
 	if (n < 0 || (fmt->plus && !(n == 0 && fmt->point && fmt->precision == 0)))
 		real_preci++;
 	extra_preci = 0;
 	if (real_preci > n_len)
 		extra_preci = real_preci - n_len;
 	extra_width = calc_width(n_len, fmt->width, real_preci);
-	if (fmt->point && fmt->fill != ' ')
+	if (fmt->point && fmt->fill != ' ') // ignore 0 when precision exists
 		fmt->fill = ' ';
 	dill_actual_print(n, fmt, extra_width, extra_preci);
 	return (extra_preci + extra_width + n_len);

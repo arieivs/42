@@ -6,12 +6,14 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/09 10:52:58 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/09 10:55:11 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+// needs to be long int in order to store the decimal part of the float(double)
+// with precisions up to 16 (maybe even more)
 static long int	ft_tail_rec_power(int nb, int power, long int acc)
 {
 	if (power == 0)
@@ -61,7 +63,7 @@ int	f_print(t_fmt *fmt, va_list ap)
 	int		f_len;
 	int		extra_width;
 
-	f = va_arg(ap, double);
+	f = va_arg(ap, double); // float is promoted to double, thus undefined behv
 	if (!fmt->point)
 		fmt->precision = 6;
 	if (f == INFINITY || f == -INFINITY || f != f)
@@ -69,10 +71,10 @@ int	f_print(t_fmt *fmt, va_list ap)
 		f_len = 3;
 		if (f == -INFINITY || fmt->plus)
 			f_len = 4;
-		fmt->fill = ' ';
+		fmt->fill = ' '; // 0 flag is ignored in these cases
 	}
 	else
-		f_len = fnum_len(f, fmt);
+		f_len = fnum_len(f, fmt); // f_len includes -/+/space, . and precision
 	extra_width = 0;
 	if (fmt->width > f_len)
 		extra_width = fmt->width - f_len;

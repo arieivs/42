@@ -1,58 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_print.c                                          :+:      :+:    :+:   */
+/*   s_print.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 18:18:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/04/09 10:55:56 by svieira          ###   ########.fr       */
+/*   Updated: 2021/04/07 12:15:11 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	p_num_len(unsigned long n)
+static void	ft_putstr_untiln(char *s, int n)
 {
-	int	len;
+	int	i;
 
-	len = 0;
-	if (n == 0)
-		len = 1;
-	while (n != 0)
+	i = 0;
+	while (s[i] && i < n)
 	{
-		len++;
-		n = n / 16;
+		write(1, &s[i], 1);
+		i++;
 	}
-	len += 2;
-	return (len);
 }
 
-int	p_print(t_fmt *fmt, va_list ap)
+static void	s_actual_print(char *s, t_fmt *fmt, int extra_width)
 {
-	unsigned long	p;
-	int				p_len;
-	int				extra_width;
-	int				total_width;
-
-	p = (unsigned long)va_arg(ap, void *);
-	p_len = p_num_len(p);
-	extra_width = 0;
-	if (fmt->width > p_len)
-		extra_width = fmt->width - p_len;
-	total_width = extra_width + p_len;
 	if (!fmt->left_align)
 	{
 		while (extra_width-- > 0)
 			write(1, " ", 1);
 	}
-	write(1, "0x", 2);
-	ft_put_xl(p, "0123456789abcdef");
+	if (fmt->point)
+		ft_putstr_untiln(s, fmt->precision);
+	else
+		ft_putstr_fd(s, 1);
 	if (fmt->left_align)
 	{
 		while (extra_width-- > 0)
 			write(1, " ", 1);
 	}
-	return (total_width);
+}
+
+int	s_print(t_fmt *fmt, va_list ap)
+{
+	char	*s;
+	int		s_len;
+	int		real_len;
+	int		extra_width;
+
+	s = va_arg(ap, char *);
+	if (!s)
+		s = "(null)";
+	s_len = ft_strlen(s);
+	real_len = s_len;
+	if (fmt->point && fmt->precision < s_len)
+		real_len = fmt->precision;
+	extra_width = 0;
+	if (fmt->width > real_len)
+		extra_width = fmt->width - real_len;
+	s_actual_print(s, fmt, extra_width);
+	return (extra_width + real_len);
 }
