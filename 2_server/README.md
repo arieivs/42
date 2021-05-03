@@ -31,4 +31,8 @@ Once you run a container with Nginx installed, run ```cat etc/nginx/sites-availa
 ## 🐚 Create your init script
 There are some shell commands you need in order to run your container. Namely:
 1. Start Nginx, MySQL and PHP services
+2. Configure a database for WordPress
+3. ???
 
+### Set up a Database
+Once you run a container with MariaDB installed, run ```service mysql start``` followed ```mysql```
