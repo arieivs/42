@@ -22,7 +22,13 @@ Get comfortable with Docker's terminology and play around with existing docker i
 What is your Dockerfile supposed to do?
 1. Install the base image, Debian Buster, and update its software packages
 2. Install Nginx, MariaDB, PHP, Wget
-3. Copy your personalised Nginx config file (we'll get there)
+3. Replace the default Nginx config file by your own (we'll get there)
 
-NGINX
+### NGINX
 Once you run a container with Nginx installed, run ```cat etc/nginx/sites-available/default```. That file has some guidelines on how to personalise your own (note that your own config file will be inside the srcs directory). Follow [this article](https://forhjy.medium.com/how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-1-75ddf3ede861) on how to personalise it.
+
+
+## 🐚 Create your init script
+There are some shell commands you need in order to run your container. Namely:
+1. Start Nginx, MySQL and PHP services
+
