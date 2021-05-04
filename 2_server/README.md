@@ -2,8 +2,10 @@
 How to navigate the stormy waters of Docker 🌊
 If you are new to Docker and containers, here are my suggestions:
 
+
 ## 📦  Learn about Containers
 Watch [Network Chuck's video on Docker 101](https://www.youtube.com/watch?v=eGz9DS-aIeY) and [IBM's video on Containers vs Virtual Machines](https://www.youtube.com/watch?v=0qotVMX-J5s).
+
 
 ## 💻  Install Docker
 At school: install Docker via the Managed Software Center.
@@ -12,18 +14,23 @@ Clone the [42toolbox](https://github.com/alexandregv/42toolbox) and run the init
 Open the application and once it is up and running, try the following command: ```docker run hello-world```.
 If you get an error saying your Docker daemon isn't running, [try this](https://pitman.io/posts/fix-docker-wont-start-error-on-mac-os/).
 
+
 ## 🐳  Get familiar with Docker
 Get comfortable with Docker's terminology and play around with existing docker images before starting to create your own.
 * Watch [Get started with Docker](https://docs.docker.com/get-started/)
 * Follow the [Docker curriculum](https://docker-curriculum.com/#setting-up-your-computer) tutorial
 * Explore [vvarodi's Github](https://github.com/vvarodi/ft_server)
 
+
 ## 📄  Create your Dockerfile
 What is your Dockerfile supposed to do?
 1. Install the base image, Debian Buster, and update its software packages
 2. Install Nginx, MariaDB, PHP, Wget
-3. Replace the default Nginx config file by your own (we'll get there)
-4. To be continued...
+3. Replace the default Nginx config file by your own
+4. Install PHPMyAdmin with Wget and replace its config file for your own
+5. Install WordPress with Wget and replace its config file for your own
+6. SSL...?
+7. ...?
 
 Check the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) and [Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) to get familiar with the syntax.
 
@@ -31,7 +38,12 @@ Check the [Dockerfile reference](https://docs.docker.com/engine/reference/builde
 Once you run a container with Nginx installed, run ```cat etc/nginx/sites-available/default```.
 That file has some guidelines on how to personalise it, follow them along with [this article](https://forhjy.medium.com/how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-1-75ddf3ede861).
 
+### PHPMyAdmin
+Once you run a container with PHPMyAdmin installed, ```cat var/www/html/phpmyadmin/config.sample.inc.php```. Once again you will have to personalise it, follow its guidelines and [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c).
+
+### WordPress
 To be continued...
+
 
 ## 🐚  Create your init script
 There are some shell commands you need in order to run your container. Namely:
@@ -42,10 +54,11 @@ There are some shell commands you need in order to run your container. Namely:
 Once you run a container with MariaDB installed, run ```service mysql start``` followed by ```mysql -u root --skip-password``` (to open the MariaDB monitor as the root user) or simply ```mysql```.
 Play around with the commands at [vvarodi's init script](https://github.com/vvarodi/ft_server/blob/master/ft_server/srcs/start.sh) and check [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c) to understand their purpose.
 
-## ♾  Assure continuity
-Find a better name and a proper understanding!!!
-From what I've understood there's at least three ways you can do that:
-1. Add ```bash``` at the end of your init script: this will tell Docker there are still things to be done, so he will keep on waiting for new commands
-2. Create an infinite loop at the end of your init script
-3. Run ```echo "daemon off;" >> /etc/nginx/nginx.conf``` in your Dockerfile. CHECK!! Explain daemon off meaning
 
+## ♾  Keep it running!
+Containers are automatically exited once you finish performing all operations.
+However, you want it to keep running until you tell it otherwise.
+From what I've understood there's at least three ways you can do that:
+1. Run ```echo "daemon off;" >> /etc/nginx/nginx.conf``` in your Dockerfile. This will ensure Nginx stays in the foreground.
+2. Add ```bash``` at the end of your init script: this will tell Docker there are still things to be done, so he will keep on waiting for new commands
+3. Create an infinite loop at the end of your init script
