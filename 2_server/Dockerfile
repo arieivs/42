@@ -12,4 +12,5 @@ RUN		apt-get -y install nginx mariadb-server php-fpm php-mysql php-mbstring wget
 # should I care about daemon off?
 COPY	srcs/nginx.conf /etc/nginx/sites-available/default;
 
-# PHPMyAdmin
+# PHPMyAdmin - Install it using Wget
+

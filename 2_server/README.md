@@ -45,7 +45,7 @@ Play around with the commands at [vvarodi's init script](https://github.com/vvar
 ## ♾  Assure continuity
 Find a better name and a proper understanding!!!
 From what I've understood there's at least three ways you can do that:
-1. Add ````bash``` at the end of your init script: this will tell Docker there are still things to be done, so he will keep on waiting for new commands
+1. Add ```bash``` at the end of your init script: this will tell Docker there are still things to be done, so he will keep on waiting for new commands
 2. Create an infinite loop at the end of your init script
-3. Add ```echo "daemon off;" >> /etc/nginx/nginx.conf``` to your Dockerfile. CHECK!! Explain daemon off meaning
+3. Run ```echo "daemon off;" >> /etc/nginx/nginx.conf``` in your Dockerfile. CHECK!! Explain daemon off meaning
 
