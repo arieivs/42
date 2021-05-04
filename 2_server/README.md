@@ -1,10 +1,12 @@
 # ft_server
 How to navigate the stormy waters of Docker 🌊
 If you are new to Docker and containers, here are my suggestions:
+
 <br />
 
 ## 📦  Learn about Containers
 Watch [Network Chuck's video on Docker 101](https://www.youtube.com/watch?v=eGz9DS-aIeY) and [IBM's video on Containers vs Virtual Machines](https://www.youtube.com/watch?v=0qotVMX-J5s).
+
 <br />
 
 ## 💻  Install Docker
@@ -13,6 +15,7 @@ Clone the [42toolbox](https://github.com/alexandregv/42toolbox) and run the init
 
 Open the application and once it is up and running, try the following command: ```docker run hello-world```.
 If you get an error saying your Docker daemon isn't running, [try this](https://pitman.io/posts/fix-docker-wont-start-error-on-mac-os/).
+
 <br />
 
 ## 🐳  Get familiar with Docker
@@ -20,6 +23,7 @@ Get comfortable with Docker's terminology and play around with existing docker i
 * Watch [Get started with Docker](https://docs.docker.com/get-started/)
 * Follow the [Docker curriculum](https://docker-curriculum.com/#setting-up-your-computer) tutorial
 * Explore [vvarodi's Github](https://github.com/vvarodi/ft_server)
+
 <br />
 
 ## 📄  Create your Dockerfile
@@ -43,6 +47,7 @@ Once you run a container with PHPMyAdmin installed, ```cat var/www/html/phpmyadm
 
 ### WordPress
 Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and personalise it.
+
 <br />
 
 ## 🐚  Create your init script
@@ -53,6 +58,7 @@ There are some shell commands you need in order to run your container. Namely:
 ### Set up a Database
 Once you run a container with MariaDB installed, run ```service mysql start``` followed by ```mysql -u root --skip-password``` (to open the MariaDB monitor as the root user) or simply ```mysql```.
 Play around with the commands at [vvarodi's init script](https://github.com/vvarodi/ft_server/blob/master/ft_server/srcs/start.sh) and check [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c) to understand their purpose.
+
 <br />
 
 ## ♾  Keep it running!
