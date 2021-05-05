@@ -48,7 +48,7 @@ That file has some guidelines on how to personalise it, follow them along with [
 Once you run a container with PHPMyAdmin installed, ```cat var/www/html/phpmyadmin/config.sample.inc.php```. Once again you will have to personalise it, follow its guidelines and [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c).
 
 ### WordPress
-Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and personalise it.
+You already know it, right? Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and personalise it.
 
 ### SSL Certificate
 The purpose is to generate a self-signed certificate.
@@ -56,9 +56,12 @@ If you run ```openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/s
 Only the country two letter code is strictly necessary, you can enter '.' in the remaining fields, which will be left blank.
 To do this automatically, add ```-subj "/C=PT/ST=./L=./O=./OU=./CN=."``` (in my case, since I'm in Portugal) before ```-newkey```.
 Check in [this article](https://velog.io/@ljiwoo59/ftserver#wordpress) the meaning of the first command above.
+Once the key has been created, a message will appear saying its location. Look for the location of the certificate, most probably in ```etc/ssl/certs```, and update both of them in your Nginx config file.
 
 ### Change web files owner
-I am still trying to figure this one out...
+At this point, the owner and user-group from your web files is root. Try ```ls -l var/www/html``` to check this.
+At the same time, Nginx's process owner is www-data (the default). Try ```cat etc/nginx/nginx.conf``` and look at the user to check this.
+You can read more about the [www-data user here](https://askubuntu.com/questions/873839/what-is-the-www-data-user), and get a better understanding on [users, user-groups and chown here](https://askubuntu.com/questions/950196/www-data-related-whats-the-difference-between-these-usages-of-chown).
 
 <br />
 
