@@ -40,6 +40,11 @@ COPY	srcs/wp-config.php /var/www/html/wordpress
 RUN		openssl req -x509 -nodes -days 365 -subj "/C=PT/ST=./L=./O=./OU=./CN=." -newkey rsa:2048 -keyout /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt
 
 # Giving nginx's user-group rights over website files
-# change file owner from var/www/hmtl directory and all its children (-R)
 RUN	chown -R www-data:www-data /var/www/html/*
 
+# Let's check if this helps:
+#EXPOSE	80 443
+
+# Bring in your init script and run it
+COPY	srcs/init.sh .
+CMD		bash init.sh

@@ -35,8 +35,7 @@ What is your Dockerfile supposed to do?
 5. Install WordPress with Wget and replace its config file for your own
 6. Set the SSL Certificate
 7. Change web files owner
-8. ...?
-9. Run initialising script
+8. Run initialising script
 
 Check the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) and [Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) to get familiar with the syntax.
 
@@ -48,7 +47,7 @@ That file has some guidelines on how to personalise it, follow them along with [
 Once you run a container with PHPMyAdmin installed, ```cat var/www/html/phpmyadmin/config.sample.inc.php```. Once again you will have to personalise it, follow its guidelines and [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c).
 
 ### WordPress
-You already know it, right? Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and personalise it.
+Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and change it.
 
 ### SSL Certificate
 The purpose is to generate a self-signed certificate.
