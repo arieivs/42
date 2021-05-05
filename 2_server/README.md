@@ -44,10 +44,11 @@ Once you run a container with Nginx installed, run ```cat etc/nginx/sites-availa
 That file has some guidelines on how to personalise it, follow them along with [this article](https://forhjy.medium.com/how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-1-75ddf3ede861).
 
 ### PHPMyAdmin
-Once you run a container with PHPMyAdmin installed, ```cat var/www/html/phpmyadmin/config.sample.inc.php```. Once again you will have to personalise it, follow its guidelines and [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c).
+Once you run a container with PHPMyAdmin installed, ```cat var/www/html/phpmyadmin/config.sample.inc.php```.
+Once again you will have to create your own ```config.inc.php```, follow its guidelines and [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c).
 
 ### WordPress
-Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and change it.
+Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and create your ```wp-config.php```.
 
 ### SSL Certificate
 The purpose is to generate a self-signed certificate.
