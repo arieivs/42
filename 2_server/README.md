@@ -34,7 +34,7 @@ What is your Dockerfile supposed to do?
 4. Install PHPMyAdmin with Wget and replace its config file for your own
 5. Install WordPress with Wget and replace its config file for your own
 6. Set the SSL Certificate
-7. Give Nginx user-group rights over the website files
+7. Change web files owner
 8. ...?
 9. Run initialising script
 
@@ -49,6 +49,16 @@ Once you run a container with PHPMyAdmin installed, ```cat var/www/html/phpmyadm
 
 ### WordPress
 Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and personalise it.
+
+### SSL Certificate
+The purpose is to generate a self-signed certificate.
+If you run ```openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt``` inside the container, it will ask you information on your location, in order to generate the SSL key.
+Only the country two letter code is strictly necessary, you can enter '.' in the remaining fields, which will be left blank.
+To do this automatically, add ```-subj "/C=PT/ST=./L=./O=./OU=./CN=."``` (in my case, since I'm in Portugal) before ```-newkey```.
+Check in [this article](https://velog.io/@ljiwoo59/ftserver#wordpress) the meaning of the first command above.
+
+### Change web files owner
+I am still trying to figure this one out...
 
 <br />
 
