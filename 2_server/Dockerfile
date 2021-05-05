@@ -14,6 +14,8 @@ RUN		apt-get -y install nginx mariadb-server php-fpm php-mysql php-mbstring wget
 # NGINX
 # keep Nginx running in the foreground
 RUN		echo "daemon off;" >> /etc/nginx/nginx.conf
+# remove default index page
+RUN		rm var/www/html/index.nginx-debian.html
 # replace default config file
 COPY	srcs/nginx_indexon.conf /etc/nginx/sites-available/default
 

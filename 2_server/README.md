@@ -30,12 +30,11 @@ Get comfortable with Docker's terminology and play around with existing docker i
 What is your Dockerfile supposed to do?
 1. Install the base image (Debian Buster) and update its software packages
 2. Install Nginx, MariaDB, PHP, Wget
-3. Replace the default Nginx config file by your own
-4. Install PHPMyAdmin with Wget and replace its config file for your own
-5. Install WordPress with Wget and replace its config file for your own
-6. Set the SSL Certificate
-7. Change web files owner
-8. Run initialising script
+3. Replace the default Nginx config file for your own
+4. Install PHPMyAdmin and WordPress with Wget and replace their config files for your own
+5. Set the SSL Certificate
+6. Change web files owner
+7. Run initialising script
 
 Check the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/) and [Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) to get familiar with the syntax.
 
@@ -76,10 +75,21 @@ Play around with the commands at [vvarodi's init script](https://github.com/vvar
 
 <br />
 
-## ♾ Keep it running!
+## ♾ Keep it runninggg...
 Containers are automatically exited once you finish performing all operations.
-However, you want it to keep running until you tell it otherwise.
-From what I've understood there's at least three ways you can do that:
+However, you want to keep it running until you tell it otherwise.
+There's at least three ways you can do that:
 1. Run ```echo "daemon off;" >> /etc/nginx/nginx.conf``` in your Dockerfile. This will ensure Nginx stays in the foreground.
 2. Add ```bash``` at the end of your init script: this will tell Docker there are still things to be done, so he will keep on waiting for new commands
 3. Create an infinite loop at the end of your init script
+
+<br />
+
+## 📂 AutoIndex
+There are still a few things to consider in order to run our container with or without autoindex.
+* Create two separate Nginx config files, one with ```autoindex on```, the other one without
+TODO: CHECK IF AUTOINDEX OFF IS NEEDED
+* Remove the default index page, ```index.nginx-debian.html```
+* Figure out how to copy only the appropriate Nginx config file. An environment variable may come in handy
+TODO: FIGURE THIS OUT
+
