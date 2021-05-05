@@ -28,7 +28,7 @@ Get comfortable with Docker's terminology and play around with existing docker i
 
 ## 📄 Create your Dockerfile
 What is your Dockerfile supposed to do?
-1. Install the base image, Debian Buster, and update its software packages
+1. Install the base image (Debian Buster) and update its software packages
 2. Install Nginx, MariaDB, PHP, Wget
 3. Replace the default Nginx config file by your own
 4. Install PHPMyAdmin with Wget and replace its config file for your own
@@ -45,18 +45,18 @@ That file has some guidelines on how to personalise it, follow them along with [
 
 ### PHPMyAdmin
 Once you run a container with PHPMyAdmin installed, ```cat var/www/html/phpmyadmin/config.sample.inc.php```.
-Once again you will have to create your own ```config.inc.php```, follow its guidelines and [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c).
+Once again you will have to create your own ```config.inc.php```, follow the guidelines and [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c).
 
 ### WordPress
-Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and create your ```wp-config.php```.
+Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and create your own ```wp-config.php```.
 
 ### SSL Certificate
 The purpose is to generate a self-signed certificate.
 If you run ```openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt``` inside the container, it will ask you information on your location, in order to generate the SSL key.
-Only the country two letter code is strictly necessary, you can enter '.' in the remaining fields, which will be left blank.
+Only the two-letter country code is strictly necessary, you can enter "." in the remaining fields, which will be left blank.
 To do this automatically, add ```-subj "/C=PT/ST=./L=./O=./OU=./CN=."``` (in my case, since I'm in Portugal) before ```-newkey```.
 Check in [this article](https://velog.io/@ljiwoo59/ftserver#wordpress) the meaning of the first command above.
-Once the key has been created, a message will appear saying its location. Look for the location of the certificate, most probably in ```etc/ssl/certs```, and update both of them in your Nginx config file.
+Once the key has been created, a message will appear saying where it is stored. Look for the path to the certificate, most probably in ```etc/ssl/certs```, and update both of them in your Nginx config file.
 
 ### Change web files owner
 At this point, the owner and user-group from your web files is root. Try ```ls -l var/www/html``` to check this.
