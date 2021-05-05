@@ -8,6 +8,6 @@ echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost';" | mysql -u roo
 echo "FLUSH PRIVILEGES;" | mysql -u root --skip-password
 # give the root user permission over the DB (create a DB user)
 # use default plugin, which I believe is mysql_native_password
-echo "update mysql.user set plugin='' where user='root';"| mysql -u root --skip-password
+echo "update mysql.user set plugin='mysql_native_password' where user='root';"| mysql -u root --skip-password
 
 service nginx start

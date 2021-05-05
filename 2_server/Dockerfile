@@ -15,7 +15,7 @@ RUN		apt-get -y install nginx mariadb-server php-fpm php-mysql php-mbstring wget
 # keep Nginx running in the foreground
 RUN		echo "daemon off;" >> /etc/nginx/nginx.conf
 # replace default config file
-COPY	srcs/nginx.conf /etc/nginx/sites-available/default
+COPY	srcs/nginx_indexon.conf /etc/nginx/sites-available/default
 
 # PHPMyAdmin
 # install it using Wget
@@ -24,7 +24,7 @@ RUN		wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-english
     	rm -rf phpMyAdmin-5.0.2-english.tar.gz && \
     	mv phpMyAdmin-5.0.2-english/ /var/www/html/phpmyadmin
 # replace default config file
-COPY	srcs/config.sample.inc.php /var/www/html/phpmyadmin
+COPY	srcs/config.sample.inc.php /var/www/html/phpmyadmin/config.inc.php
 
 # WordPress
 # install it using Wget
