@@ -17,7 +17,7 @@ RUN		echo "daemon off;" >> /etc/nginx/nginx.conf
 # remove default index page
 RUN		rm var/www/html/index.nginx-debian.html
 # replace default config file
-COPY	srcs/nginx_indexon.conf /etc/nginx/sites-available/default
+COPY	srcs/nginx.conf /etc/nginx/sites-available/default
 
 # PHPMyAdmin
 # install it using Wget
@@ -43,9 +43,6 @@ RUN		openssl req -x509 -nodes -days 365 -subj "/C=PT/ST=./L=./O=./OU=./CN=." -ne
 
 # Giving nginx's user-group rights over website files
 RUN	chown -R www-data:www-data /var/www/html/*
-
-# Let's check if this helps:
-#EXPOSE	80 443
 
 # Bring in your init script and run it
 COPY	srcs/init.sh .
