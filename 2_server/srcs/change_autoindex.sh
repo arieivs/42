@@ -1,10 +1,8 @@
-if [ "$1" = 'off' ]; then
-	sed 's/
-	$CURR = 'autoindex on'
-	$NEW = 'autoindex off'
-else
-	$CURR = 'autoindex off'
-	$NEW = 'autoindex on'
-fi
+#!/bin/bash
 
-sed 's/$
+if [ "$1" = 'off' ]; then
+	sed -i  '' 's/autoindex off/autoindex on/g' test
+fi
+if [ "$1" = 'on' ]; then
+	sed -i  '' 's/autoindex on/autoindex off/g' test
+fi
