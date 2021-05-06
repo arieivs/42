@@ -89,8 +89,9 @@ There's at least three ways you can do that:
 There are still a few things to consider in order to run our container with or without autoindex.
 * Remove the default index page, ```index.nginx-debian.html```
 * Figure out how to change the ```autoindex on``` to ```autoindex off``` (and vice-versa) in the Nginx config file. I've seen two different approaches:
-	* Create two separate Nginx files and copy only the appropriate one. An environment variable may come in handy (as well as a bash script)
+	* Create two separate Nginx files and copy only the appropriate one. An environment variable may come in handy 
 	* Change the content of the Nginx file with a bash script
+
 In both cases you can easily run the script while your container is running.
 TODO: FIGURE THIS OUT
 
