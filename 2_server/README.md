@@ -75,7 +75,7 @@ Play around with the commands at [vvarodi's init script](https://github.com/vvar
 
 <br />
 
-## ♾ Keep it runninggg...
+## 🏃‍♂️ Keep it runninggg...
 Containers are automatically exited once you finish performing all operations.
 However, you want to keep it running until you tell it otherwise.
 There's at least three ways you can do that:
@@ -86,22 +86,32 @@ There's at least three ways you can do that:
 <br />
 
 ## 📂 AutoIndex
-There are still a few things to consider in order to change the autoindex while you are running your container.
+There are still a few things to consider in order to change the autoindex while you are running your container:
 1. Remove the default index page, ```index.nginx-debian.html```
 2. Figure out how to change the ```autoindex on``` to ```autoindex off``` (and vice-versa) in the Nginx config file. I've seen three different approaches:
 	* Create two separate Nginx files and copy only the appropriate one. An environment variable may come in handy (and a bash script)
 	* Change the content of the Nginx file with a bash script
 	* Install vim, open the Nginx file inside the container and change it 😆
-3. Reload Nginx (restart will close your container if you're keeping it open with "daemon off")
+3. Reload Nginx (restart it will close your container if you're keeping it open with "daemon off")
 
 <br />
 
-## 🏃‍♂️ Build and Run your Container!
+## ♾ Persistent Storage
+Right now, every time you restart your container you lose everything.
+This doesn't seem quite right for a website, does it? You want your storage to be persistent, not ephemeral!
+In Docker this means Volumes.
+Use them for both your MySQL and WordPress files.
+Read more about [Volumes](https://docs.docker.com/storage/volumes/) and how to use [Volumes in the Dockerfile](https://docs.docker.com/engine/reference/builder/#volume).
+
+<br />
+
+## 🙌 Build and Run your Container!
 ```
 docker build -t <image_name>
-docker run --name <container_name> --rm -d -p 80:80 -p 443:443
+docker run --name <container_name> -d -p 80:80 -p 443:443
 docker exec -it <container_name> bash
 docker stop <container_name>
+docker start <container_name>
 ```
 <br />
 Happy dockering! 🐳
