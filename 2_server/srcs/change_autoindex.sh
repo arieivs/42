@@ -1,8 +1,9 @@
 #!/bin/bash
 
 if [ "$1" = 'off' ]; then
-	sed -i  '' 's/autoindex off/autoindex on/g' test
+	sed -i "s/autoindex on/autoindex off/g" /etc/nginx/sites-available/default
+elif [ "$1" = 'on' ]; then
+	sed -i "s/autoindex off/autoindex on/g" /etc/nginx/sites-available/default
 fi
-if [ "$1" = 'on' ]; then
-	sed -i  '' 's/autoindex on/autoindex off/g' test
-fi
+
+service nginx reload

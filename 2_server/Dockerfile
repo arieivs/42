@@ -44,6 +44,6 @@ RUN		openssl req -x509 -nodes -days 365 -subj "/C=PT/ST=./L=./O=./OU=./CN=." -ne
 # Giving nginx's user-group rights over website files
 RUN	chown -R www-data:www-data /var/www/html/*
 
-# Bring in your init script and run it
-COPY	srcs/init.sh .
+# Bring in your bash scripts and run init
+COPY	srcs/*.sh ./
 CMD		bash init.sh
