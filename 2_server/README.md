@@ -92,6 +92,9 @@ There are still a few things to consider in order to change the autoindex while 
 	* Create two separate Nginx files and copy only the appropriate one. An environment variable may come in handy (and a bash script)
 	* Change the content of the Nginx file with a bash script
 	* Install vim, open the Nginx file inside the container and change it 😆
+3. Reload Nginx (restart will close your container if you're keeping it open with "daemon off")
+
+<br />
 
 ## 🏃‍♂️ Build and Run your Container!
 ```
@@ -100,5 +103,5 @@ docker run --name <container_name> --rm -d -p 80:80 -p 443:443
 docker exec -it <container_name> bash
 docker stop <container_name>
 ```
-
+<br />
 Happy dockering! 🐳
