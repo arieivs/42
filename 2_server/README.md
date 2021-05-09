@@ -80,7 +80,7 @@ Containers are automatically exited once you finish performing all operations.
 However, you want to keep it running until you tell it otherwise.
 There's at least three ways you can do that:
 1. Run ```echo "daemon off;" >> /etc/nginx/nginx.conf``` in your Dockerfile. This will ensure Nginx stays in the foreground.
-2. Add ```bash``` at the end of your init script: this will tell Docker there are still things to be done, so he will keep on waiting for new commands
+2. Add ```bash``` at the end of your init script: this will tell Docker there are still things to be done, so it will keep on waiting for new commands
 3. Create an infinite loop at the end of your init script
 
 <br />
@@ -97,6 +97,7 @@ There are still a few things to consider in order to change the autoindex while 
 <br />
 
 ## ♾ Persistent Storage
+This is a bonus!
 Right now, every time you restart your container you lose everything.
 This doesn't seem quite right for a website, does it? You want your storage to be persistent, not ephemeral!
 In Docker this means Volumes.
