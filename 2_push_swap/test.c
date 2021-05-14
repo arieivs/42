@@ -15,6 +15,7 @@ int	main(void)
 	t_list	*ele4;
 	t_list	*null;
 
+	// SWAP
 	// making sure nothing happens when list has only 1 or no elements
 	swap(NULL);
 	null = NULL;
@@ -22,7 +23,7 @@ int	main(void)
 	ele1 = ft_lstnew((void *)&x1);
 	swap(&ele1);
 
-	// creating the list
+	// creating a list
 	ele2 = ft_lstnew((void *)&x2);
 	ft_lstadd_back(&ele1, ele2);
 	ele3 = ft_lstnew((void *)&x3);
@@ -39,5 +40,25 @@ int	main(void)
 	printf("%d ", *(int *)ele1->next->next->content);
 	printf("%d\n", *(int *)ele1->next->next->next->content);
 
+	// PUSH
+	// making sure nothing happens when list from is empty
+	push(NULL, &ele1);
+	push(&null, &ele1);
+
+	// pushing
+	push(&ele1, &null);
+	printf("FROM %d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
+	printf("%d\n", *(int *)ele1->next->next->content);
+	printf("TO %d\n", *(int *)null->content);
+	push(&ele1, &null);
+	printf("FROm %d %d\n", *(int *)ele1->content, *(int *)ele1->next->content);
+	printf("TO %d %d\n", *(int *)null->content, *(int *)null->next->content);
+
+	// cleaning the house
+	/*free(ele1);
+	free(ele2);
+	free(ele3);
+	free(ele4);*/
 	return (0);
 }
+

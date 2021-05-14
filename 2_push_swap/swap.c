@@ -6,11 +6,12 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 12:07:21 by svieira           #+#    #+#             */
-/*   Updated: 2021/05/14 14:14:44 by svieira          ###   ########.fr       */
+/*   Updated: 2021/05/14 15:00:16 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
+#include <stdio.h>
 
 void	swap(t_list **stack)
 {
@@ -25,3 +26,16 @@ void	swap(t_list **stack)
 	*stack = sec;
 }	
 
+void	push(t_list **from, t_list **to)
+{
+	t_list	*move;
+	if (!from || !*from)
+	{
+		printf("not enough\n");
+		return ;
+	}
+	move = *from;
+	*from = move->next;
+	move->next = *to;
+	*to = move;
+}
