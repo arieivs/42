@@ -55,10 +55,7 @@ int	main(void)
 	printf("TO %d %d\n", *(int *)null->content, *(int *)null->next->content);
 
 	// cleaning the house
-	/*free(ele1);
-	free(ele2);
-	free(ele3);
-	free(ele4);*/
+	// need to delete lists in the end
 	return (0);
 }
 
