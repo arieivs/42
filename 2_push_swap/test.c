@@ -15,7 +15,7 @@ int	main(void)
 	t_list	*ele4;
 	t_list	*null;
 
-	// SWAP
+	printf("\nSWAP\n");
 	// making sure nothing happens when list has only 1 or no elements
 	swap(NULL);
 	null = NULL;
@@ -40,19 +40,28 @@ int	main(void)
 	printf("%d ", *(int *)ele1->next->next->content);
 	printf("%d\n", *(int *)ele1->next->next->next->content);
 
-	// PUSH
+	printf("\nROTATE/SHIFT\n");
+	rotate(NULL);
+	rotate(&null);
+	rotate(&ele4);
+	rotate(&ele1);
+	printf("%d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
+	printf("%d ", *(int *)ele1->next->next->content);
+	printf("%d\n", *(int *)ele1->next->next->next->content);
+
+	printf("\nPUSH\n");
 	// making sure nothing happens when list from is empty
 	push(NULL, &ele1);
 	push(&null, &ele1);
 
 	// pushing
 	push(&ele1, &null);
-	printf("FROM %d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
+	printf("from %d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
 	printf("%d\n", *(int *)ele1->next->next->content);
-	printf("TO %d\n", *(int *)null->content);
+	printf("tooo %d\n", *(int *)null->content);
 	push(&ele1, &null);
-	printf("FROm %d %d\n", *(int *)ele1->content, *(int *)ele1->next->content);
-	printf("TO %d %d\n", *(int *)null->content, *(int *)null->next->content);
+	printf("from %d %d\n", *(int *)ele1->content, *(int *)ele1->next->content);
+	printf("tooo %d %d\n", *(int *)null->content, *(int *)null->next->content);
 
 	// cleaning the house
 	// need to delete lists in the end
