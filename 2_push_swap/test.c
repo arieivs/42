@@ -1,7 +1,11 @@
 #include "includes/push_swap.h"
 #include <stdio.h>
 
-void	swap(t_list **stack);
+static void	ft_print_del(void *content)
+{
+	printf("deleting %d\n", *(int *)content);
+	*(int *)content = 0;
+}
 
 int	main(void)
 {
@@ -14,6 +18,7 @@ int	main(void)
 	t_list	*ele3;
 	t_list	*ele4;
 	t_list	*null;
+	void	(*pt_print_del)(void*);
 
 	null = NULL;
 	printf("\nORIGINAL LIST\n");
@@ -72,8 +77,10 @@ int	main(void)
 	printf("from %d %d\n", *(int *)ele1->content, *(int *)ele1->next->content);
 	printf("tooo %d %d\n", *(int *)null->content, *(int *)null->next->content);
 
-	// cleaning the house
-	// need to delete lists in the end
+	printf("\nCLEANING\n");
+	pt_print_del = &ft_print_del;
+	ft_lstclear(&ele1, pt_print_del);
+	ft_lstclear(&null, pt_print_del);
 	return (0);
 }
 
