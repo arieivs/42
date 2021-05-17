@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:29:36 by svieira           #+#    #+#             */
-/*   Updated: 2021/05/17 13:15:32 by svieira          ###   ########.fr       */
+/*   Updated: 2021/05/17 14:00:37 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,25 @@ void	rotate(t_list **stack)
 
 	if (!stack || !*stack || !((*stack)->next))
 		return ;
-	last = *stack;
+	last = (*stack)->next;
 	while (last->next)
 		last = last->next;
 	last->next = *stack;
 	*stack = (*stack)->next;
 	last->next->next = 0;
+}
+
+// place the last element of a stack as its first
+void	reverse_rotate(t_list **stack)
+{
+	t_list	*bef_last;
+
+	if (!stack || !*stack || !((*stack)->next))
+		return ;
+	bef_last = *stack;
+	while (bef_last->next->next)
+		bef_last = bef_last->next;
+	bef_last->next->next = *stack;
+	*stack = bef_last->next;
+	bef_last->next = 0;
 }

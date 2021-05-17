@@ -15,15 +15,9 @@ int	main(void)
 	t_list	*ele4;
 	t_list	*null;
 
-	printf("\nSWAP\n");
-	// making sure nothing happens when list has only 1 or no elements
-	swap(NULL);
 	null = NULL;
-	swap(&null);
+	printf("\nORIGINAL LIST\n");
 	ele1 = ft_lstnew((void *)&x1);
-	swap(&ele1);
-
-	// creating a list
 	ele2 = ft_lstnew((void *)&x2);
 	ft_lstadd_back(&ele1, ele2);
 	ele3 = ft_lstnew((void *)&x3);
@@ -34,7 +28,13 @@ int	main(void)
 	printf("%d ", *(int *)ele1->next->next->content);
 	printf("%d\n", *(int *)ele1->next->next->next->content);
 
-	// swaping
+	printf("\nSWAP\n");
+	// making sure nothing happens when list has only 1 or no elements
+	swap(NULL);
+	swap(&null);
+	swap(&ele4);
+
+	// swaping and showing the result
 	swap(&ele1);
 	printf("%d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
 	printf("%d ", *(int *)ele1->next->next->content);
@@ -45,6 +45,15 @@ int	main(void)
 	rotate(&null);
 	rotate(&ele4);
 	rotate(&ele1);
+	printf("%d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
+	printf("%d ", *(int *)ele1->next->next->content);
+	printf("%d\n", *(int *)ele1->next->next->next->content);
+
+	printf("\nREVERSE ROTATE/UNSHIFT\n");
+	reverse_rotate(NULL);
+	reverse_rotate(&null);
+	reverse_rotate(&ele2);
+	reverse_rotate(&ele1);
 	printf("%d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
 	printf("%d ", *(int *)ele1->next->next->content);
 	printf("%d\n", *(int *)ele1->next->next->next->content);

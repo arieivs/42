@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/05/17 13:15:04 by svieira          ###   ########.fr       */
+/*   Updated: 2021/05/17 13:51:05 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 void	swap(t_list **stack);
 void	push(t_list **from, t_list **to);
 void	rotate(t_list **stack);
+void	reverse_rotate(t_list **stack);
 
 #endif
