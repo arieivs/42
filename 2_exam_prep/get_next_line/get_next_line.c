@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 12:02:13 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/01 13:04:56 by svieira          ###   ########.fr       */
+/*   Updated: 2021/06/01 15:05:12 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,28 @@
  * fd = 0
  * no fd changes between function calls
  * no buffer size variable
+ * buffer_size = 1 makes our lives easier
  */
 
 int	get_next_line(char **line)
 {
-	static char	*cur_line = NULL;
+	char	*cur_line;
 	char	*buff;
+	char	*tmp;
+	int		rd;
 
 	if (!line)
 		return (-1);
-	if (!cur_line)
+	cur_line = (char *)malloc(sizeof(char));
+	cur_line[0] = 0;
+	buff = (char *)malloc(sizeof(char) * 2);
+	while ((rd = read(0, buff, 1)) > 0 && buff[0] != '\n')
 	{
-		cur_line = (char *)malloc(sizeof(char));
-		cur_line[0] = 0;
+		buff[1] = 0;
+		tmp = concat(cur_line, buff);
+		free(cur_line);
+		cur_line = tmp;
+		// or I free cur_line inside concat
 	}
-	// buffer size was chosen very randomly
-	buff = (char *)malloc(sizeof(char) * 1024);
-
 
 
