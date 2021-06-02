@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/05/17 13:51:05 by svieira          ###   ########.fr       */
+/*   Updated: 2021/06/02 12:28:14 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,21 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 
+// deal with input
+void	ft_lstpush_back(t_list **lst, void *data);
+t_list	*create_stack(int ac, char **av);
+int		*create_arr(int ac, char **av);
+
+// quick sort
+void	quick_sort(int *arr, int start, int end);
+
+// ops
 void	swap(t_list **stack);
 void	push(t_list **from, t_list **to);
 void	rotate(t_list **stack);
 void	reverse_rotate(t_list **stack);
+
+// cleaning the house
+void	ft_del(void *content);
 
 #endif
