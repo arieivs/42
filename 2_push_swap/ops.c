@@ -6,12 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:29:36 by svieira           #+#    #+#             */
-/*   Updated: 2021/05/17 14:00:37 by svieira          ###   ########.fr       */
+/*   Updated: 2021/06/02 18:18:00 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
-#include <stdio.h>
 
 // swap the first two elements of a stack
 void	swap(t_list **stack)
@@ -68,4 +67,10 @@ void	reverse_rotate(t_list **stack)
 	bef_last->next->next = *stack;
 	*stack = bef_last->next;
 	bef_last->next = 0;
+}
+
+int	display_op(char *op, int instructions)
+{
+	write(1, op, 2);
+	return (instructions++);
 }
