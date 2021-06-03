@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:00:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/02 11:23:06 by svieira          ###   ########.fr       */
+/*   Updated: 2021/06/03 16:22:49 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_list	*create_stack(int ac, char **av)
 	stack = ft_lstnew((void *)&nb);
 	while (i < ac)
 	{
-		nb = av[i++];
+		nb = ft_atoi(av[i++]);
 		ft_lstpush_back(&stack, (void *)&nb);
 	}
 	return (stack);

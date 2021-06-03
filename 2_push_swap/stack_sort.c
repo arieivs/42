@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 12:22:55 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/02 23:02:59 by svieira          ###   ########.fr       */
+/*   Updated: 2021/06/03 18:10:40 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,49 @@ int	arr_mean(int *arr, int length)
 	return (mean);
 }
 
-int	stack_sort(t_list *stack_a, t_list *stack_b, int *arr, int length)
+int	lst_mean(t_list *list)
 {
-	t_list	*curr_a;
-	int		instructions;
-	int		mean;
+	int	mean;
 
-	curr_a = stack_a;
-	instructions = 0;
-	mean = arr_mean(arr, length);
-	while (curr_a)
+	mean = 0;
+	while (list)
 	{
-		if (*(int *)curr_a->content <= mean)
-		{
-			push(stack_a, stack_b);
-			instructions = display_op("pb", instructions);
-		}
-		else
-		{
-			rotate(stack_a);
-			instructions = display_op("ra", instructions);
-		}
-		curr_a = curr_a->next;
+		mean += *(int *)list->content;
+		list = list->next;
 	}
+	return (mean);
+}
 
+int	stack_sort(t_list **stack_a, t_list **stack_b, int *arr, int length)
+{
+	int		i;
+	int		moves;
+	int		mean_a;
+	int		mean_b;
+
+	i = 0;
+	moves = 0;
+	mean_a = lst_mean(stack_a);
+	while (i < length)
+	{
+		if (*(int *)(*stack_a)->content <= mean_a)
+			moves = op("pb", stack_a, stack_b, moves);
+		else
+			moves = op("ra", stack_a, NULL, moves);
+		i++;
+	}
+	while (*stack_b)
+	{
+		mean_b = lst_mean(stack_b);
+		if (*(int *)(*stack_b)->content == arr[j])
+		{
+			moves = op("pa", stack_b, stack_a, moves);
+			moves = op("ra", stack_a, NULL, moves);
+			j++;
+		}
+		else if (*(int *)(*stack_b)->content <= mean_b)
+			moves = op("rb", stack_b, NULL, moves);
+		else
+			moves = op("pa", stack_b, stack_a, moves);
+	}
 

@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:29:36 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/02 18:18:00 by svieira          ###   ########.fr       */
+/*   Updated: 2021/06/03 17:07:16 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,24 @@ void	reverse_rotate(t_list **stack)
 	bef_last->next = 0;
 }
 
-int	display_op(char *op, int instructions)
+// not sure this router makes sense... I feel I'm doubling the if statements
+int	op(char *op, t_list **stack, t_list **sec_stack, int instructions)
 {
-	write(1, op, 2);
+	if (op[0] == 'r' && op[1] == 'r')
+	{
+		reverse_rotate(stack);
+		write(1, op, 3);
+	}
+	else
+	{
+		if (op[0] == 'r')
+			rotate(stack);
+		else if (op[0] == 's')
+			swap(stack);
+		else if (op[0] == 'p')
+			push(stack, sec_stack);
+		write(1, op, 2);
+	}
+	write(1, "\n", 1);
 	return (instructions++);
 }
