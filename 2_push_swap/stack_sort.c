@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 12:22:55 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/03 18:10:40 by svieira          ###   ########.fr       */
+/*   Updated: 2021/06/04 17:09:27 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * to think: how do I keep track of the minimum? I could of course, order an array with the same content of the stack to compare... but... I mean...
  */
 
-int	arr_mean(int *arr, int length)
+/*int	arr_mean(int *arr, int length)
 {
 	int i;
 	int	mean;
@@ -30,7 +30,7 @@ int	arr_mean(int *arr, int length)
 		mean += arr[i++];
 	mean /= length;
 	return (mean);
-}
+}*/
 
 int	lst_mean(t_list *list)
 {
@@ -45,15 +45,58 @@ int	lst_mean(t_list *list)
 	return (mean);
 }
 
+int	b_to_top_bot_a(t_list **stack_a, t_list **stack_b, int *arr, int *min)
+{
+	int	mean_b;
+	int	moves;
+
+	moves = 0;
+	mean_b = lst_mean(stack_b);
+	while (*stack_b)
+	{
+		if (*(int *)(*stack_b)->content == arr[*min])
+		{
+			moves = op("pa", stack_b, stack_a, moves);
+			moves = op("ra", stack_a, NULL, moves);
+			(*min)++;
+		}
+		else if (*(int *)(*stack_b)->content <= mean_b)
+			moves = op("rb", stack_b, NULL, moves);
+		else
+			moves = op("pa", stack_b, stack_a, moves);
+	}
+	return (moves);
+}
+
+int	b_to_bot_a(t_list **stack_a, t_list **stack_b, int *arr, int *min)
+{
+	int	moves;
+
+	moves = 0;
+	while (*stack_b)
+	{
+		if (*(int *)(*stack_b)->content == arr[*min])
+		{
+			moves = op("pa", stack_b, stack_a, moves);
+			moves = op("ra", stack_a, NULL, moves);
+			(*min)++;
+		}
+		else
+			moves = op("rb", stack_b, NULL, moves);
+	}
+	return (moves);
+}
+
 int	stack_sort(t_list **stack_a, t_list **stack_b, int *arr, int length)
 {
 	int		i;
 	int		moves;
+	int		min;
 	int		mean_a;
-	int		mean_b;
 
 	i = 0;
 	moves = 0;
+	min = 0;
 	mean_a = lst_mean(stack_a);
 	while (i < length)
 	{
@@ -63,18 +106,8 @@ int	stack_sort(t_list **stack_a, t_list **stack_b, int *arr, int length)
 			moves = op("ra", stack_a, NULL, moves);
 		i++;
 	}
-	while (*stack_b)
-	{
-		mean_b = lst_mean(stack_b);
-		if (*(int *)(*stack_b)->content == arr[j])
-		{
-			moves = op("pa", stack_b, stack_a, moves);
-			moves = op("ra", stack_a, NULL, moves);
-			j++;
-		}
-		else if (*(int *)(*stack_b)->content <= mean_b)
-			moves = op("rb", stack_b, NULL, moves);
-		else
-			moves = op("pa", stack_b, stack_a, moves);
-	}
+	moves += b_to_top_bot_a(stack_a, stack_b, arr, &min);
+	while (*(int *)(*stack_a)->content <= mean_a)
+		moves = op("pb", stack_a, stack_b, moves);
+	moves += b_to_bot_a(stack_a, stack_b, arr, &min);
 
