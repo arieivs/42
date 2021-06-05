@@ -12,11 +12,16 @@ Watch [Network Chuck's video on Docker 101](https://www.youtube.com/watch?v=eGz9
 ## ❓ What is... everything??
 Let's try to give some meaning to some of the strange names mentioned in the subject:
 
-**[Wget](https://www.gnu.org/software/wget/)**: allows you get files via the HTTP(S) and FTP(S) protocols - we will use it to get the necessary files for PHPMyAdmin and WordPress.
+### Wget
+[Wget](https://www.gnu.org/software/wget/) allows you get files via the HTTP(S) and FTP(S) protocols - we will use it to get the necessary files for PHPMyAdmin and WordPress.
 
-**[HTTP Server](https://medium.com/@gabriellamedas/the-http-server-explained-c41380307917)**: server software which receives requests and sends responses following the HTTP protocol.
+### HTTP Server
+An [HTTP Server](https://medium.com/@gabriellamedas/the-http-server-explained-c41380307917) is a server software which receives requests and sends responses following the HTTP protocol.
 
-**[Proxy Sever](https://www.varonis.com/blog/what-is-a-proxy-server/)**: (proxy is the authority to represent someone or do something on their behalf) a proxy server is an intermediate sever between the end-user/client and the sever where the website is hosted, so all traffic between these two flows through the proxy. The proxy server can be:
+### Proxy Sever
+Proxy is the authority to represent someone or do something on their behalf.
+A [Proxy Sever](https://www.varonis.com/blog/what-is-a-proxy-server/) is an intermediate sever between the end-user/client and the sever where the website is hosted, so all traffic between these two flows through the proxy.
+The proxy server can be:
 * Forward: on the client side
 * Reverse: on the server side
 
@@ -25,9 +30,18 @@ There can be several advantages to using a proxy server, such as:
 * Caches data to speed up common requests
 * Control content (e.g.: don’t allow employees to go to social networks at work; parental control)
 
-**[Nginx](https://nginx.org/en/)**: is both an HTTP and reverse proxy server. Another commonly used open source HTTP server is [Apache]( http://httpd.apache.org/).
+### Nginx
+[Nginx](https://nginx.org/en/) is both an HTTP and reverse proxy server. Another commonly used open source HTTP server is [Apache]( http://httpd.apache.org/).
 
-**[MariaDB](https://www.guru99.com/mariadb-vs-mysql.html)**: is a variant from MySQL (a relational database management system).
+### Foreground and Background Processes
+At some point I will mention running Nginx in the foreground.
+But what does that actually means?
+If a user is interacting with an application, then it is running in the foreground.
+Alternatively, a background process refers to an application running without being interacted by the user.
+Learn more about [foreground vs background processes](https://blog.100tb.com/getting-started-with-linux-foreground-vs-background-processes).
+
+### MariaDB
+[MariaDB](https://www.guru99.com/mariadb-vs-mysql.html) is a variant from MySQL (a relational database management system).
 
 <br />
 
