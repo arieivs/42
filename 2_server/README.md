@@ -12,7 +12,7 @@ Watch [Network Chuck's video on Docker 101](https://www.youtube.com/watch?v=eGz9
 ## ❓ What is... everything??
 Let's try to give some meaning to some of the strange names mentioned in the subject:
 
-### Wget
+### WGET
 [Wget](https://www.gnu.org/software/wget/) allows you get files via the HTTP(S) and FTP(S) protocols - we will use it to get the necessary files for PHPMyAdmin and WordPress.
 
 ### HTTP Server
@@ -30,7 +30,7 @@ There can be several advantages to using a proxy server, such as:
 * Caches data to speed up common requests
 * Control content (e.g.: don’t allow employees to go to social networks at work; parental control)
 
-### Nginx
+### NGINX
 [Nginx](https://nginx.org/en/) is both an HTTP and reverse proxy server. Another commonly used open source HTTP server is [Apache]( http://httpd.apache.org/).
 
 ### Foreground and Background Processes
