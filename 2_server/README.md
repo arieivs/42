@@ -9,6 +9,27 @@ Watch [Network Chuck's video on Docker 101](https://www.youtube.com/watch?v=eGz9
 
 <br />
 
+## ❓ What is... everything??
+Let's try to give some meaning to some of the strange names mentioned in the subject:
+
+**[Wget](https://www.gnu.org/software/wget/)**: allows you get files via the HTTP(S) and FTP(S) protocols - we will use it to get the necessary files for PHPMyAdmin and WordPress.
+
+**[HTTP Server](https://medium.com/@gabriellamedas/the-http-server-explained-c41380307917)**: server software which receives requests and sends responses following the HTTP protocol.
+
+**[Proxy Sever](https://www.varonis.com/blog/what-is-a-proxy-server/)**: (proxy is the authority to represent someone or do something on their behalf) a proxy server is an intermediate sever between the end-user/client and the sever where the website is hosted, so all traffic between these two flows through the proxy. The proxy server can be:
+	* Forward: on the client side
+	* Reverse: on the server side
+There can be several advantages to using a proxy server, such as:
+	* Improved security and privacy, as it acts as a firewall
+	* Caches data to speed up common requests
+	* Control content (e.g.: don’t allow employees to go to social networks at work; parental control)
+
+**[Nginx](https://nginx.org/en/)**: is both an HTTP and reverse proxy server. Another commonly used open source HTTP server is [Apache]( http://httpd.apache.org/).
+
+**[MariaDB](https://www.guru99.com/mariadb-vs-mysql.html)**: is a variant from MySQL (a relational database management system).
+
+<br />
+
 ## 💻 Install Docker
 At school: install Docker via the Managed Software Center.
 Clone the [42toolbox](https://github.com/alexandregv/42toolbox) and run the init_docker.sh script.
@@ -31,8 +52,8 @@ What is your Dockerfile supposed to do?
 1. Install the base image (Debian Buster) and update its software packages
 2. Install Nginx, MariaDB, PHP, Wget
 3. Replace the default Nginx config file for your own
-4. Install PHPMyAdmin and WordPress with Wget and replace their config files for your own
-5. Set the SSL Certificate
+4. Set the SSL Certificate
+5. Install PHPMyAdmin and WordPress with Wget and replace their config files for your own
 6. Change web files owner
 7. Run initialising script
 
@@ -42,6 +63,14 @@ Check the [Dockerfile reference](https://docs.docker.com/engine/reference/builde
 Once you run a container with Nginx installed, run ```cat etc/nginx/sites-available/default```.
 That file has some guidelines on how to personalise it, follow them along with [this article](https://forhjy.medium.com/how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-1-75ddf3ede861).
 
+### SSL Certificate
+The purpose is to generate a self-signed certificate.
+If you run ```openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt``` inside the container, it will ask you information on your location, in order to generate the SSL key.
+Only the two-letter country code is strictly necessary, you can enter "." in the remaining fields, which will be left blank.
+To do this automatically, add ```-subj "/C=PT/ST=./L=./O=./OU=./CN=."``` (in my case, since I'm in Portugal) before ```-newkey```.
+Check in [this article](https://velog.io/@ljiwoo59/ftserver#wordpress) the meaning of the first command above.
+Note that the key's and certificate's location is defined in the command above. Make sure it is consistent with what you wrote in your Nginx config file (and update it if necessary).
+
 ### PHPMyAdmin
 Once you run a container with PHPMyAdmin installed, ```cat var/www/html/phpmyadmin/config.sample.inc.php```.
 Once again you will have to create your own ```config.inc.php```, follow the guidelines and [this article](https://forhjy.medium.com/42-ft-server-how-to-install-lemp-wordpress-on-debian-buster-by-using-dockerfile-2-4042adb2ab2c).
@@ -49,17 +78,11 @@ Once again you will have to create your own ```config.inc.php```, follow the gui
 ### WordPress
 Sing with me, "Once you run a container with WordPress installed", ```cat var/www/html/wordpress/wp-config-sample.php``` and create your own ```wp-config.php```.
 
-### SSL Certificate
-The purpose is to generate a self-signed certificate.
-If you run ```openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt``` inside the container, it will ask you information on your location, in order to generate the SSL key.
-Only the two-letter country code is strictly necessary, you can enter "." in the remaining fields, which will be left blank.
-To do this automatically, add ```-subj "/C=PT/ST=./L=./O=./OU=./CN=."``` (in my case, since I'm in Portugal) before ```-newkey```.
-Check in [this article](https://velog.io/@ljiwoo59/ftserver#wordpress) the meaning of the first command above.
-Once the key has been created, a message will appear saying where it is stored. Look for the path to the certificate, most probably in ```etc/ssl/certs```, and update both of them in your Nginx config file.
-
 ### Change web files owner
-At this point, the owner and user-group from your web files is root. Try ```ls -l var/www/html``` to check this.
-At the same time, Nginx's process owner is www-data (the default). Try ```cat etc/nginx/nginx.conf``` and look at the user to check this.
+At this point, the owner and user-group from your web files is root, you can check this by running ```ls -l var/www/html```.
+This is not a very good idea from a security perspective... let's change it.
+By default, Nginx's process owner is www-data, which makes it a good candidate.
+Try ```cat etc/nginx/nginx.conf``` and look at the user to check this.
 You can read more about the [www-data user here](https://askubuntu.com/questions/873839/what-is-the-www-data-user), and get a better understanding on [users, user-groups and chown here](https://askubuntu.com/questions/950196/www-data-related-whats-the-difference-between-these-usages-of-chown).
 
 <br />
