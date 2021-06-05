@@ -17,12 +17,12 @@ Let's try to give some meaning to some of the strange names mentioned in the sub
 **[HTTP Server](https://medium.com/@gabriellamedas/the-http-server-explained-c41380307917)**: server software which receives requests and sends responses following the HTTP protocol.
 
 **[Proxy Sever](https://www.varonis.com/blog/what-is-a-proxy-server/)**: (proxy is the authority to represent someone or do something on their behalf) a proxy server is an intermediate sever between the end-user/client and the sever where the website is hosted, so all traffic between these two flows through the proxy. The proxy server can be:
-	* Forward: on the client side
-	* Reverse: on the server side
+* Forward: on the client side
+* Reverse: on the server side
 There can be several advantages to using a proxy server, such as:
-	* Improved security and privacy, as it acts as a firewall
-	* Caches data to speed up common requests
-	* Control content (e.g.: don’t allow employees to go to social networks at work; parental control)
+* Improved security and privacy, as it acts as a firewall
+* Caches data to speed up common requests
+* Control content (e.g.: don’t allow employees to go to social networks at work; parental control)
 
 **[Nginx](https://nginx.org/en/)**: is both an HTTP and reverse proxy server. Another commonly used open source HTTP server is [Apache]( http://httpd.apache.org/).
 
