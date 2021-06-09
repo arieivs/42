@@ -17,7 +17,7 @@ Learn more about [apt vs aptitude](https://askubuntu.com/questions/347898/whats-
 
 **AppArmor** and **SELinux** (Security-Enhanced Linux) are both independent Linux Security Modules.
 They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
-"SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article](https://www.omarine.org/blog/apparmor-vs-selinux/)
+"SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
 
 more things related to Debian I should be aware of?
 
