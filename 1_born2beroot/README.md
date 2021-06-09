@@ -4,18 +4,20 @@ Welcome to the Matrix 😎
 <br />
 
 ## 🤔 What are Virtual Machines?
-Watch [NetworkChuck's video on Virtual Machines](https://www.youtube.com/watch?v=wX75Z-4MEoM)
+Watch [NetworkChuck's video on Virtual Machines](https://www.youtube.com/watch?v=wX75Z-4MEoM).
 
 <br />
 
 ## 💡 Key Concepts
-**Package manager** (shamelessly copied from Wikipedia) is a collection of software tools that automates the process of installing, upgrading, configuring and removing computer programmes in a consistent manner.
+**Package manager** is a collection of software tools that automates the process of installing, upgrading, configuring and removing computer programmes in a consistent manner (shamelessly copied from Wikipedia).
 
 **APT (Advanced Package Tool)** and **Aptitude** are both package managers for Debian OS.
-Check [differences between the two](https://www.tecmint.com/difference-between-apt-and-aptitude/) at home.
-Note: We used apt-get in ft_server!
+APT has only a CLI, while Aptitude offers a GUI (and some other additional features).
+Learn more about [apt vs aptitude](https://askubuntu.com/questions/347898/whats-difference-of-apt-get-and-aptitude), [these vs dpkg](https://askubuntu.com/questions/309113/what-is-the-difference-between-dpkg-and-aptitude-apt-get), [wajig and apt-get's easter egg](https://unix.stackexchange.com/questions/767/what-is-the-real-difference-between-apt-get-and-aptitude-how-about-wajig). 
 
-**APPArmor** and **SELinux** check at home
+**AppArmor** and **SELinux** (Security-Enhanced Linux) are both independent Linux Security Modules.
+They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
+"SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article](https://www.omarine.org/blog/apparmor-vs-selinux/)
 
 more things related to Debian I should be aware of?
 
