@@ -37,6 +37,7 @@ Learn about [decimal vs IEC](https://linuxreviews.org/Multiples_of_bytes).
 So when you see GB/MB, you have to figure out if it's really GB/MB or if it's actually GiB/MiB.
 That's the tricky part.
 And that's on you.
+
 Some guidance: inside your VM running in Linux and when looking at your VM's settings at VirtualBox, GB/MB is actually GiB/MiB. When you're creating your VM and defining partitions sizes, it's GB/MB.
 
 <br />
@@ -54,17 +55,19 @@ Some additional notes below:
 ### 1. Create a new Virtual Machine
 * Create a new VM (with Debian 64-bit) and go for all recommended options;
 * VM size: if you're aiming for the bonus, choose 30.8 GB else keep it at 8GB;
+* The size should be [divisible by 512 bytes](https://www.virtualbox.org/ticket/18177) - use the slider;
 * Host key: shortcut which allows you to getting out of the virtual machine when it's capturing your mouse and keyboard (it appears on the right-bottom corner of the window);
 * No GUI is allowed, so you cannot choose Graphical Install - choose just Install (confirm!!).
 
 ### 2. Partitions & LVM
 * Select your disk/device to create a new partitions table, and then select the generated free space;
 * Total: 8 GiB = 8.6 GB;
-* Primary(boot): 487 MiB = 510.7 MB, Mount point: boot, bootable flag on;
+* Primary(boot): 487 MiB = 510.7 MB, Mount point: boot, bootable flag on; -> doesnt like 510.7
 * Note: round the size to tenths and not hundredths (so 510.7 instead of 510.66) or it will change your value; -> more complex!!
 * Logical: 7.5 GiB = 8 GB;
 * Root: 2.8 GiB = 3 GB;
 * Home: 3.8 GiB = 4 GB;
+
 Primary partition vs logical - search
 
 [sda](https://www.tec4tric.com/linux/dev-sda-in-linux)
