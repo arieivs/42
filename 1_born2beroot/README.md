@@ -75,12 +75,14 @@ Primary partition vs logical - search
 usage of partitions in real life: for boot and recovery? not much more? check it outtttt
 
 file system: the most common one is Ext4
+
 swap area is the swap file system
 
 ### 3. Finish Installation
 * Installing GRUB boot loader - yes;
 
 mirror similar to CDN
+
 what is grub boot loader?
 
 ### 4. Fixing partitions sizes
@@ -88,7 +90,7 @@ Your partitions are not quite the way you wanted? Let's fix that with ```fdisk``
 
 ```su```    to login as root
 
-```umount /dev/sdax```    unmount the partition
+```umount /dev/sdaX```    unmount the partition sdaX
 
 ```/sbin/fdisk /dev/sda```   in case [sbin is not in your PATH](https://unix.stackexchange.com/questions/577050/bash-fdisk-command-not-found)
 
@@ -96,7 +98,9 @@ Your partitions are not quite the way you wanted? Let's fix that with ```fdisk``
 
 ```Command: n```    create new, Last sector: +size{unit}
 
-Watch out for empty space: you will obviously need to free space in order to increase a partition's size.
+Watch out for empty space: you will obviously need to free space in order to increase a partition's size. Save the new partition and...
+
+```mount /dev/sdaX```  mount it
 
 This ReadMe is under construction!
 
