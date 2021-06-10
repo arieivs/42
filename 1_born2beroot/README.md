@@ -62,11 +62,11 @@ Some additional notes below:
 ### 2. Partitions & LVM
 * Select your disk/device to create a new partitions table, and then select the generated free space;
 * Total: 8 GiB = 8.6 GB;
-* Primary(boot): 487 MiB = 510.7 MB, Mount point: boot, bootable flag on; -> doesnt like 510.7
-* Note: round the size to tenths and not hundredths (so 510.7 instead of 510.66) or it will change your value; -> more complex!!
+* Primary(boot): 487 MiB = 510.7 MB, Mount point: boot, bootable flag on;
 * Logical: 7.5 GiB = 8 GB;
-* Root: 2.8 GiB = 3 GB;
-* Home: 3.8 GiB = 4 GB;
+  * Root: 2.8 GiB = 3 GB, file system Ext4;
+  * Home: 3.8 GiB = 4 GB, file system Ext4;
+  * Swap: swap area.
 
 Primary partition vs logical - search
 
@@ -77,7 +77,26 @@ usage of partitions in real life: for boot and recovery? not much more? check it
 file system: the most common one is Ext4
 swap area is the swap file system
 
+### 3. Finish Installation
+* Installing GRUB boot loader - yes;
+
 mirror similar to CDN
+what is grub boot loader?
+
+### 4. Fixing partitions sizes
+Your partitions are not quite the way you wanted? Let's fix that with ```fdisk```:
+
+```su```    to login as root
+
+```umount /dev/sdax```    unmount the partition
+
+```/sbin/fdisk /dev/sda```   in case [sbin is not in your PATH](https://unix.stackexchange.com/questions/577050/bash-fdisk-command-not-found)
+
+```Command: d```    and then choose the partition number to delete
+
+```Command: n```    create new, Last sector: +size{unit}
+
+Watch out for empty space: you will obviously need to free space in order to increase a partition's size.
 
 This ReadMe is under construction!
 
