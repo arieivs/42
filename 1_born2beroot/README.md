@@ -68,6 +68,8 @@ Some additional notes below:
   * Home: 3.8 GiB = 4 GB, file system Ext4;
   * Swap: swap area.
 
+A note on naming: - will double
+
 Primary partition vs logical - search
 
 [sda](https://www.tec4tric.com/linux/dev-sda-in-linux)
