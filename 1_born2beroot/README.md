@@ -8,7 +8,7 @@ Watch [NetworkChuck's video on Virtual Machines](https://www.youtube.com/watch?v
 
 <br />
 
-## 💡 Key Concepts
+## 💡 Concepts
 **Package manager** is a collection of software tools that automates the process of installing, upgrading, configuring and removing computer programmes in a consistent manner (shamelessly copied from Wikipedia).
 
 **APT (Advanced Package Tool)** and **Aptitude** are both package managers for Debian OS.
@@ -31,6 +31,16 @@ iptables???
 
 <br />
 
+## 📏 GB or GiB? Figure out your Units!
+What would be science without some units conversion issues?
+Learn about [decimal vs IEC](https://linuxreviews.org/Multiples_of_bytes).
+So when you see GB/MB, you have to figure out if it's really GB/MB or if it's actually GiB/MiB.
+That's the tricky part.
+And that's on you.
+Some guidance: inside your VM running in Linux and when looking at your VM's settings at VirtualBox, GB/MB is actually GiB/MiB. When you're creating your VM and defining partitions sizes, it's GB/MB.
+
+<br />
+
 ## 📦 Using VirtualBox at school
 Install VirtualBox via the Managed Software Center.
 On VirtualBox settings, move the default folder "VirtualBox VMs" into sgoinfre/user_name to avoid storage issues (you can access this folder from any of the school's computers).
@@ -38,16 +48,23 @@ On VirtualBox settings, move the default folder "VirtualBox VMs" into sgoinfre/u
 <br />
 
 ## 🌱 Born to be Root
-Follow [Antonio's amazing notes](https://www.notion.so/Born2BeRoot-6a10c2b772a74c20981c1c16b961b404) - that's basically what you need to know.
+Follow [Antonio's amazing notes](https://www.notion.so/Born2BeRoot-6a10c2b772a74c20981c1c16b961b404) - that's basically what you need to do.
 Some additional notes below:
 
-1. Create a new Virtual Machine
+### 1. Create a new Virtual Machine
 * Create a new VM (with Debian 64-bit) and go for all recommended options;
-* File size: if you're aiming for the bonus, choose 30.8 GB (conversion??) else keep it at 8GB;
+* VM size: if you're aiming for the bonus, choose 30.8 GB else keep it at 8GB;
 * Host key: shortcut which allows you to getting out of the virtual machine when it's capturing your mouse and keyboard (it appears on the right-bottom corner of the window);
-* No GUI is allowed, so you cannot choose Graphical Install (choose just Install) - not so sure
+* No GUI is allowed, so you cannot choose Graphical Install - choose just Install (confirm!!).
 
-2. Partitions & LVM
+### 2. Partitions & LVM
+* Select your disk/device to create a new partitions table, and then select the generated free space;
+* Total: 8 GiB = 8.6 GB;
+* Primary(boot): 487 MiB = 510.7 MB, Mount point: boot, bootable flag on;
+* Note: round the size to tenths and not hundredths (so 510.7 instead of 510.66) or it will change your value; -> more complex!!
+* Logical: 7.5 GiB = 8 GB;
+* Root: 2.8 GiB = 3 GB;
+* Home: 3.8 GiB = 4 GB;
 Primary partition vs logical - search
 
 [sda](https://www.tec4tric.com/linux/dev-sda-in-linux)
