@@ -57,16 +57,15 @@ Some additional notes below:
 * Host key: shortcut which allows you to getting out of the virtual machine when it's capturing your mouse and keyboard (it appears on the right-bottom corner of the window);
 * No GUI is allowed, so you cannot choose Graphical Install - choose just Install (confirm!!).
 
-```
-### 📏 GB or GiB? Figure out your Units!
-What would be science without some units conversion issues?
-Learn about [decimal vs IEC](https://linuxreviews.org/Multiples_of_bytes).
-So when you see GB/MB, you have to figure out if it's really GB/MB or if it's actually GiB/MiB.
-That's the tricky part.
-And that's on you.
-
-Some guidance: inside your VM running in Linux and when looking at your VM's settings on VirtualBox, GB/MB is actually GiB/MiB. When you're creating your VM and defining partitions sizes, it's GB/MB.
-```
+> 📏 **GB or GiB? Figure out your Units!**
+> What would be science without some units conversion issues?
+> Learn about [decimal vs IEC](https://linuxreviews.org/Multiples_of_bytes).
+> So when you see GB/MB, you have to figure out if it's really GB/MB or if it's actually GiB/MiB.
+> That's the tricky part.
+> And that's on you.
+> 
+> Some guidance: inside your VM running in Linux and when looking at your VM's settings on VirtualBox, GB/MB is actually GiB/MiB.
+> When you're creating your VM and defining partitions sizes, it's GB/MB.
 
 ### 2. Partitions & LVM
 * Select your disk/device to create a new partitions table, and then select the generated free space;
