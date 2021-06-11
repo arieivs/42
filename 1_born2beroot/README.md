@@ -75,7 +75,9 @@ An extended partition is basically a defined area were logical partitions reside
 There is a limit to the number of primary partitions allowed in a single machine, while you can have as many logical partitions as you want.
 Learn more about [primary and logical partitions here](https://www.differencebetween.com/difference-between-primary-partition-and-vs-logical-partition/).
 
-[sda](https://www.tec4tric.com/linux/dev-sda-in-linux)
+#### ❔ Why sda?
+sda refers to the first sd, which stands for SCSI (Small Computer System Interface) disk.
+Learn more about [/dev/sda here](https://www.tec4tric.com/linux/dev-sda-in-linux).
 
 file system: the most common one is Ext4.
 swap area is the swap file system
