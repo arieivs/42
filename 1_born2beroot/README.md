@@ -19,8 +19,6 @@ Learn more about [apt vs aptitude](https://askubuntu.com/questions/347898/whats-
 They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
 "SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
 
-more things related to Debian I should be aware of?
-
 **SSH (Secure Shell) Protocol** read more about this toooo 
 
 **UFW** stands for Uncomplicated Firewall
@@ -38,7 +36,7 @@ So when you see GB/MB, you have to figure out if it's really GB/MB or if it's ac
 That's the tricky part.
 And that's on you.
 
-Some guidance: inside your VM running in Linux and when looking at your VM's settings at VirtualBox, GB/MB is actually GiB/MiB. When you're creating your VM and defining partitions sizes, it's GB/MB.
+Some guidance: inside your VM running in Linux and when looking at your VM's settings on VirtualBox, GB/MB is actually GiB/MiB. When you're creating your VM and defining partitions sizes, it's GB/MB.
 
 <br />
 
@@ -58,6 +56,17 @@ Some additional notes below:
 * The size should be [divisible by 512 bytes](https://www.virtualbox.org/ticket/18177) - use the slider;
 * Host key: shortcut which allows you to getting out of the virtual machine when it's capturing your mouse and keyboard (it appears on the right-bottom corner of the window);
 * No GUI is allowed, so you cannot choose Graphical Install - choose just Install (confirm!!).
+
+```
+### 📏 GB or GiB? Figure out your Units!
+What would be science without some units conversion issues?
+Learn about [decimal vs IEC](https://linuxreviews.org/Multiples_of_bytes).
+So when you see GB/MB, you have to figure out if it's really GB/MB or if it's actually GiB/MiB.
+That's the tricky part.
+And that's on you.
+
+Some guidance: inside your VM running in Linux and when looking at your VM's settings on VirtualBox, GB/MB is actually GiB/MiB. When you're creating your VM and defining partitions sizes, it's GB/MB.
+```
 
 ### 2. Partitions & LVM
 * Select your disk/device to create a new partitions table, and then select the generated free space;
