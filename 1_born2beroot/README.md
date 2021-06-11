@@ -8,6 +8,12 @@ Watch [NetworkChuck's video on Virtual Machines](https://www.youtube.com/watch?v
 
 <br />
 
+## 📦 Using VirtualBox at school
+Install VirtualBox via the Managed Software Center.
+On VirtualBox settings, move the default folder "VirtualBox VMs" into sgoinfre/user_name to avoid storage issues (you can access this folder from any of the school's computers).
+
+<br />
+
 ## 💡 Concepts
 **Package manager** is a collection of software tools that automates the process of installing, upgrading, configuring and removing computer programmes in a consistent manner (shamelessly copied from Wikipedia).
 
@@ -40,12 +46,6 @@ Some guidance: inside your VM running in Linux and when looking at your VM's set
 
 <br />
 
-## 📦 Using VirtualBox at school
-Install VirtualBox via the Managed Software Center.
-On VirtualBox settings, move the default folder "VirtualBox VMs" into sgoinfre/user_name to avoid storage issues (you can access this folder from any of the school's computers).
-
-<br />
-
 ## 🌱 Born to be Root
 Follow [Antonio's amazing notes](https://www.notion.so/Born2BeRoot-6a10c2b772a74c20981c1c16b961b404) - that's basically what you need to do.
 Some additional notes below:
@@ -57,16 +57,6 @@ Some additional notes below:
 * Host key: shortcut which allows you to getting out of the virtual machine when it's capturing your mouse and keyboard (it appears on the right-bottom corner of the window);
 * No GUI is allowed, so you cannot choose Graphical Install - choose just Install (confirm!!).
 
-> ### 📏 GB or GiB? Figure out your Units!
-> What would be science without some units conversion issues?
-> Learn about [decimal vs IEC](https://linuxreviews.org/Multiples_of_bytes).
-> So when you see GB/MB, you have to figure out if it's really GB/MB or if it's actually GiB/MiB.
-> That's the tricky part.
-> And that's on you.
-> 
-> Some guidance: inside your VM running in Linux and when looking at your VM's settings on VirtualBox, GB/MB is actually GiB/MiB.
-> When you're creating your VM and defining partitions sizes, it's GB/MB.
-
 ### 2. Partitions & LVM
 * Select your disk/device to create a new partitions table, and then select the generated free space;
 * Total: 8 GiB = 8.6 GB;
@@ -74,18 +64,20 @@ Some additional notes below:
 * Logical: 7.5 GiB = 8 GB;
   * Root: 2.8 GiB = 3 GB, file system Ext4;
   * Home: 3.8 GiB = 4 GB, file system Ext4;
-  * Swap: swap area.
+  * Swap: swap area;
+* A note on naming logical volumes: - (dashes) will double.
 
-A note on naming: - will double
-
-Primary partition vs logical - search
+#### 💡 Partitions
+Learn about [partitions and why the come in handy](https://www.howtogeek.com/184659/beginner-geek-hard-disk-partitions-explained/).
+There are different kinds of partitions: primary, extended and logical.
+Primary partitions are bootable, and contain the Operating System.
+An extended partition is basically a defined area were logical partitions reside.
+There is a limit to the number of primary partitions allowed in a single machine, while you can have as many logical partitions as you want.
+Learn more about [primary and logical partitions here](https://www.differencebetween.com/difference-between-primary-partition-and-vs-logical-partition/).
 
 [sda](https://www.tec4tric.com/linux/dev-sda-in-linux)
 
-usage of partitions in real life: for boot and recovery? not much more? check it outtttt
-
-file system: the most common one is Ext4
-
+file system: the most common one is Ext4.
 swap area is the swap file system
 
 ### 3. Finish Installation
