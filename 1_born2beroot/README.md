@@ -57,18 +57,28 @@ Some additional notes below:
 * Host key: shortcut which allows you to getting out of the virtual machine when it's capturing your mouse and keyboard (it appears on the right-bottom corner of the window);
 * No GUI is allowed, so you cannot choose Graphical Install - choose just Install (confirm!!).
 
+<br />
+
 ### 2. Partitions & LVM
+Mandatory part:
+* Guided partitioning with encrypted LVM;
+* Separate /home partition;
+* Logical: 7.5 GiB = 8GB.
+
+Bonus:
+* Manual;
 * Select your disk/device to create a new partitions table, and then select the generated free space;
-* Total: 8 GiB = 8.6 GB;
-* Primary(boot): 487 MiB = 510.7 MB, Mount point: boot, bootable flag on;
-* Logical: 7.5 GiB = 8 GB;
-  * Root: 2.8 GiB = 3 GB, file system Ext4;
-  * Home: 3.8 GiB = 4 GB, file system Ext4;
-  * Swap: swap area;
+* Primary: 500 MiB = 524.3 MB, Mount point: boot, bootable flag on;
+* Logical: 30.3 GiB = 32.2 GB;
+  * Root: 10 GiB = 10.7 GB, file system ext4;
+  * Swap: 2.3 GiB = 2.15 GB, swap area;
+  * Home: 5 GiB = 5.4 GB, file system ext4;
+  * var, srv, tmp: 3 GiB = 3.2 GB;
+  * var-log: 4 GiB = 4.3 GB;
 * A note on naming logical volumes: - (dashes) will double.
 
 #### 💡 Partitions
-Learn about [partitions and why the come in handy](https://www.howtogeek.com/184659/beginner-geek-hard-disk-partitions-explained/).
+Learn about [partitions and why they come in handy](https://www.howtogeek.com/184659/beginner-geek-hard-disk-partitions-explained/).
 There are different kinds of partitions: primary, extended and logical.
 Primary partitions are bootable, and contain the Operating System.
 An extended partition is basically a defined area were logical partitions reside.
@@ -79,18 +89,39 @@ Learn more about [primary and logical partitions here](https://www.differencebet
 sda refers to the first sd, which stands for SCSI (Small Computer System Interface) disk.
 Learn more about [/dev/sda here](https://www.tec4tric.com/linux/dev-sda-in-linux).
 
-file system: the most common one is Ext4.
-swap area is the swap file system
+#### 📂 File Systems
+Learn more about the different [file systems and their compatibility with different OS here](https://www.youtube.com/watch?v=_h30HBYxtws).
+For Linux, the most common one is ext4.
+
+#### 🔀 Swap
+Swap area is used to keep your applications running when you run out of RAM.
+In other words, is a fake RAM that resides in your hard-drive.
+Learn more on [Swap area here](https://askubuntu.com/questions/508870/what-is-a-swap-area).
+
+<br />
 
 ### 3. Finish Installation
-* Installing GRUB boot loader - yes;
+* Installing GRUB boot loader? Yes.
 
-mirror similar to CDN
+#### 💡 Package managers: APT vs Aptitude
+**Package manager** is a collection of software tools that automates the process of installing, upgrading, configuring and removing computer programmes in a consistent manner (shamelessly copied from Wikipedia).
+**APT (Advanced Package Tool)** and **Aptitude** are both package managers for Debian OS.
+APT only has a CLI, while Aptitude offers a GUI (and some other additional features).
+Learn more about [apt vs aptitude](https://askubuntu.com/questions/347898/whats-difference-of-apt-get-and-aptitude), [these vs dpkg](https://askubuntu.com/questions/309113/what-is-the-difference-between-dpkg-and-aptitude-apt-get), [wajig and apt-get's easter egg](https://unix.stackexchange.com/questions/767/what-is-the-real-difference-between-apt-get-and-aptitude-how-about-wajig).
 
+#### 🌫 Mirrors & CDN
+what are they?
+
+#### GRUB boot loader
 what is grub boot loader?
 
-### 4. Fixing partitions sizes
-Your partitions are not quite the way you wanted? Let's fix that with ```fdisk```:
+<br />
+
+### Extra: Fixing partitions sizes
+Your partitions are not quite the way you wanted?
+My advice: leave it.
+Still want to fix it?
+Use ```fdisk```:
 
 ```su```    to login as root
 
@@ -105,6 +136,15 @@ Your partitions are not quite the way you wanted? Let's fix that with ```fdisk``
 Watch out for empty space: you will obviously need to free space in order to increase a partition's size. Save the new partition and...
 
 ```mount /dev/sdaX```  mount it
+
+<br />
+
+### 4. AppArmor
+#### 🔐 AppArmor vs SELinux
+**AppArmor** and **SELinux** (Security-Enhanced Linux) are both independent Linux Security Modules.
+They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
+"SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
+
 
 This ReadMe is under construction!
 
