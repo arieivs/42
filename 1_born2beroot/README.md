@@ -110,10 +110,18 @@ APT only has a CLI, while Aptitude offers a GUI (and some other additional featu
 Learn more about [apt vs aptitude](https://askubuntu.com/questions/347898/whats-difference-of-apt-get-and-aptitude), [these vs dpkg](https://askubuntu.com/questions/309113/what-is-the-difference-between-dpkg-and-aptitude-apt-get), [wajig and apt-get's easter egg](https://unix.stackexchange.com/questions/767/what-is-the-real-difference-between-apt-get-and-aptitude-how-about-wajig).
 
 #### 🌫 Mirrors & CDN
-what are they?
+In computing, a mirror is a server which is a copy (or mirror) of another.
+In this particular case, a mirror is used to reduce the download time, by choosing a mirror closer to your geographical location.
+Learn more about [mirrors here](https://techterms.com/definition/mirror).
+A [CDN (Content Delivery Network)](https://techterms.com/definition/cdn) is based on the same principle.
+It provides data faster from different servers depending on the client's location, and it can also offer different content depending on your location.
+It can also lead to a major internet breakage, like the [one a couple of days ago](https://status.fastly.com/incidents/vpk0ssybt3bj) which caused [StackOverflow, some parts of Github and Gitlab, amongst others, to be down](https://www.afterdawn.com/news/article.cfm/2021/06/08/big-chunk-of-internet-is-down-reddit-stackoverflow-and-more).
+How [ironic](https://www.facebook.com/AndyDuckersLinks/photos/a.1277293385714886/3922471371197061/?type=3&is_lookaside=1).
 
 #### GRUB boot loader
-what is grub boot loader?
+[GRUB](https://www.gnu.org/software/grub/) stands for GRand Unified Bootloader.
+A boot loader is the first software that runs when a computer starts.
+It loads and transfers control over to the kernel, which then takes care of the rest.
 
 <br />
 
@@ -146,6 +154,6 @@ They both control who can and cannot access certain files or directories, protec
 "SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
 
 
-This ReadMe is under construction!
+*This ReadMe is under construction!*
 
 Happy virtualisation! 👻
