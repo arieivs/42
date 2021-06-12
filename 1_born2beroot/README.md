@@ -133,6 +133,10 @@ Watch out for empty space: you will obviously need to free space in order to inc
 They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
 "SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
 
+### 5. Sudo
+```sudo adduser <user_name>```  create a new user, you will be prompted to set up a password
+```sudo adduser <user_name> <group>```
+
 *This ReadMe is under construction!*
 
 ## 8. SSH
