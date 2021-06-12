@@ -14,27 +14,6 @@ On VirtualBox settings, move the default folder "VirtualBox VMs" into sgoinfre/u
 
 <br />
 
-## 💡 Concepts
-**Package manager** is a collection of software tools that automates the process of installing, upgrading, configuring and removing computer programmes in a consistent manner (shamelessly copied from Wikipedia).
-
-**APT (Advanced Package Tool)** and **Aptitude** are both package managers for Debian OS.
-APT has only a CLI, while Aptitude offers a GUI (and some other additional features).
-Learn more about [apt vs aptitude](https://askubuntu.com/questions/347898/whats-difference-of-apt-get-and-aptitude), [these vs dpkg](https://askubuntu.com/questions/309113/what-is-the-difference-between-dpkg-and-aptitude-apt-get), [wajig and apt-get's easter egg](https://unix.stackexchange.com/questions/767/what-is-the-real-difference-between-apt-get-and-aptitude-how-about-wajig). 
-
-**AppArmor** and **SELinux** (Security-Enhanced Linux) are both independent Linux Security Modules.
-They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
-"SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
-
-**SSH (Secure Shell) Protocol** read more about this toooo: https://www.youtube.com/watch?v=ORcvSkgdA58
-
-**UFW** stands for Uncomplicated Firewall
-
-kinds of files you can use for the new virtual hard disk: VDI (VirtualBox Disk Image, what we are using), VHD (Virtual Hard Disk), VMDK (Virtual Machine Disk).
-
-iptables???
-
-<br />
-
 ## 📏 GB or GiB? Figure out your Units!
 What would be science without some units conversion issues?
 Learn about [decimal vs IEC](https://linuxreviews.org/Multiples_of_bytes).
@@ -46,11 +25,10 @@ Some guidance: inside your VM running in Linux and when looking at your VM's set
 
 <br />
 
-## 🌱 Born to be Root
-Follow [Antonio's amazing notes](https://www.notion.so/Born2BeRoot-6a10c2b772a74c20981c1c16b961b404) - that's basically what you need to do.
+👉 Follow [António's amazing notes](https://www.notion.so/Born2BeRoot-6a10c2b772a74c20981c1c16b961b404) - that's basically what you need to do.
 Some additional notes below:
 
-### 1. Create a new Virtual Machine
+## 1. Create a new Virtual Machine
 * Create a new VM (with Debian 64-bit) and go for all recommended options;
 * VM size: if you're aiming for the bonus, choose 30.8 GB else keep it at 8GB;
 * The size should be [divisible by 512 bytes](https://www.virtualbox.org/ticket/18177) - use the slider;
@@ -59,7 +37,7 @@ Some additional notes below:
 
 <br />
 
-### 2. Partitions & LVM
+## 2. Partitions & LVM
 Mandatory part:
 * Guided partitioning with encrypted LVM;
 * Separate /home partition;
@@ -77,7 +55,7 @@ Bonus:
   * var-log: 4 GiB = 4.3 GB;
 * A note on naming logical volumes: - (dashes) will double.
 
-#### 💡 Partitions
+### 💡 Partitions
 Learn about [partitions and why they come in handy](https://www.howtogeek.com/184659/beginner-geek-hard-disk-partitions-explained/).
 There are different kinds of partitions: primary, extended and logical.
 Primary partitions are bootable, and contain the Operating System.
@@ -85,31 +63,31 @@ An extended partition is basically a defined area were logical partitions reside
 There is a limit to the number of primary partitions allowed in a single machine, while you can have as many logical partitions as you want.
 Learn more about [primary and logical partitions here](https://www.differencebetween.com/difference-between-primary-partition-and-vs-logical-partition/).
 
-#### ❔ Why sda?
+### ❔ Why sda?
 sda refers to the first sd, which stands for SCSI (Small Computer System Interface) disk.
 Learn more about [/dev/sda here](https://www.tec4tric.com/linux/dev-sda-in-linux).
 
-#### 📂 File Systems
+### 📂 File Systems
 Learn more about the different [file systems and their compatibility with different OS here](https://www.youtube.com/watch?v=_h30HBYxtws).
 For Linux, the most common one is ext4.
 
-#### 🔀 Swap
+### 🔀 Swap
 Swap area is used to keep your applications running when you run out of RAM.
 In other words, is a fake RAM that resides in your hard-drive.
 Learn more on [Swap area here](https://askubuntu.com/questions/508870/what-is-a-swap-area).
 
 <br />
 
-### 3. Finish Installation
+## 3. Finish Installation
 * Installing GRUB boot loader? Yes.
 
-#### 💡 Package managers: APT vs Aptitude
+### 💡 Package managers: APT vs Aptitude
 **Package manager** is a collection of software tools that automates the process of installing, upgrading, configuring and removing computer programmes in a consistent manner (shamelessly copied from Wikipedia).
 **APT (Advanced Package Tool)** and **Aptitude** are both package managers for Debian OS.
 APT only has a CLI, while Aptitude offers a GUI (and some other additional features).
 Learn more about [apt vs aptitude](https://askubuntu.com/questions/347898/whats-difference-of-apt-get-and-aptitude), [these vs dpkg](https://askubuntu.com/questions/309113/what-is-the-difference-between-dpkg-and-aptitude-apt-get), [wajig and apt-get's easter egg](https://unix.stackexchange.com/questions/767/what-is-the-real-difference-between-apt-get-and-aptitude-how-about-wajig).
 
-#### 🌫 Mirrors & CDN
+### 🌫 Mirrors & CDN
 In computing, a mirror is a server which is a copy (or mirror) of another.
 In this particular case, a mirror is used to reduce the download time, by choosing a mirror closer to your geographical location.
 Learn more about [mirrors here](https://techterms.com/definition/mirror).
@@ -118,14 +96,14 @@ It provides data faster from different servers depending on the client's locatio
 It can also lead to a major internet breakage, like the [one a couple of days ago](https://status.fastly.com/incidents/vpk0ssybt3bj) which caused [StackOverflow, some parts of Github and Gitlab, amongst others, to be down](https://www.afterdawn.com/news/article.cfm/2021/06/08/big-chunk-of-internet-is-down-reddit-stackoverflow-and-more).
 How [ironic](https://www.facebook.com/AndyDuckersLinks/photos/a.1277293385714886/3922471371197061/?type=3&is_lookaside=1).
 
-#### GRUB boot loader
+### GRUB boot loader
 [GRUB](https://www.gnu.org/software/grub/) stands for GRand Unified Bootloader.
 A boot loader is the first software that runs when a computer starts.
 It loads and transfers control over to the kernel, which then takes care of the rest.
 
 <br />
 
-### Extra: Fixing partitions sizes
+## Extra: Fixing partitions sizes
 Your partitions are not quite the way you wanted?
 My advice: leave it.
 Still want to fix it?
@@ -147,13 +125,17 @@ Watch out for empty space: you will obviously need to free space in order to inc
 
 <br />
 
-### 4. AppArmor
-#### 🔐 AppArmor vs SELinux
+## 4. AppArmor
+### 🔐 AppArmor vs SELinux
 **AppArmor** and **SELinux** (Security-Enhanced Linux) are both independent Linux Security Modules.
 They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
 "SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
 
-
 *This ReadMe is under construction!*
+
+## 8. SSH
+**SSH (Secure Shell) Protocol** read more about this toooo: https://www.youtube.com/watch?v=ORcvSkgdA58
+
+iptables???
 
 Happy virtualisation! 👻
