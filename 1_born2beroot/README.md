@@ -126,6 +126,8 @@ Watch out for empty space: you will obviously need to free space in order to inc
 <br />
 
 ## 4. AppArmor
+* Command not found? [Add sbin to your PATH](https://unix.stackexchange.com/questions/577050/bash-fdisk-command-not-found).
+
 ### 🔐 AppArmor vs SELinux
 **AppArmor** and **SELinux** (Security-Enhanced Linux) are both independent Linux Security Modules.
 They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
