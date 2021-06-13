@@ -1,5 +1,7 @@
 # Born2BeRoot
 Welcome to the Matrix 😎
+👉 Follow [António's amazing notes](https://www.notion.so/Born2BeRoot-6a10c2b772a74c20981c1c16b961b404) - that's basically what you need to do.
+Some additional notes below:
 
 <br />
 
@@ -24,9 +26,6 @@ And that's on you.
 Some guidance: inside your VM running in Linux and when looking at your VM's settings on VirtualBox, GB/MB is actually GiB/MiB. When you're creating your VM and defining partitions sizes, it's GB/MB.
 
 <br />
-
-👉 Follow [António's amazing notes](https://www.notion.so/Born2BeRoot-6a10c2b772a74c20981c1c16b961b404) - that's basically what you need to do.
-Some additional notes below:
 
 ## 1. Create a new Virtual Machine
 * Create a new VM (with Debian 64-bit) and go for all recommended options;
@@ -134,7 +133,9 @@ They both control who can and cannot access certain files or directories, protec
 "SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
 
 ### 5. Sudo
+Can't get tired of NetworkChuck's videos - here's [one on sudo](https://www.youtube.com/watch?v=jwnvKOjmtEA).
 ```sudo adduser <user_name>```  create a new user, you will be prompted to set up a password
+
 ```sudo adduser <user_name> <group>```
 
 *This ReadMe is under construction!*
