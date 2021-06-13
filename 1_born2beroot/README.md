@@ -1,5 +1,6 @@
 # Born2BeRoot
 Welcome to the Matrix 😎
+
 👉 Follow [António's amazing notes](https://www.notion.so/Born2BeRoot-6a10c2b772a74c20981c1c16b961b404) - that's basically what you need to do.
 Some additional notes below:
 
