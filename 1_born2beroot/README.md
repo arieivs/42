@@ -6,19 +6,6 @@ Some additional notes below:
 
 <br />
 
-## 💡 Table of Concepts
-1. [Virtual Machines](https://github.com/arieivs/42/tree/master/1_born2beroot#-what-are-virtual-machines)
-2. [Decimal vs IEC Units](https://github.com/arieivs/42/tree/master/1_born2beroot#-gb-or-gib-figure-out-your-units)
-3. [Partitions](https://github.com/arieivs/42/tree/master/1_born2beroot#-partitions)
-4. [File Systems](https://github.com/arieivs/42/tree/master/1_born2beroot#-file-systems)
-5. [Swap area](https://github.com/arieivs/42/tree/master/1_born2beroot#-swap)
-6. [APT vs Aptitude](https://github.com/arieivs/42/tree/master/1_born2beroot#-package-managers-apt-vs-aptitude)
-7. [Mirror & CDN](https://github.com/arieivs/42/tree/master/1_born2beroot#-mirrors--cdn)
-8. [GRUB boot loader](https://github.com/arieivs/42/tree/master/1_born2beroot#-grub-boot-loader)
-9. [AppArmor vs SELinux](https://github.com/arieivs/42/tree/master/1_born2beroot#-apparmor-vs-selinux)
-
-<br />
-
 ## 🤔 What are Virtual Machines?
 Watch [NetworkChuck's video on Virtual Machines](https://www.youtube.com/watch?v=wX75Z-4MEoM).
 
