@@ -133,12 +133,32 @@ Watch out for empty space: you will obviously need to free space in order to inc
 They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
 "SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
 
-### 5. Sudo
+## 5. Sudo
 Can't get tired of NetworkChuck's videos - [here's one on sudo](https://www.youtube.com/watch?v=jwnvKOjmtEA).
 
 ```sudo adduser <user_name>```  create a new user, you will be prompted to set up a password
 
-```sudo adduser <user_name> <group>```
+```sudo adduser <user_name> <group>```  add user to a group
+
+```sudo userdel <user_name>```  delete a user
+
+```sudo gpasswd -d <user_name> <group>```  remove a user from a group
+
+```sudo groupdel <group>```  delete a group
+
+```cat /etc/passwd```  list of all users
+
+```sudo cat /etc/shadow```  list of all users' passwords (the hashed version, no, not the actual password)
+
+```cat /etc/groups```  list of all groups
+
+```sudo passwd <user_name>```  set up/change a user's password
+
+```usermod <user_name> -options```  use flag -h to see how you can modify your user
+
+```su - <user_name>```  switch/login as user_name (default/blank is root)
+
+
 
 *This ReadMe is under construction!*
 
