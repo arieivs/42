@@ -109,19 +109,16 @@ My advice: leave it.
 Still want to fix it?
 Use ```fdisk```:
 
-```su```    to login as root
+```
+su                     // to login as root
+umount /dev/sdaX       // unmount the partition sdaX
+/sbin/fdisk /dev/sda   // in case sbin is not in your PATH
+Command: d             // and then choose the partition number to delete
+Command: n             // create new, Last sector: +size{unit}
+mount /dev/sdaX        // mount it
+```
 
-```umount /dev/sdaX```    unmount the partition sdaX
-
-```/sbin/fdisk /dev/sda```   in case [sbin is not in your PATH](https://unix.stackexchange.com/questions/577050/bash-fdisk-command-not-found)
-
-```Command: d```    and then choose the partition number to delete
-
-```Command: n```    create new, Last sector: +size{unit}
-
-Watch out for empty space: you will obviously need to free space in order to increase a partition's size. Save the new partition and...
-
-```mount /dev/sdaX```  mount it
+Watch out for empty space: you will obviously need to free space in order to increase a partition's size.
 
 <br />
 
@@ -133,32 +130,26 @@ Watch out for empty space: you will obviously need to free space in order to inc
 They both control who can and cannot access certain files or directories, protecting the OS and other applications from both external and internal threats.
 "SELinux controls access based on the labels of the files and processes while AppArmor controls access based on the paths of the program files." (from [this article on AppArmor vs SELinux](https://www.omarine.org/blog/apparmor-vs-selinux/))
 
+<br />
+
 ## 5. Sudo
 Can't get tired of NetworkChuck's videos - [here's one on sudo](https://www.youtube.com/watch?v=jwnvKOjmtEA).
 
-```sudo adduser <user_name>```  create a new user, you will be prompted to set up a password
+```
+sudo adduser <user_name>             // create a new user, you will be prompted to set up a password
+sudo adduser <user_name> <group>     // add user to a group
+sudo userdel <user_name>             // delete a user
+sudo gpasswd -d <user_name> <group>  // remove a user from a group
+sudo groupdel <group>                // delete a group
+cat /etc/passwd                      // list of all users
+sudo cat /etc/shadow                 // list of all users' passwords (the hashed version, no, not the actual password)
+cat /etc/groups                      // list of all groups
+sudo passwd <user_name>              // set up/change a user's password
+usermod <user_name> -options         // use flag -h to see how you can modify your user
+su - <user_name>                     // switch/login as user_name (default/blank is root)
+```
 
-```sudo adduser <user_name> <group>```  add user to a group
-
-```sudo userdel <user_name>```  delete a user
-
-```sudo gpasswd -d <user_name> <group>```  remove a user from a group
-
-```sudo groupdel <group>```  delete a group
-
-```cat /etc/passwd```  list of all users
-
-```sudo cat /etc/shadow```  list of all users' passwords (the hashed version, no, not the actual password)
-
-```cat /etc/groups```  list of all groups
-
-```sudo passwd <user_name>```  set up/change a user's password
-
-```usermod <user_name> -options```  use flag -h to see how you can modify your user
-
-```su - <user_name>```  switch/login as user_name (default/blank is root)
-
-
+<br />
 
 *This ReadMe is under construction!*
 
