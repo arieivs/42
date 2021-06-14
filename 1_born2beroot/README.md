@@ -149,6 +149,8 @@ usermod <user_name> -options         // use flag -h to see how you can modify yo
 su - <user_name>                     // switch/login as user_name (default/blank is root)
 ```
 
+Learn more on [how to edit the sudoers file here](https://www.tecmint.com/sudoers-configurations-for-setting-sudo-in-linux/).
+
 <br />
 
 *This ReadMe is under construction!*
