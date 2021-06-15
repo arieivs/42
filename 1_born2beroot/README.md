@@ -149,7 +149,17 @@ usermod <user_name> -options         // use flag -h to see how you can modify yo
 su - <user_name>                     // switch/login as user_name (default/blank is root)
 ```
 
-Learn [how to edit the sudoers file here](https://www.sudo.ws/man/1.8.17/sudoers.man.html) (scroooolll downnn) and check [some practical examples here](https://www.tecmint.com/sudoers-configurations-for-setting-sudo-in-linux/).
+Learn how to edit the sudoers file in the [Sudoers Manual](https://www.sudo.ws/man/1.8.17/sudoers.man.html) (scroooolll downnn) and check [some practical examples here](https://www.tecmint.com/sudoers-configurations-for-setting-sudo-in-linux/).
+
+### 📠 TTY
+Learn about the [TTY command and its history](https://www.howtogeek.com/428174/what-is-a-tty-on-linux-and-how-to-use-the-tty-command/).
+As mentioned in the Sudoers Manual, when this is required the command sudo is only executed when run in a PTY, not via CRON or CGI-bin scripts.
+(What is CRON or CGI-bin scripts?)
+
+<br />
+
+## 6. Strong Password
+See [how long it takes to brute force your password](https://www.milnsbridge.com.au/wp-content/uploads/2020/09/npq7p60b1lj51-1024x1024.jpg) depending on its length and characters variety.
 
 <br />
 
