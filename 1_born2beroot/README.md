@@ -170,4 +170,6 @@ See [how long it takes to brute force your password](https://www.milnsbridge.com
 
 iptables???
 
+42 student repo: https://github.com/hanshazairi/42-born2beroot
+
 Happy virtualisation! 👻
