@@ -163,21 +163,38 @@ See [how long it takes to brute force your password](https://www.milnsbridge.com
 
 <br />
 
+*This ReadMe is under construction!*
+
+<br />
+
 ## 7. VM Network Configuration
 To check:
 What is a NAT adapter?
 Host-only adapter
 "You should now have access to your VM via that IP address." -> ?
 in file: auto? iface? allow-hotplug? inet static? inet dhcp?
+apt vs apt-get ?
+
+```
+<html>
+<body>
+ <p>Hello</p>
+</body>
+</html>
+```
 
 <br />
-
-*This ReadMe is under construction!*
 
 ## 8. SSH
 **SSH (Secure Shell) Protocol** read more about this toooo: https://www.youtube.com/watch?v=ORcvSkgdA58
 
+<br />
+
+## 9. UFW - Uncomplicated Firewall
+Read about firewalls and ufw
 iptables???
+Learn more [ufw commands here](https://www.tecmint.com/how-to-install-and-configure-ufw-firewall/).
+
 
 42 student repo: https://github.com/hanshazairi/42-born2beroot
 
