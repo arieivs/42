@@ -174,14 +174,9 @@ Host-only adapter
 "You should now have access to your VM via that IP address." -> ?
 in file: auto? iface? allow-hotplug? inet static? inet dhcp?
 apt vs apt-get ?
-
-```
-<html>
-<body>
- <p>Hello</p>
-</body>
-</html>
-```
+enable dhcp: the ip address would be attributed to the VM by the DHCP server.
+in this case: we define it in the file, always the same, so no need for a DHCP server.
+make sure network ip on Host network manager settings is the same as the one in the file.
 
 <br />
 
