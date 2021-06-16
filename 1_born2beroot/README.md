@@ -159,37 +159,45 @@ As mentioned in the Sudoers Manual, when this is required the command sudo is on
 <br />
 
 ## 6. Strong Password
-See [how long it takes to brute force your password](https://www.milnsbridge.com.au/wp-content/uploads/2020/09/npq7p60b1lj51-1024x1024.jpg) depending on its length and characters variety.
-
-<br />
-
-*This ReadMe is under construction!*
+See [how long it takes to brute force your password](https://www.milnsbridge.com.au/wp-content/uploads/2020/09/npq7p60b1lj51-1024x1024.jpg) depending on its length and variety of characters.
 
 <br />
 
 ## 7. VM Network Configuration
-To check:
-What is a NAT adapter?
-Host-only adapter
-"You should now have access to your VM via that IP address." -> ?
-in file: auto? iface? allow-hotplug? inet static? inet dhcp?
-apt vs apt-get ?
-enable dhcp: the ip address would be attributed to the VM by the DHCP server.
-in this case: we define it in the file, always the same, so no need for a DHCP server.
-make sure network ip on Host network manager settings is the same as the one in the file.
+* Make sure the network's address is the same in the settings and in the /etc/network/interfaces file
+* DHCP enabled: the VM's IP address is attributed by the DHCP server
+* In this case: we defined the VM's IP address in the /etc/network/interfaces file (and set it as static) and disabled DHCP
+* Find out more on [how to configurate /etc/network/interfaces file here](https://linuxhint.com/debian_etc_network_interfaces/)
+
+### 🕸 NAT & Host-only networks
+[**NAT** (Network Address Translator)](https://www.youtube.com/watch?v=01ajHxPLxAw) allows us to associate multiple machines to a single IP address, by using some bits from the TCP header in the data package to extend the IP address space.
+More specifically, NAT uses the bits associated with the Port number.
+
+NAT allows the [VM to use the host's computer network resources](https://www.vmware.com/support/ws3/doc/ws32_network21.html).
+Any TCP/IP connection the host machine has access to should be available to the VM via NAT.
+This is why you were immediately able to connect to the internet through your VM.
+Note that as far as the VM is concerned, the VM is accessing the external network directly, meaning it is not aware of the host and its intermediary position.
+
+**Host-only networks** are networks between the host computer and the VM, established via a [virtual ethernet adapter](https://www.techopedia.com/definition/15630/virtual-network-adapter).
+Unlike in the previous case, here the VM is fully aware of the host, and communicating with it.
+This is necessary for being able to access the VM from your host via SSH.
 
 <br />
 
 ## 8. SSH
-**SSH (Secure Shell) Protocol** read more about this toooo: https://www.youtube.com/watch?v=ORcvSkgdA58
+Watch [Computerphile's video on SSH (Secure Shell)](https://www.youtube.com/watch?v=ORcvSkgdA58).
 
 <br />
 
 ## 9. UFW - Uncomplicated Firewall
 Read about firewalls and ufw
+nat and firewall (?): https://www.youtube.com/watch?v=2llWuivdS7w
 iptables???
 Learn more [ufw commands here](https://www.tecmint.com/how-to-install-and-configure-ufw-firewall/).
 
+<br />
+
+*This ReadMe is under construction!*
 
 42 student repo: https://github.com/hanshazairi/42-born2beroot
 
