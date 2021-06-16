@@ -163,6 +163,15 @@ See [how long it takes to brute force your password](https://www.milnsbridge.com
 
 <br />
 
+## 7. VM Network Configuration
+To check:
+What is a NAT adapter?
+Host-only adapter
+"You should now have access to your VM via that IP address." -> ?
+in file: auto? iface? allow-hotplug? inet static? inet dhcp?
+
+<br />
+
 *This ReadMe is under construction!*
 
 ## 8. SSH
