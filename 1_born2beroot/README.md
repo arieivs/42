@@ -153,8 +153,7 @@ Learn how to edit the sudoers file in the [Sudoers Manual](https://www.sudo.ws/m
 
 ### 📠 TTY
 Learn about the [TTY command and its history](https://www.howtogeek.com/428174/what-is-a-tty-on-linux-and-how-to-use-the-tty-command/).
-As mentioned in the Sudoers Manual, when this is required the command sudo is only executed when run in a PTY, not via CRON or CGI-bin scripts.
-(What is CRON or CGI-bin scripts?)
+As mentioned in the Sudoers Manual, when this is required the command sudo is only executed when run in a PTY, not via CRON or [CGI-bin scripts](https://www.w3.org/Security/faq/wwwsf4.html) ([Common Gateway Interface](https://www.geeksforgeeks.org/common-gateway-interface-cgi/)).
 
 <br />
 
@@ -191,9 +190,14 @@ Watch [Computerphile's video on SSH (Secure Shell)](https://www.youtube.com/watc
 
 ## 9. UFW - Uncomplicated Firewall
 Read about firewalls and ufw
-nat and firewall (?): https://www.youtube.com/watch?v=2llWuivdS7w
+Nat and firewall (?): https://www.youtube.com/watch?v=2llWuivdS7w
 iptables???
 Learn more [ufw commands here](https://www.tecmint.com/how-to-install-and-configure-ufw-firewall/).
+
+<br />
+
+## 10. Monitoring script
+What is CRON? related to jobs
 
 <br />
 
