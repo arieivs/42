@@ -229,16 +229,19 @@ echo "#LVM: $HAS_LVM"
 echo "Connections TCP:" $(grep '^ *[0-9]\+: [0-9A-F: ]\{27\} 01 ' /proc/net/tcp -c) "ESTABLISHED"
 echo "#User log:" $(who | awk '{print $1}' | sort -u | wc -l)
 echo "#Network: IP" $(hostname -I | awk '{print $2}') "("$(ip a | grep ether | tail -n 1 | awk '{print $2}')")"
-echo "#Sudo : $(sudo -i cat /var/log/sudo/sudo.log | grep -c COMMAND) cmd"
+echo "#Sudo : $(cat /var/log/sudo/sudo.log | grep -c COMMAND) cmd"
 ```
 * Different VMs might be using the same physical processor, so the same ID might be listed more than once, thus sort -u to filter unique keys;
 * How to use [awk command](https://www.howtogeek.com/562941/how-to-use-the-awk-command-on-linux/);
 * Note: you will have to install bc;
 * [CPU usage](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk65143) = (user + system) / (user + system + [idle](https://dictionary.cambridge.org/dictionary/english/idle);
 * Active TCP connections: [st 01](https://stackoverflow.com/questions/5992211/list-of-possible-internal-socket-statuses-from-proc);
+* Add CRON job as a job from root, so that you have the necessary permissions to check sudo.log
 
-MemFree vs MemAvailable ???
+Check:
+MemFree vs MemAvailable
 What is CRON? related to jobs
+https://www.hostinger.com/tutorials/cron-job
 
 <br />
 
