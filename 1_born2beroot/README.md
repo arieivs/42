@@ -197,6 +197,15 @@ Learn more [ufw commands here](https://www.tecmint.com/how-to-install-and-config
 <br />
 
 ## 10. Monitoring script
+* Broadcast message:
+ * from: ```$(whoami)"@"$(hostnamectl | awk '/Static hostname/ {print $3}')```
+ * tty: ```$(tty | awk -F/ '{print $3}')```
+ * date: ```$(date)```
+* Number of physical processors: as different VMs might be using the same physical processor, the same ID might be listed more than once. Thus the command ```sort -u``` to filer only unique keys;
+* Divive per 1024 not 1000
+* MemFree vs MemAvailable ???
+* command free
+
 What is CRON? related to jobs
 
 <br />
