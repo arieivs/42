@@ -197,15 +197,47 @@ Learn more [ufw commands here](https://www.tecmint.com/how-to-install-and-config
 <br />
 
 ## 10. Monitoring script
-* Broadcast message:
- * from: ```$(whoami)"@"$(hostnamectl | awk '/Static hostname/ {print $3}')```
- * tty: ```$(tty | awk -F/ '{print $3}')```
- * date: ```$(date)```
-* Number of physical processors: as different VMs might be using the same physical processor, the same ID might be listed more than once. Thus the command ```sort -u``` to filer only unique keys;
-* Divive per 1024 not 1000
-* MemFree vs MemAvailable ???
-* command free
+```
+MEM_TOTAL=$(free | awk '/Mem/ {printf("%0.f\n", $2 / 1024)}')
+MEM_USED=$(free | awk '/Mem/ {printf("%0.f\n", $3 / 1024)}')
+MEM_USED_PERCENT=$(echo "$MEM_USED $MEM_TOTAL" | awk '{printf ("%.2f", ($1 / $2) * 100)}')
 
+DISK_USED=$(df --output=used | tail --lines=+2 | paste -sd+ | bc | awk '{printf("%.0f\n", $1 / 1024)}')
+DISK_AVAIL_MB=$(df --output=avail | tail --lines=+2 | paste -sd+ | bc | awk '{printf("%.0f\n", $1 / 1024)}')
+DISK_AVAIL_GB=$(echo "$DISK_AVAIL_MB" | awk '{printf ("%d", ($1 / 1024))}')
+DISK_AVAIL_PERCENT=$(echo "$DISK_USED $DISK_AVAIL_MB" | awk '{printf ("%.2f", ($1 / $2) * 100)}')
+
+LAST_BOOT=$(uptime -s)
+LAST_BOOT=${LAST_BOOT::-3}
+
+LVM_COUNT=$(lsblk -o TYPE | grep lvm | wc -l)
+HAS_LVM="no"
+if [[ "$LVM_COUNT" > 0 ]]
+then
+        HAS_LVM="yes"
+fi
+
+echo "Broadcast message from" $(whoami)"@"$(hostnamectl | awk '/Static hostname/ {print $3}') "("$(tty | awk -F/ '{print $3}')")" $(date)
+echo "#Architecture: " $(uname -a)
+echo "#CPU physical :" $(cat /proc/cpuinfo | grep 'physical id' | sort -u | wc -l)
+echo "#vCPU :" $(nproc)
+echo "#Memory Usage:" "${MEM_USED}/${MEM_TOTAL}MB" "($MEM_USED_PERCENT%)"
+echo "#Disk Usage:" "${DISK_USED}MB/${DISK_AVAIL_GB}GB" "($DISK_AVAIL_PERCENT%)"
+echo "#CPU load:" $(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf("%.2f%%\n", usage)}')
+echo "#Last boot: $LAST_BOOT"
+echo "#LVM: $HAS_LVM"
+echo "Connections TCP:" $(grep '^ *[0-9]\+: [0-9A-F: ]\{27\} 01 ' /proc/net/tcp -c) "ESTABLISHED"
+echo "#User log:" $(who | awk '{print $1}' | sort -u | wc -l)
+echo "#Network: IP" $(hostname -I | awk '{print $2}') "("$(ip a | grep ether | tail -n 1 | awk '{print $2}')")"
+echo "#Sudo : $(sudo -i cat /var/log/sudo/sudo.log | grep -c COMMAND) cmd"
+```
+* Different VMs might be using the same physical processor, so the same ID might be listed more than once, thus sort -u to filter unique keys;
+* How to use [awk command](https://www.howtogeek.com/562941/how-to-use-the-awk-command-on-linux/);
+* Note: you will have to install bc;
+* [CPU usage](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk65143) = (user + system) / (user + system + [idle](https://dictionary.cambridge.org/dictionary/english/idle);
+* Active TCP connections: [st 01](https://stackoverflow.com/questions/5992211/list-of-possible-internal-socket-statuses-from-proc);
+
+MemFree vs MemAvailable ???
 What is CRON? related to jobs
 
 <br />
