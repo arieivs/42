@@ -35,6 +35,8 @@ Some guidance: inside your VM running in Linux and when looking at your VM's set
 * Host key: shortcut which allows you to getting out of the virtual machine when it's capturing your mouse and keyboard (it appears on the right-bottom corner of the window);
 * No GUI is allowed, so you cannot choose Graphical Install - choose just Install (confirm!!).
 
+👀 Why Debian? Debian vs Cent OS?
+
 <br />
 
 ## 2. Partitions & LVM
@@ -75,6 +77,8 @@ For Linux, the most common one is ext4.
 Swap area is used to keep your applications running when you run out of RAM.
 In other words, is a fake RAM that resides in your hard-drive.
 Learn more on [Swap area here](https://askubuntu.com/questions/508870/what-is-a-swap-area).
+
+👀 how LVM works and what it is all about???
 
 <br />
 
@@ -159,6 +163,12 @@ As mentioned in the Sudoers Manual, when this is required the command sudo is on
 
 ## 6. Strong Password
 See [how long it takes to brute force your password](https://www.milnsbridge.com.au/wp-content/uploads/2020/09/npq7p60b1lj51-1024x1024.jpg) depending on its length and variety of characters.
+```
+sudo nano /etc/login.defs
+sudo nano /etc/pam.d/common-password
+```
+
+👀 advantages of this password policy, as well as advantages and disadvantages of its implementation?
 
 <br />
 
@@ -189,7 +199,7 @@ Watch [Computerphile's video on SSH (Secure Shell)](https://www.youtube.com/watc
 <br />
 
 ## 9. UFW - Uncomplicated Firewall
-Read about firewalls and ufw
+👀 Read about firewalls and ufw
 Nat and firewall (?): https://www.youtube.com/watch?v=2llWuivdS7w
 iptables???
 Learn more [ufw commands here](https://www.tecmint.com/how-to-install-and-configure-ufw-firewall/).
@@ -238,10 +248,36 @@ echo "#Sudo : $(cat /var/log/sudo/sudo.log | grep -c COMMAND) cmd"
 * Active TCP connections: [st 01](https://stackoverflow.com/questions/5992211/list-of-possible-internal-socket-statuses-from-proc);
 * Add CRON job as a job from root, so that you have the necessary permissions to check sudo.log
 
-Check:
+👀 Check:
 MemFree vs MemAvailable
 What is CRON? related to jobs
 https://www.hostinger.com/tutorials/cron-job
+
+<br />
+
+## 🙋‍♀️ Defence
+Some additional useful commands for the defense:
+```
+sudo ufw status
+// check ssh status?
+uname -a                                // check OS
+hostnamectl                             // check hostname
+sudo hostnamectl set-hostname new-host  // update hostname
+sudo ufw allow 8080/tcp                 // openning port 8080
+// close the port 8080??
+// make monitoring script stop running at start up?
+```
+
+All the files I modified:
+Sudo:
+/etc/sudoers
+
+Password:
+/etc/login.defs
+/etc/pam.d/common-password
+
+SSH:
+/etc/ssh/sshd_config
 
 <br />
 
