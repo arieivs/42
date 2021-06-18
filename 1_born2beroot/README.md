@@ -270,6 +270,7 @@ hostnamectl                               // check hostname
 sudo hostnamectl set-hostname <new-host>  // update hostname
 sudo ufw allow 8080/tcp                   // openning port 8080
 sudo ufw deny 8080/tcp                    // close the port 8080
+sudo ufw delete <rule_number>             // remove rule
 crontab -r                                // remove current crontab file
 // make monitoring script stop running at start up?
 ```
