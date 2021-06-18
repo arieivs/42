@@ -35,7 +35,12 @@ Some guidance: inside your VM running in Linux and when looking at your VM's set
 * Host key: shortcut which allows you to getting out of the virtual machine when it's capturing your mouse and keyboard (it appears on the right-bottom corner of the window);
 * No GUI is allowed, so you cannot choose Graphical Install - choose just Install (confirm!!).
 
-👀 Why Debian? Debian vs Cent OS?
+### 💡 Debian vs Cent OS
+Debian and Cent OS are both Linux distributions.
+There are some differences between the two, for example they use different package managers and have different default filesystems.
+Debian releases major updates more frequently (every two years compared with 10 years for Cent OS), which can be an advantage.
+Finally, Cent OS set up can be trickier for newbies, so Debian might be a better first experience.
+Learn [more here](https://www.openlogic.com/blog/centos-vs-debian).
 
 <br />
 
@@ -78,7 +83,7 @@ Swap area is used to keep your applications running when you run out of RAM.
 In other words, is a fake RAM that resides in your hard-drive.
 Learn more on [Swap area here](https://askubuntu.com/questions/508870/what-is-a-swap-area).
 
-👀 how LVM works and what it is all about???
+👀 how LVM works and what it is all about??? https://www.ibm.com/docs/en/informix-servers/12.10?topic=storage-logical-volume-manager
 
 <br />
 
