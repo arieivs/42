@@ -252,9 +252,11 @@ echo "#Sudo : $(cat /var/log/sudo/sudo.log | grep -c COMMAND) cmd"
 Free Memory is the total amount of free memory, including swap area.
 Available Memory is an estimation of the memory available to start new applications, without counting with the swap area.
 That being said, the free memory is usuallt larger than the available memory, unless you have a very small RAM and large swap area for some weird reason.
+Learn more [about the different displayed memories here](https://unix.stackexchange.com/questions/413593/what-is-difference-between-total-and-free-memory).
 
-What is CRON? related to jobs
-https://www.hostinger.com/tutorials/cron-job
+### 🗓 CRON
+Cron is a utility program for repeating tasks at a later time, in other words, to schedule jobs.
+Learn some [CRON commands here](https://www.hostinger.com/tutorials/cron-job).
 
 <br />
 
@@ -271,7 +273,5 @@ sudo ufw deny 8080/tcp                    // close the port 8080
 sudo ufw delete <rule_number>             // remove rule
 ```
 <br />
-
-*This ReadMe is under construction!*
 
 Happy virtualisation! 👻
