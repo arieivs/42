@@ -33,7 +33,7 @@ Some guidance: inside your VM running in Linux and when looking at your VM's set
 * VM size: if you're aiming for the bonus, choose 30.8 GB else keep it at 8GB;
 * The size should be [divisible by 512 bytes](https://www.virtualbox.org/ticket/18177) - use the slider;
 * Host key: shortcut which allows you to getting out of the virtual machine when it's capturing your mouse and keyboard (it appears on the right-bottom corner of the window);
-* No GUI is allowed, so you cannot choose Graphical Install - choose just Install (confirm!!).
+* No GUI is allowed, so you cannot choose Graphical Install - choose just Install.
 
 ### 💡 Debian vs Cent OS
 Debian and Cent OS are both Linux distributions.
@@ -62,13 +62,16 @@ Bonus:
   * var-log: 4 GiB = 4.3 GB;
 * A note on naming logical volumes: - (dashes) will double.
 
-### 💡 Partitions
+### 💡 Partitions & Logical Volumes
 Learn about [partitions and why they come in handy](https://www.howtogeek.com/184659/beginner-geek-hard-disk-partitions-explained/).
 There are different kinds of partitions: primary, extended and logical.
 Primary partitions are bootable, and contain the Operating System.
 An extended partition is basically a defined area were logical partitions reside.
 There is a limit to the number of primary partitions allowed in a single machine, while you can have as many logical partitions as you want.
 Learn more about [primary and logical partitions here](https://www.differencebetween.com/difference-between-primary-partition-and-vs-logical-partition/).
+
+The [Logical Volume Manager](https://www.ibm.com/docs/en/informix-servers/12.10?topic=storage-logical-volume-manager) (LVM) allows the user to manage the disk's memory through logical volumes.
+First one must create a Volume Group, inside which several logical volumes can be created.
 
 ### ❔ Why sda?
 sda refers to the first sd, which stands for SCSI (Small Computer System Interface) disk.
@@ -82,8 +85,6 @@ For Linux, the most common one is ext4.
 Swap area is used to keep your applications running when you run out of RAM.
 In other words, is a fake RAM that resides in your hard-drive.
 Learn more on [Swap area here](https://askubuntu.com/questions/508870/what-is-a-swap-area).
-
-👀 how LVM works and what it is all about??? https://www.ibm.com/docs/en/informix-servers/12.10?topic=storage-logical-volume-manager
 
 <br />
 
@@ -168,12 +169,6 @@ As mentioned in the Sudoers Manual, when this is required the command sudo is on
 
 ## 6. Strong Password
 See [how long it takes to brute force your password](https://www.milnsbridge.com.au/wp-content/uploads/2020/09/npq7p60b1lj51-1024x1024.jpg) depending on its length and variety of characters.
-```
-sudo nano /etc/login.defs
-sudo nano /etc/pam.d/common-password
-```
-
-👀 advantages of this password policy, as well as advantages and disadvantages of its implementation?
 
 <br />
 
@@ -204,9 +199,9 @@ Watch [Computerphile's video on SSH (Secure Shell)](https://www.youtube.com/watc
 <br />
 
 ## 9. UFW - Uncomplicated Firewall
-👀 Read about firewalls and ufw
-Nat and firewall (?): https://www.youtube.com/watch?v=2llWuivdS7w
-iptables???
+A [firewall](https://www.youtube.com/watch?v=9JQtyQEpQV8) monitors and controls incoming and outgoing traffic to your network.
+**Iptables** is an utility programme that allows the system administrator to define the IP filter rules for the firewall.
+**Uncomplicated Firewall (UFW)** is a more user-friendly interface of iptables.
 Learn more [ufw commands here](https://www.tecmint.com/how-to-install-and-configure-ufw-firewall/).
 
 <br />
@@ -253,8 +248,11 @@ echo "#Sudo : $(cat /var/log/sudo/sudo.log | grep -c COMMAND) cmd"
 * Active TCP connections: [st 01](https://stackoverflow.com/questions/5992211/list-of-possible-internal-socket-statuses-from-proc);
 * Add CRON job as a job from root, so that you have the necessary permissions to check sudo.log
 
-👀 Check:
-MemFree vs MemAvailable
+### 🧠 Free Memory vs Available Memory
+Free Memory is the total amount of free memory, including swap area.
+Available Memory is an estimation of the memory available to start new applications, without counting with the swap area.
+That being said, the free memory is usuallt larger than the available memory, unless you have a very small RAM and large swap area for some weird reason.
+
 What is CRON? related to jobs
 https://www.hostinger.com/tutorials/cron-job
 
@@ -271,25 +269,9 @@ sudo hostnamectl set-hostname <new-host>  // update hostname
 sudo ufw allow 8080/tcp                   // openning port 8080
 sudo ufw deny 8080/tcp                    // close the port 8080
 sudo ufw delete <rule_number>             // remove rule
-crontab -r                                // remove current crontab file
-// make monitoring script stop running at start up?
 ```
-
-All the files I modified:
-Sudo:
-/etc/sudoers
-
-Password:
-/etc/login.defs
-/etc/pam.d/common-password
-
-SSH:
-/etc/ssh/sshd_config
-
 <br />
 
 *This ReadMe is under construction!*
-
-42 student repo: https://github.com/hanshazairi/42-born2beroot
 
 Happy virtualisation! 👻
