@@ -251,7 +251,7 @@ echo "#Sudo : $(cat /var/log/sudo/sudo.log | grep -c COMMAND) cmd"
 ### 🧠 Free Memory vs Available Memory
 Free Memory is the total amount of free memory, including swap area.
 Available Memory is an estimation of the memory available to start new applications, without counting with the swap area.
-That being said, the free memory is usuallt larger than the available memory, unless you have a very small RAM and large swap area for some weird reason.
+That being said, the available memory is usually larger than the free memory, unless you have a very small RAM and large swap area for some weird reason.
 Learn more [about the different displayed memories here](https://unix.stackexchange.com/questions/413593/what-is-difference-between-total-and-free-memory).
 
 ### 🗓 CRON
