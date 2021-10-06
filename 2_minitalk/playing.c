@@ -45,7 +45,7 @@ void	parent_child(void)
 
 int main(void)
 {
-	signal(SIGINT, &catch_int);
+	signal(SIGINT, catch_int);
 	sleep(10);
 	parent_child();
 	terminating();
