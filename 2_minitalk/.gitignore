@@ -2,3 +2,4 @@ libft/
 server
 client
 a.out
+*.o
