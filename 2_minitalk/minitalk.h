@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 21:51:08 by svieira           #+#    #+#             */
-/*   Updated: 2021/10/07 21:53:07 by svieira          ###   ########.fr       */
+/*   Updated: 2021/10/07 21:59:28 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
-
+# include "libft/libft.h"
 
 #endif
