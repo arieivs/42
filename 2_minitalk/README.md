@@ -38,11 +38,16 @@ Learn more on [UNIX Processes here](https://www.tutorialspoint.com/unix/unix-pro
 <br />
 
 ## 🚨 UNIX Signals
-Blabla
+Signals are a way to communicate with a process.
+When a signal is sent to a process, it stops whatever it is doing to handle the signal immediately.
+We can define how a process deals with a specific signal by coding a signal handler, and assigning it to that signal using the ```signal``` or ```sigaction``` functions.
+Sigaction is more recent and covers some potential issues, for example, it blocks new signals from arriving while the respective handler is busy, with masking.
+Watch [this video on signals](https://www.youtube.com/watch?v=83M5-NPDeWs), learn more about [handling signals](http://www.cs.kent.edu/~ruttan/sysprog/lectures/signals.html) and the [difference between signal() and sigaction()](https://stackoverflow.com/questions/231912/what-is-the-difference-between-sigaction-and-signal).
+We can also use the ```trap``` command to perform actions (such as removing temporary files) when the process is interrupted.
+Learn more about [traps here](https://www.tutorialspoint.com/unix/unix-signals-traps.htm).
 
 ### 🔪 Killing Processes
-Applications are listening to signals and can be programmed to do whatever they want with them.
-In other words, an application may ignore a SIGTERM (```kill``` or ```kill -15```) signal.
+You may code a signal handler so that the application ignores a SIGTERM (```kill``` or ```kill -15```) signal, or a SIGINT, or many others.
 When that happens, we can force an application to quit using ```kill -9```, which will take the kernel to remove that process from the processes table, without even going through the application.
 
 ```
@@ -51,4 +56,7 @@ kill -2 <PID>   // 2 = SIGINT, interrupting (ctrl + C)
 kill -20 <PID>  // 20 (or 18, double check in your machine!) = SIGTSTP, suspending (ctrl + Z)
 kill -18 <PID>  // 18 (or 19, double check in your machine!) = SIGCONT, continue
 ```
+
+### 🗣 Communicating with Signals
+SIGUSR1 and SIGUSR2 exist to be used in user defined processes.
 

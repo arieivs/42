@@ -54,7 +54,7 @@ void	parent_child(void)
 int main(void)
 {
 	char	user[10];
-
+	
 	signal(SIGALRM, catch_alarm);
 	signal(SIGINT, catch_int);
 	// sleep(10);
