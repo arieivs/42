@@ -4,6 +4,14 @@
 #include <stdlib.h> // exit()
 #include <stdio.h>
 
+void	catch_alarm(int	sig_num)
+{
+	(void)sig_num;
+
+	printf("Timed out, exiting...\n");
+	exit(0);
+}
+
 void	catch_int(int sig_num)
 {
 	(void)sig_num;
@@ -45,8 +53,14 @@ void	parent_child(void)
 
 int main(void)
 {
+	char	user[10];
+
+	signal(SIGALRM, catch_alarm);
 	signal(SIGINT, catch_int);
-	sleep(10);
+	// sleep(10);
+	alarm(10);
+	gets(user);
+	alarm(0);
 	parent_child();
 	terminating();
 	return(0);
