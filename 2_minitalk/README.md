@@ -12,9 +12,9 @@ They can then be identified by their Process ID (PID) or Parent Process ID (PPID
 When the computer boots, one of the last things the kernel does is to call the init process (e.g.'s: systemd, launchd, upstart), parent of all processes, which has the PID 1. 
 If a Parent process is terminated before its Child, the Child process will be an Orphan and its Parent will now be the init process.
 
-* *Foreground Process*: By default, a process runs in the foreground, meaning that while it is running, the prompt is not available.
-* *Background Process*: One can execute other commands while this process runs in the background.
-* *Daemon Process*: System-related background process.
+* **Foreground Process**: By default, a process runs in the foreground, meaning that while it is running, the prompt is not available.
+* **Background Process**: One can execute other commands while this process runs in the background.
+* **Daemon Process**: System-related background process.
 
 Some useful commands:
 
