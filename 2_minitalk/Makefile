@@ -18,15 +18,19 @@ OBJS_C =	$(SRCS_C:.c=.o)
 
 RM =		rm -f
 
+
+.c.o:
+			$(CC) $(CFLAGS) $(INCLUDES) -c $< -o ${<:.c=.o}
+
 all:		$(SERVER) $(CLIENT)
 
 $(NAME):	all
 
-$(SERVER):
+$(SERVER):	$(OBJS_S)
 			make -C $(LIBFT_DIR)		
 			$(CC) $(CFLAGS) $(SRCS_S) $(LIBFT_LIB) $(INCLUDES) -o $(SERVER)
 
-$(CLIENT):
+$(CLIENT):	$(OBJS_C)
 			make -C $(LIBFT_DIR)		
 			$(CC) $(CFLAGS) $(SRCS_C) $(LIBFT_LIB) $(INCLUDES) -o $(CLIENT)
 
