@@ -41,8 +41,7 @@ Learn more on [UNIX Processes here](https://www.tutorialspoint.com/unix/unix-pro
 Signals are a way to communicate with a process.
 When a signal is sent to a process, it stops whatever it is doing to handle the signal immediately.
 We can define how a process deals with a specific signal by coding a signal handler, and assigning it to that signal using the ```signal``` or ```sigaction``` functions.
-Sigaction is more recent and covers some potential issues, for example, it blocks new signals from arriving while the respective handler is busy, with masking.
-Watch [this video on signals](https://www.youtube.com/watch?v=83M5-NPDeWs), learn more about [handling signals](http://www.cs.kent.edu/~ruttan/sysprog/lectures/signals.html) and the [difference between signal() and sigaction()](https://stackoverflow.com/questions/231912/what-is-the-difference-between-sigaction-and-signal).
+Watch [this video on signals](https://www.youtube.com/watch?v=83M5-NPDeWs) and learn more about [handling signals](http://www.cs.kent.edu/~ruttan/sysprog/lectures/signals.html). 
 We can also use the ```trap``` command to perform actions (such as removing temporary files) when the process is interrupted.
 Learn more about [traps here](https://www.tutorialspoint.com/unix/unix-signals-traps.htm).
 
@@ -57,6 +56,9 @@ kill -20 <PID>  // 20 (or 18, double check in your machine!) = SIGTSTP, suspendi
 kill -18 <PID>  // 18 (or 19, double check in your machine!) = SIGCONT, continue
 ```
 
-### 🗣 Communicating with Signals
-SIGUSR1 and SIGUSR2 exist to be used in user defined processes.
-
+### 🎭 Masking and Sigaction
+If a signal is sent while the previous one is still being handled, we can get into trouble.
+In order to avoid this, we can block signals from being processed until the handler is free.
+For that we can use Masks: we create a signal set, where we define to which signals the mask is to be applied, and then use it in the ```struct sigaction``` that we give to the ```sigaction function```.
+```sigaction``` is more recent than ```signal``` and it blocks new signals from arriving while the respective handler is busy, with masking, by default.
+Learn more about the [difference between signal() and sigaction()](https://stackoverflow.com/questions/231912/what-is-the-difference-between-sigaction-and-signal).
