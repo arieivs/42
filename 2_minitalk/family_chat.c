@@ -24,13 +24,13 @@ void	child_sig_handler(int sig_num)
 int	main(void)
 {
 	pid_t				pid;
-	struct sigaction	sa_child;
 	struct sigaction	sa_parent;
+	struct sigaction	sa_child;
 
-	sa_child.sa_handler = &child_sig_handler;
-	sigaction(SIGUSR1, &sa_child, NULL);
 	sa_parent.sa_handler = &parent_sig_handler;
 	sigaction(SIGUSR1, &sa_parent, NULL);
+	sa_child.sa_handler = &child_sig_handler;
+	sigaction(SIGUSR2, &sa_child, NULL);
 	pid = fork();
 	if (pid == -1)
 		return (1);
@@ -38,15 +38,16 @@ int	main(void)
 	{
 		// fork returns 0: child process
 		write(1, "Child: waiting for a sign from parent.\n", 39);
-		// pause();
+		pause();
 	}
 	else
 	{
 		// fork returns child's pid: parent process
+		// sleep(1); // so that the Child process is executed first
 		write(1, "Parent: sending a sign to child.\n", 33);
-		kill(pid, SIGUSR1);
+		kill(pid, SIGUSR2);
 		write(1, "Parent: sent, waiting for an answer from child.\n", 48);
-		// pause();
+		pause();
 	}
 	return (0);
 }
