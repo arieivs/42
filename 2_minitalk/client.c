@@ -1,43 +1,60 @@
 #include "minitalk.h"
 
-void	send_char(int c, pid_t to_pid)
+void	send_message(char *str, pid_t to_pid)
 {
-	int	ref;
+	static int	server_pid = 0;
+	static int	nr_bits = 0;
+	static char	*message = NULL;
+	int			i;
 
-	ref = 128;
-	while (ref)
+	if (to_pid)
+		server_pid = to_pid;
+	if (str)
+		message = ft_strdup(str);
+	if (message[nr_bits / 8])
 	{
-		if (c & ref)
-			kill(to_pid, SIGUSR1);
+		if (message[nr_bits / 8] & (128 << (nr_bits % 8)))
+			kill(server_pid, SIGUSR1);
 		else
-			kill(to_pid, SIGUSR2);
-		usleep(1);
-		ref = ref >> 1;
+			kill(server_pid, SIGUSR2);
+	}
+	else
+	{
+		i = 0;
+		while(i < 8)
+		{
+			kill(server_pid, SIGUSR2);
+			i++;
+		}
+		free(message);
 	}
 }
 
-void	send_message(char *str, pid_t to_pid)
+static void sigusr_handler(int sig_num)
 {
-	int	i;
-
-	i = 0;
-	while(str[i])
-	{
-		send_char(str[i], to_pid);
-		i++;
-	}
+	if (sig_num == SIGUSR1)
+		send_message(0, 0);
+	// else if (sig_num == SIGUSR2)
+		// error and exit
 }
 
 int	main(int ac, char **av)
 {
-	pid_t	server_pid;
+	struct sigaction	sa;
 
 	if (ac != 3)
 	{
 		write(1, "Please provide the server's PID and a message.\n", 47);
 		return (0);
 	}
-	server_pid = ft_atoi(av[1]);
-	send_message(av[2], server_pid);
+	sa.sa_handler = &sigusr_handler;
+	sigemptyset(&(sa.sa_mask));
+	sigaddset(&(sa.sa_mask), SIGUSR1);
+	sigaddset(&(sa.sa_mask), SIGUSR2);
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
+	send_message(av[2], ft_atoi(av[1]));
+	while (1)
+		pause();
 	return (0);
 }
