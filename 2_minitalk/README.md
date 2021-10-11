@@ -62,3 +62,31 @@ In order to avoid this, we can block signals from being processed until the hand
 For that we can use Masks: we create a signal set, where we define to which signals the mask is to be applied, and then use it in the ```struct sigaction``` that we give to the ```sigaction function```.
 ```sigaction``` is more recent than ```signal``` and it blocks new signals from arriving while the respective handler is busy, with masking, by default.
 Learn more about the [difference between signal() and sigaction()](https://stackoverflow.com/questions/231912/what-is-the-difference-between-sigaction-and-signal).
+
+<br />
+
+## 🔟 Converting Characters <-> Binary
+Why not the plain old ASCII (decimal) to binary conversion?
+[Unicode](https://techterms.com/definition/unicode) is a universal character encoding standard.
+It's broader than ASCII, including special characters (and even emojis! 😎) and it can use up to 4 bytes per character.
+The easiest way to convert Unicode characters is to look at them byte by byte, this way we don't need to care whether a character actually takes 1 or 4 bytes.
+A way to dissecate each byte into its 8 bits is by using Bitwise operations.
+
+### Converting ASCII to Binary
+* Compare your byte with 10000000 (128) using the & (and) operator: if there are no common 1's (so the bit further to the left is a 0) it will return 0; else (so the bit further to the left is a 1) it will return something other than 0;
+* Shift 10000000 (128) into 01000000 (64) with the >> (shift right) operator: 128 >> 1 = 64;
+* Compare and shift, until you've analized each bit.
+
+### Converting Binary to ASCII
+* Set the initial character as 00000000 (0);
+* For each bit received, compare it with the current version of your character using the | (or) operator: if none have 1's (meaning the bit you just received is a 0) it will return 0; else (so the bit you just received is a 1) it will return something different than 0;
+* Alter the last bit of the character according to the previous result, and shift that bit to the left with << (shift left);
+
+<br />
+
+## 🗣 Project Overview
+
+### Server side
+* Assign your handler function to SIGUSR1 and SIGUSR2 signals with sigaction and its appropriate sigaction struct. 
+
+
