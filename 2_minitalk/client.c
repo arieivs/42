@@ -5,28 +5,47 @@ void	send_message(char *str, pid_t to_pid)
 	static int	server_pid = 0;
 	static int	nr_bits = 0;
 	static char	*message = NULL;
-	int			i;
+	static int	i = 0;
 
 	if (to_pid)
+	{
+		write(1, "pid\n", 4);
 		server_pid = to_pid;
+	}
 	if (str)
+	{
+		write(1, "str\n", 4);
 		message = ft_strdup(str);
+	}
 	if (message[nr_bits / 8])
 	{
-		if (message[nr_bits / 8] & (128 << (nr_bits % 8)))
+		write(1, &message[nr_bits / 8], 1);
+		ft_putnbr_fd(128 >> (nr_bits % 8), 1);
+		if (message[nr_bits / 8] & (128 >> (nr_bits % 8)))
+		{
+			write(1, "1", 1);
 			kill(server_pid, SIGUSR1);
+		}
 		else
+		{
+			write(1, "0", 1);
 			kill(server_pid, SIGUSR2);
+		}
+		nr_bits++;
 	}
 	else
 	{
-		i = 0;
-		while(i < 8)
+		if (i < 8)
 		{
 			kill(server_pid, SIGUSR2);
 			i++;
 		}
-		free(message);
+		else
+		{
+			write(1, "end\n", 4);
+		//free(message);
+			exit(0);
+		}
 	}
 }
 

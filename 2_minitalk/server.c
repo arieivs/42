@@ -1,16 +1,16 @@
 #include "minitalk.h"
-#include <stdio.h>
 
 static void	sigusr_handler(int sig_num, siginfo_t *info, void *context)
 {
-	int			client_pid;
+	static int	client_pid = 0;
 	static int	nr_bits = 0;
 	static char	c = 0;
 	static char	*message = NULL;
 	char		*tmp;
 	(void)context;
 
-	client_pid = info->si_pid;
+	if (info->si_pid)
+		client_pid = info->si_pid;
 	if (!message)
 	{
 		message = (char *)malloc(sizeof(char));
@@ -31,21 +31,30 @@ static void	sigusr_handler(int sig_num, siginfo_t *info, void *context)
 	{
 		if (c)
 		{
+			write(1, "adding ", 6);
+			write(1, &c, 1);
 			tmp = ft_strjoin(message, &c);
 			free(message);
 			message = tmp;
 		}
 		else
 		{
+			write(1, "message: ", 9);
 			ft_putstr_fd(message, 1);
+			message = NULL;
 			free(message);
 		}
 		nr_bits = 0;
 		c = 0;
 	}
 	else
+	{
+		write(1, "shift ", 6);
 		c = c << 1;
-	printf(" pid: %d ", client_pid);
+	}
+	write(1, "pid ", 4);
+	ft_putnbr_fd(client_pid, 1);
+	write(1, "\n", 1);
 	kill(client_pid, SIGUSR1);
 	// if kill returns -1, error
 }

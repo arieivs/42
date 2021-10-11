@@ -15,6 +15,7 @@ int	main(void)
 			bin[i] = '1';
 		else
 			bin[i] = '0';
+		ft_putnbr_fd(ref, 1);
 		ref = ref >> 1;
 		i++;
 	}
