@@ -9,66 +9,54 @@ static void	server_error(int client_pid, char *message)
 	exit(EXIT_FAILURE);
 }
 
+static char	*build_message(char *message, char c)
+{
+	char	*tmp;
+
+	if (!message)
+	{
+		message = (char *)malloc(sizeof(char));
+		message[0] = 0;
+	}
+	tmp = ft_strjoin(message, &c);
+	free(message);
+	return (tmp);
+}
+
+static char	*print_message(char *message)
+{
+	ft_putstr_fd(message, 1);
+	free(message);
+	return (NULL);
+}
+
 static void	sigusr_handler(int sig_num, siginfo_t *info, void *context)
 {
 	static int	client_pid = 0;
 	static int	nr_bits = 0;
 	static char	c = 0;
 	static char	*message = NULL;
-	char		*tmp;
 	(void)context;
 
 	if (info->si_pid)
 		client_pid = info->si_pid;
-	if (!message)
-	{
-		message = (char *)malloc(sizeof(char));
-		message[0] = 0;
-	}
 	if (sig_num != SIGUSR1 && sig_num != SIGUSR2)
 		return ;
 	if (sig_num == SIGUSR1)
-	{
-		//write(1, "1", 1);
 		c |= 1;
-	}
-	/*else if (sig_num == SIGUSR2)
-	{
-		//write(1, "0", 1);
-		c = c | 0;
-	}*/
-	nr_bits++;
-	if (nr_bits >= 8)
+	if (++nr_bits >= 8)
 	{
 		if (c)
-		{
-			//write(1, "adding ", 6);
-			//write(1, &c, 1);
-			tmp = ft_strjoin(message, &c);
-			free(message);
-			message = tmp;
-		}
+			message = build_message(message, c);
 		else
-		{
-			//write(1, "message: ", 9);
-			ft_putstr_fd(message, 1);
-			message = NULL;
-			free(message);
-		}
+			message = print_message(message);
 		nr_bits = 0;
 		c = 0;
 	}
 	else
-	{
-		//write(1, "shift ", 6);
 		c = c << 1;
-	}
-	//write(1, "pid ", 4);
-	//ft_putnbr_fd(client_pid, 1);
-	//write(1, "\n", 1);
 	if (kill(client_pid, SIGUSR1) == -1)
 		server_error(client_pid, message);
-	// if kill returns -1, error
 }
 
 int	main(void)
