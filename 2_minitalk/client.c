@@ -1,5 +1,13 @@
 #include "minitalk.h"
 
+static void	client_error(char *message)
+{
+	if (message)
+		free(message)
+	write("\nClient terminated unexpectedly.\n", 33);
+	exit(EXIT_FAILURE);
+}
+
 void	send_message(char *str, pid_t to_pid)
 {
 	static int	server_pid = 0;
@@ -9,43 +17,39 @@ void	send_message(char *str, pid_t to_pid)
 
 	if (to_pid)
 	{
-		write(1, "pid\n", 4);
+		//write(1, "pid\n", 4);
 		server_pid = to_pid;
 	}
 	if (str)
 	{
-		write(1, "str\n", 4);
+		//write(1, "str\n", 4);
 		message = ft_strdup(str);
 	}
 	if (message[nr_bits / 8])
 	{
-		write(1, &message[nr_bits / 8], 1);
-		ft_putnbr_fd(128 >> (nr_bits % 8), 1);
+		//write(1, &message[nr_bits / 8], 1);
+		//ft_putnbr_fd(128 >> (nr_bits % 8), 1);
 		if (message[nr_bits / 8] & (128 >> (nr_bits % 8)))
 		{
-			write(1, "1", 1);
-			kill(server_pid, SIGUSR1);
+			//write(1, "1", 1);
+			if (kill(server_pid, SIGUSR1) == -1)
+				client_error(message);
 		}
-		else
-		{
-			write(1, "0", 1);
-			kill(server_pid, SIGUSR2);
-		}
+		else if(kill(server_pid, SIGUSR2) == -1)
+			client_error(message);
 		nr_bits++;
+		return ;
+	}
+	if (i++ < 8)
+	{
+		kill(server_pid, SIGUSR2);
+		//i++;
 	}
 	else
 	{
-		if (i < 8)
-		{
-			kill(server_pid, SIGUSR2);
-			i++;
-		}
-		else
-		{
-			write(1, "end\n", 4);
-		//free(message);
-			exit(0);
-		}
+		//write(1, "end\n", 4);
+		free(message);
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -53,8 +57,11 @@ static void sigusr_handler(int sig_num)
 {
 	if (sig_num == SIGUSR1)
 		send_message(0, 0);
-	// else if (sig_num == SIGUSR2)
-		// error and exit
+	else if (sig_num == SIGUSR2)
+	{
+		write(1, "\nServer terminated unexpectedly.\n", 33);
+		exit(EXIT_FAILURE);
+	}
 }
 
 int	main(int ac, char **av)

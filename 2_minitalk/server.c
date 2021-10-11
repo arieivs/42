@@ -1,5 +1,14 @@
 #include "minitalk.h"
 
+static void	server_error(int client_pid, char *message)
+{
+	if (message)
+		free(message);
+	kill(client_pid, SIGUSR2);
+	write(1, "\nServer unexpected error.\n", 26);
+	exit(EXIT_FAILURE);
+}
+
 static void	sigusr_handler(int sig_num, siginfo_t *info, void *context)
 {
 	static int	client_pid = 0;
@@ -16,30 +25,32 @@ static void	sigusr_handler(int sig_num, siginfo_t *info, void *context)
 		message = (char *)malloc(sizeof(char));
 		message[0] = 0;
 	}
+	if (sig_num != SIGUSR1 && sig_num != SIGUSR2)
+		return ;
 	if (sig_num == SIGUSR1)
 	{
-		write(1, "1", 1);
-		c = c | 1;
+		//write(1, "1", 1);
+		c |= 1;
 	}
-	else if (sig_num == SIGUSR2)
+	/*else if (sig_num == SIGUSR2)
 	{
-		write(1, "0", 1);
+		//write(1, "0", 1);
 		c = c | 0;
-	}
+	}*/
 	nr_bits++;
 	if (nr_bits >= 8)
 	{
 		if (c)
 		{
-			write(1, "adding ", 6);
-			write(1, &c, 1);
+			//write(1, "adding ", 6);
+			//write(1, &c, 1);
 			tmp = ft_strjoin(message, &c);
 			free(message);
 			message = tmp;
 		}
 		else
 		{
-			write(1, "message: ", 9);
+			//write(1, "message: ", 9);
 			ft_putstr_fd(message, 1);
 			message = NULL;
 			free(message);
@@ -49,13 +60,14 @@ static void	sigusr_handler(int sig_num, siginfo_t *info, void *context)
 	}
 	else
 	{
-		write(1, "shift ", 6);
+		//write(1, "shift ", 6);
 		c = c << 1;
 	}
-	write(1, "pid ", 4);
-	ft_putnbr_fd(client_pid, 1);
-	write(1, "\n", 1);
-	kill(client_pid, SIGUSR1);
+	//write(1, "pid ", 4);
+	//ft_putnbr_fd(client_pid, 1);
+	//write(1, "\n", 1);
+	if (kill(client_pid, SIGUSR1) == -1)
+		server_error(client_pid, message);
 	// if kill returns -1, error
 }
 
