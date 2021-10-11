@@ -3,35 +3,37 @@
 static void	client_error(char *message)
 {
 	if (message)
-		free(message)
-	write("\nClient terminated unexpectedly.\n", 33);
+		free(message);
+	write(1, "\nClient terminated unexpectedly.\n", 33);
 	exit(EXIT_FAILURE);
 }
 
-void	send_message(char *str, pid_t to_pid)
+static int	send_end(int server_pid)
+{
+	static int	i = 0;
+
+	if (i++ < 8)
+	{
+		kill(server_pid, SIGUSR2);
+		return (1);
+	}
+	return (0);
+}
+
+static void	send_message(char *str, pid_t to_pid)
 {
 	static int	server_pid = 0;
 	static int	nr_bits = 0;
 	static char	*message = NULL;
-	static int	i = 0;
 
 	if (to_pid)
-	{
-		//write(1, "pid\n", 4);
 		server_pid = to_pid;
-	}
 	if (str)
-	{
-		//write(1, "str\n", 4);
 		message = ft_strdup(str);
-	}
 	if (message[nr_bits / 8])
 	{
-		//write(1, &message[nr_bits / 8], 1);
-		//ft_putnbr_fd(128 >> (nr_bits % 8), 1);
 		if (message[nr_bits / 8] & (128 >> (nr_bits % 8)))
 		{
-			//write(1, "1", 1);
 			if (kill(server_pid, SIGUSR1) == -1)
 				client_error(message);
 		}
@@ -40,17 +42,10 @@ void	send_message(char *str, pid_t to_pid)
 		nr_bits++;
 		return ;
 	}
-	if (i++ < 8)
-	{
-		kill(server_pid, SIGUSR2);
-		//i++;
-	}
-	else
-	{
-		//write(1, "end\n", 4);
-		free(message);
-		exit(EXIT_SUCCESS);
-	}
+	if (send_end(server_pid))
+		return ;
+	free(message);
+	exit(EXIT_SUCCESS);
 }
 
 static void sigusr_handler(int sig_num)
