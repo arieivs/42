@@ -102,6 +102,8 @@ A way to dissecate each byte into its 8 bits is by using Bitwise operations.
 * Analize each character and send the appropriate signal for each bit (I associated SIGUSR1 to 1 and SIGUSR2 to 0).
 * Once the whole message has been sent, send 8 times the signal corresponding to zero (a static variable will be needed to keep track of it as well). Once that is done, successfully terminate the programme.
 
+<br />
+
 ## 📬 A word on Pipex
 I shall require a further explanation on pipex and write about it then, here is what I know so far.
 
