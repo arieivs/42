@@ -65,7 +65,7 @@ Learn more about the [difference between signal() and sigaction()](https://stack
 
 <br />
 
-## 🔟 Converting Characters <-> Binary
+## 💬 Converting Characters <-> Binary
 Why not the plain old ASCII (decimal) to binary conversion?
 [Unicode](https://techterms.com/definition/unicode) is a universal character encoding standard.
 It's broader than ASCII, including special characters (and even emojis! 😎) and it can use up to 4 bytes per character.
@@ -84,9 +84,28 @@ A way to dissecate each byte into its 8 bits is by using Bitwise operations.
 
 <br />
 
-## 🗣 Project Overview
+## 🗣 Minitalk Project Overview
 
-### Server side
-* Assign your handler function to SIGUSR1 and SIGUSR2 signals with sigaction and its appropriate sigaction struct. 
+### 🤖 Server side
+* Assign your handler function to SIGUSR1 and SIGUSR2 signals with sigaction and its appropriate sigaction struct. Mask SIGUSR1 and SIGUSR2 signals so that they wait for the previous ones to be handled and use sa_sigaction function instead of sa_handler, so that you can access the client's PID in sig_info.
+* Display server's PID and call pause() inside an infinite loop, so that the server is continuously waiting for new signals.
+* The handler function will be called after each signal, so for each bit of the message. In order to be able to combine the bits into characters and then into a message, we need some of our variables to keep their value between function calls - we need static variables. I used static variables to store the number of bits received, the current character, the message and the client PID (after a while, the client PID wasn't sent anymore, thus becoming 0, so the server weren't able to send the confirmation signal to the client and sent it to himself, entering an infinite loop).
+* For each bit received, the character is updated accordingly. Once 8 bits have been received, the character is added to the message and reset.
+* The client will always end its message with a 0, so if the character is a 0, the message is printed on the terminal and reset.
+* After each bit is processed, a SIGUSR1 signal is sent to the client as a confirmation that the signal was received.
+* If an error occurs, a SIGUSR2 signal is sent tot the client notifying it that something went wrong.
 
+### 👩‍💻 Client side
+* Assign your handler function to the user signals, which will call the send_message function if the signal is SIGUSR1 or terminate the programme if the signal is SIGUSR2.
+* Call the send_message function for the first time, providing it the message to be sent and the server's PID. Then call pause() inside an infinite loop so that the programme is continuously waiting for signals from the server until the whole message has been sent.
+* Once again, we will need to preserve the value of some variables in the send_message function between function calls, so we will store the server's PID, the message and the number of bits sent as static variables.
+* Analize each character and send the appropriate signal for each bit (I associated SIGUSR1 to 1 and SIGUSR2 to 0).
+* Once the whole message has been sent, send 8 times the signal corresponding to zero (a static variable will be needed to keep track of it as well). Once that is done, successfully terminate the programme.
+
+## 📬 A word on Pipex
+I shall require a further explanation on pipex and write about it then, here is what I know so far.
+
+Pipes read and write in files.
+The output of the first command should be stored in a file, which will then be used as the input for the following command.
+For more on pipex, check out [Ben's repo](https://github.com/IamTheKaaZZ/pipex), [José's repo](https://github.com/J0Santos/42-pipex) or my future minishell partner [Knulpinette's repo](https://github.com/Knulpinette/Cursus42/tree/main/02-pipex).
 
