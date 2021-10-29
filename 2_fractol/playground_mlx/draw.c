@@ -1,6 +1,3 @@
-#include <mlx.h>
-#include <math.h>
-#include <stdio.h>
 #include "play_mlx.h"
 
 void	my_pixel_put(t_img_info *img, int x, int y, int color)

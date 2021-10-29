@@ -1,6 +1,3 @@
-#include <mlx.h>
-#include <math.h>
-#include <stdio.h>
 #include "play_mlx.h"
 
 void	test_colours(void)

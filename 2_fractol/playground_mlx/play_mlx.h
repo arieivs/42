@@ -1,6 +1,11 @@
 #ifndef PLAY_MLX_H
 # define PLAY_MLX_H
 
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
+# include <mlx.h>
+
 typedef struct s_img_info {
 	void	*img;
 	char	*addr;

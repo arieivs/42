@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include "play_mlx.h"
 
 int	get_trgb(int t, int r, int g, int b)
 {
