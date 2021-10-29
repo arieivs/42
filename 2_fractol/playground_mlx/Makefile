@@ -10,7 +10,7 @@ CC =		gcc
 
 CFLAGS =	-Wall -Werror -Wextra
 
-SRCS =		main.c draw.c colours.c
+SRCS =		main.c draw.c colours.c hook.c
 
 OBJS =		${SRCS:.c=.o}
 

@@ -13,21 +13,24 @@ void	test_colours(void)
 
 	trgb = get_trgb(t, r, g, b);
 	printf("Int: %d\n", trgb);
-	printf("TRGB: 0X%02X%X%X%X\n", get_t(trgb), get_r(trgb), get_g(trgb), get_b(trgb));
+	printf("TRGB: 0X%02X%X%X%X\n", get_t(trgb), get_r(trgb), get_g(trgb),
+		get_b(trgb));
 	shaded = add_shade(trgb, 0.5);
 	black = add_shade(trgb, 1);
-	printf("Shaded: 0X%02X%X%X%X | Black: 0X%02X%02X%02X%02X\n", get_t(shaded), get_r(shaded), get_g(shaded), get_b(shaded), get_t(black), get_r(black), get_g(black), get_b(black));
+	printf("Shaded: 0X%02X%X%X%X | Black: 0X%02X%02X%02X%02X\n", get_t(shaded),
+		get_r(shaded), get_g(shaded), get_b(shaded), get_t(black), get_r(black),
+		get_g(black), get_b(black));
 	opposite = get_opposite(trgb);
-	printf("Opposite: 0X%02X%X%X%X\n", get_t(opposite), get_r(opposite), get_g(opposite), get_b(opposite));
+	printf("Opposite: 0X%02X%X%X%X\n", get_t(opposite), get_r(opposite),
+		get_g(opposite), get_b(opposite));
 }
 
-int	main(void)
+void	test_draw(void)
 {
 	void		*mlx;
 	void		*mlx_window;
 	t_img_info	img;
 
-	//test_colours();
 	mlx = mlx_init();
 	mlx_window = mlx_new_window(mlx, 600, 300, "Janela");
 	img.img = mlx_new_image(mlx, 600, 300);
@@ -40,5 +43,23 @@ int	main(void)
 	draw_circle(&img, 500, 100, 50, 0x00FF9900); // EYEN orange circle
 	mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
 	mlx_loop(mlx);
+}
+
+void	test_hook(void)
+{
+	t_mlx_vars	mlx_vars;
+
+	mlx_vars.mlx = mlx_init();
+	mlx_vars.window = mlx_new_window(mlx_vars.mlx, 600, 300, "Janela");
+	mlx_key_hook(mlx_vars.window, key_hook, &mlx_vars);
+	mlx_mouse_hook(mlx_vars.window, mouse_hook, &mlx_vars);
+	mlx_loop(mlx_vars.mlx);
+}
+
+int	main(void)
+{
+	//test_colours();
+	//test_draw();
+	test_hook();
 	return (0);
 }
