@@ -11,14 +11,27 @@ static void	server_error(int client_pid, char *message)
 
 static char	*build_message(char *message, char c)
 {
+	int		message_len;
 	char	*tmp;
+	int		i;
 
 	if (!message)
 	{
 		message = (char *)malloc(sizeof(char));
 		message[0] = 0;
 	}
-	tmp = ft_strjoin(message, &c);
+	message_len = ft_strlen(message);
+	tmp = (char *)malloc(sizeof(char) * message_len + 2);
+	if (!tmp)
+		return (NULL);
+	i = 0;
+	while(message[i])
+	{
+		tmp[i] = message[i];
+		i++;
+	}
+	tmp[i] = c;
+	tmp[i + 1] = 0;
 	free(message);
 	return (tmp);
 }
