@@ -1,92 +1,27 @@
 #include <mlx.h>
 #include <math.h>
 #include <stdio.h>
+#include "play_mlx.h"
 
-typedef struct s_img_info {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_img_info;
-
-void	my_pixel_put(t_img_info *img, int x, int y, int color)
+void	test_colours(void)
 {
-	char	*pixel;
-	
-	pixel = img->addr + y * img->line_length + x * (img->bits_per_pixel / 8);
-	*(unsigned int *)pixel = color;
-}
+	int	t = 0;
+	int	r = 115;
+	int g = 186;
+	int b = 155;
+	int	trgb;
+	int	shaded;
+	int	black;
+	int	opposite;
 
-void	draw_line(t_img_info *img, int xi, int yi, int xf, int yf, int color)
-{
-	float	length;
-	float	dx;
-	float	dy;
-	float	x;
-	float	y;
-
-	// if start and end points are the same we'll have 0 / 0
-	if (xi == xf && yi == yf)
-	{
-		my_pixel_put(img, xi, yi, color);
-		return ;
-	}
-	// how much we need to travel in the x/y axis respectively
-	dx = (float)(xf - xi);
-	dy = (float)(yf - yi);
-	// how much we need to travel in the line's direction
-	length = sqrt((dy * dy) + (dx * dx));
-	// step (how much we should increase x/y at a time)
-	dx /= length;
-	dy /= length;
-	// starting points
-	x = (float)xi;
-	y = (float)yi;
-	while (length > 0)
-	{
-		my_pixel_put(img, x, y, color);
-		x += dx;
-		y += dy;
-		length--;
-	}
-}
-
-void	draw_square(t_img_info *img, int xi, int yi, int size, int color)
-{
-	int	i;
-
-	i = 0;
-	while (i <= size)
-	{
-		draw_line(img, xi, yi + i, xi + size, yi + i, color);
-		i++;
-	}
-}	
-
-void	draw_circle(t_img_info *img, int x0, int y0, int r, int color)
-{
-	int	x;
-	int	y;
-
-	x = x0 - r;
-	while (x <= x0 + r)
-	{
-		y = y0 + sqrt(r * r - (x - x0) * (x - x0));
-		my_pixel_put(img, x, y, color); 
-		y = y0 - sqrt(r * r - (x - x0) * (x - x0));
-		my_pixel_put(img, x, y, color); 
-		x++;
-	}
-	y = y0 - r;
-	while (y <= y0 + r)
-	{
-		x = x0 + sqrt(r * r - (y - y0) * (y - y0));
-		my_pixel_put(img, x, y, color); 
-		x = x0 - sqrt(r * r - (y - y0) * (y - y0));
-		my_pixel_put(img, x, y, color); 
-		y++;
-	}
+	trgb = get_trgb(t, r, g, b);
+	printf("Int: %d\n", trgb);
+	printf("TRGB: 0X%02X%X%X%X\n", get_t(trgb), get_r(trgb), get_g(trgb), get_b(trgb));
+	shaded = add_shade(trgb, 0.5);
+	black = add_shade(trgb, 1);
+	printf("Shaded: 0X%02X%X%X%X | Black: 0X%02X%02X%02X%02X\n", get_t(shaded), get_r(shaded), get_g(shaded), get_b(shaded), get_t(black), get_r(black), get_g(black), get_b(black));
+	opposite = get_opposite(trgb);
+	printf("Opposite: 0X%02X%X%X%X\n", get_t(opposite), get_r(opposite), get_g(opposite), get_b(opposite));
 }
 
 int	main(void)
@@ -95,6 +30,7 @@ int	main(void)
 	void		*mlx_window;
 	t_img_info	img;
 
+	//test_colours();
 	mlx = mlx_init();
 	mlx_window = mlx_new_window(mlx, 600, 300, "Janela");
 	img.img = mlx_new_image(mlx, 600, 300);

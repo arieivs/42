@@ -50,24 +50,3 @@ int	get_opposite(int trgb)
 	return (get_trgb(get_t(trgb), new_r, new_g, new_b));
 }
 
-int	main(void)
-{
-	int	t = 0;
-	int	r = 115;
-	int g = 186;
-	int b = 155;
-	int	trgb;
-	int	shaded;
-	int	black;
-	int	opposite;
-
-	trgb = get_trgb(t, r, g, b);
-	printf("Int: %d\n", trgb);
-	printf("TRGB: 0X%02X%X%X%X\n", get_t(trgb), get_r(trgb), get_g(trgb), get_b(trgb));
-	shaded = add_shade(trgb, 0.5);
-	black = add_shade(trgb, 1);
-	printf("Shaded: 0X%02X%X%X%X | Black: 0X%02X%02X%02X%02X\n", get_t(shaded), get_r(shaded), get_g(shaded), get_b(shaded), get_t(black), get_r(black), get_g(black), get_b(black));
-	opposite = get_opposite(trgb);
-	printf("Opposite: 0X%02X%X%X%X\n", get_t(opposite), get_r(opposite), get_g(opposite), get_b(opposite));
-	return (0);
-}

@@ -4,13 +4,13 @@ MLX_DIR = 	../minilibx_mms_20200219
 
 MLX_LIB	=	-L$(MLX_DIR) -lmlx
 
-INCLUDES =	-I$(MLX_DIR)
+INCLUDES =	-I$(MLX_DIR) -I.
 
 CC =		gcc
 
 CFLAGS =	-Wall -Werror -Wextra
 
-SRCS =		main.c
+SRCS =		main.c draw.c colours.c
 
 OBJS =		${SRCS:.c=.o}
 
