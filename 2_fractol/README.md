@@ -1,17 +1,24 @@
 # Fractol
 Explore the magic of fractals and the graphics library MiniLibX
 
-## Compiling MiniLibX
-In your Makefile, you must compile MiniLibX using its own Makefile and then copy the library libmlx.dylib to your current directory, as it is a dynamic library.
-Things to check:
-* Dynamic Library
+<br/>
 
-## Getting familiar with MiniLibX
-Resources:
+## 📚 Compiling MiniLibX
+In your Makefile, you must compile MiniLibX using its own Makefile and then copy the library libmlx.dylib to your current directory.
+**WHY??**
+Notice that MiniLibX is a dynamic library.
 
-42Docs MiniLibX: https://harm-smits.github.io/42docs/libs/minilibx.html
+### 💡 Dynamic Library
+A [Dynamic Library](https://www.techopedia.com/definition/27133/dynamic-library) is only loaded into your programme at run time, meaning it is not included in your executable.
+Whereas a Static Library becomes part of your programme during its compilation, thus being part of the executable.
+Learn more about the advantages and disadvantages of [static and dynamic libraries](https://www.learncpp.com/cpp-tutorial/a1-static-and-dynamic-libraries/).
 
-On MiniLibX and fractals: https://gontjarow.github.io/MiniLibX/
+<br/>
+
+## 🖼 Getting familiar with MiniLibX
+Follow the [MiniLibX documentation on 42Docs](https://harm-smits.github.io/42docs/libs/minilibx.html) and these [guides and tutorials on MiniLibX](https://gontjarow.github.io/MiniLibX/).
+
+More Resources:
 
 On MiniLibX and fractol: https://github.com/qst0/ft_libgfx
 
