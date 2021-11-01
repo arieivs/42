@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/01 12:09:58 by svieira           #+#    #+#             */
+/*   Updated: 2021/11/01 12:13:39 by svieira          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 static void	client_error(char *message)
@@ -37,7 +49,7 @@ static void	send_message(char *str, pid_t to_pid)
 			if (kill(server_pid, SIGUSR1) == -1)
 				client_error(message);
 		}
-		else if(kill(server_pid, SIGUSR2) == -1)
+		else if (kill(server_pid, SIGUSR2) == -1)
 			client_error(message);
 		nr_bits++;
 		return ;
@@ -48,7 +60,7 @@ static void	send_message(char *str, pid_t to_pid)
 	exit(EXIT_SUCCESS);
 }
 
-static void sigusr_handler(int sig_num)
+static void	sigusr_handler(int sig_num)
 {
 	if (sig_num == SIGUSR1)
 		send_message(0, 0);
