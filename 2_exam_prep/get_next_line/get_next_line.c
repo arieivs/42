@@ -6,22 +6,24 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 12:02:13 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/01 15:05:12 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/03 23:35:49 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* Differences from project GNL:
- * fd = 0
- * no fd changes between function calls
- * no buffer size variable
- * buffer_size = 1 makes our lives easier
+/* prototype: char	*get_next_line(int fd);
+ * return a line that has been read from fd
+ * the line should be returned including the '\n' if it exists
+ * if the buffer is empty, return NULL
+ * in case of error, return NULL
+ * compile with the flag -D BUFFER_SIZE=xx
+ * no need to handle reading from different files
  */
 
-int	get_next_line(char **line)
+char	*get_next_line(int fd)
 {
-	char	*cur_line;
+	/*char	*cur_line;
 	char	*buff;
 	char	*tmp;
 	int		rd;
@@ -38,6 +40,6 @@ int	get_next_line(char **line)
 		free(cur_line);
 		cur_line = tmp;
 		// or I free cur_line inside concat
-	}
-
+	}*/
+}
 
