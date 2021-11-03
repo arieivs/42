@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/01 12:14:53 by svieira           #+#    #+#             */
+/*   Updated: 2021/11/01 12:15:39 by svieira          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 static void	server_error(int client_pid, char *message)
@@ -25,7 +37,7 @@ static char	*build_message(char *message, char c)
 	if (!tmp)
 		return (NULL);
 	i = 0;
-	while(message[i])
+	while (message[i])
 	{
 		tmp[i] = message[i];
 		i++;
@@ -49,8 +61,8 @@ static void	sigusr_handler(int sig_num, siginfo_t *info, void *context)
 	static int	nr_bits = 0;
 	static char	c = 0;
 	static char	*message = NULL;
-	(void)context;
 
+	(void)context;
 	if (info->si_pid)
 		client_pid = info->si_pid;
 	if (sig_num != SIGUSR1 && sig_num != SIGUSR2)
@@ -89,6 +101,5 @@ int	main(void)
 	write(1, "\n", 1);
 	while (1)
 		pause();
-	return(0);
+	return (0);
 }
-	
