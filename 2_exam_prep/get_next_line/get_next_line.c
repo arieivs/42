@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 12:02:13 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/04 19:19:08 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/04 22:13:54 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,28 +96,28 @@ static char	*copy_next_line(char *line)
 		j++;
 	}
 	next_line[j] = 0;
+	free(line);
 	return (next_line);
 }
 
 static char	*copy_curr_line(char *line)
 {
 	int		i;
-	char	*new_line;
+	char	*curr_line;
 
 	i = 0;
 	while (line[i] && line[i] != '\n')
 		i++;
-	new_line = (char *)malloc(sizeof(char) * (i + 2));
+	curr_line = (char *)malloc(sizeof(char) * (i + 2));
 	i = 0;
 	while (line[i] && line[i] != '\n')
 	{
-		new_line[i] = line[i];
+		curr_line[i] = line[i];
 		i++;
 	}
-	new_line[i] = line[i];
-	new_line[i++] = 0;
-	free(line);
-	return (new_line);
+	curr_line[i] = line[i];
+	curr_line[i++] = 0;
+	return (curr_line);
 }
 
 char	*get_next_line(int fd)
@@ -130,34 +130,38 @@ char	*get_next_line(int fd)
 	if (read(fd, 0, 0) == -1 || BUFFER_SIZE < 1)
 		return (NULL);
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	line = (char *)malloc(sizeof(char));
-	line[0] = 0;
-	while (same_line(line) && (rd = read(fd, buff, BUFFER_SIZE)) > 0)
+	if (!next_line)
+	{
+		next_line = (char *)malloc(sizeof(char));
+		next_line[0] = 0;
+	}
+	while (same_line(next_line) && (rd = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[rd + 1] = 0;
-		line = concat(line, buff);
+		next_line = concat(next_line, buff);
 	}
 	free(buff);
 	// when we leave the while loop, there are 3 scenarios
 	// 1. error in read
 	// 2. it read 0 characters
 	// 2.1 EOF, we have to return NULL
-	// 2.2 we have the last line to return and reached EOF
-	if (rd == -1 || rd == 0)
+	if (rd == -1 || (rd == 0 && strlen(next_line) == 0))
 	{
-		if (next_line)
-			free(next_line);
+		free(next_line);
 		next_line = NULL;
-		if (rd == -1 || strlen(line) == 0)
-		{
-			free(line);
-			return (NULL);
-		}
-		return (line);
+		return (NULL);
+	}
+	// 2.2 we have the last line to return and reached EOF
+	if (rd == 0)
+	{
+		line = copy_curr_line(next_line);
+		free(next_line);
+		next_line = NULL;
+		return (line); 
 	}
 	// 3. there's a \n in line
-	next_line = copy_next_line(line);
-	line = copy_curr_line(line);
+	line = copy_curr_line(next_line);
+	next_line = copy_next_line(next_line);
 	return (line);
 }
 
