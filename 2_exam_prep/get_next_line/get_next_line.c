@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 12:02:13 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/04 22:13:54 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/04 23:27:41 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,17 @@ static char	*copy_curr_line(char *line)
 	i = 0;
 	while (line[i] && line[i] != '\n')
 		i++;
-	curr_line = (char *)malloc(sizeof(char) * (i + 2));
+	if (line[i] && line[i] == '\n')
+		i++;
+	curr_line = (char *)malloc(sizeof(char) * (i + 1));
 	i = 0;
 	while (line[i] && line[i] != '\n')
 	{
 		curr_line[i] = line[i];
 		i++;
 	}
-	curr_line[i] = line[i];
+	if (line[i] && line[i] == '\n')
+		curr_line[i++] = '\n';
 	curr_line[i++] = 0;
 	return (curr_line);
 }
