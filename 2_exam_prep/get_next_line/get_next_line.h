@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 11:58:01 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/01 12:02:01 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/04 18:51:10 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int	get_next_line(char **line);
+char	*get_next_line(int fd);
 
 #endif
