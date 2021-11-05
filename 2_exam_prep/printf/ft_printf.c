@@ -6,12 +6,12 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 00:42:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/05 01:16:49 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/05 12:21:23 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
+#include <stdarg.h>
 
 /*
  * prototype: int ft_printf(const char *, ... );
@@ -19,7 +19,7 @@
  * manage conversions s, d and x
  */
 
-static void	put_str(char *str)
+static int	print_s(char *str)
 {
 	int	size;
 
@@ -27,40 +27,112 @@ static void	put_str(char *str)
 	while (str[size])
 		 size++;
 	write(1, str, size);
+	return (size);
 }
 
-static void put_nbr_neg(int nb, int base, char *base_set)
+static void print_d_recursive(int nb)
 {
 	char c;
 
 	if (nb == 0)
 		return ;
-	put_nbr_neg(nb / base, base, base_set);
-	c = base_set[(nb % base) * -1];
+	print_d_recursive(nb / 10);
+	c = ((nb % 10) * -1) + '0';
 	write(1, &c, 1);
 }
 
-static void	put_nbr(int nb, int base, char *base_set)
+static int	print_d(int nb)
 {
+	int		printed;
+
 	if (nb == 0)
 	{
 		write(1, "0", 1);
-		return ;
+		return (1);
 	}
+	printed = 0;
 	if (nb < 0)
+	{
 		write(1, "-", 1);
+		printed++;
+	}
 	if (nb > 0)
 		nb *= -1; 
-	put_nbr_neg(nb, base, base_set);
+	print_d_recursive(nb);
+	while (nb < 0)
+	{
+		nb = nb / 10;
+		printed++;
+	}
+	return (printed);
 }
 
-int	main(void)
+static void	print_x_recursive(unsigned int nb)
 {
-	put_nbr(120, 16, "0123456789abcdef");
-	put_str("\nhello!\n");
-	put_nbr(0, 10, "0123456789");
-	put_str("\nagain\n");
-	put_nbr(-1678, 10, "0123456789");
-	put_str("\nlast\n");
-	return (0);
+	char	c;
+
+	if (nb == 0)
+		return ;
+	print_x_recursive(nb / 16);
+	c = "0123456789abcdef"[nb % 16];
+	write(1, &c, 1);
 }
+
+static int	print_x(unsigned int nb)
+{
+	int	printed;
+
+	if (nb == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	printed = 0;
+	print_x_recursive(nb);
+	while (nb > 0)
+	{
+		nb = nb / 16;
+		printed++;
+	}
+	return (printed);
+}
+
+static int print_flag(char flag, va_list ap)
+{
+	int	printed;
+
+	printed = 0;
+	if (flag == 's')
+		printed = print_s(va_arg(ap, char*));
+	if (flag == 'd')
+		printed = print_d(va_arg(ap, int));
+	if (flag == 'x')
+		printed = print_x(va_arg(ap, unsigned int));
+	return (printed);
+}
+
+int	ft_printf(char *str, ...)
+{
+	va_list	ap;
+	int		i;
+	int		printed;
+
+	va_start(ap, str);
+	i = 0;
+	printed = 0;
+	while (str[i])
+	{
+		if (str[i] == '%')
+		{
+			printed += print_flag(str[++i], ap);
+			i++;
+			continue ;
+		}
+		write(1, &str[i], 1);
+		printed++;
+		i++;
+	}
+	va_end(ap);
+	return (printed);
+}
+
