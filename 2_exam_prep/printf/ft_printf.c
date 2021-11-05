@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 00:42:38 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/05 12:21:23 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/05 17:59:52 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ static int	print_s(char *str)
 {
 	int	size;
 
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	size = 0;
 	while (str[size])
 		 size++;
