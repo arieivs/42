@@ -6,11 +6,19 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 11:25:06 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/01 11:48:54 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/05 18:36:22 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+
+/*
+ * programme
+ * takes two strings
+ * displays without doubles the characters present in either of the strings
+ * followed by \n
+ * if it doesn't receive two args, should display a \n
+ */
 
 int	new_letter(char *str, int i, char letter)
 {
