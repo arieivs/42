@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 12:02:13 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/04 23:27:41 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/05 18:04:20 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,9 +138,10 @@ char	*get_next_line(int fd)
 		next_line = (char *)malloc(sizeof(char));
 		next_line[0] = 0;
 	}
+	rd = 1;
 	while (same_line(next_line) && (rd = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
-		buff[rd + 1] = 0;
+		buff[rd] = 0;
 		next_line = concat(next_line, buff);
 	}
 	free(buff);
