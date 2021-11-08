@@ -25,3 +25,5 @@ On MiniLibX and fractol: https://github.com/qst0/ft_libgfx
 MLX Build (Docker container): https://github.com/Chr0nos/mlx-build
 
 Burnship fractal: http://www.paulbourke.net/fractals/burnship/
+
+Get hypnotised by Julia set: https://julia.fractalnft.art/
