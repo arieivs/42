@@ -53,6 +53,8 @@ void	test_hook(void)
 	mlx_vars.window = mlx_new_window(mlx_vars.mlx, 600, 300, "Janela");
 	mlx_key_hook(mlx_vars.window, key_hook, &mlx_vars);
 	mlx_mouse_hook(mlx_vars.window, mouse_hook, &mlx_vars);
+	mlx_hook(mlx_vars.window, 7, 1L<<4, greet, &mlx_vars); // not working
+	mlx_hook(mlx_vars.window, 8, 1L<<5, goodbye, &mlx_vars); // not working
 	mlx_loop(mlx_vars.mlx);
 }
 

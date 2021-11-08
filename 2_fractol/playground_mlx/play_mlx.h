@@ -32,5 +32,7 @@ void	draw_square(t_img_info *img, int xi, int yi, int size, int color);
 void	draw_circle(t_img_info *img, int x0, int y0, int r, int color);
 int		key_hook(int keycode, t_mlx_vars *mlx_vars);
 int		mouse_hook(int button, int x, int y, t_mlx_vars *mlx_vars);
+int		greet(t_mlx_vars *mlx_vars);
+int		goodbye(t_mlx_vars *mlx_vars);
 
 #endif
