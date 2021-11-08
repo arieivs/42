@@ -27,3 +27,7 @@ MLX Build (Docker container): https://github.com/Chr0nos/mlx-build
 Burnship fractal: http://www.paulbourke.net/fractals/burnship/
 
 Get hypnotised by Julia set: https://julia.fractalnft.art/
+
+Xlib Programming Manual: https://www.niksula.hut.fi/~jkirma/books/xlib.pdf#page=36
+
+X11 Protocol: https://www.x.org/releases/X11R7.7/doc/xproto/x11protocol.html
