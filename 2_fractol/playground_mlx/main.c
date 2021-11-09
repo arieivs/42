@@ -36,7 +36,7 @@ void	test_draw(void)
 	img.img = mlx_new_image(mlx, 600, 300);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
 		&img.line_length, &img.endian);
-	draw_line(&img, 5, 5, 5, 5, 0x00FFFFFF); // white dot
+	draw_line(&img, 599, 200, 599, 200, 0x00FFFFFF); // white dot
 	draw_line(&img, 6, 120, 6, 6, 0x0002C0A0); // EYEN green line
 	draw_line(&img, 20, 120, 120, 20, 0x00FBF3E4); // EYEN bege line
 	draw_square(&img, 100, 50, 100, 0x000000BB); // EYEN blue square
@@ -61,7 +61,7 @@ void	test_hook(void)
 int	main(void)
 {
 	//test_colours();
-	//test_draw();
-	test_hook();
+	test_draw();
+	//test_hook();
 	return (0);
 }
