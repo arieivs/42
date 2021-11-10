@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:59:29 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/10 16:54:28 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/10 17:24:43 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ int	get_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	my_pixel_put(t_mlx_vars *mlx_vars, int x, int y, int color)
+void	my_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*pixel;
 
-	pixel = mlx_vars->addr + y * mlx_vars->line_length
-		+ x * (mlx_vars->bits_per_pixel / 8);
+	pixel = vars->addr + y * vars->line_length
+		+ x * (vars->bits_per_pixel / 8);
 	*(unsigned int *)pixel = color;
 }
 
-int	mouse_hook(int button, int x, int y, t_mlx_vars *mlx_vars)
+int	mouse_hook(int button, int x, int y, t_vars *vars)
 {
 	(void)x;
 	(void)y;
 	if (button == 4)
-		zoom(mlx_vars, 1);
+		zoom(vars, 1);
 	else if (button == 5)
-		zoom(mlx_vars, 0);
+		zoom(vars, 0);
 	return (0);
 }

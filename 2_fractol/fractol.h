@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/10 16:52:52 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/10 17:26:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define STEP 0.002 // 1-(-2) / 1500
 # define MAX_ITERATIONS 50
 
-typedef struct	s_mlx_vars {
+typedef struct	s_vars {
 	void	*mlx;
 	void	*window;
 	void	*img;
@@ -34,11 +34,13 @@ typedef struct	s_mlx_vars {
 	double	min_re;
 	double	max_im;
 	double	step;
-}				t_mlx_vars;
+	char	fractal;
+}				t_vars;
 
 int		get_trgb(int t, int r, int g, int b);
-void	my_pixel_put(t_mlx_vars *mlx_vars, int x, int y, int color);
-int		mouse_hook(int button, int x, int y, t_mlx_vars *mlx_vars);
-void	zoom(t_mlx_vars *mlx_vars, int zoom_in);
+void	my_pixel_put(t_vars *vars, int x, int y, int color);
+int		mouse_hook(int button, int x, int y, t_vars *vars);
+void	zoom(t_vars *vars, int zoom_in);
+void	mandelbrot(t_vars *vars);
 
 #endif
