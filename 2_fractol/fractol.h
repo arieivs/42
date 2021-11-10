@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/10 12:07:13 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/10 14:48:54 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # include <mlx.h>
 # define WIDTH 1500
 # define HEIGHT 1200
-# define MINRE -2
-# define MAXIM 1
+# define MIN_RE -2.0
+# define MAX_IM 1.2
+# define STEP 0.002 // 1-(-2) / 1500
+# define MAX_ITERATIONS 100
 
 typedef struct	s_mlx_vars {
 	void	*mlx;

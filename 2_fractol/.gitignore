@@ -1,6 +1,6 @@
 *.o
 libmlx.dylib
-*/libmlx.dylib
 minilibx_mms_20200219/
+fractol
 playground_mlx/play
 playground_mlx/a.out
