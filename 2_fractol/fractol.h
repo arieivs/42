@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/09 16:20:43 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/10 12:07:13 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <mlx.h>
 # define WIDTH 1500
 # define HEIGHT 1200
+# define MINRE -2
+# define MAXIM 1
 
 typedef struct	s_mlx_vars {
 	void	*mlx;
@@ -25,6 +27,7 @@ typedef struct	s_mlx_vars {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
+	int		line_length;
 	int		endian;
 }				t_mlx_vars;
 
