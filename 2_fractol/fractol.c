@@ -6,22 +6,13 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:01:25 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/10 15:02:25 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/10 16:04:22 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	my_pixel_put(t_mlx_vars *mlx_vars, int x, int y, int color)
-{
-	char	*pixel;
-
-	pixel = mlx_vars->addr + y * mlx_vars->line_length
-		+ x * (mlx_vars->bits_per_pixel / 8);
-	*(unsigned int *)pixel = color;
-}
-
-int		iterate_mandelbrot(double c_re, double c_im)
+static int	iterate_mandelbrot(double c_re, double c_im)
 {
 	int		n;
 	double	z_re;
@@ -42,7 +33,14 @@ int		iterate_mandelbrot(double c_re, double c_im)
 	return (n);
 }
 
-void	draw_mandelbrot(t_mlx_vars *mlx_vars)
+static int	color_mandelbrot(int n)
+{
+	// n = 0 => rgb(59, 66, 159)
+	// n = MAX => rgb(94, 177, 191)
+	return (get_trgb(0, 59 + 0.7 * n, 2.22 * n + 66, 0.64 * n + 159));
+}
+
+void	mandelbrot(t_mlx_vars *mlx_vars)
 {
 	double	c_re;
 	double	c_im;
@@ -58,11 +56,8 @@ void	draw_mandelbrot(t_mlx_vars *mlx_vars)
 		while (x < WIDTH)
 		{
 			c_re = MIN_RE + STEP * x;
-			// check where in the mandelbrot is c
-			// draw in (x,y) accordingly
 			n = iterate_mandelbrot(c_re, c_im);
-			if (n == MAX_ITERATIONS)
-				my_pixel_put(mlx_vars, x, y, 0x000000FF);
+			my_pixel_put(mlx_vars, x, y, color_mandelbrot(n));
 			x++;
 		}
 		y++;
@@ -79,7 +74,7 @@ int	main(void)
 	mlx_vars.addr = mlx_get_data_addr(mlx_vars.img, &mlx_vars.bits_per_pixel,
 			&mlx_vars.line_length, &mlx_vars.endian);
 	// draw the fractal in the image
-	draw_mandelbrot(&mlx_vars);
+	mandelbrot(&mlx_vars);
 	mlx_put_image_to_window(mlx_vars.mlx, mlx_vars.window, mlx_vars.img, 0, 0);
 	mlx_loop(mlx_vars.mlx);
 	return (0);

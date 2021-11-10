@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/10 14:48:54 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/10 15:59:17 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define MIN_RE -2.0
 # define MAX_IM 1.2
 # define STEP 0.002 // 1-(-2) / 1500
-# define MAX_ITERATIONS 100
+# define MAX_ITERATIONS 50
 
 typedef struct	s_mlx_vars {
 	void	*mlx;
@@ -32,5 +32,8 @@ typedef struct	s_mlx_vars {
 	int		line_length;
 	int		endian;
 }				t_mlx_vars;
+
+int	get_trgb(int t, int r, int g, int b);
+void	my_pixel_put(t_mlx_vars *mlx_vars, int x, int y, int color);
 
 #endif
