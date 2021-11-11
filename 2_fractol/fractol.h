@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/10 17:26:42 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/11 15:19:03 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_vars {
 int		get_trgb(int t, int r, int g, int b);
 void	my_pixel_put(t_vars *vars, int x, int y, int color);
 int		mouse_hook(int button, int x, int y, t_vars *vars);
-void	zoom(t_vars *vars, int zoom_in);
+void	zoom(t_vars *vars, int zoom_in, int x, int y);
 void	mandelbrot(t_vars *vars);
 
 #endif

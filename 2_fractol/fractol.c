@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:01:25 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/10 17:26:58 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/11 15:23:07 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,17 @@ void	put_fractal_to_window(t_vars *vars)
 	mlx_put_image_to_window(vars->mlx, vars->window, vars->img, 0, 0);
 }	
 
-void	zoom(t_vars *vars, int zoom_in)
+void	zoom(t_vars *vars, int zoom_in, int x, int y)
 {
+	double	new_step;
+
 	if (zoom_in)
-		vars->step /= 2;
+		new_step = vars->step / 2;
 	else
-		vars->step *= 2;
+		new_step = vars->step * 2;
+	vars->min_re = vars->min_re + (vars->step - new_step) * (double)x;
+	vars->max_im = vars->max_im + (new_step - vars->step) * (double)y;
+	vars->step = new_step;
 	put_fractal_to_window(vars);
 }
 
