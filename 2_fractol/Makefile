@@ -10,7 +10,7 @@ CC =		gcc
 
 CFLAGS =	-Wall -Werror -Wextra
 
-SRCS =		fractol.c fractol_utils.c mandelbrot.c
+SRCS =		fractol.c fractol_utils.c mandelbrot.c julia.c
 
 OBJS =		${SRCS:.c=.o}
 

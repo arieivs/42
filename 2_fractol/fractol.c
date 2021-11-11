@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:01:25 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/11 15:23:07 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/11 19:51:52 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	put_fractal_to_window(t_vars *vars)
 {
 	if (vars->fractal == 'M')
 		mandelbrot(vars);
+	else if (vars->fractal == 'J')
+		julia(vars);
 	// else if 'J' julia set
 	mlx_put_image_to_window(vars->mlx, vars->window, vars->img, 0, 0);
 }	
@@ -52,7 +54,7 @@ int	main(void)
 
 	init_vars(&vars);
 	// take the fractal we want from input
-	vars.fractal = 'M';
+	vars.fractal = 'J';
 	mlx_mouse_hook(vars.window, mouse_hook, &vars);
 	put_fractal_to_window(&vars);
 	mlx_loop(vars.mlx);
