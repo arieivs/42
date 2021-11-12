@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:59:29 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/11 15:19:51 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/12 01:11:10 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	my_pixel_put(t_vars *vars, int x, int y, int color)
 
 int	mouse_hook(int button, int x, int y, t_vars *vars)
 {
-	(void)x;
-	(void)y;
 	if (button == 4 || button == 5)
 		zoom(vars, button == 4, x, y);
 	return (0);

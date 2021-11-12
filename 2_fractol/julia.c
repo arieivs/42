@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:36:33 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/11 20:21:46 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/12 00:45:11 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static int	iterate_julia(double z_re, double z_im)
 {
-	int	n;
-	double c_re;
-	double c_im;
-	double z_re_tmp;
+	int		n;
+	double	c_re;
+	double	c_im;
+	double	z_re_tmp;
 
 	n = 0;
-	c_re = -0.6; // think where to get it from
-	c_im = 0.1; // same same
+	c_re = 0.284; // think where to get it from
+	c_im = 0.0; // same same
 	while (++n < MAX_ITERATIONS)
 	{
 		z_re_tmp = z_re * z_re - (z_im * z_im) + c_re;
@@ -35,6 +35,11 @@ static int	iterate_julia(double z_re, double z_im)
 
 static int	color_julia(int n)
 {
+	/*int	diff;
+
+	diff = ((MAX_ITERATIONS - n) * (MAX_ITERATIONS - n)) %
+		(MAX_ITERATIONS * MAX_ITERATIONS);
+	return (get_trgb(0, 255 - 255 * diff, 0, 0));*/
 	// n = 0 => rgb(59, 66, 159)
 	// n = MAX => rgb(94, 177, 191)
 	return (get_trgb(0, 59 + 0.7 * n, 2.22 * n + 66, 0.64 * n + 159));
