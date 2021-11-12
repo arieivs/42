@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 18:49:29 by svieira           #+#    #+#             */
-/*   Updated: 2021/02/15 18:51:32 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/12 11:47:11 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	while (*s)
-	{
-		write(fd, s, 1);
-		s++;
-	}
+	int	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	write(fd, s, len);
 }
