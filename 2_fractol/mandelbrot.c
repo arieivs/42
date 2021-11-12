@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:24:54 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/10 17:25:49 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/12 13:20:00 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ static int	iterate_mandelbrot(double c_re, double c_im)
 	return (n);
 }
 
-static int	color_mandelbrot(int n)
-{
-	// n = 0 => rgb(59, 66, 159)
-	// n = MAX => rgb(94, 177, 191)
-	return (get_trgb(0, 59 + 0.7 * n, 2.22 * n + 66, 0.64 * n + 159));
-}
-
 void	mandelbrot(t_vars *vars)
 {
 	double	c_re;
@@ -57,7 +50,7 @@ void	mandelbrot(t_vars *vars)
 		{
 			c_re = vars->min_re + vars->step * x;
 			n = iterate_mandelbrot(c_re, c_im);
-			my_pixel_put(vars, x, y, color_mandelbrot(n));
+			my_pixel_put(vars, x, y, color_fractal(n));
 			x++;
 		}
 		y++;

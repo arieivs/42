@@ -14,7 +14,7 @@ CC =		gcc
 
 CFLAGS =	-Wall -Werror -Wextra
 
-SRCS =		fractol.c fractol_utils.c mandelbrot.c julia.c
+SRCS =		fractol.c interface.c mandelbrot.c julia.c color.c hooks.c
 
 OBJS =		${SRCS:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:36:33 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/12 00:45:11 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/12 13:19:40 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	iterate_julia(double z_re, double z_im)
 	double	z_re_tmp;
 
 	n = 0;
-	c_re = 0.284; // think where to get it from
-	c_im = 0.0; // same same
+	c_re = -0.835; // think where to get it from
+	c_im = -0.232; // same same
 	while (++n < MAX_ITERATIONS)
 	{
 		z_re_tmp = z_re * z_re - (z_im * z_im) + c_re;
@@ -33,18 +33,6 @@ static int	iterate_julia(double z_re, double z_im)
 	return (n);
 }
 
-static int	color_julia(int n)
-{
-	/*int	diff;
-
-	diff = ((MAX_ITERATIONS - n) * (MAX_ITERATIONS - n)) %
-		(MAX_ITERATIONS * MAX_ITERATIONS);
-	return (get_trgb(0, 255 - 255 * diff, 0, 0));*/
-	// n = 0 => rgb(59, 66, 159)
-	// n = MAX => rgb(94, 177, 191)
-	return (get_trgb(0, 59 + 0.7 * n, 2.22 * n + 66, 0.64 * n + 159));
-}
-	
 void	julia(t_vars *vars)
 {
 	double	z_re;
@@ -62,7 +50,7 @@ void	julia(t_vars *vars)
 		{
 			z_re = vars->min_re + vars->step * x;
 			n = iterate_julia(z_re, z_im);
-			my_pixel_put(vars, x, y, color_julia(n));
+			my_pixel_put(vars, x, y, color_fractal(n));
 			x++;
 		}
 		y++;

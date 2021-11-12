@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/12 11:49:05 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/12 13:27:19 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,39 @@ typedef struct	s_vars {
 	double	c_im_julia;
 }				t_vars;
 
+/*
+ * INTERFACE
+ * checks and treats user input
+ */
+int		invalid_input(int ac, char **av);
+void	print_instructions(void);
+
+/*
+ * COLOR
+ */
 int		get_trgb(int t, int r, int g, int b);
+int		color_fractal(int n);
 void	my_pixel_put(t_vars *vars, int x, int y, int color);
+
+/*
+ * HOOKS
+ */
 int		mouse_hook(int button, int x, int y, t_vars *vars);
 void	zoom(t_vars *vars, int zoom_in, int x, int y);
+
+/*
+ * MANDELBROT
+ */
 void	mandelbrot(t_vars *vars);
+
+/*
+ * JULIA
+ */
 void	julia(t_vars *vars);
+
+/*
+ * MAIN
+ */
+void	put_fractal_to_window(t_vars *vars);
 
 #endif
