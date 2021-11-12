@@ -6,12 +6,16 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:01:25 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/11 19:51:52 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/12 11:53:31 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/*int	invalid_input(int ac, char *av)
+{
+	if (ac == 2 && av[1])
+*/
 void	init_vars(t_vars *vars)
 {
 	vars->mlx = mlx_init();
@@ -30,7 +34,6 @@ void	put_fractal_to_window(t_vars *vars)
 		mandelbrot(vars);
 	else if (vars->fractal == 'J')
 		julia(vars);
-	// else if 'J' julia set
 	mlx_put_image_to_window(vars->mlx, vars->window, vars->img, 0, 0);
 }	
 

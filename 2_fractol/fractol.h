@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/11 20:13:51 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/12 11:49:05 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <mlx.h>
+# include "libft/libft.h"
 # define WIDTH 1000 // 2000
 # define HEIGHT 600 // 1200
 # define MIN_RE -2.0
@@ -35,6 +36,8 @@ typedef struct	s_vars {
 	double	max_im;
 	double	step;
 	char	fractal;
+	double	c_re_julia;
+	double	c_im_julia;
 }				t_vars;
 
 int		get_trgb(int t, int r, int g, int b);

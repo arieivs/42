@@ -4,7 +4,11 @@ MLX_DIR = 	minilibx_mms_20200219
 
 MLX_LIB	=	-L$(MLX_DIR) -lmlx
 
-INCLUDES =	-I$(MLX_DIR) -I.
+LFT_DIR	=	libft
+
+LFT_LIB	=	-L$(LFT_DIR) -lft
+
+INCLUDES =	-I$(MLX_DIR) -I$(LFT_DIR) -I.
 
 CC =		gcc
 
@@ -22,7 +26,8 @@ RM =		rm -f
 $(NAME):	$(OBJS)
 			make -C $(MLX_DIR)
 			cp $(MLX_DIR)/libmlx.dylib .
-			$(CC) $(CFLAGS) $(OBJS) $(MLX_LIB) -o $(NAME)
+			make -C $(LFT_DIR)
+			$(CC) $(CFLAGS) $(OBJS) $(MLX_LIB) $(LFT_LIB) -o $(NAME)
 
 all:		$(NAME)
 

@@ -6,6 +6,9 @@ Explore the magic of fractals and the graphics library MiniLibX
 ## 📚 Compiling MiniLibX
 In your Makefile, you must compile MiniLibX using its own Makefile and then copy the library libmlx.dylib to your current directory.
 **WHY??**
+dyld: Library not loaded: libmlx.dylib
+  Referenced from: /Users/svieira/code/arieivs/42/2_fractol/./fractol
+  Reason: image not found
 Notice that MiniLibX is a dynamic library.
 
 ### 💡 Dynamic Library
