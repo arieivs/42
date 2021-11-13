@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 11:11:01 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 11:54:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdio.h>
 # include <math.h>
 # include <mlx.h>
-# include "libft/libft.h"
 # define WIDTH 1000 // 2000
 # define HEIGHT 600 // 1200
 # define MIN_RE -2.0

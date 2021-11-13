@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:01:25 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/12 13:25:24 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 11:46:01 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ void	init_vars(t_vars *vars, char **av)
 	vars->max_im = MAX_IM;
 	vars->step = STEP;
 	vars->fractal = av[1][0];
-	/*if (vars->fractal == 'j')
+	vars->c_re_julia = 0.0;
+	vars->c_im_julia = 0.0;
+	if (vars->fractal == 'j' && av[2] && av[3])
 	{
 		vars->c_re_julia = ft_atof(av[2]);
 		vars->c_im_julia = ft_atof(av[3]);
-	}*/
+	}
 }
 
 void	put_fractal_to_window(t_vars *vars)
