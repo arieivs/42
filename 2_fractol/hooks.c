@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:02:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 12:37:18 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 12:57:16 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	move(int keycode, t_vars *vars)
 int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == ESC)
+	{
 		mlx_destroy_window(vars->mlx, vars->window);
+		exit(EXIT_SUCCESS);
+	}
 	if (keycode >= LEFT && keycode <= UP)
 		move(keycode, vars);
 	return (0);
