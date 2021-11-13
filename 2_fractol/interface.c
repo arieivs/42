@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:24:15 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 11:54:58 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 13:25:51 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static int	is_float(char *str)
 
 int	invalid_input(int ac, char **av)
 {
-	if (ac == 2 && (av[1][0] == 'm' || av[1][0] == 'j') && av[1][1] == 0)
+	if (ac == 2 && (av[1][0] == 'm' || av[1][0] == 'j' || av[1][0] == 's') &&
+		av[1][1] == 0)
 		return (0);
 	if (ac == 4 && av[1][0] == 'j' && av[1][1] == 0 && is_float(av[2]) &&
 		is_float(av[3]))
@@ -42,7 +43,8 @@ void	print_instructions(void)
 {
 	printf("Please provide the following parameters:\n\
 	m - for displaying the Mandelbrot set\n\
-	j - for displaying a Julia set\n");
+	j - for displaying a Julia set\n\
+	s - for displaying the Burning Ship fractal\n");
 	printf("For Julia set you may choose the constant c ");
 	printf("by providing Re(c) and Im(c)\n\
 	choose numbers between -1.0 and 1.0\n\

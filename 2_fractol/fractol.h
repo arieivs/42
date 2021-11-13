@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 12:32:55 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 13:15:56 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ void	mandelbrot(t_vars *vars);
  * JULIA
  */
 void	julia(t_vars *vars);
+
+/*
+ * BURNSHIPS
+ */
+void	burnships(t_vars *vars);
 
 /*
  * MAIN

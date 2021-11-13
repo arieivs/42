@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:01:25 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 11:59:06 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 13:14:45 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	put_fractal_to_window(t_vars *vars)
 		mandelbrot(vars);
 	else if (vars->fractal == 'j')
 		julia(vars);
+	else if (vars->fractal == 's')
+		burnships(vars);
 	mlx_put_image_to_window(vars->mlx, vars->window, vars->img, 0, 0);
 }	
 
