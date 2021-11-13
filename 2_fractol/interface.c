@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:24:15 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 11:11:06 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 11:18:49 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ double	ft_atof(char *str)
 		while (j >= i)
 			f = (f + (double)(str[j--] - '0')) / 10.0;
 	}
-	f = (double)signal * ((double)n + f);
-	return (f);
+	return ((double)signal * ((double)n + f));
 }
 
