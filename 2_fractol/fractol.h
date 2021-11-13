@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 12:00:01 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 12:32:55 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # define MAX_IM 1.2
 # define STEP 0.004 // 0.002 // 2-(-2) / 2000
 # define MAX_ITERATIONS 50
+# define ESC 53
+# define LEFT 123
+# define RIGHT 124
+# define DOWN 125
+# define UP 126
 
 typedef struct	s_vars {
 	void	*mlx;

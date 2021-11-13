@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:02:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 12:29:11 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 12:37:18 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,24 @@ int	mouse_hook(int button, int x, int y, t_vars *vars)
 	return (0);
 }
 
+void	move(int keycode, t_vars *vars)
+{
+	if (keycode == LEFT)
+		vars->min_re -= vars->step;
+	else if (keycode == RIGHT)
+		vars->min_re += vars->step;
+	else if (keycode == DOWN)
+		vars->max_im -= vars->step;
+	else if (keycode == UP)
+		vars->max_im += vars->step;
+	put_fractal_to_window(vars);
+}
+
 int	key_hook(int keycode, t_vars *vars)
 {
-	if (keycode == 53) // esc
+	if (keycode == ESC)
 		mlx_destroy_window(vars->mlx, vars->window);
+	if (keycode >= LEFT && keycode <= UP)
+		move(keycode, vars);
 	return (0);
 }

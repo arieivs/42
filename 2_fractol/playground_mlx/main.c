@@ -61,7 +61,7 @@ void	test_hook(void)
 int	main(void)
 {
 	//test_colours();
-	test_draw();
-	//test_hook();
+	//test_draw();
+	test_hook();
 	return (0);
 }
