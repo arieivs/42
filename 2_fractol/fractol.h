@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 11:54:42 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 12:00:01 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ void	my_pixel_put(t_vars *vars, int x, int y, int color);
 /*
  * HOOKS
  */
-int		mouse_hook(int button, int x, int y, t_vars *vars);
 void	zoom(t_vars *vars, int zoom_in, int x, int y);
+int		mouse_hook(int button, int x, int y, t_vars *vars);
+int		key_hook(int keycode, t_vars *vars);
 
 /*
  * MANDELBROT

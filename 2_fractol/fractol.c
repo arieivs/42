@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:01:25 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 11:46:01 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 11:59:06 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int ac, char **av)
 	}
 	init_vars(&vars, av);
 	mlx_mouse_hook(vars.window, mouse_hook, &vars);
+	mlx_key_hook(vars.window, key_hook, &vars);
 	put_fractal_to_window(&vars);
 	mlx_loop(vars.mlx);
 	return (0);
