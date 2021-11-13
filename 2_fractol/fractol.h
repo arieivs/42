@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/12 13:27:19 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/13 11:11:01 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_vars {
  */
 int		invalid_input(int ac, char **av);
 void	print_instructions(void);
+double	ft_atof(char *str);
 
 /*
  * COLOR
