@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:02:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 12:57:16 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/22 20:39:04 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	zoom(t_vars *vars, int zoom_in, int x, int y)
 	double	new_step;
 
 	if (zoom_in)
-		new_step = vars->step / 2;
+		new_step = vars->step / 1.05;
 	else
-		new_step = vars->step * 2;
+		new_step = vars->step * 1.05;
 	vars->min_re = vars->min_re + (vars->step - new_step) * (double)x;
 	vars->max_im = vars->max_im + (new_step - vars->step) * (double)y;
 	vars->step = new_step;
