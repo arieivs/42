@@ -5,3 +5,5 @@ libft/
 fractol
 playground_mlx/play
 playground_mlx/a.out
+fractol.dSYM/
+libmlx.dylib.dSYM/

@@ -6,16 +6,18 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:24:15 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 13:25:51 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/22 18:27:16 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int	is_float(char *str)
+int	is_float(char *str)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	if (str[i] == '-')
 		i++;
@@ -30,11 +32,8 @@ static int	is_float(char *str)
 
 int	invalid_input(int ac, char **av)
 {
-	if (ac == 2 && (av[1][0] == 'm' || av[1][0] == 'j' || av[1][0] == 's') &&
+	if (ac >= 2 && (av[1][0] == 'm' || av[1][0] == 'j' || av[1][0] == 's') &&
 		av[1][1] == 0)
-		return (0);
-	if (ac == 4 && av[1][0] == 'j' && av[1][1] == 0 && is_float(av[2]) &&
-		is_float(av[3]))
 		return (0);
 	return (1);
 }

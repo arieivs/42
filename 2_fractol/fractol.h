@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/13 13:15:56 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/22 18:28:47 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_vars {
  * INTERFACE
  * checks and treats user input
  */
+int		is_float(char *str);
 int		invalid_input(int ac, char **av);
 void	print_instructions(void);
 double	ft_atof(char *str);
