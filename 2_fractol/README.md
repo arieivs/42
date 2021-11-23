@@ -43,7 +43,7 @@ As you've noticed, it all goes around the following equation:
 ```
 z(n + 1) = z(n) + c
 ```
-Where both z and c are complex numbers. z is our variable, c a constant.
+Where both z and c are complex numbers (z is our variable, c a constant) and n is the iteration count.
 
 For the Burning ships fractal (bonus) you simply need to use the absolute values of both the real and imaginary parts of z:
 ```
