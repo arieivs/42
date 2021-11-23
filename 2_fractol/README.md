@@ -39,9 +39,23 @@ X11 Protocol: https://www.x.org/releases/X11R7.7/doc/xproto/x11protocol.html
 One of the most fascinating things is to realise that all these fractals are generated from iterating a very simple (yet complex) equation.
 Dive into the maths with this [Numberphile video on Julia sets](https://www.youtube.com/watch?v=FFftmWSzgmk), this [Numberphile video on the Mandelbrot set](https://www.youtube.com/watch?v=NGMRB4O922I) and if you're still curious check this [video from Veritasium on the logistic map](https://www.youtube.com/watch?v=ovJcsL7vyrk).
 
+As you've noticed, it all goes around the following equation:
+```
+z(n + 1) = z(n) + c
+```
+Where both z and c are complex numbers. z is our variable, c a constant.
+
+For the Burning ships fractal (bonus) you simply need to use the absolute values of both the real and imaginary parts of z:
+```
+z(n + 1) = |Re(z(n))| + |Im(z(n))| + c
+```
+
 <br/>
 
 ## 🎨 Let's render some fractals
+Follow [this tutorial on how to render the Mandelbrot set](http://warp.povusers.org/Mandelbrot/).
+The Julia set and Burning ships fractal are almost the same!
+Apply the same logic, just with minor changes in the mathematical equations.
 
 Burnship fractal: http://www.paulbourke.net/fractals/burnship/
 
