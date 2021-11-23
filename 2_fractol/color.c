@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:59:29 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/12 13:19:05 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/23 12:14:43 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ int	get_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+/*
+ * COLOUR SCHEME
+ * n = 0 => rgb(59, 66, 159)
+ * n = MAX => rgb(94, 177, 191)
+ */
+
 int	color_fractal(int n)
 {
-	// n = 0 => rgb(59, 66, 159)
-	// n = MAX => rgb(94, 177, 191)
 	return (get_trgb(0, 59 + 0.7 * n, 2.22 * n + 66, 0.64 * n + 159));
 }
 
@@ -32,4 +36,3 @@ void	my_pixel_put(t_vars *vars, int x, int y, int color)
 		+ x * (vars->bits_per_pixel / 8);
 	*(unsigned int *)pixel = color;
 }
-

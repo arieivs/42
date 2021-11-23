@@ -33,6 +33,8 @@ Xlib Programming Manual: https://www.niksula.hut.fi/~jkirma/books/xlib.pdf#page=
 
 X11 Protocol: https://www.x.org/releases/X11R7.7/doc/xproto/x11protocol.html
 
+<br/>
+
 ## 🐰 The beauty of mathematics
 
 Julia set Numberphile: https://www.youtube.com/watch?v=FFftmWSzgmk
@@ -40,6 +42,8 @@ Julia set Numberphile: https://www.youtube.com/watch?v=FFftmWSzgmk
 Mandelbrot set Numberphile: https://www.youtube.com/watch?v=NGMRB4O922I
 
 Veritasium and the logistic map: https://www.youtube.com/watch?v=ovJcsL7vyrk
+
+<br/>
 
 ## 🎨 Let's render some fractals
 

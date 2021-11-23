@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 13:24:15 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/22 18:27:16 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/23 12:16:28 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_instructions(void)
 
 static int	ft_strlen(char *str)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (str[size])
@@ -88,4 +88,3 @@ double	ft_atof(char *str)
 	}
 	return ((double)signal * ((double)n + f));
 }
-

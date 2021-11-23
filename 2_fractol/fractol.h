@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:15:28 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/22 18:28:47 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/23 12:15:47 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define DOWN 125
 # define UP 126
 
-typedef struct	s_vars {
+typedef struct s_vars {
 	void	*mlx;
 	void	*window;
 	void	*img;

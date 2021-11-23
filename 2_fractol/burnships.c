@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:24:54 by svieira           #+#    #+#             */
-/*   Updated: 2021/11/14 01:03:09 by svieira          ###   ########.fr       */
+/*   Updated: 2021/11/23 12:13:14 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	burnships(t_vars *vars)
 	y = 0;
 	while (y < HEIGHT)
 	{
-		c_im = - vars->max_im + vars->step * y;
+		c_im = -vars->max_im + vars->step * y;
 		x = 0;
 		while (x < WIDTH)
 		{
