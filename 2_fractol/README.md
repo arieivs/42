@@ -27,8 +27,6 @@ On MiniLibX and fractol: https://github.com/qst0/ft_libgfx
 
 MLX Build (Docker container): https://github.com/Chr0nos/mlx-build
 
-Burnship fractal: http://www.paulbourke.net/fractals/burnship/
-
 Get hypnotised by Julia set: https://julia.fractalnft.art/
 
 Xlib Programming Manual: https://www.niksula.hut.fi/~jkirma/books/xlib.pdf#page=36
@@ -42,3 +40,12 @@ Julia set Numberphile: https://www.youtube.com/watch?v=FFftmWSzgmk
 Mandelbrot set Numberphile: https://www.youtube.com/watch?v=NGMRB4O922I
 
 Veritasium and the logistic map: https://www.youtube.com/watch?v=ovJcsL7vyrk
+
+## 🎨 Let's render some fractals
+
+Burnship fractal: http://www.paulbourke.net/fractals/burnship/
+
+Colours:
+https://www.codingame.com/playgrounds/2358/how-to-plot-the-mandelbrot-set/adding-some-colors
+https://math.stackexchange.com/questions/90916/how-should-i-assign-rgb-colors-to-points-in-the-mandelbrot-set
+https://stackoverflow.com/questions/16500656/which-color-gradient-is-used-to-color-mandelbrot-in-wikipedia
