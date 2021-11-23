@@ -36,12 +36,8 @@ X11 Protocol: https://www.x.org/releases/X11R7.7/doc/xproto/x11protocol.html
 <br/>
 
 ## 🐰 The beauty of mathematics
-
-Julia set Numberphile: https://www.youtube.com/watch?v=FFftmWSzgmk
-
-Mandelbrot set Numberphile: https://www.youtube.com/watch?v=NGMRB4O922I
-
-Veritasium and the logistic map: https://www.youtube.com/watch?v=ovJcsL7vyrk
+One of the most fascinating things is to realise that all these fractals are generated from iterating a very simple (yet complex) equation.
+Dive into the maths with this [Numberphile video on Julia sets](https://www.youtube.com/watch?v=FFftmWSzgmk), this [Numberphile video on the Mandelbrot set](https://www.youtube.com/watch?v=NGMRB4O922I) and if you're still curious check this [video from Veritasium on the logistic map](https://www.youtube.com/watch?v=ovJcsL7vyrk).
 
 <br/>
 
