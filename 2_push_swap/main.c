@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:23:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 19:20:23 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/06 21:48:50 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	// once input has been cleaned/checked:
-	stack_a = create_stack(ac, av);
+	stack_a = NULL;
+	create_stack(ac, av, &stack_a);
 	stack_b = NULL;
 
 	//once again, not sure:
@@ -50,11 +51,19 @@ int	main(int ac, char **av)
 	// if is_sorted(stack_a) && is_empty(stack_b)
 	// return (0);
 	// sort
-
+	printf("checking stack\n");
+	//printf("%d %d ", *(int *)stack_a->content);
+	printf("%d %d ", *(int *)stack_a->content, *(int *)stack_a->next->content);
+	printf("stack checked\n");
 	// cleaning the house
 	pt_del = &ft_del;
-	ft_lstclear(&stack_a, pt_del);
-	ft_lstclear(&stack_b, pt_del);
+	/*if (stack_a)
+		ft_lstclear(&stack_a, pt_del);
+	if (stack_b)
+	{
+		printf("hey");*/
+		ft_lstclear(&stack_b, pt_del);
+	//}
 	free(arr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 19:13:23 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/06 21:49:37 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		non_digits_input(int ac, char **av);
 int		*create_arr(int ac, char **av);
 int		invalid_numbers(int arr_size, int *arr);
 void	ft_lstpush_back(t_list **lst, void *data);
-t_list	*create_stack(int ac, char **av);
+void	create_stack(int ac, char **av, t_list **stack);
 
 // quick sort
 void	quick_sort(int *arr, int start, int end);

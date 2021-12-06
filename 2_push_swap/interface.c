@@ -6,11 +6,12 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:00:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 19:20:44 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/06 22:10:04 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
+#include <stdio.h>
 
 int	non_digits_input(int ac, char **av)
 {
@@ -82,20 +83,25 @@ void	ft_lstpush_back(t_list **lst, void *data)
 	ft_lstadd_back(lst, new_lst); 
 }
 
-t_list	*create_stack(int ac, char **av)
+void create_stack(int ac, char **av, t_list **stack)
 {
 	int	i;
 	int	nb;
-	t_list	*stack;
+	//t_list	*stack;
 	
 	i = 1;
+	nb = (int)malloc(sizeof(int));
 	nb = ft_atoi(av[i++]);
-	stack = ft_lstnew((void *)&nb);
+	printf("adding %d\n", nb);
+	*stack = ft_lstnew((void *)&nb);
+	printf("added %d\n", *(int *)(*stack)->content);
 	while (i < ac)
 	{
 		nb = ft_atoi(av[i++]);
-		ft_lstpush_back(&stack, (void *)&nb);
+		printf("adding %d\n", nb);
+		ft_lstadd_back(stack, ft_lstnew((void *)&nb));
+		//ft_lstpush_back(&stack, (void *)&nb);
 	}
-	return (stack);
+	printf("added %d %d\n", *(int *)(*stack)->content, *(int *)(*stack)->next->content);
 }
 
