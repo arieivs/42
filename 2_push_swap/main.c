@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:23:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 23:00:27 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/06 23:39:28 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ int	main(int ac, char **av)
 	//To do: think about errors
 	if (ac == 1)
 		return (0);
-	if (non_digits_input(ac, av))
+	if (invalid_input(ac, av))
 	{
 		write(2, "Error\n", 6);
 		return (0);
 	}
 	// not sure if I'll keep the array...
 	arr = create_arr(ac, av);
-	if (invalid_numbers(ac - 1, arr))
+	if (duplicate_numbers(ac - 1, arr))
 	{
 		write(2, "Error\n", 6);
+		free(arr);
 		return (0);
 	}
 	// once input has been cleaned/checked:

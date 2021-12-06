@@ -6,17 +6,44 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:00:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 22:59:57 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/06 23:41:58 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 #include <stdio.h>
 
-int	non_digits_input(int ac, char **av)
+// move this to libft:
+long	ft_atol(const char *str)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		signal;
+	long	nb;
+
+	i = 0;
+	signal = 1;
+	nb = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			signal = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = nb * 10 + (str[i] - '0');
+		i++;
+	}
+	return (nb * signal);
+}
+
+int	invalid_input(int ac, char **av)
+{
+	int		i;
+	int		j;
+	long	nb;
 
 	i = 1;
 	while (i < ac)
@@ -32,6 +59,9 @@ int	non_digits_input(int ac, char **av)
 				return (1);
 			j++;
 		}
+		nb = ft_atol(av[i]);
+		if (nb > INT_MAX || nb < INT_MIN)
+			return (1);
 		i++;
 	}
 	return (0);
@@ -52,7 +82,8 @@ int	*create_arr(int ac, char **av)
 	return (arr);
 }
 
-int	invalid_numbers(int arr_size, int *arr)
+// for now it depends on the array, change if I don't use it
+int	duplicate_numbers(int arr_size, int *arr)
 {
 	int	i;
 	int	j;
@@ -60,8 +91,6 @@ int	invalid_numbers(int arr_size, int *arr)
 	i = 0;
 	while (i < arr_size)
 	{
-		// if arr[i] bigger than max int
-		// return (1);
 		j = 0;
 		while (j < i)
 		{

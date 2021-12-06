@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 22:50:26 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/06 23:40:40 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 # include "../libft/libft.h"
 
 typedef struct s_int_list
@@ -31,9 +32,9 @@ void	ft_intlst_clear(t_int_list **lst, void (*del)(int));
 void	ft_intlst_content_del(int nb);
 
 // interface
-int		non_digits_input(int ac, char **av);
+int		invalid_input(int ac, char **av);
 int		*create_arr(int ac, char **av);
-int		invalid_numbers(int arr_size, int *arr);
+int		duplicate_numbers(int arr_size, int *arr);
 t_int_list	*create_stack(int ac, char **av);
 
 // quick sort
