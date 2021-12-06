@@ -1,10 +1,10 @@
 #include "includes/push_swap.h"
 #include <stdio.h>
 
-static void	ft_print_del(void *content)
+static void	ft_print_del(int nb)
 {
-	printf("deleting %d\n", *(int *)content);
-	*(int *)content = 0;
+	printf("deleting %d\n", nb);
+	nb = 0;
 }
 
 int	main(void)
@@ -13,25 +13,24 @@ int	main(void)
 	int		x2 = 7;
 	int		x3 = 1;
 	int		x4 = 3;
-	t_list	*ele1;
-	t_list	*ele2;
-	t_list	*ele3;
-	t_list	*ele4;
-	t_list	*null;
-	void	(*pt_print_del)(void*);
+	t_int_list	*ele1;
+	t_int_list	*ele2;
+	t_int_list	*ele3;
+	t_int_list	*ele4;
+	t_int_list	*null;
 
 	null = NULL;
 	printf("\nORIGINAL LIST\n");
-	ele1 = ft_lstnew((void *)&x1);
-	ele2 = ft_lstnew((void *)&x2);
-	ft_lstadd_back(&ele1, ele2);
-	ele3 = ft_lstnew((void *)&x3);
-	ft_lstadd_back(&ele1, ele3);
-	ele4 = ft_lstnew((void *)&x4);
-	ft_lstadd_back(&ele1, ele4);
-	printf("%d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
-	printf("%d ", *(int *)ele1->next->next->content);
-	printf("%d\n", *(int *)ele1->next->next->next->content);
+	ele1 = ft_intlst_new(x1);
+	ele2 = ft_intlst_new(x2);
+	ft_intlst_add_back(&ele1, ele2);
+	ele3 = ft_intlst_new(x3);
+	ft_intlst_add_back(&ele1, ele3);
+	ele4 = ft_intlst_new(x4);
+	ft_intlst_add_back(&ele1, ele4);
+	printf("%d %d ", ele1->nb, ele1->next->nb);
+	printf("%d ", ele1->next->next->nb);
+	printf("%d\n", ele1->next->next->next->nb);
 
 	printf("\nSWAP\n");
 	// making sure nothing happens when list has only 1 or no elements
@@ -41,27 +40,27 @@ int	main(void)
 
 	// swaping and showing the result
 	swap(&ele1);
-	printf("%d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
-	printf("%d ", *(int *)ele1->next->next->content);
-	printf("%d\n", *(int *)ele1->next->next->next->content);
+	printf("%d %d ", ele1->nb, ele1->next->nb);
+	printf("%d ", ele1->next->next->nb);
+	printf("%d\n", ele1->next->next->next->nb);
 
 	printf("\nROTATE/SHIFT\n");
 	rotate(NULL);
 	rotate(&null);
 	rotate(&ele4);
 	rotate(&ele1);
-	printf("%d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
-	printf("%d ", *(int *)ele1->next->next->content);
-	printf("%d\n", *(int *)ele1->next->next->next->content);
+	printf("%d %d ", ele1->nb, ele1->next->nb);
+	printf("%d ", ele1->next->next->nb);
+	printf("%d\n", ele1->next->next->next->nb);
 
 	printf("\nREVERSE ROTATE/UNSHIFT\n");
 	reverse_rotate(NULL);
 	reverse_rotate(&null);
 	reverse_rotate(&ele2);
 	reverse_rotate(&ele1);
-	printf("%d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
-	printf("%d ", *(int *)ele1->next->next->content);
-	printf("%d\n", *(int *)ele1->next->next->next->content);
+	printf("%d %d ", ele1->nb, ele1->next->nb);
+	printf("%d ", ele1->next->next->nb);
+	printf("%d\n", ele1->next->next->next->nb);
 
 	printf("\nPUSH\n");
 	// making sure nothing happens when list from is empty
@@ -70,17 +69,16 @@ int	main(void)
 
 	// pushing
 	push(&ele1, &null);
-	printf("from %d %d ", *(int *)ele1->content, *(int *)ele1->next->content);
-	printf("%d\n", *(int *)ele1->next->next->content);
-	printf("tooo %d\n", *(int *)null->content);
+	printf("from %d %d ", ele1->nb, ele1->next->nb);
+	printf("%d\n", ele1->next->next->nb);
+	printf("tooo %d\n", null->nb);
 	push(&ele1, &null);
-	printf("from %d %d\n", *(int *)ele1->content, *(int *)ele1->next->content);
-	printf("tooo %d %d\n", *(int *)null->content, *(int *)null->next->content);
+	printf("from %d %d\n", ele1->nb, ele1->next->nb);
+	printf("tooo %d %d\n", null->nb, null->next->nb);
 
 	printf("\nCLEANING\n");
-	pt_print_del = &ft_print_del;
-	ft_lstclear(&ele1, pt_print_del);
-	ft_lstclear(&null, pt_print_del);
+	ft_intlst_clear(&ele1, &ft_print_del);
+	ft_intlst_clear(&null, &ft_print_del);
 	return (0);
 }
 

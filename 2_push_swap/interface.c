@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:00:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 22:10:04 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/06 22:59:57 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,34 +74,20 @@ int	invalid_numbers(int arr_size, int *arr)
 	return (0);
 }
 
-// move this to list_utils or libft:
-void	ft_lstpush_back(t_list **lst, void *data)
+t_int_list	*create_stack(int ac, char **av)
 {
-	t_list *new_lst;
-
-	new_lst = ft_lstnew(data);
-	ft_lstadd_back(lst, new_lst); 
-}
-
-void create_stack(int ac, char **av, t_list **stack)
-{
-	int	i;
-	int	nb;
-	//t_list	*stack;
+	int			i;
+	int			nb;
+	t_int_list	*stack;
 	
 	i = 1;
-	nb = (int)malloc(sizeof(int));
 	nb = ft_atoi(av[i++]);
-	printf("adding %d\n", nb);
-	*stack = ft_lstnew((void *)&nb);
-	printf("added %d\n", *(int *)(*stack)->content);
+	stack = ft_intlst_new(nb);
 	while (i < ac)
 	{
 		nb = ft_atoi(av[i++]);
-		printf("adding %d\n", nb);
-		ft_lstadd_back(stack, ft_lstnew((void *)&nb));
-		//ft_lstpush_back(&stack, (void *)&nb);
+		ft_intlst_push_back(&stack, nb);
 	}
-	printf("added %d %d\n", *(int *)(*stack)->content, *(int *)(*stack)->next->content);
+	return (stack);
 }
 

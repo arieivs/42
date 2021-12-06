@@ -6,16 +6,16 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:29:36 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/03 17:07:16 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/06 23:04:53 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
 // swap the first two elements of a stack
-void	swap(t_list **stack)
+void	swap(t_int_list **stack)
 {
-	t_list	*sec;
+	t_int_list	*sec;
 
 	// if pointer is NULL, is pointing at NULL or the list has 1 element
 	if (!stack || !*stack || !((*stack)->next))
@@ -27,9 +27,9 @@ void	swap(t_list **stack)
 }	
 
 // push the first element of a stack to another one
-void	push(t_list **from, t_list **to)
+void	push(t_int_list **from, t_int_list **to)
 {
-	t_list	*move;
+	t_int_list	*move;
 
 	if (!from || !*from)
 		return ;
@@ -40,9 +40,9 @@ void	push(t_list **from, t_list **to)
 }
 
 // place the first element of a stack as its last
-void	rotate(t_list **stack)
+void	rotate(t_int_list **stack)
 {
-	t_list	*last;
+	t_int_list	*last;
 
 	if (!stack || !*stack || !((*stack)->next))
 		return ;
@@ -55,9 +55,9 @@ void	rotate(t_list **stack)
 }
 
 // place the last element of a stack as its first
-void	reverse_rotate(t_list **stack)
+void	reverse_rotate(t_int_list **stack)
 {
-	t_list	*bef_last;
+	t_int_list	*bef_last;
 
 	if (!stack || !*stack || !((*stack)->next))
 		return ;
@@ -70,7 +70,7 @@ void	reverse_rotate(t_list **stack)
 }
 
 // not sure this router makes sense... I feel I'm doubling the if statements
-int	op(char *op, t_list **stack, t_list **sec_stack, int instructions)
+int	op(char *op, t_int_list **stack, t_int_list **sec_stack, int instructions)
 {
 	if (op[0] == 'r' && op[1] == 'r')
 	{
