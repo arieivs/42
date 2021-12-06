@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/06/02 12:28:14 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/06 19:13:23 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 
-// deal with input
+// interface
+int		non_digits_input(int ac, char **av);
+int		*create_arr(int ac, char **av);
+int		invalid_numbers(int arr_size, int *arr);
 void	ft_lstpush_back(t_list **lst, void *data);
 t_list	*create_stack(int ac, char **av);
-int		*create_arr(int ac, char **av);
 
 // quick sort
 void	quick_sort(int *arr, int start, int end);
