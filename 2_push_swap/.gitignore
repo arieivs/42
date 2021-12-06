@@ -1,2 +1,4 @@
+*.o
 libft
 a.out
+push_swap
