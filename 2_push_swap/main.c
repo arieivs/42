@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:23:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:34:37 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:47:30 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 int	main(int ac, char **av)
 {
-	t_int_list	*stack_a;
-	t_int_list	*stack_b;
-	t_int_list	*steps;
+	t_intlst	*stack_a;
+	t_intlst	*stack_b;
+	t_intlst	*steps;
 	int		*arr;
 
 	//To do: think about errors

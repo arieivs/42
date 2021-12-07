@@ -13,11 +13,11 @@ int	main(void)
 	int		x2 = 7;
 	int		x3 = 1;
 	int		x4 = 3;
-	t_int_list	*ele1;
-	t_int_list	*ele2;
-	t_int_list	*ele3;
-	t_int_list	*ele4;
-	t_int_list	*null;
+	t_intlst	*ele1;
+	t_intlst	*ele2;
+	t_intlst	*ele3;
+	t_intlst	*ele4;
+	t_intlst	*null;
 
 	null = NULL;
 	printf("\nORIGINAL LIST\n");

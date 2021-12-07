@@ -6,13 +6,13 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:17 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:15:25 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:48:09 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-int	is_sorted(t_int_list *stack)
+int	is_sorted(t_intlst *stack)
 {
 	if (!stack)
 		return (0);
@@ -25,7 +25,7 @@ int	is_sorted(t_int_list *stack)
 	return (1);
 }
 
-int	get_index_min(t_int_list *stack)
+int	get_index_min(t_intlst *stack)
 {
 	int	index;
 	int	i_min;
@@ -49,7 +49,7 @@ int	get_index_min(t_int_list *stack)
 	return (i_min);
 }
 
-int	get_index_max(t_int_list *stack)
+int	get_index_max(t_intlst *stack)
 {
 	int	index;
 	int	i_max;

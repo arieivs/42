@@ -6,17 +6,17 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 22:18:48 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 22:46:33 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:56:03 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-t_int_list	*ft_intlst_new(int nb)
+t_intlst	*ft_intlst_new(int nb)
 {
-	t_int_list	*list;
+	t_intlst	*list;
 
-	list = (t_int_list *)malloc(sizeof(t_int_list));
+	list = (t_intlst *)malloc(sizeof(t_intlst));
 	if (!list)
 		return (NULL);
 	list->nb = nb;
@@ -24,9 +24,9 @@ t_int_list	*ft_intlst_new(int nb)
 	return (list);
 }
 
-void	ft_intlst_add_back(t_int_list **lst, t_int_list *new)
+void	ft_intlst_add_back(t_intlst **lst, t_intlst *new)
 {
-	t_int_list	*curr;
+	t_intlst	*curr;
 
 	if (!*lst)
 	{
@@ -39,17 +39,17 @@ void	ft_intlst_add_back(t_int_list **lst, t_int_list *new)
 	curr->next = new;
 }
 
-void	ft_intlst_push_back(t_int_list **lst, int nb)
+void	ft_intlst_push_back(t_intlst **lst, int nb)
 {
-	t_int_list *new_lst;
+	t_intlst	*new_lst;
 
 	new_lst = ft_intlst_new(nb);
 	ft_intlst_add_back(lst, new_lst);
 }
 
-void	ft_intlst_clear(t_int_list **lst, void (*del)(int))
+void	ft_intlst_clear(t_intlst **lst, void (*del)(int))
 {
-	t_int_list	*to_delete;
+	t_intlst	*to_delete;
 
 	while (*lst)
 	{

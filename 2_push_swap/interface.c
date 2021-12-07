@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:00:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:32:26 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:55:39 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	invalid_input(int ac, char **av)
 
 int	*create_arr(int ac, char **av)
 {
-	int i;
+	int	i;
 	int	*arr;
 
 	i = 1;
@@ -103,12 +103,12 @@ int	duplicate_numbers(int arr_size, int *arr)
 	return (0);
 }
 
-t_int_list	*create_stack(int ac, char **av)
+t_intlst	*create_stack(int ac, char **av)
 {
 	int			i;
 	int			nb;
-	t_int_list	*stack;
-	
+	t_intlst	*stack;
+
 	i = 1;
 	nb = ft_atoi(av[i++]);
 	stack = ft_intlst_new(nb);
@@ -120,32 +120,37 @@ t_int_list	*create_stack(int ac, char **av)
 	return (stack);
 }
 
-void	print_instructions(t_int_list *steps)
+static void	print_instructions_router(int op)
+{
+	if (op == SWAP_A)
+		write(1, "sa\n", 3);
+	else if (op == SWAP_B)
+		write(1, "sb\n", 3);
+	else if (op == SWAP_A_B)
+		write(1, "ss\n", 3);
+	else if (op == PUSH_A)
+		write(1, "pa\n", 3);
+	else if (op == PUSH_B)
+		write(1, "pb\n", 3);
+	else if (op == ROTATE_A)
+		write(1, "ra\n", 3);
+	else if (op == ROTATE_B)
+		write(1, "rb\n", 3);
+	else if (op == ROTATE_A_B)
+		write(1, "rr\n", 3);
+	else if (op == REV_ROTATE_A)
+		write(1, "rra\n", 4);
+	else if (op == REV_ROTATE_B)
+		write(1, "rrb\n", 4);
+	else if (op == REV_ROTATE_A_B)
+		write(1, "rrr\n", 4);
+}
+
+void	print_instructions(t_intlst *steps)
 {
 	while (steps)
 	{
-		if (steps->nb == SWAP_A)
-			write(1, "sa\n", 3);
-		else if (steps->nb == SWAP_B)
-			write(1, "sb\n", 3);
-		else if (steps->nb == SWAP_A_B)
-			write(1, "ss\n", 3);
-		else if (steps->nb == PUSH_A)
-			write(1, "pa\n", 3);
-		else if (steps->nb == PUSH_B)
-			write(1, "pb\n", 3);
-		else if (steps->nb == ROTATE_A)
-			write(1, "ra\n", 3);
-		else if (steps->nb == ROTATE_B)
-			write(1, "rb\n", 3);
-		else if (steps->nb == ROTATE_A_B)
-			write(1, "rr\n", 3);
-		else if (steps->nb == REV_ROTATE_A)
-			write(1, "rra\n", 4);
-		else if (steps->nb == REV_ROTATE_B)
-			write(1, "rrb\n", 4);
-		else if (steps->nb == REV_ROTATE_A_B)
-			write(1, "rrr\n", 4);
+		print_instructions_router(steps->nb);
 		steps = steps->next;
 	}
 }

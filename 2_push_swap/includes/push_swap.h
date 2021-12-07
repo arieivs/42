@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:29:29 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:57:05 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <limits.h>
 # include "../libft/libft.h"
 
-typedef struct s_int_list
+typedef struct s_intlst
 {
-	int					nb;
-	struct s_int_list	*next;
-}				t_int_list;
+	int				nb;
+	struct s_intlst	*next;
+}				t_intlst;
 
 typedef enum e_ops
 {
@@ -43,21 +43,21 @@ typedef enum e_ops
 ** LIST UTILS
 ** Basic lists operations
 */
-t_int_list	*ft_intlst_new(int nb);
-void	ft_intlst_add_back(t_int_list **lst, t_int_list *new);
-void	ft_intlst_push_back(t_int_list **lst, int nb);
-void	ft_intlst_clear(t_int_list **lst, void (*del)(int));
-void	ft_intlst_content_del(int nb);
+t_intlst	*ft_intlst_new(int nb);
+void		ft_intlst_add_back(t_intlst **lst, t_intlst *new);
+void		ft_intlst_push_back(t_intlst **lst, int nb);
+void		ft_intlst_clear(t_intlst **lst, void (*del)(int));
+void		ft_intlst_content_del(int nb);
 
 /*
 ** INTERFACE
 ** Validating and parsing user input, printing the output
 */
-int		invalid_input(int ac, char **av);
-int		*create_arr(int ac, char **av);
-int		duplicate_numbers(int arr_size, int *arr);
-t_int_list	*create_stack(int ac, char **av);
-void	print_instructions(t_int_list *steps);
+int			invalid_input(int ac, char **av);
+int			*create_arr(int ac, char **av);
+int			duplicate_numbers(int arr_size, int *arr);
+t_intlst	*create_stack(int ac, char **av);
+void		print_instructions(t_intlst *steps);
 
 // quick sort
 //void	quick_sort(int *arr, int start, int end);
@@ -66,24 +66,24 @@ void	print_instructions(t_int_list *steps);
 ** OPS
 ** Basic Push_Swap operations
 */
-void	swap(t_int_list **stack);
-void	push(t_int_list **from, t_int_list **to);
-void	rotate(t_int_list **stack);
-void	reverse_rotate(t_int_list **stack);
-void	op(t_ops op, t_int_list **stack, t_int_list **sec_stack, t_int_list **steps);
+void		swap(t_intlst **stack);
+void		push(t_intlst **from, t_intlst **to);
+void		rotate(t_intlst **stack);
+void		reverse_rotate(t_intlst **stack);
+void		op(t_ops op, t_intlst **stk, t_intlst **sec_stk, t_intlst **steps);
 
 /*
 ** SORT UTILS
 ** Helping functions for the sorting algorithms
 */
-int	is_sorted(t_int_list *stack);
-int	get_index_min(t_int_list *stack);
-int	get_index_max(t_int_list *stack);
+int			is_sorted(t_intlst *stack);
+int			get_index_min(t_intlst *stack);
+int			get_index_max(t_intlst *stack);
 
 /*
 ** SORT ALGOL
 ** Sorting algorithm
 */
-void	sort_3(t_int_list **stack, t_int_list **steps);
+void		sort_3(t_intlst **stack, t_intlst **steps);
 
 #endif

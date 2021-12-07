@@ -6,18 +6,21 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:29:36 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 14:57:43 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:46:14 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-// swap the first two elements of a stack
-void	swap(t_int_list **stack)
+/*
+** swap the first two elements of a stack
+** if pointer is NULL, is pointing at NULL or the list has 1 element
+** do nothing
+*/
+void	swap(t_intlst **stack)
 {
-	t_int_list	*sec;
+	t_intlst	*sec;
 
-	// if pointer is NULL, is pointing at NULL or the list has 1 element
 	if (!stack || !*stack || !((*stack)->next))
 		return ;
 	sec = (*stack)->next;
@@ -26,10 +29,12 @@ void	swap(t_int_list **stack)
 	*stack = sec;
 }	
 
-// push the first element of a stack to another one
-void	push(t_int_list **from, t_int_list **to)
+/*
+** push the first element of a stack to another one
+*/
+void	push(t_intlst **from, t_intlst **to)
 {
-	t_int_list	*move;
+	t_intlst	*move;
 
 	if (!from || !*from)
 		return ;
@@ -39,10 +44,12 @@ void	push(t_int_list **from, t_int_list **to)
 	*to = move;
 }
 
-// place the first element of a stack as its last
-void	rotate(t_int_list **stack)
+/*
+** place the first element of a stack as its last
+*/
+void	rotate(t_intlst **stack)
 {
-	t_int_list	*last;
+	t_intlst	*last;
 
 	if (!stack || !*stack || !((*stack)->next))
 		return ;
@@ -54,10 +61,12 @@ void	rotate(t_int_list **stack)
 	last->next->next = 0;
 }
 
-// place the last element of a stack as its first
-void	reverse_rotate(t_int_list **stack)
+/*
+** place the last element of a stack as its first
+*/
+void	reverse_rotate(t_intlst **stack)
 {
-	t_int_list	*bef_last;
+	t_intlst	*bef_last;
 
 	if (!stack || !*stack || !((*stack)->next))
 		return ;
@@ -69,8 +78,11 @@ void	reverse_rotate(t_int_list **stack)
 	bef_last->next = 0;
 }
 
-// not sure this router makes sense... I feel I'm doubling the if statements
-void	op(t_ops op, t_int_list **stack, t_int_list **sec_stack, t_int_list **steps)
+/*
+** operations router
+** calls the right operation and adds the instruction to the steps list
+*/
+void	op(t_ops op, t_intlst **stack, t_intlst **sec_stack, t_intlst **steps)
 {
 	// get last element from steps
 	

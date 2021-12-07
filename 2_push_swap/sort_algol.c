@@ -6,13 +6,13 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:15:10 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:47:57 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-void	sort_3(t_int_list **stack, t_int_list **steps)
+void	sort_3(t_intlst **stack, t_intlst **steps)
 {
 	int	i_min;
 	int	i_max;
