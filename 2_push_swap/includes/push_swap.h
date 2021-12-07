@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:57:05 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 23:10:52 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,7 @@ int			get_index_max(t_intlst *stack);
 ** Sorting algorithm
 */
 void		sort_3(t_intlst **stack, t_intlst **steps);
+void		sort_5(t_intlst **stack_a, t_intlst **stack_b, t_intlst ** steps);
+void		sort_stack(int size_a, t_intlst **stack_a, t_intlst **steps);
 
 #endif

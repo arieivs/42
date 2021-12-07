@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:23:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 16:29:58 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 23:07:31 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 int	main(int ac, char **av)
 {
 	t_intlst	*stack_a;
-	t_intlst	*stack_b;
 	t_intlst	*steps;
 	int		*arr;
 
@@ -49,15 +48,12 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	// for now:
-	stack_b = NULL;
 	steps = NULL;
-	if (ac == 4)
-		sort_3(&stack_a, &steps);
+	sort_stack(ac - 1, &stack_a, &steps);
 
 	print_instructions(steps);
 	// cleaning the house
 	ft_intlst_clear(&stack_a, &ft_intlst_content_del);
-	ft_intlst_clear(&stack_b, &ft_intlst_content_del);
 	free(arr);
 	return (0);
 }
