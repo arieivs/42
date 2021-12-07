@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:23:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 13:18:53 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:04:57 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 {
 	t_int_list	*stack_a;
 	t_int_list	*stack_b;
+	t_int_list	*steps;
 	int		*arr;
 
 	//To do: think about errors
@@ -46,10 +47,17 @@ int	main(int ac, char **av)
 	if (is_sorted(stack_a))
 		return (0);
 	// for now:
+	steps = NULL;
 	if (ac == 4)
-		sort_3(&stack_a);
+		sort_3(&stack_a, &steps);
 
 	printf("%d %d %d\n", stack_a->nb, stack_a->next->nb, stack_a->next->next->nb);
+	if (steps->nb == SWAP_A)
+		write(1, "sa\n", 3);
+	else if (steps->nb == ROTATE_A)
+		write(1, "ra\n", 3);
+	else if (steps->nb == REV_ROTATE_A)
+		write(1, "rra\n", 4);
 
 	// cleaning the house
 	ft_intlst_clear(&stack_a, &ft_intlst_content_del);

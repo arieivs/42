@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:29:36 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 23:04:53 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 14:57:43 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,35 @@ void	reverse_rotate(t_int_list **stack)
 }
 
 // not sure this router makes sense... I feel I'm doubling the if statements
-int	op(char *op, t_int_list **stack, t_int_list **sec_stack, int instructions)
+void	op(t_ops op, t_int_list **stack, t_int_list **sec_stack, t_int_list **steps)
 {
-	if (op[0] == 'r' && op[1] == 'r')
+	// get last element from steps
+	
+	if (op == SWAP_A || op == SWAP_B)
+	{
+		swap(stack);
+		// if last element is SWAP other stack, exchange last for SWAP_A_B
+		// else	
+		ft_intlst_push_back(steps, (int)op);
+	}
+	else if (op == PUSH_A || op == PUSH_B)
+	{
+		push(stack, sec_stack);
+		ft_intlst_push_back(steps, (int)op);
+	}
+	if (op == ROTATE_A || op == ROTATE_B)
+	{
+		rotate(stack);
+		// if last element is ROTATE other stack, exchange last for ROTATE_A_B
+		// else	
+		ft_intlst_push_back(steps, (int)op);
+	}
+	if (op == REV_ROTATE_A || op == REV_ROTATE_B)
 	{
 		reverse_rotate(stack);
-		write(1, op, 3);
+		// if last element is REV_ROTATE other stack,
+		// exchange last for REV_ROTATE_A_B
+		// else	
+		ft_intlst_push_back(steps, (int)op);
 	}
-	else
-	{
-		if (op[0] == 'r')
-			rotate(stack);
-		else if (op[0] == 's')
-			swap(stack);
-		else if (op[0] == 'p')
-			push(stack, sec_stack);
-		write(1, op, 2);
-	}
-	write(1, "\n", 1);
-	return (instructions++);
 }
