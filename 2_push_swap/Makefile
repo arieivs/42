@@ -10,7 +10,7 @@ CC =		gcc
 
 CFLAGS =	-Wall -Werror -Wextra -fsanitize=address
 
-SRCS =		main.c list_utils.c interface.c ops.c
+SRCS =		main.c list_utils.c interface.c ops.c sort.c
 
 OBJS =		${SRCS:.c=.o}
 

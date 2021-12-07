@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:23:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 23:39:28 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 13:18:53 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,13 @@ int	main(int ac, char **av)
 	// once again, not sure:
 	// quick_sort(arr, 0, ac - 1);
 
-	// if is_sorted(stack_a) && is_empty(stack_b)
-	// return (0);
-	// sort
+	if (is_sorted(stack_a))
+		return (0);
+	// for now:
+	if (ac == 4)
+		sort_3(&stack_a);
+
+	printf("%d %d %d\n", stack_a->nb, stack_a->next->nb, stack_a->next->next->nb);
 
 	// cleaning the house
 	ft_intlst_clear(&stack_a, &ft_intlst_content_del);

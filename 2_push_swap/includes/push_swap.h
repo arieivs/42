@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 23:40:40 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 12:51:27 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,13 @@ void	swap(t_int_list **stack);
 void	push(t_int_list **from, t_int_list **to);
 void	rotate(t_int_list **stack);
 void	reverse_rotate(t_int_list **stack);
+
+// sort utils
+int	is_sorted(t_int_list *stack);
+int	get_index_min(t_int_list *stack);
+int	get_index_max(t_int_list *stack);
+
+// sorting algol
+void	sort_3(t_int_list **stack);
 
 #endif
