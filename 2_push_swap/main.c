@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:23:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:47:30 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:29:58 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,17 @@ int	main(int ac, char **av)
 	}
 	// once input has been cleaned/checked:
 	stack_a = create_stack(ac, av);
-	stack_b = NULL;
 
 	// once again, not sure:
 	// quick_sort(arr, 0, ac - 1);
 
 	if (is_sorted(stack_a))
+	{
+		ft_intlst_clear(&stack_a, &ft_intlst_content_del);
 		return (0);
+	}
 	// for now:
+	stack_b = NULL;
 	steps = NULL;
 	if (ac == 4)
 		sort_3(&stack_a, &steps);

@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:47:57 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 16:30:22 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,5 @@ void	sort_3(t_intlst **stack, t_intlst **steps)
 		op(SWAP_A, stack, NULL, steps);
 	sort_3(stack, steps);
 }
+
+void	sort_5(t_intlst **stack_a, t_intlst **stack_b, t_intlst **steps)
