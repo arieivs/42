@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:00:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/06 23:41:58 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:32:26 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,3 +120,32 @@ t_int_list	*create_stack(int ac, char **av)
 	return (stack);
 }
 
+void	print_instructions(t_int_list *steps)
+{
+	while (steps)
+	{
+		if (steps->nb == SWAP_A)
+			write(1, "sa\n", 3);
+		else if (steps->nb == SWAP_B)
+			write(1, "sb\n", 3);
+		else if (steps->nb == SWAP_A_B)
+			write(1, "ss\n", 3);
+		else if (steps->nb == PUSH_A)
+			write(1, "pa\n", 3);
+		else if (steps->nb == PUSH_B)
+			write(1, "pb\n", 3);
+		else if (steps->nb == ROTATE_A)
+			write(1, "ra\n", 3);
+		else if (steps->nb == ROTATE_B)
+			write(1, "rb\n", 3);
+		else if (steps->nb == ROTATE_A_B)
+			write(1, "rr\n", 3);
+		else if (steps->nb == REV_ROTATE_A)
+			write(1, "rra\n", 4);
+		else if (steps->nb == REV_ROTATE_B)
+			write(1, "rrb\n", 4);
+		else if (steps->nb == REV_ROTATE_A_B)
+			write(1, "rrr\n", 4);
+		steps = steps->next;
+	}
+}

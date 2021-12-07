@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:13:23 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/07 15:29:29 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int		invalid_input(int ac, char **av);
 int		*create_arr(int ac, char **av);
 int		duplicate_numbers(int arr_size, int *arr);
 t_int_list	*create_stack(int ac, char **av);
+void	print_instructions(t_int_list *steps);
 
 // quick sort
 //void	quick_sort(int *arr, int start, int end);
