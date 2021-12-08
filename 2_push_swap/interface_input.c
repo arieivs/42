@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 15:53:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 15:53:51 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 16:01:03 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	valid_characters(char *str)
 		i++;
 	while (str[i])
 	{
-		if (str[i] < '0' && str[i] > '9')
+		if (str[i] < '0' || str[i] > '9')
 			return (0);
 		has_nb = 1;
 		i++;
@@ -78,7 +78,7 @@ static int	validate_input_core(char *str, t_intlst **stack)
 
 	if (ft_strlen(str) == 0)
 		return (0);
-	if (!valid_characters(str))
+	if (valid_characters(str) == 0)
 		return (0);
 	nb = ft_atol(str);
 	if (nb > INT_MAX || nb < INT_MIN)
@@ -117,18 +117,3 @@ int	validate_input_push_stack(int ac, char **av, t_intlst **stack)
 	}
 	return (1);
 }
-
-/*int	*create_arr(int ac, char **av)
-{
-	int	i;
-	int	*arr;
-
-	i = 1;
-	arr = (int *)malloc(sizeof(int) * (ac - 1));
-	while (i < ac)
-	{
-		arr[i - 1] = ft_atoi(av[i]);
-		i++;
-	}
-	return (arr);
-}*/
