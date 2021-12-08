@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:23:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 23:07:31 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 11:19:36 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	main(int ac, char **av)
 		ft_intlst_clear(&stack_a, &ft_intlst_content_del);
 		return (0);
 	}
-	// for now:
 	steps = NULL;
 	sort_stack(ac - 1, &stack_a, &steps);
 
