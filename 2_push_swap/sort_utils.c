@@ -6,11 +6,12 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:17 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:48:09 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 17:00:50 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
+#include <stdio.h>
 
 int	is_sorted(t_intlst *stack)
 {
@@ -25,14 +26,14 @@ int	is_sorted(t_intlst *stack)
 	return (1);
 }
 
-int	get_index_min(t_intlst *stack)
+void	get_min(t_intlst *stack, t_limits *limits)
 {
 	int	index;
 	int	i_min;
 	int	min;
 
 	if (!stack)
-		return (0);
+		return ;
 	index = 1;
 	i_min = 1;
 	min = stack->nb;
@@ -46,17 +47,18 @@ int	get_index_min(t_intlst *stack)
 		}
 		stack = stack->next;
 	}
-	return (i_min);
+	limits->i_min = i_min;
+	limits->min = min;
 }
 
-int	get_index_max(t_intlst *stack)
+void	get_max(t_intlst *stack, t_limits *limits)
 {
 	int	index;
 	int	i_max;
 	int	max;
 
 	if (!stack)
-		return (0);
+		return ;
 	index = 1;
 	i_max = 1;
 	max = stack->nb;
@@ -70,5 +72,27 @@ int	get_index_max(t_intlst *stack)
 		}
 		stack = stack->next;
 	}
-	return (i_max);
+	limits->i_max = i_max;
+	limits->max = max;
 }
+
+void	get_mean(t_intlst *stack, t_limits *limits)
+{
+	int	mean;
+	int	size;
+
+	if (!stack)
+		return ;
+	mean = 0;
+	size = 0;
+	while (stack)
+	{
+		mean += stack->nb;
+		size += 1;
+		stack = stack->next;
+	}
+	mean /= size;
+	limits->mean = mean;
+	limits->size = size;
+}
+
