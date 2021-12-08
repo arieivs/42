@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 22:18:48 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:56:03 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 13:07:35 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,19 @@ void	ft_intlst_clear(t_intlst **lst, void (*del)(int))
 void	ft_intlst_content_del(int nb)
 {
 	nb = 0;
+}
+
+int	ft_intlst_size(t_intlst *lst)
+{
+	int	size;
+
+	if (!lst)
+		return (0);
+	size = 1;
+	while (lst->next)
+	{
+		lst = lst->next;
+		size++;
+	}
+	return (size);
 }

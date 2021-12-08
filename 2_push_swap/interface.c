@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:00:02 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 15:55:39 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 13:28:31 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,36 @@ long	ft_atol(const char *str)
 
 int	invalid_input(int ac, char **av)
 {
+	int		no_nb;
 	int		i;
 	int		j;
-	long	nb;
+	//long	nb;
 
+	//printf("starting validation check\n");
 	i = 1;
 	while (i < ac)
 	{
-		j = 0;
 		if (ft_strlen(av[i]) == 0)
 			return (1);
-		if (av[i][j] == '-' || av[i][j] == '+')
-			j++;
+		j = 0;
+		no_nb = 1;
 		while (av[i][j])
 		{
-			if (!ft_isdigit(av[i][j]))
+			if (!(ft_isdigit(av[i][j]) || av[i][j] == '-' || av[i][j] == '+'
+						|| av[i][j] == ' '))
 				return (1);
+			if (no_nb && ft_isdigit(av[i][j]))
+				no_nb = 0;
 			j++;
 		}
-		nb = ft_atol(av[i]);
-		if (nb > INT_MAX || nb < INT_MIN)
+		//nb = ft_atol(av[i]);
+		//if (nb > INT_MAX || nb < INT_MIN)
+		//	return (1);
+		if (!no_nb)
 			return (1);
 		i++;
 	}
+	//printf("input validation checked\n");
 	return (0);
 }
 
@@ -106,17 +113,32 @@ int	duplicate_numbers(int arr_size, int *arr)
 t_intlst	*create_stack(int ac, char **av)
 {
 	int			i;
+	char		**nbs;
+	int			j;
 	int			nb;
 	t_intlst	*stack;
 
+	//printf("starting create stack\n");
 	i = 1;
-	nb = ft_atoi(av[i++]);
-	stack = ft_intlst_new(nb);
+	stack = NULL;
 	while (i < ac)
 	{
-		nb = ft_atoi(av[i++]);
-		ft_intlst_push_back(&stack, nb);
+		//printf("before split\n");
+		nbs = ft_split(av[i++], ' ');
+		//printf("after split %s\n", nbs[0]);
+		j = 0;
+		while (nbs[j])
+		{
+			nb = ft_atoi(nbs[j++]);
+			//printf("before pushing %d i %d j %d\n", nb, i, j);
+			ft_intlst_push_back(&stack, nb);
+			//printf("after pushing\n");
+		}
+		//printf("before free\n");
+		free(nbs);
+		//printf("after free\n");
 	}
+	//printf("stack created\n");
 	return (stack);
 }
 

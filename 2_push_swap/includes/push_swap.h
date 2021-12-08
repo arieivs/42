@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 23:10:52 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 13:09:11 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		ft_intlst_add_back(t_intlst **lst, t_intlst *new);
 void		ft_intlst_push_back(t_intlst **lst, int nb);
 void		ft_intlst_clear(t_intlst **lst, void (*del)(int));
 void		ft_intlst_content_del(int nb);
+int			ft_intlst_size(t_intlst *lst);
 
 /*
 ** INTERFACE
@@ -86,6 +87,6 @@ int			get_index_max(t_intlst *stack);
 */
 void		sort_3(t_intlst **stack, t_intlst **steps);
 void		sort_5(t_intlst **stack_a, t_intlst **stack_b, t_intlst ** steps);
-void		sort_stack(int size_a, t_intlst **stack_a, t_intlst **steps);
+void		sort_stack(t_intlst **stack_a, t_intlst **steps);
 
 #endif

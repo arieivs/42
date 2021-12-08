@@ -6,11 +6,12 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/07 23:36:09 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 13:20:05 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
+#include <stdio.h>
 
 void	sort_3(t_intlst **stack, t_intlst **steps)
 {
@@ -55,11 +56,13 @@ void	sort_5(t_intlst **stack_a, t_intlst **stack_b, t_intlst **steps)
 	op(PUSH_A, stack_b, stack_a, steps);
 }
 
-void	sort_stack(int size_a, t_intlst **stack_a, t_intlst **steps)
+void	sort_stack(t_intlst **stack_a, t_intlst **steps)
 {
 	t_intlst	*stack_b;
+	int			size_a;
 
 	stack_b = NULL;
+	size_a = ft_intlst_size(*stack_a);
 	if (size_a <= 3)
 		sort_3(stack_a, steps);
 	else if (size_a <= 5)
