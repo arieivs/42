@@ -35,7 +35,7 @@ When I try to compile my program the way they ask us to in the correction of thi
 It's zsh thing. Basically zsh creates a string, bash doesn't. To change zsh default setting, you need to add setopt shwordsplit in your .zshrc file
 
 ### Generating random numbers
-´´´seq MIN MAX | sort -R´´´
+```seq MIN MAX | sort -R```
 
 ### Testers
 Tester: https://github.com/lmalki-h/push_swap_tester
