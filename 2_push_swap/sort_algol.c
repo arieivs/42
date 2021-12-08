@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 20:35:44 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 23:11:29 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,14 @@ void	sort_big(t_intlst **stack_a, t_intlst **stack_b, t_limits *limits,
 			op(ROTATE_A, stack_a, NULL, steps);
 		i++;
 	}
+	print_stack(*stack_a);
+	print_stack(*stack_b);
 	i = 0;
 	get_mean(*stack_b, limits);
 	get_min(*stack_b, limits);
 	while (i < limits->size)
 	{
-		if ((*stack_b)->nb == limits->min)
+		if ((*stack_b)->nb == limits->min )
 		{
 			op(PUSH_A, stack_b, stack_a, steps);
 			op(ROTATE_A, stack_a, NULL, steps);
