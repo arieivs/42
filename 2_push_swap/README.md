@@ -35,10 +35,13 @@ When I try to compile my program the way they ask us to in the correction of thi
 It's zsh thing. Basically zsh creates a string, bash doesn't. To change zsh default setting, you need to add setopt shwordsplit in your .zshrc file
 
 ### Generating random numbers
-seq MIN MAX | sort -R
+´´´seq MIN MAX | sort -R´´´
 
 ### Testers
 Tester: https://github.com/lmalki-h/push_swap_tester
 
+Michele speed tester: https://github.com/mikysett/push_swap_speed_tester
+
 Juliao speed tester:https://gist.github.com/brhaka/af12a3b49812014c5cea47301659e750
+
 Gueifao speed tester: https://gist.github.com/fletcher97/1e95b2d6ce317c01cf27414b6699f0cb
