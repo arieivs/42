@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 17:01:26 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:06:10 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int			validate_input_push_stack(int ac, char **av, t_intlst **stack);
  * Printing output (instructions)
  */
 void		print_instructions(t_intlst *steps);
+void		print_stack(t_intlst *stack);	
 
 /*
 ** OPS

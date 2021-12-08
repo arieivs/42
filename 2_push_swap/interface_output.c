@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 15:46:03 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 15:46:26 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:05:14 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,15 @@ void	print_instructions(t_intlst *steps)
 		print_instructions_router(steps->nb);
 		steps = steps->next;
 	}
+}
+
+void	print_stack(t_intlst *stack)
+{
+	while (stack)
+	{
+		ft_putnbr_fd(stack->nb, 1);
+		write(1, " ", 1);
+		stack = stack->next;
+	}
+	write(1, "\n", 1);
 }

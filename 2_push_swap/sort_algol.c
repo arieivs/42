@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 17:01:47 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:35:44 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,37 @@ void	sort_5(t_intlst **stack_a, t_intlst **stack_b, t_limits *limits,
 void	sort_big(t_intlst **stack_a, t_intlst **stack_b, t_limits *limits,
 		t_intlst **steps)
 {
-	(void)stack_b;
-	(void)steps;
+	int	i;
 
+	i = 0;
 	get_mean(*stack_a, limits);
-	get_min(*stack_a, limits);
-	/*while (limits->min < limits->mean)
+	while (i < limits->size)
 	{
-		while (limits->i_min != 1)
+		if ((*stack_a)->nb < limits->mean)
+			op(PUSH_B, stack_a, stack_b, steps);
+		else
+			op(ROTATE_A, stack_a, NULL, steps);
+		i++;
+	}
+	i = 0;
+	get_mean(*stack_b, limits);
+	get_min(*stack_b, limits);
+	while (i < limits->size)
+	{
+		if ((*stack_b)->nb == limits->min)
 		{
-			if (limits->i_min <= limits->size / 2)
-				op(ROTATE_A, stack_a, NULL, steps);
-			else
-				op(REV_ROTATE_A, stack_a, NULL, steps);
-				get_min(*stack_a, limits);
+			op(PUSH_A, stack_b, stack_a, steps);
+			op(ROTATE_A, stack_a, NULL, steps);
+			get_min(*stack_b, limits);
 		}
-		op(PUSH_B, stack_a, stack_b, steps);
-	}*/
+		else if ((*stack_b)->nb < limits->mean)
+			op(ROTATE_B, stack_b, NULL, steps);
+		else
+			op(PUSH_A, stack_b, stack_a, steps);
+		i++;
+	}
+	print_stack(*stack_a);
+	print_stack(*stack_b);
 }
 
 void	sort_stack(t_intlst **stack_a, t_intlst **steps)
