@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 13:09:11 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/08 15:47:24 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,16 @@ void		ft_intlst_content_del(int nb);
 int			ft_intlst_size(t_intlst *lst);
 
 /*
-** INTERFACE
-** Validating and parsing user input, printing the output
+** INTERFACE INPUT
+** Validating and parsing user input
 */
-int			invalid_input(int ac, char **av);
-int			*create_arr(int ac, char **av);
-int			duplicate_numbers(int arr_size, int *arr);
-t_intlst	*create_stack(int ac, char **av);
-void		print_instructions(t_intlst *steps);
+int			validate_input_push_stack(int ac, char **av, t_intlst **stack);
 
-// quick sort
-//void	quick_sort(int *arr, int start, int end);
+/*
+ * INTERFACE OUTPUT
+ * Printing output (instructions)
+ */
+void		print_instructions(t_intlst *steps);
 
 /*
 ** OPS
