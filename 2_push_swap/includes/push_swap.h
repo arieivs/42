@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 18:20:06 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/09 23:16:44 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <limits.h>
 # include "../libft/libft.h"
+# define RETURN_VALUE 0
+# define RETURN_INDEX 1
 
 typedef struct s_intlst
 {
@@ -59,6 +61,7 @@ t_intlst	*ft_intlst_new(int nb);
 void		ft_intlst_add_back(t_intlst **lst, t_intlst *new);
 void		ft_intlst_push_back(t_intlst **lst, int nb);
 void		ft_intlst_clear(t_intlst **lst, void (*del)(int));
+void		ft_intlst_delfirst(t_intlst **lst, void (*del)(int));
 void		ft_intlst_content_del(int nb);
 int			ft_intlst_size(t_intlst *lst);
 
@@ -90,12 +93,10 @@ void		op(t_ops op, t_intlst **stk, t_intlst **sec_stk, t_intlst **steps);
 ** Helping functions for the sorting algorithms
 */
 int			is_sorted(t_intlst *stack);
-int			get_index_min(t_intlst *stack);
-int			get_index_max(t_intlst *stack);
-int			get_min(t_intlst *stack);
-int			get_max(t_intlst *stack);
-t_intlst	*get_min_and_max(t_intlst *stack);
-int			get_mean(t_intlst *stack, t_intlst *limits, int part_sort);
+int			get_min(t_intlst *stack, int return_what);
+int			get_max(t_intlst *stack, int return_what);
+int			get_mean(t_intlst *stack);
+t_intlst	*get_min_mean_max(t_intlst *stack);
 
 /*
 ** SORT ALGOL

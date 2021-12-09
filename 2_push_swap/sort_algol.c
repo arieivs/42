@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 18:19:16 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/09 23:18:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	sort_3(t_intlst **stack, t_intlst **steps)
 
 	if (is_sorted(*stack))
 		return ;
-	i_min = get_index_min(*stack);
-	i_max = get_index_max(*stack);
+	i_min = get_min(*stack, RETURN_INDEX);
+	i_max = get_max(*stack, RETURN_INDEX);
 	if (i_max == 1 && i_min == 2)
 		op(ROTATE_A, stack, NULL, steps);
 	else if (i_max == 2 && i_min == 3)
@@ -31,6 +31,11 @@ void	sort_3(t_intlst **stack, t_intlst **steps)
 	sort_3(stack, steps);
 }
 
+/*
+ * Pushes two smallest numbers to stack B
+ * Orders stack A with sort_3
+ * Pushes two smallest numbers back to stack A
+ */
 void	sort_5(t_intlst **stack_a, t_intlst **stack_b, t_intlst **steps)
 {
 	int	times;
@@ -39,14 +44,14 @@ void	sort_5(t_intlst **stack_a, t_intlst **stack_b, t_intlst **steps)
 	times = 0;
 	while (times < 2)
 	{
-		i_min = get_index_min(*stack_a);
+		i_min = get_min(*stack_a, RETURN_INDEX);
 		while (i_min != 1)
 		{
 			if (i_min <= 3)
 				op(ROTATE_A, stack_a, NULL, steps);
 			else
 				op(REV_ROTATE_A, stack_a, NULL, steps);
-			i_min = get_index_min(*stack_a);
+			i_min = get_min(*stack_a, RETURN_INDEX);
 		}
 		op(PUSH_B, stack_a, stack_b, steps);
 		times++;
@@ -56,29 +61,44 @@ void	sort_5(t_intlst **stack_a, t_intlst **stack_b, t_intlst **steps)
 	op(PUSH_A, stack_b, stack_a, steps);
 }
 
+/*
+ * Pushes the chunk with the lowest numbers to stack B.
+ * The first time this function is called, right at the beginning,
+ * the highest numbers go to the bottom of stack A.
+ * After that, stack A will be pre-sorted on top and sorted at the bottom,
+ * so we don't want to put unordered numbers at the bottom of A anymore.
+ * Plus we don't have to, as each chunk is "defined" by a breakpoint.
+ * The variable partly_sorted allows the function to have a different behaviour
+ * the first time the function is called.
+ * The breakpoints are stored in the limits list.
+ * The first time this function is called, limits has min, mean, max.
+ * The next function adds new breakpoints to the list.
+ * Each time a chunk is moved, the lowest limit is removed, so that we can move
+ * to the next chunk the next time the function is called.
+ */
 void	push_lower_to_b(t_intlst **stack_a, t_intlst **stack_b,
 		t_intlst **limits, t_intlst **steps)
 {
 	static int	partly_sorted = 0;
-	int	i;
-	int	size;
-	int	mean;
+	int			i;
+	int			size;
 
-	//get_mean_and_size(*stack_a, limits, limits->a_part_sorted);
-	// get the new breakpoint
-	if (!partly_sorted)
-		partly_sorted = 1;
 	i = 0;
 	size = ft_intlst_size(*stack_a);
-	mean = get_mean(*stack_a, *limits, partly_sorted);
 	while (i < size)
 	{
-		if ((*stack_a)->nb < mean)
+		if ((*stack_a)->nb >= (*limits)->nb &&
+			(*stack_a)->nb <= (*limits)->next->nb)
 			op(PUSH_B, stack_a, stack_b, steps);
-		else
+		else if (!partly_sorted)
 			op(ROTATE_A, stack_a, NULL, steps);
+		else
+			break ;
 		i++;
 	}
+	ft_intlst_delfirst(limits, &ft_intlst_content_del);
+	if (!partly_sorted)
+		partly_sorted = 1;
 }
 
 void	push_higher_to_a(t_intlst **stack_a, t_intlst **stack_b,
@@ -87,10 +107,12 @@ void	push_higher_to_a(t_intlst **stack_a, t_intlst **stack_b,
 	int	i;
 	int	size;
 	int	mean;
+	(void)limits;
 
 	i = 0;
 	size = ft_intlst_size(*stack_b);
-	mean = get_mean(*stack_b, *limits, 0);
+	// find a way to add new breakpoints
+	mean = get_mean(*stack_b); // needs to be changed
 	//get_mean_and_size(*stack_b, limits, 0);
 	while (i < size)
 	{
@@ -106,24 +128,20 @@ void	push_sorted_to_a(t_intlst **stack_a, t_intlst **stack_b,
 		t_intlst **limits, t_intlst **steps)
 {
 	int	i_min;
-	int	mean;
 	int	size;
+	(void)limits;
 
 	while (*stack_b)
 	{
-		i_min = get_index_min(*stack_b);
-		//get_mean_and_size(*stack_b, limits, 0);
-		mean = get_mean(*stack_b, *limits, 0);
+		i_min = get_min(*stack_b, RETURN_INDEX);
 		size = ft_intlst_size(*stack_b);
 		while (i_min != 1)
 		{
-			if (i_min <= size + 1)
+			if (i_min <= (size / 2 + 1))
 				op(ROTATE_B, stack_b, NULL, steps);
 			else
 				op(REV_ROTATE_B, stack_b, NULL, steps);
-			i_min = get_index_min(*stack_b);
-			//get_mean_and_size(*stack_b, limits, 0);
-			mean = get_mean(*stack_b, *limits, 0);
+			i_min = get_min(*stack_b, RETURN_INDEX);
 			size = ft_intlst_size(*stack_b);
 		}
 		op(PUSH_A, stack_b, stack_a, steps);
@@ -131,21 +149,11 @@ void	push_sorted_to_a(t_intlst **stack_a, t_intlst **stack_b,
 	}
 }
 
-/*
- * ABOUT A_PART_SORTED
- * The first time I call push_b_lower_half,
- * when I call get_mean_and_size, I want it to consider the whole stack.
- * After that I want it to consider only the unsorted part of the stack,
- * thus I tell it to stop once it finds the minimum.
- * This obviously cannot happen the first time I call it, when nothing is sorted
- * which is why I set a_part_sorted to 0 in the beginning
- * and change it after I call push_b_lower_half for the first time
- */
 void	sort_big(t_intlst **stack_a, t_intlst **stack_b, t_intlst **limits,
 		t_intlst **steps)
 {
 	// check if A is sorted and B empty => halting condition
-	if (is_sorted(*stack_a))
+	if (is_sorted(*stack_a) && !(*stack_b))
 		return ;
 	if (!(*stack_b))
 	{
@@ -174,8 +182,6 @@ void	sort_big(t_intlst **stack_a, t_intlst **stack_b, t_intlst **limits,
 		write(1, "B ", 2);
 		print_stack(*stack_b);
 	}
-	//if (!limits->a_part_sorted)
-	//	limits->a_part_sorted = 1;
 	sort_big(stack_a, stack_b, limits, steps);
 }
 
@@ -194,10 +200,8 @@ void	sort_stack(t_intlst **stack_a, t_intlst **steps)
 		sort_5(stack_a, &stack_b, steps);
 	else
 	{
-		limits = get_min_and_max(*stack_a);
-		//get_min(*stack_a, &limits);
-		//limits.abs_min = limits.min;
-		//limits.a_part_sorted = 0;
+		limits = get_min_mean_max(*stack_a);
+		//printf("min %d, mean %d, max %d\n", limits->nb, limits->next->nb, limits->next->next->nb);
 		sort_big(stack_a, &stack_b, &limits, steps);
 	}
 	ft_intlst_clear(&stack_b, &ft_intlst_content_del);
