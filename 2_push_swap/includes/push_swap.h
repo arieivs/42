@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 20:06:10 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/09 11:46:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		op(t_ops op, t_intlst **stk, t_intlst **sec_stk, t_intlst **steps);
 int			is_sorted(t_intlst *stack);
 void		get_min(t_intlst *stack, t_limits *limits);
 void		get_max(t_intlst *stack, t_limits *limits);
-void		get_mean(t_intlst *stack, t_limits *limits);
+void		get_mean_and_size(t_intlst *stack, t_limits *limits);
 
 /*
 ** SORT ALGOL

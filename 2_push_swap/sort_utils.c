@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:17 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 17:00:50 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/09 11:46:30 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	get_max(t_intlst *stack, t_limits *limits)
 	limits->max = max;
 }
 
-void	get_mean(t_intlst *stack, t_limits *limits)
+void	get_mean_and_size(t_intlst *stack, t_limits *limits)
 {
 	int	mean;
 	int	size;
