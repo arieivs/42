@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 12:09:39 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/09 15:14:03 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,24 +108,54 @@ void	push_a_until_sorted(t_intlst **stack_a, t_intlst **stack_b,
 	}
 }
 
+/*
+ * ABOUT ABS_MIN_DEFINED
+ * The first time I call push_b_lower_half,
+ * when I call get_mean_and_size, I want it to consider the whole stack.
+ * After that I want it to consider only the unsorted part of the stack,
+ * thus I tell it to stop once it finds the minimum.
+ * This obviously cannot happen the first time I call it, when nothing is sorted
+ * which is why I set abs_min_defined to 0 in the beginning
+ * and change it after I call push_b_lower_half for the first time
+ */
 void	sort_big(t_intlst **stack_a, t_intlst **stack_b, t_limits *limits,
 		t_intlst **steps)
 {
 	// check if A is sorted and B empty => halting condition
-	// push lower numbers from A to B
-	push_b_lower_half(stack_a, stack_b, limits, steps);
-	print_stack(*stack_a);
-	print_stack(*stack_b);
-	
-	// push higher numbers from B to A
-	/*push_a_higher_half(stack_a, stack_b, limits, steps);
-	print_stack(*stack_a);
-	print_stack(*stack_b);*/
-
-	// push to bottom of A in a sorted manner until B is emty
-	push_a_until_sorted(stack_a, stack_b, limits, steps);
-	print_stack(*stack_a);
-	print_stack(*stack_b);
+	if (is_sorted(*stack_a))
+		return ;
+	if (!(*stack_b))
+	{
+		// push lower numbers from A to B
+		push_b_lower_half(stack_a, stack_b, limits, steps);
+		if (!limits->abs_min_defined)
+		{
+			limits->abs_min_defined = 1;
+		}
+		write(1, "A ", 2);
+		print_stack(*stack_a);
+		write(1, "B ", 2);
+		print_stack(*stack_b);
+	}
+	else if (ft_intlst_size(*stack_b) > 10) // think about threshold
+	{
+		// push higher numbers from B to A
+		push_a_higher_half(stack_a, stack_b, limits, steps);
+		write(1, "A ", 2);
+		print_stack(*stack_a);
+		write(1, "B ", 2);
+		print_stack(*stack_b);
+	}
+	else
+	{
+		// push to bottom of A in a sorted manner until B is emty
+		push_a_until_sorted(stack_a, stack_b, limits, steps);
+		write(1, "A ", 2);
+		print_stack(*stack_a);
+		write(1, "B ", 2);
+		print_stack(*stack_b);
+	}
+	sort_big(stack_a, stack_b, limits, steps);
 }
 
 void	sort_stack(t_intlst **stack_a, t_intlst **steps)
@@ -141,6 +171,11 @@ void	sort_stack(t_intlst **stack_a, t_intlst **steps)
 	else if (size_a <= 5)
 		sort_5(stack_a, &stack_b, &limits, steps);
 	else
+	{
+		get_min(*stack_a, &limits);
+		limits.abs_min = limits.min;
+		limits.abs_min_defined = 0;
 		sort_big(stack_a, &stack_b, &limits, steps);
+	}
 	ft_intlst_clear(&stack_b, &ft_intlst_content_del);
 }

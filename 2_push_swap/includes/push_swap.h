@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 11:46:42 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/09 15:14:01 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ typedef struct s_intlst
 
 typedef struct	s_limits
 {
-	int	i_min;
+	int	abs_min_defined;
+	int	abs_min;
 	int	min;
-	int	i_max;
+	int	i_min;
 	int	max;
+	int	i_max;
 	int	mean;
 	int	size;
 }				t_limits;

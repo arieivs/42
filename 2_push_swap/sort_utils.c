@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:17 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 11:46:30 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/09 15:14:06 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	get_mean_and_size(t_intlst *stack, t_limits *limits)
 	size = 0;
 	while (stack)
 	{
+		if (limits->abs_min_defined && stack->nb <= limits->abs_min)
+			break ;
 		mean += stack->nb;
 		size += 1;
 		stack = stack->next;
