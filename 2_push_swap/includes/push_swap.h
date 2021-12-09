@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 15:14:01 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/09 18:20:06 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_intlst
 
 typedef struct	s_limits
 {
-	int	abs_min_defined;
+	int	a_part_sorted;
 	int	abs_min;
 	int	min;
 	int	i_min;
@@ -90,17 +90,20 @@ void		op(t_ops op, t_intlst **stk, t_intlst **sec_stk, t_intlst **steps);
 ** Helping functions for the sorting algorithms
 */
 int			is_sorted(t_intlst *stack);
-void		get_min(t_intlst *stack, t_limits *limits);
-void		get_max(t_intlst *stack, t_limits *limits);
-void		get_mean_and_size(t_intlst *stack, t_limits *limits);
+int			get_index_min(t_intlst *stack);
+int			get_index_max(t_intlst *stack);
+int			get_min(t_intlst *stack);
+int			get_max(t_intlst *stack);
+t_intlst	*get_min_and_max(t_intlst *stack);
+int			get_mean(t_intlst *stack, t_intlst *limits, int part_sort);
 
 /*
 ** SORT ALGOL
 ** Sorting algorithm
 */
-void		sort_3(t_intlst **stack, t_limits *limits, t_intlst **steps);
-void		sort_5(t_intlst **s_a, t_intlst **s_b, t_limits *lm, t_intlst **st);
-void		sort_big(t_intlst **a, t_intlst **b, t_limits *lm, t_intlst **st);
+void		sort_3(t_intlst **stack, t_intlst **steps);
+void		sort_5(t_intlst **s_a, t_intlst **s_b, t_intlst **st);
+void		sort_big(t_intlst **a, t_intlst **b, t_intlst **lm, t_intlst **st);
 void		sort_stack(t_intlst **stack_a, t_intlst **steps);
 
 #endif
