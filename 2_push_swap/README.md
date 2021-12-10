@@ -13,13 +13,26 @@ Sleep sort: https://kevlinhenney.medium.com/need-something-sorted-sleep-on-it-11
 
 ## 🥞 Implementation
 ### Array vs Linked Lists
-Here your max stack size for a and b is already known and won't change (so the big advantage of chained lists just disappear) and yes it will be faster to make rotations but it will be way slower to find a specific number in your stack and traverse the list (so it may ends up being just more restrictive AND slower)
+There's a little war on discord on whether to use arrays or linked lists for this project.
+Given that the size of A is known from the start and it won't change, the main advantage of linked lists disappears.
+Additionally, it's easier/faster to iterate through a whole array and find a specific value using indexes.
+On the other hand, it will be faster to make rotations and the other main operations allowed for push swap using linked lists, and stacks are, typically, implemented with linked lists.
+The conclusion?
+Both are ok, just go with whatever works best for you.
+This project might be THE moment you finally get around and comfortable with linked lists, which is a criteria as good as any other.
+Personally I decided to use linked lists.
+What you definitelly don't need though, is a double linked list (where each node has both a pointer to the next one and the previous one).
 
-### Using int or void \*
-for me, using void ended up nastly. 
+### Content of type int vs void \*
+Initially, I was using the linked lists implemented in libft, with content of type void \*.
+The obvious advantage being that I was using something versitile.
+However, this required for a lot of typecasting, as everytime I wanted to read the value x stored as void \* I needed to do \*(int \*)x.
+Additionally, at some point I started having serious issues when storing the values in the stack, and changing the content type to int solved it.
+Structs automatically allocate the required memory for its content, and the amount of memory used by an int or a void \* is different.
+I believe that's why the change fixed it, although there is obviously alternative solutions to this.
 
-### Resources
-For 3 or 5: https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+### The algorithm
+Check [this article](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a) on how to sort stack
 
 rizky: https://github.com/rizky/42-push_swap
 
