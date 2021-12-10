@@ -8,7 +8,7 @@ INCLUDES =	-Iincludes -I$(LFT_DIR)
 
 CC =		gcc
 
-CFLAGS =	-Wall -Werror -Wextra -fsanitize=address
+CFLAGS =	-Wall -Werror -Wextra
 
 SRCS =		main.c list_utils.c list_utils2.c interface_input.c interface_output.c ops.c sort_utils.c sort_algol.c sort_big_algol.c
 
