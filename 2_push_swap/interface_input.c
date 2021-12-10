@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 15:53:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/10 01:30:32 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 14:14:05 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,16 @@ static int	validate_input_core(char *str, t_intlst **stack)
 	return (1);
 }
 
+static	void	free_array_from_split(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
+
 int	validate_input_push_stack(int ac, char **av, t_intlst **stack)
 {
 	int		i;
@@ -101,11 +111,11 @@ int	validate_input_push_stack(int ac, char **av, t_intlst **stack)
 		{
 			if (!validate_input_core(arr[i++], stack))
 			{
-				free(arr);
+				free_array_from_split(arr);
 				return (0);
 			}
 		}
-		free(arr);
+		free_array_from_split(arr);
 		return (1);
 	}
 	while (i + 1 < ac)
