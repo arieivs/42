@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/10 01:43:53 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 13:25:15 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	push_lower_to_b(t_intlst **stack_a, t_intlst **stack_b,
 	size = ft_intlst_size(*stack_a);
 	while (i < size)
 	{
-		if ((*stack_a)->nb >= (*limits)->nb &&
-			(*stack_a)->nb <= (*limits)->next->nb)
+		if ((*stack_a)->nb >= (*limits)->nb
+			&& (*stack_a)->nb <= (*limits)->next->nb)
 			op(PUSH_B, stack_a, stack_b, steps);
 		else if (!partly_sorted)
 			op(ROTATE_A, stack_a, NULL, steps);
@@ -114,7 +114,7 @@ void	sort_big(t_intlst **stack_a, t_intlst **stack_b, t_intlst **limits,
 		return ;
 	if (!(*stack_b))
 		push_lower_to_b(stack_a, stack_b, limits, steps);
-	else if (ft_intlst_size(*stack_b) > THRESHOLD) 
+	else if (ft_intlst_size(*stack_b) > THRESHOLD)
 		push_higher_to_a(stack_a, stack_b, limits, steps);
 	else
 		push_sorted_to_a(stack_a, stack_b, steps);

@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:29:36 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/10 02:07:42 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 13:25:58 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ void	reverse_rotate(t_intlst **stack)
 void	op(t_ops op, t_intlst **stack, t_intlst **sec_stack, t_intlst **steps)
 {
 	t_intlst	*prev_step;
-	
+
 	if (op == ROTATE_A || op == ROTATE_B)
 	{
 		rotate(stack);
 		prev_step = ft_intlst_last(*steps);
-		if (prev_step && ((prev_step->nb == ROTATE_A && op == ROTATE_B) ||
-			(prev_step->nb == ROTATE_B && op == ROTATE_A)))
+		if (prev_step && ((prev_step->nb == ROTATE_A && op == ROTATE_B)
+				|| (prev_step->nb == ROTATE_B && op == ROTATE_A)))
 			prev_step->nb = ROTATE_A_B;
 		else
 			ft_intlst_push_back(steps, (int)op);

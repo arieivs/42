@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:17 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/10 01:44:20 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 13:23:13 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	get_max(t_intlst *stack, int return_what)
 		stack = stack->next;
 	}
 	if (return_what == RETURN_INDEX)
-		return(i_max);
+		return (i_max);
 	return (max);
 }
 
@@ -105,4 +105,3 @@ t_intlst	*get_min_mean_max(t_intlst *stack)
 	ft_intlst_push_back(&limits, get_max(stack, RETURN_VALUE));
 	return (limits);
 }
-

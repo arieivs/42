@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/10 01:56:32 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 13:24:11 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_intlst
 	struct s_intlst	*next;
 }				t_intlst;
 
-typedef struct	s_limits
+typedef struct s_limits
 {
 	int	a_part_sorted;
 	int	abs_min;
