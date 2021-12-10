@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/10 00:24:59 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 01:45:28 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,10 @@ t_intlst	*ft_intlst_new(int nb);
 void		ft_intlst_add_back(t_intlst **lst, t_intlst *new);
 void		ft_intlst_push_back(t_intlst **lst, int nb);
 void		ft_intlst_push_right_order(t_intlst **lst, int nb);
+int			ft_intlst_size(t_intlst *lst);
 void		ft_intlst_clear(t_intlst **lst, void (*del)(int));
 void		ft_intlst_delfirst(t_intlst **lst, void (*del)(int));
 void		ft_intlst_content_del(int nb);
-int			ft_intlst_size(t_intlst *lst);
-
-/*
-** INTERFACE INPUT
-** Validating and parsing user input
-*/
-int			validate_input_push_stack(int ac, char **av, t_intlst **stack);
-
-/*
- * INTERFACE OUTPUT
- * Printing output (instructions)
- */
-void		print_instructions(t_intlst *steps);
-void		print_stack(t_intlst *stack);	
 
 /*
 ** OPS
@@ -108,5 +95,18 @@ void		sort_3(t_intlst **stack, t_intlst **steps);
 void		sort_5(t_intlst **s_a, t_intlst **s_b, t_intlst **st);
 void		sort_big(t_intlst **a, t_intlst **b, t_intlst **lm, t_intlst **st);
 void		sort_stack(t_intlst **stack_a, t_intlst **steps);
+
+/*
+** INTERFACE INPUT
+** Validating and parsing user input
+*/
+int			validate_input_push_stack(int ac, char **av, t_intlst **stack);
+
+/*
+ * INTERFACE OUTPUT
+ * Printing output (instructions)
+ */
+void		print_instructions(t_intlst *steps);
+void		print_stack(t_intlst *stack);	
 
 #endif

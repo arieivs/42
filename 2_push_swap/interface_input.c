@@ -6,13 +6,12 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 15:53:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 16:01:03 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 01:30:32 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-// I should move this to libft
 long	ft_atol(const char *str)
 {
 	int		i;

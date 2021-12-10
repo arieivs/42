@@ -6,12 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 11:23:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/08 20:06:22 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 01:35:15 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
-#include <stdio.h>
 
 int	main(int ac, char **av)
 {

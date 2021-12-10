@@ -6,12 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:17 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 23:16:14 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 01:44:20 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
-#include <stdio.h>
 
 int	is_sorted(t_intlst *stack)
 {

@@ -1,4 +1,4 @@
-#include "includes/push_swap.h"
+#include "../includes/push_swap.h"
 #include <stdio.h>
 
 static void	ft_print_del(int nb)
