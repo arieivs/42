@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/10 01:45:28 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 01:56:32 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int			ft_intlst_size(t_intlst *lst);
 void		ft_intlst_clear(t_intlst **lst, void (*del)(int));
 void		ft_intlst_delfirst(t_intlst **lst, void (*del)(int));
 void		ft_intlst_content_del(int nb);
+t_intlst	*ft_intlst_last(t_intlst *lst);
 
 /*
 ** OPS
