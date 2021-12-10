@@ -63,3 +63,4 @@ Colours:
 https://www.codingame.com/playgrounds/2358/how-to-plot-the-mandelbrot-set/adding-some-colors
 https://math.stackexchange.com/questions/90916/how-should-i-assign-rgb-colors-to-points-in-the-mandelbrot-set
 https://stackoverflow.com/questions/16500656/which-color-gradient-is-used-to-color-mandelbrot-in-wikipedia
+https://www.wolframalpha.com/input/?i=cubic+fit+%7B%7B0%2C+15%7D%2C+%7B1%2C+26%7D%2C+%7B2%2C+47%7D%2C+%7B3%2C+73%7D%2C+%7B4%2C+100%7D%2C+%7B5%2C+138%7D%2C+%7B6%2C+177%7D%2C+%7B7%2C+209%7D%2C+%7B8%2C+229%7D%2C+%7B9%2C+248%7D%2C+%7B10%2C+191%7D%2C+%7B11%2C+95%7D%2C+%7B12%2C+0%7D%2C+%7B13%2C+0%7D%2C+%7B14%2C+0%7D%2C+%7B15%2C+3%7D%7D
