@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 22:18:48 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 22:08:16 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/09 23:50:52 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,34 @@ void	ft_intlst_push_back(t_intlst **lst, int nb)
 	ft_intlst_add_back(lst, new_lst);
 }
 
+void	ft_intlst_push_right_order(t_intlst **lst, int nb)
+{
+	t_intlst	*new_lst;
+	t_intlst	*curr;
+
+	new_lst = ft_intlst_new(nb);
+	if (!*lst)
+	{
+		*lst = new_lst;
+		return ;
+	}
+	curr = *lst;
+	if (curr->nb > nb)
+	{
+		new_lst->next = curr;
+		*lst = new_lst;
+		return ;
+	}
+	while (curr->next)
+	{
+		if (curr->next->nb > nb)
+			break ;
+		curr = curr->next;
+	}
+	new_lst->next = curr->next;
+	curr->next = new_lst;
+}
+
 void	ft_intlst_clear(t_intlst **lst, void (*del)(int))
 {
 	t_intlst	*to_delete;
@@ -64,6 +92,8 @@ void	ft_intlst_delfirst(t_intlst **lst, void (*del)(int))
 {
 	t_intlst	*to_delete;
 
+	if (!(*lst))
+		return ;
 	to_delete = *lst;
 	*lst = (*lst)->next;
 	del(to_delete->nb);

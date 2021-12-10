@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:14:45 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 23:18:42 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 00:01:05 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	push_lower_to_b(t_intlst **stack_a, t_intlst **stack_b,
 	int			i;
 	int			size;
 
+	// if (ft_intlst_size(*limits) < 2)
+	// error message and exit gracefully
 	i = 0;
 	size = ft_intlst_size(*stack_a);
 	while (i < size)
@@ -101,19 +103,23 @@ void	push_lower_to_b(t_intlst **stack_a, t_intlst **stack_b,
 		partly_sorted = 1;
 }
 
+/*
+ * Pushes the chunck with the highest numbers back to the top of stack A
+ * Adds a new breakpoint to the limits list, the current mean of stack B,
+ * which will be used the next time push_lower_to_b is called.
+ */
 void	push_higher_to_a(t_intlst **stack_a, t_intlst **stack_b,
 		t_intlst **limits, t_intlst **steps)
 {
 	int	i;
 	int	size;
 	int	mean;
-	(void)limits;
 
 	i = 0;
 	size = ft_intlst_size(*stack_b);
-	// find a way to add new breakpoints
-	mean = get_mean(*stack_b); // needs to be changed
-	//get_mean_and_size(*stack_b, limits, 0);
+	mean = get_mean(*stack_b);
+	ft_intlst_push_right_order(limits, mean);
+	//print_stack(*limits);
 	while (i < size)
 	{
 		if ((*stack_b)->nb > mean)
@@ -124,6 +130,9 @@ void	push_higher_to_a(t_intlst **stack_a, t_intlst **stack_b,
 	}
 }
 
+/*
+ * Pushes all numbers in stack B to the bottom of stack A in order
+ */
 void	push_sorted_to_a(t_intlst **stack_a, t_intlst **stack_b,
 		t_intlst **limits, t_intlst **steps)
 {
@@ -152,35 +161,31 @@ void	push_sorted_to_a(t_intlst **stack_a, t_intlst **stack_b,
 void	sort_big(t_intlst **stack_a, t_intlst **stack_b, t_intlst **limits,
 		t_intlst **steps)
 {
-	// check if A is sorted and B empty => halting condition
 	if (is_sorted(*stack_a) && !(*stack_b))
 		return ;
 	if (!(*stack_b))
 	{
-		// push lower numbers from A to B
 		push_lower_to_b(stack_a, stack_b, limits, steps);
-		write(1, "A ", 2);
+		/*write(1, "A ", 2);
 		print_stack(*stack_a);
 		write(1, "B ", 2);
-		print_stack(*stack_b);
+		print_stack(*stack_b);*/
 	}
-	else if (ft_intlst_size(*stack_b) > 10) // think about threshold
+	else if (ft_intlst_size(*stack_b) > THRESHOLD) // think about threshold
 	{
-		// push higher numbers from B to A
 		push_higher_to_a(stack_a, stack_b, limits, steps);
-		write(1, "A ", 2);
+		/*write(1, "A ", 2);
 		print_stack(*stack_a);
 		write(1, "B ", 2);
-		print_stack(*stack_b);
+		print_stack(*stack_b);*/
 	}
 	else
 	{
-		// push to bottom of A in a sorted manner until B is emty
 		push_sorted_to_a(stack_a, stack_b, limits, steps);
-		write(1, "A ", 2);
+		/*write(1, "A ", 2);
 		print_stack(*stack_a);
 		write(1, "B ", 2);
-		print_stack(*stack_b);
+		print_stack(*stack_b);*/
 	}
 	sort_big(stack_a, stack_b, limits, steps);
 }
@@ -201,7 +206,7 @@ void	sort_stack(t_intlst **stack_a, t_intlst **steps)
 	else
 	{
 		limits = get_min_mean_max(*stack_a);
-		//printf("min %d, mean %d, max %d\n", limits->nb, limits->next->nb, limits->next->next->nb);
+		//print_stack(limits);
 		sort_big(stack_a, &stack_b, &limits, steps);
 	}
 	ft_intlst_clear(&stack_b, &ft_intlst_content_del);

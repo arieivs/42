@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:13:23 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/09 23:16:44 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 00:24:59 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../libft/libft.h"
 # define RETURN_VALUE 0
 # define RETURN_INDEX 1
+# define THRESHOLD 20
 
 typedef struct s_intlst
 {
@@ -60,6 +61,7 @@ typedef enum e_ops
 t_intlst	*ft_intlst_new(int nb);
 void		ft_intlst_add_back(t_intlst **lst, t_intlst *new);
 void		ft_intlst_push_back(t_intlst **lst, int nb);
+void		ft_intlst_push_right_order(t_intlst **lst, int nb);
 void		ft_intlst_clear(t_intlst **lst, void (*del)(int));
 void		ft_intlst_delfirst(t_intlst **lst, void (*del)(int));
 void		ft_intlst_content_del(int nb);
