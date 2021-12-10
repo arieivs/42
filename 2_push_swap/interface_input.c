@@ -6,36 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 15:53:32 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/10 14:14:05 by svieira          ###   ########.fr       */
+/*   Updated: 2021/12/10 15:45:26 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
-
-long	ft_atol(const char *str)
-{
-	int		i;
-	int		signal;
-	long	nb;
-
-	i = 0;
-	signal = 1;
-	nb = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			signal = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		nb = nb * 10 + (str[i] - '0');
-		i++;
-	}
-	return (nb * signal);
-}
 
 static int	valid_characters(char *str)
 {
