@@ -37,9 +37,7 @@ One of the most fascinating things is to realise that all these fractals are gen
 Dive into the maths with this [Numberphile video on Julia sets](https://www.youtube.com/watch?v=FFftmWSzgmk), this [Numberphile video on the Mandelbrot set](https://www.youtube.com/watch?v=NGMRB4O922I) and if you're still curious check this [video from Veritasium on the logistic map](https://www.youtube.com/watch?v=ovJcsL7vyrk).
 
 As you've noticed, it all goes around the following equation:
-```
-z(n + 1) = z(n)^2 + c
-```
+<p>z<sub>n + 1</sub> = z<sub>n</sub><sup>2</sup> + c</p>
 Where both z and c are complex numbers (z is our variable, c a constant) and n is the iteration count.
 
 For the Burning ships fractal (bonus) you simply need to use the absolute values of both the real and imaginary parts of z:
