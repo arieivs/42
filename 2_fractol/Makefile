@@ -22,7 +22,7 @@ RM =		rm -f
 $(NAME):	$(OBJS)
 			make -C $(MLX_DIR)
 			cp $(MLX_DIR)/libmlx.dylib .
-			$(CC) $(CFLAGS) $(OBJS) $(MLX_LIB) $(LFT_LIB) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) $(MLX_LIB) -o $(NAME)
 
 all:		$(NAME)
 
