@@ -4,7 +4,7 @@ A project about sorting algorithms and complexity which uses the worst possible 
 <br/>
 
 ## ⏳ Sorting Algorithms and Complexity
-Read this [introduction on time complexity](https://remimercier.com/wtf-time-complexity/) and watch this [introductin on Big O notation and sorting algorithms](https://www.youtube.com/watch?v=RGuJga2Gl_k).
+Read this [introduction on time complexity](https://remimercier.com/wtf-time-complexity/) and watch this [introduction on Big O notation and sorting algorithms](https://www.youtube.com/watch?v=RGuJga2Gl_k).
 
 This might be a good moment to dig into some popular sorting algorithms, such as quick sort and merge sort: find [further explanations, code in C and resources for some sorting algorithms here](https://github.com/arieivs/algorithms/tree/master/sort).
 Although the best one is, of course, the [sleep sort](https://kevlinhenney.medium.com/need-something-sorted-sleep-on-it-11fdf8453914) 😴.
