@@ -4,10 +4,10 @@ A project about sorting algorithms and complexity which uses the worst possible 
 <br/>
 
 ## ⏳ Sorting Algorithms and Complexity
-To watch: https://www.youtube.com/watch?v=D6xkbGLQesk
+Read this [introduction on time complexity](https://remimercier.com/wtf-time-complexity/) and watch this [introductin on Big O notation and sorting algorithms](https://www.youtube.com/watch?v=RGuJga2Gl_k).
 
-Just for the fun:
-Sleep sort: https://kevlinhenney.medium.com/need-something-sorted-sleep-on-it-11fdf8453914
+This might be a good moment to dig into some popular sorting algorithms, such as quick sort and merge sort: find [further explanations, code in C and resources for some sorting algorithms here](https://github.com/arieivs/algorithms/tree/master/sort).
+Although the best one is, of course, the [sleep sort](https://kevlinhenney.medium.com/need-something-sorted-sleep-on-it-11fdf8453914) 😴.
 
 <br/>
 
@@ -32,31 +32,51 @@ Structs automatically allocate the required memory for its content, and the amou
 I believe that's why the change fixed it, although there is obviously alternative solutions to this.
 
 ### The algorithm
-Check [this article](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a) on how to sort stack
+Check [this article](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a) on how to sort stack with up to 3 elements.
+For a stack with up to 5 elements, look for the two smallest numbers in stack A and move them to B (in order).
+After ordering the remaining elements in A, simply push the 2 smallest elements back to A and it's done!
 
-rizky: https://github.com/rizky/42-push_swap
+The best way to come up with a generic sorting algorithm (so something to be used with a stack with 6 elements or with a stack with 1000 elements) is to watch someone else's code in action.
+Use this [push swap visualizer](https://github.com/o-reo/push_swap_visualizer).
+For me, the algorithm which proved to be the easiest for me to understand, thus becoming my source of inspiration, was [Knulpinette's](https://github.com/Knulpinette/Cursus42/tree/main/02-push_swap).
+For better performances check [Rizky's](https://github.com/rizky/42-push_swap) or [Dimitri's](https://github.com/DimitriDaSilva/42_push_swap) (I believe they follow a similar logic), or [Flávio's](https://github.com/flaviomota/push_swap) who has a very different approach.
+[APinto](https://github.com/protsaq/push_swap) also offers a different perspective.
 
-dimitri: https://github.com/DimitriDaSilva/42_push_swap
+I start by scanning through the whole stack A and pushing all elements lower than its mean to stack B.
+Then I go through stack B and push all elements wich are higher than its mean back to the top of A.
+I repeat this until the size of B is below a certain number.
+This threshold was determined empirically and it does not depend on stack A's original size: I simply run the programme multiple times with different thresholds and picked the one giving better results (which was 20 by the way).
+At this point, stack A is pre-sorted, and stack B has a manageable amount of elements which can be moved to the bottom of A in the right order.
+Once that is done, we move the next pre-sorted chunck of numbers from A to B and repeat the process until they are all sorted at the bottom of A.
 
-visualizer: https://github.com/o-reo/push_swap_visualizer
+### Mean vs Median
+In order to achieve better results, one should use the median.
+After all, that's what we trully want: to have half of the elements in one side and the other half in the other.
+However, what's the first step to calculate the median of a set of numbers?
+Sort it.
+Which meant that I would need to create a copy of my list and sort it in a faster way to help me sort it in a slower way.
+Hmm...
+
+Mean and Median can be very different.
+That's true.
+Yet, most random numbers generators will give you a set of numbers not too far away from a normal distribution.
+So I felt that mean was good enough.
+Yet, if you're looking for ways to optimize your code, by all means do calculate and use the median instead.
 
 <br/>
 
 ## ⏱ Testing
+[Push swap tester](https://github.com/lmalki-h/push_swap_tester).
+
 ### Using ARG
-When I try to compile my program the way they ask us to in the correction of this project (using the variable ARG), it assumes the three numbers as part of the same string, therefore the Error output in my program.
-It's zsh thing. Basically zsh creates a string, bash doesn't. To change zsh default setting, you need to add setopt shwordsplit in your .zshrc file
+When giving the parameters to the programme via the ARG environment variable, it will probably take it as a single argument.
+For this reason, my programme can both receive the arguments as a single string, so ```./push_swap "3 6 4 2 5"``` or one argument per element, so ```./push_swap 3 6 4 2 5```.
+However, that wasn't necessary.
+This behaviour (interpreting the value of ARG as a single string) is a default for zsh.
+While zsh creates a string, bash doesn't.
+To change zsh default settings, you need to add ```setopt shwordsplit``` in your .zshrc file.
 
 ### Generating random numbers
 ```ARG=`ruby -e "puts (1..50).to_a.shuffle.join(' ')"`;```
 
 ```seq MIN MAX | sort -R```
-
-### Testers
-Tester: https://github.com/lmalki-h/push_swap_tester
-
-Michele speed tester: https://github.com/mikysett/push_swap_speed_tester
-
-Juliao speed tester:https://gist.github.com/brhaka/af12a3b49812014c5cea47301659e750
-
-Gueifao speed tester: https://gist.github.com/fletcher97/1e95b2d6ce317c01cf27414b6699f0cb
