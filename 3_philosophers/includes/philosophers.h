@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2021/12/30 21:10:55 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/12 20:21:22 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,41 @@
 # include <pthread.h>
 # include <stdio.h>
 
-typedef struct s_philo_data
+typedef struct s_simu_data
 {
-	int				id;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;
-}				t_philo_data;
+	int	n;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	max_nb_meals;
+}				t_simu_data;
+
+typedef struct s_fork
+{
+	int				id; // for debugging purposes
+	pthread_mutex_t	mutex;
+	int				taken;
+}				t_fork;
+
+typedef struct s_philosopher
+{
+	int			id;
+	t_fork		*right_fork;
+	t_fork		*left_fork;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			max_nb_meals; // not sure I'll need this one
+	long int	time_of_death;
+}				t_philosopher;
+
+/* INTERFACE */
+int	validate_input_into_struct(int ac, char **av, t_simu_data *simu_data);
+
+/* INITIALIZERS */
+
+/* UTILS */
+int	str_is_digits(char *str);
+int	ft_atoi(const char *str);
 
 #endif
