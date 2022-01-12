@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/12 20:21:22 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/12 20:54:21 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,14 @@ typedef struct s_philosopher
 }				t_philosopher;
 
 /* INTERFACE */
-int	validate_input_into_struct(int ac, char **av, t_simu_data *simu_data);
+int				validate_input_into_struct(int ac, char **av, t_simu_data *sim);
 
 /* INITIALIZERS */
+t_fork			*forks_init(int n);
+t_philosopher	*philosophers_init(int n, t_fork *forks);
 
 /* UTILS */
-int	str_is_digits(char *str);
-int	ft_atoi(const char *str);
+int				str_is_digits(char *str);
+int				ft_atoi(const char *str);
 
 #endif
