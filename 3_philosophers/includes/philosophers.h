@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/12 22:51:29 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/12 23:02:15 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ int				print(t_philosopher philosopher);
 t_fork			*forks_init(int n);
 t_philosopher	*philosophers_init(t_simu_data simulation_data, t_fork *forks,
 				pthread_mutex_t *print_mutex);
+
+/* LIFE OF A PHILOSOPHER */
+void			*live(void *confused_philosopher);
 
 /* UTILS */
 int				str_is_digits(char *str);

@@ -6,22 +6,11 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 20:40:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/12 22:51:09 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/12 23:00:14 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-void	*live(void *confusing_philosopher)
-{
-	t_philosopher	*philosopher;
-
-	philosopher = (t_philosopher *)confusing_philosopher;
-	// live
-	// call eat, sleep, think
-	print(*philosopher);
-	return (NULL);
-}
 
 int	main(int ac, char **av)
 {
