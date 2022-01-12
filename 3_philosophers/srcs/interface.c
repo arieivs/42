@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:06:39 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/12 20:27:40 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/12 22:53:35 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,11 @@ int	validate_input_into_struct(int ac, char **av, t_simu_data *simulation_data)
 	return (1);
 }
 
+int	print(t_philosopher philosopher)
+{
+	pthread_mutex_lock(philosopher.print_mutex);
+	printf("Philosopher %d ", philosopher.id);
+	printf("has forks %d and %d\n", philosopher.left_fork->id, philosopher.right_fork->id);
+	pthread_mutex_unlock(philosopher.print_mutex);
+	return (0);
+}

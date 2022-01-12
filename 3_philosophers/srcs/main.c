@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 20:40:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/12 20:55:17 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/12 22:51:09 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,24 @@ void	*live(void *confusing_philosopher)
 	philosopher = (t_philosopher *)confusing_philosopher;
 	// live
 	// call eat, sleep, think
-	printf("Philosopher %d ", philosopher->id);
-	printf("has forks %d and %d\n", philosopher->left_fork->id, philosopher->right_fork->id);
+	print(*philosopher);
 	return (NULL);
 }
 
 int	main(int ac, char **av)
 {
 	t_simu_data		simulation_data;
+	pthread_mutex_t	print_mutex;
 	t_fork			*forks;
 	t_philosopher	*philosophers;
 	pthread_t		*threads;
 	int				i;
 
 	if (!validate_input_into_struct(ac, av, &simulation_data))
-		return (1); 
+		return (1);
+	pthread_mutex_init(&print_mutex, NULL); // should add this to simu struct?
 	forks = forks_init(simulation_data.n);
-	philosophers = philosophers_init(simulation_data.n, forks);
+	philosophers = philosophers_init(simulation_data, forks, &print_mutex);
 	threads = (pthread_t *)malloc(sizeof(pthread_t) * simulation_data.n);
 	i = 0;
 	while (i < simulation_data.n)
@@ -57,5 +58,6 @@ int	main(int ac, char **av)
 	while (i < simulation_data.n)
 		pthread_mutex_destroy(&(forks[i++].mutex));
 	free(forks);
+	pthread_mutex_destroy(&print_mutex);
 	return (0);
 }
