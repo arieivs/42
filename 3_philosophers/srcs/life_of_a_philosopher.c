@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/12 23:02:24 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/13 11:50:53 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ void	*live(void *confused_philosopher)
 }
 
 // grab fork
+void	grab_fork(t_philosopher *philosopher)
+{
+	while (1)
+	{
+		if (!philosopher->left_fork.taken && !philosopher->right_fork.taken)
+			break ;
+	}
+	pthread_mutex_lock(philosopher->left_fork);
+	pthread_mutex_lock(philosopher->right_fork);
+	//get timestamp -> need to know when did the simulation start right
+	//print message
+}
 
 // eat
 
