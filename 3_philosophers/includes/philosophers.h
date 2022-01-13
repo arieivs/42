@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/13 14:43:18 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/13 15:11:11 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 # include <stdio.h>
 
 typedef struct s_simulation
