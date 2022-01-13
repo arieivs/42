@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:52:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/13 12:59:32 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/13 14:40:19 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,4 @@ t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks)
 		i++;
 	}
 	return (philosophers);
-}
-
-void	simulation_init(t_simulation *simulation)
-{
-	pthread_mutex_t	print_mutex;
-
-	pthread_mutex_init(&print_mutex, NULL);
-	simulation->print_mutex = &print_mutex;
-	// add start time
 }

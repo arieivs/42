@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/13 13:00:55 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/13 14:43:18 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_simulation
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				max_nb_meals;
-	long int		start_time;
 	pthread_mutex_t	*print_mutex;
+	long int		start_time;
 }				t_simulation;
 
 typedef struct s_fork
@@ -51,7 +51,6 @@ int				print(t_philosopher philosopher);
 /* INITIALIZERS */
 t_fork			*forks_init(int n);
 t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks);
-void			simulation_init(t_simulation *simulation);
 
 /* LIFE OF A PHILOSOPHER */
 void			*live(void *confused_philosopher);
