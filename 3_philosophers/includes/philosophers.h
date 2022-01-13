@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/12 23:02:15 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/13 13:00:55 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@
 # include <pthread.h>
 # include <stdio.h>
 
-typedef struct s_simu_data
+typedef struct s_simulation
 {
-	int	n;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	max_nb_meals;
-}				t_simu_data;
+	int				n;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				max_nb_meals;
+	long int		start_time;
+	pthread_mutex_t	*print_mutex;
+}				t_simulation;
 
 typedef struct s_fork
 {
@@ -36,24 +38,20 @@ typedef struct s_fork
 typedef struct s_philosopher
 {
 	int				id;
-	t_fork			*right_fork;
 	t_fork			*left_fork;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				max_nb_meals; // not sure I'll need this one
+	t_fork			*right_fork;
+	t_simulation	*simulation;
 	long int		time_of_death;
-	pthread_mutex_t	*print_mutex;
 }				t_philosopher;
 
 /* INTERFACE */
-int				validate_input_into_struct(int ac, char **av, t_simu_data *sim);
+int				validate_input_and_parse(int ac, char **av, t_simulation *sim);
 int				print(t_philosopher philosopher);
 
 /* INITIALIZERS */
 t_fork			*forks_init(int n);
-t_philosopher	*philosophers_init(t_simu_data simulation_data, t_fork *forks,
-				pthread_mutex_t *print_mutex);
+t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks);
+void			simulation_init(t_simulation *simulation);
 
 /* LIFE OF A PHILOSOPHER */
 void			*live(void *confused_philosopher);

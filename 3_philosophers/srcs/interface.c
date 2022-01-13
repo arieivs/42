@@ -6,13 +6,13 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:06:39 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/12 22:53:35 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/13 13:05:10 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	validate_input_into_struct(int ac, char **av, t_simu_data *simulation_data)
+int	validate_input_and_parse(int ac, char **av, t_simulation *simulation)
 {
 	int	i;
 
@@ -25,12 +25,12 @@ int	validate_input_into_struct(int ac, char **av, t_simu_data *simulation_data)
 			return (0);
 		i++;
 	}
-	simulation_data->n = ft_atoi(av[1]);
-	simulation_data->time_to_die = ft_atoi(av[2]);
-	simulation_data->time_to_eat = ft_atoi(av[3]);
-	simulation_data->time_to_sleep = ft_atoi(av[4]);
+	simulation->n = ft_atoi(av[1]);
+	simulation->time_to_die = ft_atoi(av[2]);
+	simulation->time_to_eat = ft_atoi(av[3]);
+	simulation->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		simulation_data->max_nb_meals = ft_atoi(av[5]);
+		simulation->max_nb_meals = ft_atoi(av[5]);
 	// should do a simplified atoi
 	// check nb philosophers <= 200 ?
 	// check times >= 60ms ?
@@ -40,9 +40,9 @@ int	validate_input_into_struct(int ac, char **av, t_simu_data *simulation_data)
 
 int	print(t_philosopher philosopher)
 {
-	pthread_mutex_lock(philosopher.print_mutex);
+	pthread_mutex_lock(philosopher.simulation->print_mutex);
 	printf("Philosopher %d ", philosopher.id);
 	printf("has forks %d and %d\n", philosopher.left_fork->id, philosopher.right_fork->id);
-	pthread_mutex_unlock(philosopher.print_mutex);
+	pthread_mutex_unlock(philosopher.simulation->print_mutex);
 	return (0);
 }
