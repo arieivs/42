@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 18:21:45 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 18:49:50 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks);
 void			*live(void *confused_philosopher);
 void			grab_fork(t_philosopher *philosopher);
 void			eat(t_philosopher *philosopher);
+void			sleep(t_philosopher *philosopher);
+void			think(t_philosopher *philosopher);
 
 /* UTILS */
 int				str_is_digits(char *str);
