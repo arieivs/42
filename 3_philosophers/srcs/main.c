@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 20:40:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/13 15:29:57 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 15:38:03 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,10 @@ int	start_simulation(t_simulation *simulation, t_philosopher *philosophers)
 {
 	int				i;
 	pthread_t		*threads;
-	struct timeval	now;
 
 	i = 0;
 	threads = (pthread_t *)malloc(sizeof(pthread_t) * simulation->n);
-	gettimeofday(&now, NULL);
-	// simulation->start_time = now.tv_sec
-	// start simulation time
-	// might need to change the struct, need both seconds and microseconds
+	gettimeofday(&(simulation->start_time), NULL);
 	while (i < simulation->n)
 	{
 		if (pthread_create(&threads[i], NULL, &live, (void *)&philosophers[i]))
