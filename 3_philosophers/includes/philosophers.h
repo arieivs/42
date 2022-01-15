@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 18:49:50 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 20:01:15 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define PHILOSOPHERS_H
 
 # include <stdlib.h>
-# include <pthread.h>
 # include <sys/time.h>
+# include <pthread.h>
+# include <unistd.h>
 # include <stdio.h>
 
 typedef struct s_simulation
@@ -65,9 +66,9 @@ t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks);
 /* LIFE OF A PHILOSOPHER */
 void			*live(void *confused_philosopher);
 void			grab_fork(t_philosopher *philosopher);
-void			eat(t_philosopher *philosopher);
-void			sleep(t_philosopher *philosopher);
-void			think(t_philosopher *philosopher);
+void			eating(t_philosopher *philosopher);
+void			sleeping(t_philosopher *philosopher);
+void			thinking(t_philosopher *philosopher);
 
 /* UTILS */
 int				str_is_digits(char *str);

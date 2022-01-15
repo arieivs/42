@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 18:49:19 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 20:05:59 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	grab_fork(t_philosopher *philosopher)
 	pthread_mutex_lock(&philosopher->right_fork->mutex);
 	took_fork_time = get_time_ms();
 	print_message(*philosopher, took_fork_time, FORK);
-	eat(philosopher);
+	eating(philosopher);
 }
 
-void	eat(t_philosopher *philosopher)
+void	eating(t_philosopher *philosopher)
 {
 	long long	start_eat;
 
@@ -52,10 +52,10 @@ void	eat(t_philosopher *philosopher)
 		philosopher->simulation->time_to_die;  
 	pthread_mutex_unlock(&philosopher->left_fork->mutex);
 	pthread_mutex_unlock(&philosopher->right_fork->mutex);
-	sleep(philosopher);
+	sleeping(philosopher);
 }
 
-void	sleep(t_philosopher *philosopher)
+void	sleeping(t_philosopher *philosopher)
 {
 	long long	start_sleep;
 
@@ -65,15 +65,15 @@ void	sleep(t_philosopher *philosopher)
 	{
 		// check if philosopher died
 	}
-	think(philosopher);
+	thinking(philosopher);
 }
 
-void	think(t_philosopher *philosopher)
+void	thinking(t_philosopher *philosopher)
 {
 	long long	start_think;
 
 	start_think = get_time_ms();
 	print_message(*philosopher, start_think, THINK);
-	// add usleep(1)? msessa
+	usleep(1000);
 	grab_fork(philosopher);
 }

@@ -9,6 +9,8 @@ https://miro.com/app/board/o9J_l0AjIkc=/
 Advice from dcavalei: 1 advice, a good way to stop printing after someone died is to create a print function that prints according to a mutex that protects  the var "someone_died" , something like mutex lock; if someone died do nothing; else print message; mutex unlock;
 This way when 1 philosopher talks, the others shut the hell up :D
 
+Advice from msessa: Be careful of odd philosopher number (ex: ./philo 5 800 200 200), this introduce odd forks and add priorities issues that can land in philosophers dying when they are not supposed to. This issue has been fixed here by adding a small mandatory time of thinking after sleep (this naturally gives philosophers thinking since more time priority over the just-released forks without breaking encapsulation).
+
 Mutex: https://stackoverflow.com/questions/34524/what-is-a-mutex/34558#34558
 
 Compiling: https://stackoverflow.com/questions/23250863/difference-between-pthread-and-lpthread-while-compiling
