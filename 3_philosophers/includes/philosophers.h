@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 20:01:15 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 20:23:54 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_philosopher
 	t_fork			*left_fork;
 	t_fork			*right_fork;
 	t_simulation	*simulation;
-	long long		time_of_death;
+	long long		time_death;
 }				t_philosopher;
 
 typedef enum e_actions

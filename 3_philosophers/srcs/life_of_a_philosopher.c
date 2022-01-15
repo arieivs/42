@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 20:05:59 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 20:33:21 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,12 @@ void	eating(t_philosopher *philosopher)
 	long long	start_eat;
 
 	start_eat = get_time_ms();
+	philosopher->time_death = start_eat + philosopher->simulation->time_to_die;
 	print_message(*philosopher, start_eat, EAT);
 	while (get_time_ms() < (start_eat + philosopher->simulation->time_to_eat))
 	{
 		// check if philosopher died
 	}
-	philosopher->time_of_death = get_time_ms() +
-		philosopher->simulation->time_to_die;  
-	pthread_mutex_unlock(&philosopher->left_fork->mutex);
-	pthread_mutex_unlock(&philosopher->right_fork->mutex);
 	sleeping(philosopher);
 }
 
@@ -61,6 +58,8 @@ void	sleeping(t_philosopher *philosopher)
 
 	start_sleep = get_time_ms();
 	print_message(*philosopher, start_sleep, SLEEP);
+	pthread_mutex_unlock(&philosopher->left_fork->mutex);
+	pthread_mutex_unlock(&philosopher->right_fork->mutex);
 	while (get_time_ms() < start_sleep + philosopher->simulation->time_to_sleep)
 	{
 		// check if philosopher died
