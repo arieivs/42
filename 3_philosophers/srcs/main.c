@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 20:40:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 15:38:03 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 18:08:23 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	start_simulation(t_simulation *simulation, t_philosopher *philosophers)
 
 	i = 0;
 	threads = (pthread_t *)malloc(sizeof(pthread_t) * simulation->n);
-	gettimeofday(&(simulation->start_time), NULL);
+	simulation->start_time = get_time_ms();
 	while (i < simulation->n)
 	{
 		if (pthread_create(&threads[i], NULL, &live, (void *)&philosophers[i]))

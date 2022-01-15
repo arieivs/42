@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:52:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 15:56:00 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 18:04:09 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks)
 			philosophers[i].left_fork = &forks[i - 1];
 		philosophers[i].right_fork = &forks[i];
 		philosophers[i].simulation = simulation;
-		philosophers[i].time_of_death = simulation->time_to_die;
+		philosophers[i].time_of_death = simulation->start_time +
+										simulation->time_to_die;
 		i++;
 	}
 	return (philosophers);

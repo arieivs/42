@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/13 13:04:27 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 18:20:20 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,45 @@ void	*live(void *confused_philosopher)
 	t_philosopher	*philosopher;
 
 	philosopher = (t_philosopher *)confused_philosopher;
-	// live
-	// call eat, sleep, think
-	print(*philosopher);
+	// call grab_fork only for some, and think for the others?
+	grab_fork(philosopher);
 	return (NULL);
 }
 
 // grab fork
 void	grab_fork(t_philosopher *philosopher)
 {
-	while (1)
+	long long took_fork_time;
+
+	while (philosopher->left_fork->taken || philosopher->right_fork->taken)
 	{
-		if (!philosopher->left_fork->taken && !philosopher->right_fork->taken)
-			break ;
+		// if philosopher died
+			// break ; or... exit to die
 	}
 	pthread_mutex_lock(&philosopher->left_fork->mutex);
 	pthread_mutex_lock(&philosopher->right_fork->mutex);
-	//get timestamp -> need to know when did the simulation start right
-	//print message
+	took_fork_time = get_time_ms();
+	print_message(*philosopher, took_fork_time, FORK);
+	eat(philosopher);
 }
 
 // eat
+void	eat(t_philosopher *philosopher)
+{
+	long long start_eat;
+
+	start_eat = get_time_ms();
+	print_message(*philosopher, start_eat, EAT);
+	while (get_time_ms() < (start_eat + philosopher->simulation->time_to_eat))
+	{
+		// check if philosopher died
+	}
+	philosopher->time_of_death = get_time_ms() +
+		philosopher->simulation->time_to_die;  
+	pthread_mutex_unlock(&philosopher->left_fork->mutex);
+	pthread_mutex_unlock(&philosopher->right_fork->mutex);
+	// call sleep;
+}
 
 // sleep
 

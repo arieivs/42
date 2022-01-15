@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 16:16:16 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 18:21:45 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_simulation
 	int				time_to_sleep;
 	int				max_nb_meals;
 	pthread_mutex_t	*print_mutex;
-	struct timeval	start_time;
+	long long		start_time;
 }				t_simulation;
 
 typedef struct s_fork
@@ -42,12 +42,21 @@ typedef struct s_philosopher
 	t_fork			*left_fork;
 	t_fork			*right_fork;
 	t_simulation	*simulation;
-	int				time_of_death;
+	long long		time_of_death;
 }				t_philosopher;
+
+typedef enum e_actions
+{
+	FORK = 1,
+	EAT,
+	SLEEP,
+	THINK,
+	DIED
+}			t_actions;
 
 /* INTERFACE */
 int				validate_input_and_parse(int ac, char **av, t_simulation *sim);
-int				print(t_philosopher philosopher);
+int				print_message(t_philosopher philo, long long time, int action);
 
 /* INITIALIZERS */
 t_fork			*forks_init(int n);
@@ -55,10 +64,12 @@ t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks);
 
 /* LIFE OF A PHILOSOPHER */
 void			*live(void *confused_philosopher);
+void			grab_fork(t_philosopher *philosopher);
+void			eat(t_philosopher *philosopher);
 
 /* UTILS */
 int				str_is_digits(char *str);
 int				ft_atoi(const char *str);
-int				get_time_of_simulation(struct timeval start);
+long long		get_time_ms(void);
 
 #endif
