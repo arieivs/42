@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 16:43:56 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 17:44:42 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ int	someone_died(t_philosopher *philosopher)
 	return (0);
 }
 
+/*int	everyone_fulfilled(t_philosopher *philosopher)
+{
+	// create a everyone_fulfilled var to check more easily?
+	// check if nb meals == max_nb_meals for everyone
+}*/
+
 /* Checking if neither fork is taken before locking the mutexes to prevent
  * dead locks.
  * Else one philosopher A may lock the fork on its left and then wait for a
@@ -56,6 +62,8 @@ int	someone_died(t_philosopher *philosopher)
  * Ideally, this would be checked with mutex_trylock function (which tries to
  * lock it just once and returns whether it was successful or not), but it's a
  * forbidden function for this project.
+ *
+ * If n=1, the left_fork is NULL, thus it will stay in the loop until it dies.
  */
 void	grab_fork(t_philosopher *philosopher)
 {

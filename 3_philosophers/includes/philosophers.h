@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 11:28:51 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 17:41:37 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ typedef struct s_simulation
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				max_nb_meals;
+	int				*nb_meals;
+	int				everyone_fulfilled;
+	int				someone_died;
 	pthread_mutex_t	*print_mutex;
 	int				printing_obituary;
-	int				someone_died;
 	long long		start_time;
 }				t_simulation;
 
@@ -62,6 +64,7 @@ int				validate_input_and_parse(int ac, char **av, t_simulation *sim);
 int				print_message(t_philosopher philo, long long time, int action);
 
 /* INITIALIZERS */
+void			prepare_simulation(t_simulation *sim, pthread_mutex_t *print);
 t_fork			*forks_init(int n);
 t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks);
 

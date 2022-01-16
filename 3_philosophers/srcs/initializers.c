@@ -6,11 +6,27 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:52:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 16:40:00 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 17:40:53 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	prepare_simulation(t_simulation *simulation,
+			pthread_mutex_t *print_mutex)
+{
+	int	i;
+
+	simulation->nb_meals = (int *)malloc(sizeof(int) * simulation->n);
+	i = 0;
+	while (i < simulation->n)
+		simulation->nb_meals[i++] = 0;
+	simulation->everyone_fulfilled = 0;
+	simulation->someone_died = 0;
+	pthread_mutex_init(print_mutex, NULL);
+	simulation->print_mutex = print_mutex; 
+	simulation->printing_obituary = 0;
+}
 
 t_fork	*forks_init(int n)
 {
@@ -48,8 +64,6 @@ t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks)
 			philosophers[i].left_fork = &forks[i - 1];
 		philosophers[i].right_fork = &forks[i];
 		philosophers[i].simulation = simulation;
-		philosophers[i].time_death = simulation->start_time +
-										simulation->time_to_die;
 		i++;
 	}
 	return (philosophers);
