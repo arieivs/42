@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:52:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 00:07:27 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 16:40:00 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks)
 	while (i < simulation->n)
 	{
 		philosophers[i].id = i + 1;
-		if (i == 0)
+		if (simulation->n == 1)
+			philosophers[i].left_fork = NULL;
+		else if (i == 0)
 			philosophers[i].left_fork = &forks[simulation->n - 1];
 		else
 			philosophers[i].left_fork = &forks[i - 1];

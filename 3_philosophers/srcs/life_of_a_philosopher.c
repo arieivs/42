@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 11:58:09 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 16:43:56 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	grab_fork(t_philosopher *philosopher)
 {
 	long long	took_fork_time;
 
-	while (philosopher->left_fork->taken || philosopher->right_fork->taken)
+	while (!philosopher->left_fork || philosopher->left_fork->taken ||
+		philosopher->right_fork->taken)
 	{
 		if (someone_died(philosopher))
 			return ;
