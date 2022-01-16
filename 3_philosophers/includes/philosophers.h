@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 19:25:35 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 21:03:46 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ void			grab_fork(t_philosopher *philosopher);
 void			eating(t_philosopher *philosopher);
 void			sleeping(t_philosopher *philosopher);
 void			thinking(t_philosopher *philosopher);
+
+/* PURGATORY */
+int				someone_died(t_philosopher *philosopher);
+int				everyone_fulfilled(t_philosopher *philosopher);
 
 /* UTILS */
 int				str_is_digits(char *str);
