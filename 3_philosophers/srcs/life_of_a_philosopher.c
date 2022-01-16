@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 00:04:58 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 11:58:09 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ void	*live(void *confused_philosopher)
 	return (NULL);
 }
 
+/* Added small delay (1ms) between determining one's death and announcing it.
+ * This solved the issue of having 2 deaths announcements when 2 philosophers
+ * died at exactly the same time.
+ * What I think: given usleep unaccuracy, it enlarges the gap between the 2
+ * print_message(..., DIED) function calls.
+ * I believe it will also help in case any other message arrives at the same
+ * time as a death one, allowing the other to be processed first.
+ */
 int	someone_died(t_philosopher *philosopher)
 {
 	long long	check_vital_signs;
@@ -32,12 +40,23 @@ int	someone_died(t_philosopher *philosopher)
 	if (philosopher->time_death <= check_vital_signs)
 	{
 		philosopher->simulation->someone_died = 1;
+		usleep(1000);
 		print_message(*philosopher, check_vital_signs, DIED);
 		return (1);
 	}
 	return (0);
 }
 
+/* Checking if neither fork is taken before locking the mutexes to prevent
+ * dead locks.
+ * Else one philosopher A may lock the fork on its left and then wait for a
+ * while until the right fork is available.
+ * In the meantime philosopher B could have been eating with the first fork
+ * A locked, but instead was waiting as well.
+ * Ideally, this would be checked with mutex_trylock function (which tries to
+ * lock it just once and returns whether it was successful or not), but it's a
+ * forbidden function for this project.
+ */
 void	grab_fork(t_philosopher *philosopher)
 {
 	long long	took_fork_time;
@@ -63,15 +82,11 @@ void	eating(t_philosopher *philosopher)
 	start_eat = get_time_ms();
 	philosopher->time_death = start_eat + philosopher->simulation->time_to_die;
 	print_message(*philosopher, start_eat, EAT);
-	printf("%d should die %lld %d\n", philosopher->id, philosopher->time_death, (int)(philosopher->time_death - philosopher->simulation->start_time));
+	//printf("%d should die %lld %d\n", philosopher->id, philosopher->time_death, (int)(philosopher->time_death - philosopher->simulation->start_time));
 	while (get_time_ms() < (start_eat + philosopher->simulation->time_to_eat))
 	{
 		if (someone_died(philosopher))
-		{
-			//pthread_mutex_unlock(&philosopher->left_fork->mutex);
-			//pthread_mutex_unlock(&philosopher->right_fork->mutex);
 			return ;
-		}
 	}
 	sleeping(philosopher);
 }

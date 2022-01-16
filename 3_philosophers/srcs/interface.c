@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:06:39 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 00:04:17 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 11:58:46 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ int	print_message(t_philosopher philosopher, long long time, int action)
 {
 	int	timestamp;
 
+	if (philosopher.simulation->printing_obituary)
+		return (0);
+	if (action == DIED)
+		philosopher.simulation->printing_obituary = 1;
 	pthread_mutex_lock(philosopher.simulation->print_mutex);
 	timestamp = (int)(time - philosopher.simulation->start_time);
 	printf("%d %d ", timestamp, philosopher.id);
 	if (action == DIED)
-	{
 		printf("died\n");
-		//return (0);
-	}
-	if (action == FORK)
+	else if (action == FORK)
 		printf("has taken a fork\n");
 	else if (action == EAT)
 		printf("is eating\n");
