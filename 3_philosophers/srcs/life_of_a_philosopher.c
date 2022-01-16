@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 17:44:42 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 19:52:05 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,25 @@ int	someone_died(t_philosopher *philosopher)
 	return (0);
 }
 
-/*int	everyone_fulfilled(t_philosopher *philosopher)
+int	everyone_fulfilled(t_philosopher *philosopher)
 {
-	// create a everyone_fulfilled var to check more easily?
-	// check if nb meals == max_nb_meals for everyone
-}*/
+	int	i;
+
+	if (!philosopher->simulation->max_meals_defined)
+		return (0);
+	if (philosopher->simulation->everyone_fulfilled)
+		return (1);
+	i = 0;
+	while (i < philosopher->simulation->n)
+	{
+		if (philosopher->simulation->nb_meals[i] <
+			philosopher->simulation->max_nb_meals)
+			return (0);
+		i++;
+	}
+	philosopher->simulation->everyone_fulfilled = 1;
+	return (1);
+}
 
 /* Checking if neither fork is taken before locking the mutexes to prevent
  * dead locks.
@@ -72,7 +86,7 @@ void	grab_fork(t_philosopher *philosopher)
 	while (!philosopher->left_fork || philosopher->left_fork->taken ||
 		philosopher->right_fork->taken)
 	{
-		if (someone_died(philosopher))
+		if (someone_died(philosopher) || everyone_fulfilled(philosopher))
 			return ;
 	}
 	philosopher->left_fork->taken = 1;
@@ -84,6 +98,8 @@ void	grab_fork(t_philosopher *philosopher)
 	eating(philosopher);
 }
 
+/* To be fulfilled they need to finish eating that one last time -> right?
+ */
 void	eating(t_philosopher *philosopher)
 {
 	long long	start_eat;
@@ -94,9 +110,11 @@ void	eating(t_philosopher *philosopher)
 	//printf("%d should die %lld %d\n", philosopher->id, philosopher->time_death, (int)(philosopher->time_death - philosopher->simulation->start_time));
 	while (get_time_ms() < (start_eat + philosopher->simulation->time_to_eat))
 	{
-		if (someone_died(philosopher))
+		if (someone_died(philosopher) || everyone_fulfilled(philosopher))
 			return ;
 	}
+	if (philosopher->simulation->max_meals_defined)
+		philosopher->simulation->nb_meals[philosopher->id - 1] += 1;
 	sleeping(philosopher);
 }
 
@@ -119,7 +137,7 @@ void	sleeping(t_philosopher *philosopher)
 	philosopher->right_fork->taken = 0;
 	while (get_time_ms() < start_sleep + philosopher->simulation->time_to_sleep)
 	{
-		if (someone_died(philosopher))
+		if (someone_died(philosopher) || everyone_fulfilled(philosopher))
 			return ;
 	}
 	thinking(philosopher);

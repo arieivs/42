@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 17:41:37 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 19:25:35 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_simulation
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				max_nb_meals;
+	int				max_meals_defined;
 	int				*nb_meals;
 	int				everyone_fulfilled;
 	int				someone_died;

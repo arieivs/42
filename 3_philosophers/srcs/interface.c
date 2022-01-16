@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:06:39 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 11:58:46 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/16 19:26:35 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ int	validate_input_and_parse(int ac, char **av, t_simulation *simulation)
 	simulation->time_to_eat = ft_atoi(av[3]);
 	simulation->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
+	{
+		simulation->max_meals_defined = 1;
 		simulation->max_nb_meals = ft_atoi(av[5]);
+	}
+	else
+		simulation->max_meals_defined = 0;
 	// should do a simplified atoi
 	// check nb philosophers <= 200 ?
 	// check times >= 60ms ?
