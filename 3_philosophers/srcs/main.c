@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 20:40:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 18:08:23 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 23:58:41 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	start_simulation(t_simulation *simulation, t_philosopher *philosophers)
 
 	i = 0;
 	threads = (pthread_t *)malloc(sizeof(pthread_t) * simulation->n);
-	simulation->start_time = get_time_ms();
+	simulation->someone_died = 0;
 	while (i < simulation->n)
 	{
 		if (pthread_create(&threads[i], NULL, &live, (void *)&philosophers[i]))
@@ -48,8 +48,9 @@ int	main(int ac, char **av)
 	if (!validate_input_and_parse(ac, av, &simulation))
 		return (1);
 	pthread_mutex_init(&print_mutex, NULL);
-	simulation.print_mutex = &print_mutex;
+	simulation.print_mutex = &print_mutex; // should I move this elsewhere?
 	forks = forks_init(simulation.n);
+	simulation.start_time = get_time_ms(); // move this elsewhere
 	philosophers = philosophers_init(&simulation, forks);
 	start_simulation(&simulation, philosophers);
 	// should move clean up somewhere else?

@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/15 20:23:54 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/15 22:16:26 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_simulation
 	int				time_to_sleep;
 	int				max_nb_meals;
 	pthread_mutex_t	*print_mutex;
+	int				someone_died;
 	long long		start_time;
 }				t_simulation;
 
