@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 20:40:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 17:40:18 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/17 22:55:25 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ int	main(int ac, char **av)
 	int				i;
 
 	if (!validate_input_and_parse(ac, av, &simulation))
+	{
+		print_instructions();
 		return (1);
+	}
 	prepare_simulation(&simulation, &print_mutex);
 	forks = forks_init(simulation.n);
 	philosophers = philosophers_init(&simulation, forks);
 	run_simulation(&simulation, philosophers);
-	// should move clean up somewhere else?
 	free(philosophers);
 	i = 0;
 	while (i < simulation.n)

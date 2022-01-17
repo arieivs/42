@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 21:03:46 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/17 22:55:33 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef enum e_actions
 
 /* INTERFACE */
 int				validate_input_and_parse(int ac, char **av, t_simulation *sim);
+void			print_instructions(void);
 int				print_message(t_philosopher philo, long long time, int action);
 
 /* INITIALIZERS */

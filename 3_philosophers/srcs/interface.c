@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:06:39 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 19:26:35 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/17 22:57:53 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,18 @@ int	validate_input_and_parse(int ac, char **av, t_simulation *simulation)
 	// should do a simplified atoi
 	// check nb philosophers <= 200 ?
 	// check times >= 60ms ?
-	// give error messages?
 	return (1);
+}
+
+void	print_instructions(void)
+{
+	printf("\nPHILOSOPHERS - How to run this programme:\n\n");
+	printf("./philosophers <nb_philosophers> <time_to_die> <time_to_eat> ");
+	printf("<time_to_sleep> <nb_times_each_should_eat>\n\n");
+	printf("- all arguments are numbers, only digits are allowed\n");
+	printf("- times are given in miliseconds\n");
+	printf("- do not test with nb_philosophers > 200\n");
+	printf("- do not test with times < 60 ms\n\n");
 }
 
 int	print_message(t_philosopher philosopher, long long time, int action)
