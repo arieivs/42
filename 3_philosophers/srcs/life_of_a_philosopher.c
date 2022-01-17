@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 21:02:36 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/17 21:37:20 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	*live(void *confused_philosopher)
 	t_philosopher	*philosopher;
 
 	philosopher = (t_philosopher *)confused_philosopher;
-	// call grab_fork only for some, and think for the others?
 	grab_fork(philosopher);
 	return (NULL);
 }
@@ -53,7 +52,10 @@ void	grab_fork(t_philosopher *philosopher)
 	eating(philosopher);
 }
 
-/* To be fulfilled they need to finish eating that one last time -> right?
+/* Unlocking the mutexes in case it's time to stop the simulation, because
+ * destroying locked mutexes apparently may lead to undefined behaviour.
+ * 
+ * To be fulfilled they need to finish eating that one last time -> right?
  */
 void	eating(t_philosopher *philosopher)
 {
@@ -65,7 +67,11 @@ void	eating(t_philosopher *philosopher)
 	while (get_time_ms() < (start_eat + philosopher->simulation->time_to_eat))
 	{
 		if (someone_died(philosopher) || everyone_fulfilled(philosopher))
+		{
+			pthread_mutex_unlock(&philosopher->left_fork->mutex);
+			pthread_mutex_unlock(&philosopher->right_fork->mutex);
 			return ;
+		}
 	}
 	if (philosopher->simulation->max_meals_defined)
 		philosopher->simulation->nb_meals[philosopher->id - 1] += 1;
