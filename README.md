@@ -5,7 +5,7 @@ My work for 42 cursus at [42 Lisboa](https://www.42lisboa.com/)
 
 ## 🧁 Makefiles
 * [Makefile tutorial](https://makefiletutorial.com/)
-* [GNU make](https://www.gnu.org/software/make/manual/make.html)
+* [GNU make](https://www.gnu.org/software/make/manual/make.html) and its [maintainer's blog](http://make.mad-scientist.net/)
 * [Debugging Makefile](https://www.youtube.com/watch?v=l5KqE0DMG-Q)
 
 <br/>
