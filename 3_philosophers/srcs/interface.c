@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:06:39 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/17 22:57:53 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/18 11:41:21 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void	print_instructions(void)
 	printf("- do not test with times < 60 ms\n\n");
 }
 
-int	print_message(t_philosopher philosopher, long long time, int action)
+void	print_message(t_philosopher philosopher, long long time, int action)
 {
 	int	timestamp;
 
 	if (philosopher.simulation->printing_obituary)
-		return (0);
+		return ;
 	if (action == DIED)
 		philosopher.simulation->printing_obituary = 1;
 	pthread_mutex_lock(philosopher.simulation->print_mutex);
@@ -75,5 +75,4 @@ int	print_message(t_philosopher philosopher, long long time, int action)
 	else if (action == THINK)
 		printf("is thinking\n");
 	pthread_mutex_unlock(philosopher.simulation->print_mutex);
-	return (0);
 }
