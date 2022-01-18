@@ -16,11 +16,9 @@ all:				$(NAME)
 $(NAME):			$(OBJS)
 					$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c $(OBJS_DIR)
+$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c
+					mkdir -p $(OBJS_DIR)
 					$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJS_DIR):
-					mkdir $@
 
 clean:
 					$(RM) -r $(OBJS_DIR)
