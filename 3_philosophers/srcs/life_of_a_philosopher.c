@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/17 21:37:20 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/19 12:53:08 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	grab_fork(t_philosopher *philosopher)
 	while (!philosopher->left_fork || philosopher->left_fork->taken ||
 		philosopher->right_fork->taken)
 	{
-		if (someone_died(philosopher) || everyone_fulfilled(philosopher))
+		if (at_worlds_end(philosopher))
 			return ;
 	}
 	philosopher->left_fork->taken = 1;
@@ -66,7 +66,7 @@ void	eating(t_philosopher *philosopher)
 	print_message(*philosopher, start_eat, EAT);
 	while (get_time_ms() < (start_eat + philosopher->simulation->time_to_eat))
 	{
-		if (someone_died(philosopher) || everyone_fulfilled(philosopher))
+		if (at_worlds_end(philosopher))
 		{
 			pthread_mutex_unlock(&philosopher->left_fork->mutex);
 			pthread_mutex_unlock(&philosopher->right_fork->mutex);
@@ -97,7 +97,7 @@ void	sleeping(t_philosopher *philosopher)
 	philosopher->right_fork->taken = 0;
 	while (get_time_ms() < start_sleep + philosopher->simulation->time_to_sleep)
 	{
-		if (someone_died(philosopher) || everyone_fulfilled(philosopher))
+		if (at_worlds_end(philosopher))
 			return ;
 	}
 	thinking(philosopher);

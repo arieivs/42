@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 21:01:36 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 21:01:54 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/19 12:52:21 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ int	someone_died(t_philosopher *philosopher)
 {
 	long long	check_vital_signs;
 
-	if (philosopher->simulation->someone_died)
-		return (1);
 	check_vital_signs = get_time_ms();
 	if (philosopher->time_death <= check_vital_signs)
 	{
-		philosopher->simulation->someone_died = 1;
+		philosopher->simulation->the_end = 1;
 		usleep(1000);
 		print_message(*philosopher, check_vital_signs, DIED);
 		return (1);
@@ -41,10 +39,6 @@ int	everyone_fulfilled(t_philosopher *philosopher)
 {
 	int	i;
 
-	if (!philosopher->simulation->max_meals_defined)
-		return (0);
-	if (philosopher->simulation->everyone_fulfilled)
-		return (1);
 	i = 0;
 	while (i < philosopher->simulation->n)
 	{
@@ -53,6 +47,19 @@ int	everyone_fulfilled(t_philosopher *philosopher)
 			return (0);
 		i++;
 	}
-	philosopher->simulation->everyone_fulfilled = 1;
+	philosopher->simulation->the_end = 1;
 	return (1);
+}
+
+int	at_worlds_end(t_philosopher *philosopher)
+{
+	if (philosopher->simulation->the_end)
+		return (1);
+	if (someone_died(philosopher))
+		return (1);
+	if (!philosopher->simulation->max_meals_defined)
+		return (0);
+	if (everyone_fulfilled(philosopher))
+		return (1);
+	return (0);
 }

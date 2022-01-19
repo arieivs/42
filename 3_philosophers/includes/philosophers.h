@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/18 11:42:50 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/19 12:51:32 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ typedef struct s_simulation
 	int				max_nb_meals;
 	int				max_meals_defined;
 	int				*nb_meals;
-	int				everyone_fulfilled;
-	int				someone_died;
+	int				the_end;
+	int				printed_last_words;
 	pthread_mutex_t	*print_mutex;
-	int				printing_obituary;
 	long long		start_time;
 }				t_simulation;
 
@@ -78,6 +77,7 @@ void			sleeping(t_philosopher *philosopher);
 void			thinking(t_philosopher *philosopher);
 
 /* PURGATORY */
+int				at_worlds_end(t_philosopher *philosopher);
 int				someone_died(t_philosopher *philosopher);
 int				everyone_fulfilled(t_philosopher *philosopher);
 

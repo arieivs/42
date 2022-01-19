@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:52:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/16 17:40:53 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/19 12:48:13 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ void	prepare_simulation(t_simulation *simulation,
 	i = 0;
 	while (i < simulation->n)
 		simulation->nb_meals[i++] = 0;
-	simulation->everyone_fulfilled = 0;
-	simulation->someone_died = 0;
+	simulation->the_end = 0;
+	simulation->printed_last_words = 0;
 	pthread_mutex_init(print_mutex, NULL);
 	simulation->print_mutex = print_mutex; 
-	simulation->printing_obituary = 0;
 }
 
 t_fork	*forks_init(int n)
