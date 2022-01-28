@@ -38,7 +38,7 @@ void	paint_rectangle(t_canvas *canvas, t_rectangle rectangle)
 				x >= rectangle.x && x <= rectangle.x + rectangle.width &&
 				y >= rectangle.y && y <= rectangle.y + rectangle.height)
 				canvas->painting[y][x] = rectangle.c;
-			if (rectangle.type == 'r') // continue!! 
+			if (rectangle.type == 'r') // TODO continue!! 
 				canvas->painting[y][x] = rectangle.c;
 			x++;
 		}
@@ -62,7 +62,20 @@ int	parse_rectangle_info(FILE *file, t_canvas *canvas)
 	return (1);
 }
 
-void	clean_canvas(t_canvas *canvas)
+void	print_painting(t_canvas canvas)
+{
+	int	i;
+
+	i = 0;
+	while (i < canvas.height)
+	{
+		write(1, canvas.painting[i], canvas.width);
+		write(1, "\n", 1);
+		i++;
+	}
+}
+
+void	clean_painting(t_canvas *canvas)
 {
 	int	i;
 
@@ -87,19 +100,19 @@ int	main(int ac, char **av)
 	{
 		if (parse_canvas_info(file, &canvas))
 		{
-			printf("%d %d %c\n", canvas.width, canvas.height, canvas.bkg);
+			//printf("%d %d %c\n", canvas.width, canvas.height, canvas.bkg);
 			r = 1;
 			while (r == 1)
 			{
 				r = parse_rectangle_info(file, &canvas);
 				if (r == -1)
 				{
-					// print
-					clean_canvas(&canvas);
+					print_painting(canvas);
+					clean_painting(&canvas);
 					return (0);
 				}
 			}
-			clean_canvas(&canvas);
+			clean_painting(&canvas);
 		}
 	}
 	write(1, "Error: Operation file corrupted\n", 32);
