@@ -38,11 +38,10 @@ void	paint_canvas(t_painting *painting, t_circle *circle)
 		{
 			distance = sqrtf((circle->x - x) * (circle->x - x) +
 						(circle->y - y) * (circle->y - y));
-			if (distance <= circle->r)
+			if ((circle->type == 'C' && distance <= circle->r) || (circle->type == 'c'
+				&& distance >= circle->r && distance < circle->r + 1))
 				painting->canvas[y][x] = circle->c;
 			x++;
-			// more complex, check empty circle stuff
-			// TODO differentiate c from C
 		}
 		y++;
 	}
