@@ -1,10 +1,10 @@
 #include "mini_paint.h"
 
-
 int	parse_paint_info(FILE *file, t_painting *painting)
 {	
 	int	r;
 	int	i;
+	int	j;
 
 	r = fscanf(file, "%d %d %c", &painting->width, &painting->height, &painting->bkg);
 	if (r != 3 || painting->width < 0 || painting->width >= 300 ||
@@ -14,8 +14,38 @@ int	parse_paint_info(FILE *file, t_painting *painting)
 	painting->canvas = (char **)malloc(sizeof(char *) * painting->height);
 	i = 0;
 	while (i < painting->height)
-		painting->canvas[i++] = (char *)malloc(sizeof(char) * painting->width + 1);
+	{
+		painting->canvas[i] = (char *)malloc(sizeof(char) * painting->width + 1);
+		j = 0;
+		while (j < painting->width)
+			painting->canvas[i][j++] = painting->bkg;
+		i++;
+	}
 	return (1);
+}
+
+void	paint_canvas(t_painting *painting, t_circle *circle)
+{
+	int		x;
+	int		y;
+	float	distance;
+
+	y = 0;
+	while (y < painting->height)
+	{
+		x = 0;
+		while (x < painting->width)
+		{
+			distance = sqrtf((circle->x - x) * (circle->x - x) +
+						(circle->y - y) * (circle->y - y));
+			if (distance <= circle->r)
+				painting->canvas[y][x] = circle->c;
+			x++;
+			// more complex, check empty circle stuff
+			// TODO differentiate c from C
+		}
+		y++;
+	}
 }
 
 int	parse_circle_info(FILE *file, t_painting *painting)
@@ -32,11 +62,24 @@ int	parse_circle_info(FILE *file, t_painting *painting)
 	if (r != 5 || circle.r <= 0 || (circle.type != 'c' && circle.type != 'C'))
 		return (0); // Mismatch/Incorrect input
 	//printf("-%c-%f-%f-%f-%c-\n", circle.type, circle.x, circle.y, circle.r, circle.c);
-	//TODO paint canvas
+	paint_canvas(painting, &circle);
 	return (1);
 }
 
-void	clean_up(t_painting *painting)
+void	print_canvas(t_painting painting)
+{
+	int	i;
+
+	i = 0;
+	while (i < painting.height)
+	{
+		write(1, painting.canvas[i], painting.width);
+		write(1, "\n", 1);
+		i++;
+	}
+}
+
+void	clean_canvas(t_painting *painting)
 {
 	int	i;
 
@@ -68,12 +111,12 @@ int	main(int ac, char **av)
 				r = parse_circle_info(file, &painting);
 				if (r == -1)
 				{
-					// time to paint to terminal
-					clean_up(&painting);
+					print_canvas(painting);
+					clean_canvas(&painting);
 					return (0); // Reached EOF without issues
 				}
 			}
-			clean_up(&painting);
+			clean_canvas(&painting);
 		}
 	}
 	write(1, "Error: Operation file corrupted\n", 32);
