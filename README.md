@@ -31,3 +31,6 @@ Rank 2:
 Rank 3:
 * 🏛 [Philosophers](https://github.com/arieivs/42/tree/master/3_philosophers): introduction to threads;
 
+
+[Preparing for Exames](https://github.com/markveligod/examrank-02-03-04-05-06)
+
