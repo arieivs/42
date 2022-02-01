@@ -109,5 +109,8 @@ I shall require a further explanation on pipex and write about it then, here is 
 
 Pipes read and write in files.
 The output of the first command should be stored in a file, which will then be used as the input for the following command.
+
+Read [this tutorial on pipex](https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901) and watch [Code Vault's videos on pipes](https://code-vault.net/course/46qpfr4tkz:1603732431896/lesson/16non3fdoh:1603732431950).
+
 For more on pipex, check out [Ben's repo](https://github.com/IamTheKaaZZ/pipex), [José's repo](https://github.com/J0Santos/42-pipex) or my future minishell partner [Knulpinette's repo](https://github.com/Knulpinette/Cursus42/tree/main/02-pipex).
 
