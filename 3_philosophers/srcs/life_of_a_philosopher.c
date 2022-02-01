@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/19 12:53:08 by svieira          ###   ########.fr       */
+/*   Updated: 2022/01/31 12:37:18 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,21 @@ void	sleeping(t_philosopher *philosopher)
 	thinking(philosopher);
 }
 
+/* When there's an odd number of philosophers, we run into race condition.
+ * Meaning, at some point the philosophers that manage to get hold of the forks
+ * may not include the one who didn't eat the longest.
+ * The solution? Add a small mandatory thinking time, to give priority to the
+ * one who has been thinking the longest.
+ * This should be time_to_eat - time_to_slep + small_buffer.
+ */
 void	thinking(t_philosopher *philosopher)
 {
 	long long	start_think;
 
 	start_think = get_time_ms();
 	print_message(*philosopher, start_think, THINK);
+	if (philosopher->simulation->n % 2 != 0)
+		usleep((philosopher->simulation->time_to_eat -
+					philosopher->simulation->time_to_sleep) * 1000 + 100);
 	grab_fork(philosopher);
 }
