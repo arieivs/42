@@ -21,12 +21,12 @@ typedef struct s_circle {
 	char	c;
 }				t_circle;
 
-typedef struct s_painting {
+typedef struct s_canvas {
 	int			width;
 	int			height;
 	char		bkg;
-	char		**canvas;
-}				t_painting;
+	char		**painting;
+}				t_canvas;
 
 // might have to change this
 
