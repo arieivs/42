@@ -38,7 +38,7 @@ void	paint_circle(t_canvas *canvas, t_circle circle)
 			distance = sqrtf((circle.x - x) * (circle.x - x) +
 						(circle.y - y) * (circle.y - y));
 			if ((circle.type == 'C' && distance <= circle.r) || (circle.type == 'c'
-				&& distance >= circle.r && distance < circle.r + 1))
+				&& distance > circle.r - 1.000000 && distance <= circle.r))
 				canvas->painting[y][x] = circle.c;
 			x++;
 		}
