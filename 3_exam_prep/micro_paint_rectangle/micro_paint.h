@@ -1,6 +1,9 @@
 #ifndef MICRO_PAINT_H
 # define MICRO_PAINT_H
 
+# define INSIDE 1
+# define BORDER 2
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>

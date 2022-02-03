@@ -23,10 +23,25 @@ int	parse_canvas_info(FILE *file, t_canvas *canvas)
 	return (1);
 }
 
+int	is_in_rectangle(float x, float y, t_rectangle rectangle)
+{
+	float	thickness;
+
+	thickness = 1.000000;
+	if (x < rectangle.x || x > rectangle.x + rectangle.width || y < rectangle.y ||
+		y > rectangle.y + rectangle.height)
+		return (0);
+	if (x < rectangle.x + thickness || x > rectangle.x + rectangle.width - thickness ||
+		y < rectangle.y + thickness || y > rectangle.y + rectangle.height - thickness)
+		return (BORDER);
+	return (INSIDE);
+}
+
 void	paint_rectangle(t_canvas *canvas, t_rectangle rectangle)
 {
 	int	x;
 	int	y;
+	int	is_in;
 
 	y = 0;
 	while (y < canvas->height)
@@ -34,11 +49,8 @@ void	paint_rectangle(t_canvas *canvas, t_rectangle rectangle)
 		x = 0;
 		while (x < canvas->width)
 		{
-			if (rectangle.type == 'R' &&
-				x >= rectangle.x && x <= rectangle.x + rectangle.width &&
-				y >= rectangle.y && y <= rectangle.y + rectangle.height)
-				canvas->painting[y][x] = rectangle.c;
-			if (rectangle.type == 'r') // TODO continue!! 
+			is_in = is_in_rectangle((float)x, (float)y, rectangle);
+			if (is_in == BORDER || (is_in == INSIDE && rectangle.type == 'R'))
 				canvas->painting[y][x] = rectangle.c;
 			x++;
 		}
@@ -100,7 +112,6 @@ int	main(int ac, char **av)
 	{
 		if (parse_canvas_info(file, &canvas))
 		{
-			//printf("%d %d %c\n", canvas.width, canvas.height, canvas.bkg);
 			r = 1;
 			while (r == 1)
 			{
@@ -109,11 +120,13 @@ int	main(int ac, char **av)
 				{
 					print_painting(canvas);
 					clean_painting(&canvas);
+					fclose(file);
 					return (0);
 				}
 			}
 			clean_painting(&canvas);
 		}
+		fclose(file);
 	}
 	write(1, "Error: Operation file corrupted\n", 32);
 	return (1);
