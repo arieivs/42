@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 20:40:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/19 13:02:08 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/04 15:30:01 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	run_simulation(t_simulation *simulation, t_philosopher *philosophers)
 
 	i = 0;
 	threads = (pthread_t *)malloc(sizeof(pthread_t) * simulation->n);
-	simulation->start_time = get_time_ms(); 
+	simulation->start_time = get_time_ms();
 	while (i < simulation->n)
 	{
-		philosophers[i].time_death = simulation->start_time +
-										simulation->time_to_die;
+		philosophers[i].time_death = simulation->start_time
+			+ simulation->time_to_die;
 		if (pthread_create(&threads[i], NULL, &live, (void *)&philosophers[i]))
 			return (1);
 		i++;

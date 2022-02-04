@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 21:01:36 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/19 12:52:21 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/04 15:31:00 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	everyone_fulfilled(t_philosopher *philosopher)
 	i = 0;
 	while (i < philosopher->simulation->n)
 	{
-		if (philosopher->simulation->nb_meals[i] <
-			philosopher->simulation->max_nb_meals)
+		if (philosopher->simulation->nb_meals[i]
+			< philosopher->simulation->max_nb_meals)
 			return (0);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:52:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/19 12:48:13 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/04 15:25:32 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	prepare_simulation(t_simulation *simulation,
 	simulation->the_end = 0;
 	simulation->printed_last_words = 0;
 	pthread_mutex_init(print_mutex, NULL);
-	simulation->print_mutex = print_mutex; 
+	simulation->print_mutex = print_mutex;
 }
 
 t_fork	*forks_init(int n)
@@ -49,8 +49,8 @@ t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks)
 	t_philosopher	*philosophers;
 	int				i;
 
-	philosophers = (t_philosopher *)malloc(sizeof(t_philosopher) *
-					simulation->n);
+	philosophers = (t_philosopher *)malloc(sizeof(t_philosopher)
+			* simulation->n);
 	i = 0;
 	while (i < simulation->n)
 	{

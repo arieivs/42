@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/31 12:37:18 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/04 15:29:05 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	grab_fork(t_philosopher *philosopher)
 {
 	long long	took_fork_time;
 
-	while (!philosopher->left_fork || philosopher->left_fork->taken ||
-		philosopher->right_fork->taken)
+	while (!philosopher->left_fork || philosopher->left_fork->taken
+		|| philosopher->right_fork->taken)
 	{
 		if (at_worlds_end(philosopher))
 			return ;
@@ -117,7 +117,7 @@ void	thinking(t_philosopher *philosopher)
 	start_think = get_time_ms();
 	print_message(*philosopher, start_think, THINK);
 	if (philosopher->simulation->n % 2 != 0)
-		usleep((philosopher->simulation->time_to_eat -
-					philosopher->simulation->time_to_sleep) * 1000 + 100);
+		usleep((philosopher->simulation->time_to_eat
+				- philosopher->simulation->time_to_sleep) * 1000 + 100);
 	grab_fork(philosopher);
 }
