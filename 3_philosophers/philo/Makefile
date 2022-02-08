@@ -1,4 +1,4 @@
-NAME		=	philosophers
+NAME		=	philo
 
 INC_DIR		=	includes
 INCLUDES	=	-I$(INC_DIR)
