@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h> // for rand()
 
-#define THREADS_NR 2
+#define THREADS_NR 10
 #define BUFFER_SIZE 10
 
 /* Very simplified version of the Producer Consumer Problem */
@@ -11,8 +11,8 @@
 typedef struct s_args
 {
 	pthread_mutex_t	mutex_buffer;
-	sem_t			sem_empty;
-	sem_t			sem_full;
+	sem_t			*sem_empty;
+	sem_t			*sem_full;
 	int				*buffer;
 	int				counter;
 }				t_args;
@@ -22,10 +22,12 @@ void	*producer(void	*undef_args)
 	t_args	*args;
 
 	args = (t_args *)undef_args;
-	sem_wait(&args->sem_empty);
+	printf("Waiting for storing produced item\n");
+	sem_wait(args->sem_empty);
 	args->buffer[args->counter] = rand() % 100;
 	args->counter++;
-	sem_post(&args->sem_full);
+	printf("Stored produced item\n");
+	sem_post(args->sem_full);
 	return (NULL);
 }
 
@@ -34,10 +36,11 @@ void	*consumer(void *undef_args)
 	t_args	*args;
 
 	args = (t_args *)undef_args;
-	sem_wait(&args->sem_full);
+	printf("Waiting for having items to consume\n");
+	sem_wait(args->sem_full);
 	args->counter--;
-	printf("%d\n", args->buffer[args->counter]);
-	sem_post(&args->sem_empty);
+	printf("Consumed %d\n", args->buffer[args->counter]);
+	sem_post(args->sem_empty);
 	return (NULL);
 }
 
@@ -49,8 +52,8 @@ int	main(void)
 
 	threads = (pthread_t *)malloc(sizeof(pthread_t) * THREADS_NR);
 	pthread_mutex_init(&args.mutex_buffer, NULL);
-	args.sem_empty = *sem_open("nb empty places", O_CREAT, O_RDWR, BUFFER_SIZE);
-	args.sem_full = *sem_open("nb full places", O_CREAT, O_RDWR, 0);
+	args.sem_full = sem_open("nb full places", O_CREAT, O_RDWR, 0);
+	args.sem_empty = sem_open("nb empty places", O_CREAT, O_RDWR, BUFFER_SIZE);
 	args.buffer = (int *)malloc(sizeof(int) * BUFFER_SIZE);
 	args.counter = 0;
 	i = 0;
@@ -76,8 +79,8 @@ int	main(void)
 		i++;
 	}
 	pthread_mutex_destroy(&args.mutex_buffer);
-	sem_close(&args.sem_empty);
-	sem_close(&args.sem_full);
+	sem_close(args.sem_empty);
+	sem_close(args.sem_full);
 	free(args.buffer);
 	free(threads);
 	return (0);
