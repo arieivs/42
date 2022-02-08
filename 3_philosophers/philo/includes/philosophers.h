@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/19 12:51:32 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/08 23:45:21 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_simulation
 
 typedef struct s_fork
 {
-	int				id; // for debugging purposes
+	int				id; 
 	pthread_mutex_t	mutex;
 	int				taken;
 }				t_fork;
