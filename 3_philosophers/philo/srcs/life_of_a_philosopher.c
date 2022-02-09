@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/02/09 14:38:18 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/09 15:11:04 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	grab_fork(t_philosopher *philosopher)
 {
 	long long	took_fork_time;
 
+	if (at_worlds_end(philosopher))
+		return ;
 	while (!philosopher->left_fork || philosopher->left_fork->taken
 		|| philosopher->right_fork->taken)
 	{
@@ -62,6 +64,12 @@ void	eating(t_philosopher *philosopher)
 {
 	long long	start_eat;
 
+	if (at_worlds_end(philosopher))
+	{
+		pthread_mutex_unlock(&philosopher->left_fork->mutex);
+		pthread_mutex_unlock(&philosopher->right_fork->mutex);
+		return ;
+	}
 	start_eat = get_time_ms();
 	philosopher->time_death = start_eat + philosopher->simulation->time_to_die;
 	print_message(*philosopher, start_eat, EAT);
@@ -90,6 +98,8 @@ void	sleeping(t_philosopher *philosopher)
 {
 	long long	start_sleep;
 
+	if (at_worlds_end(philosopher))
+		return ;
 	start_sleep = get_time_ms();
 	print_message(*philosopher, start_sleep, SLEEP);
 	pthread_mutex_unlock(&philosopher->left_fork->mutex);
@@ -115,6 +125,8 @@ void	thinking(t_philosopher *philosopher)
 {
 	long long	start_think;
 
+	if (at_worlds_end(philosopher))
+		return ;
 	start_think = get_time_ms();
 	print_message(*philosopher, start_think, THINK);
 	if (philosopher->simulation->n % 2 != 0)

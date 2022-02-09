@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 21:01:36 by svieira           #+#    #+#             */
-/*   Updated: 2022/02/09 13:09:48 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/09 15:11:07 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	someone_died(t_philosopher *philosopher)
 	if (philosopher->time_death <= check_vital_signs)
 	{
 		philosopher->simulation->the_end = 1;
-		//usleep(1000);
-		//usleep(100);
+		usleep(100);
 		print_message(*philosopher, check_vital_signs, DIED);
 		return (1);
 	}

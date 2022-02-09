@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:06:39 by svieira           #+#    #+#             */
-/*   Updated: 2022/02/09 12:58:51 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/09 15:10:58 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_message(t_philosopher philosopher, long long time, int action)
 
 	if (philosopher.simulation->printed_last_words)
 		return ;
-	if (philosopher.simulation->the_end)
+	if (philosopher.simulation->the_end && action == DIED)
 		philosopher.simulation->printed_last_words = 1;
 	pthread_mutex_lock(philosopher.simulation->print_mutex);
 	timestamp = (int)(time - philosopher.simulation->start_time);
