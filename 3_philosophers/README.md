@@ -20,11 +20,11 @@ When the counter is at 0, the thread or process has to wait until the value is i
 The main difference between mutexes and semaphores is that mutexes have a sense of ownership: if you lock a mutex in a thread and unlock it in another thread, it leads to undefined behaviour. With a semaphor, that is not an issue.
 
 ## 🍝 Implementation
+The flag ```-pthread``` is required for compilation.
+If in doubt, check [this for pthread vs lpthread](https://stackoverflow.com/questions/23250863/difference-between-pthread-and-lpthread-while-compiling).
 
 Advice from msessa: Be careful of odd philosopher number (ex: ./philo 5 800 200 200), this introduce odd forks and add priorities issues that can land in philosophers dying when they are not supposed to. This issue has been fixed here by adding a small mandatory time of thinking after sleep (this naturally gives philosophers thinking since more time priority over the just-released forks without breaking encapsulation).
 
-
-Compiling: https://stackoverflow.com/questions/23250863/difference-between-pthread-and-lpthread-while-compiling
 
 Testers:
 
