@@ -1,5 +1,5 @@
 *.o
 a.out
 objs/
-philo
+philo/philo
 philo.dSYM/

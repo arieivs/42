@@ -6,25 +6,28 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:52:30 by svieira           #+#    #+#             */
-/*   Updated: 2022/02/04 15:25:32 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/09 01:11:55 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	prepare_simulation(t_simulation *simulation,
+int	prepare_simulation(t_simulation *simulation,
 			pthread_mutex_t *print_mutex)
 {
 	int	i;
 
-	simulation->nb_meals = (int *)malloc(sizeof(int) * simulation->n);
-	i = 0;
-	while (i < simulation->n)
-		simulation->nb_meals[i++] = 0;
 	simulation->the_end = 0;
 	simulation->printed_last_words = 0;
 	pthread_mutex_init(print_mutex, NULL);
 	simulation->print_mutex = print_mutex;
+	simulation->nb_meals = (int *)malloc(sizeof(int) * simulation->n);
+	if (!simulation->nb_meals)
+		return (0);
+	i = 0;
+	while (i < simulation->n)
+		simulation->nb_meals[i++] = 0;
+	return (1);
 }
 
 t_fork	*forks_init(int n)
@@ -33,6 +36,8 @@ t_fork	*forks_init(int n)
 	int		i;
 
 	forks = (t_fork *)malloc(sizeof(t_fork) * n);
+	if (!forks)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{
@@ -49,8 +54,12 @@ t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks)
 	t_philosopher	*philosophers;
 	int				i;
 
+	if (!forks)
+		return (NULL);
 	philosophers = (t_philosopher *)malloc(sizeof(t_philosopher)
 			* simulation->n);
+	if (!philosophers)
+		return (NULL);
 	i = 0;
 	while (i < simulation->n)
 	{

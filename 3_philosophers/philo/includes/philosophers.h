@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 18:58:14 by svieira           #+#    #+#             */
-/*   Updated: 2022/02/08 23:45:21 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/09 01:38:57 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void			print_instructions(void);
 void			print_message(t_philosopher philo, long long time, int action);
 
 /* INITIALIZERS */
-void			prepare_simulation(t_simulation *sim, pthread_mutex_t *print);
+int				prepare_simulation(t_simulation *sim, pthread_mutex_t *print);
 t_fork			*forks_init(int n);
 t_philosopher	*philosophers_init(t_simulation *simulation, t_fork *forks);
 
@@ -80,6 +80,10 @@ void			thinking(t_philosopher *philosopher);
 int				at_worlds_end(t_philosopher *philosopher);
 int				someone_died(t_philosopher *philosopher);
 int				everyone_fulfilled(t_philosopher *philosopher);
+
+/* REQUIEM */
+int				cleanup_threads_error(pthread_t *threads);
+void			cleanup(t_simulation *sim, t_fork *forks, t_philosopher *phils);
 
 /* UTILS */
 int				str_is_digits(char *str);
