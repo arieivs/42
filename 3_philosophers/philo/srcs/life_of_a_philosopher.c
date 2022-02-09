@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/02/08 20:07:13 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/09 14:38:18 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	grab_fork(t_philosopher *philosopher)
 	pthread_mutex_lock(&philosopher->left_fork->mutex);
 	pthread_mutex_lock(&philosopher->right_fork->mutex);
 	took_fork_time = get_time_ms();
+	print_message(*philosopher, took_fork_time, FORK);
 	print_message(*philosopher, took_fork_time, FORK);
 	eating(philosopher);
 }
