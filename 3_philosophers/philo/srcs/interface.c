@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 16:06:39 by svieira           #+#    #+#             */
-/*   Updated: 2022/01/19 12:54:03 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/09 12:58:51 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ int	validate_input_and_parse(int ac, char **av, t_simulation *simulation)
 	}
 	else
 		simulation->max_meals_defined = 0;
-	// should do a simplified atoi
-	// check nb philosophers <= 200 ?
-	// check times >= 60ms ?
 	return (1);
 }
 
