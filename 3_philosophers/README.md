@@ -4,8 +4,6 @@ To eat or not to eat, that is the question
 ## Resources
 Code Vault videos: https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
 
-https://miro.com/app/board/o9J_l0AjIkc=/
-
 Advice from dcavalei: 1 advice, a good way to stop printing after someone died is to create a print function that prints according to a mutex that protects  the var "someone_died" , something like mutex lock; if someone died do nothing; else print message; mutex unlock;
 This way when 1 philosopher talks, the others shut the hell up :D
 
@@ -20,3 +18,14 @@ Testers:
 https://github.com/newlinuxbot/Philosphers-42Project-Tester/blob/master/start.sh
 
 https://github.com/mikysett/philosophers_tester
+
+Visualiser: https://nafuka11.github.io/philosophers-visualizer/
+
+Semaphors:
+https://www.youtube.com/watch?v=ukM_zzrIeXs
+
+Atomic types:
+
+https://stackoverflow.com/questions/36955884/what-are-atomic-types-in-the-c-language
+
+http://www.gnu.org/software/libc/manual/html_node/Atomic-Types.html
