@@ -6,7 +6,7 @@
 /*   By: svieira <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 22:59:01 by svieira           #+#    #+#             */
-/*   Updated: 2022/02/09 15:31:01 by svieira          ###   ########.fr       */
+/*   Updated: 2022/02/09 15:56:59 by svieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,10 @@ void	thinking(t_philosopher *philosopher)
 	print_message(*philosopher, start_think, THINK);
 	if (philosopher->simulation->n % 2 != 0)
 	{
-		if (philosopher->simulation->time_to_eat >
-				philosopher->simulation->time_to_sleep)
+		if (philosopher->simulation->time_to_eat
+			> philosopher->simulation->time_to_sleep)
 			usleep((philosopher->simulation->time_to_eat
-						- philosopher->simulation->time_to_sleep) * 1000);
+					- philosopher->simulation->time_to_sleep) * 1000);
 		usleep(1000);
 	}
 	grab_fork(philosopher);
