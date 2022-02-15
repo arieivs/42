@@ -115,7 +115,7 @@ On pipex, we will use at least two processes: process 1 reads from infile, execu
 The actions to be performed in the two processes are very similar.
 One should close the end of the pipe which will not be used - as long as one of the sides of the pipe is open, it will keep on waiting on information from it and won't stop executing.
 Using ```dup2``` one must swap the file descriptor from the infile (or fd[0]) for STDIN_FILENO, meaning that by reading from file descriptor 0 we will no longer be reading from stdin but from the infile (or fd[0]).
-Similarly, we'll swap the file descriptor from fd[1] (or outfile) for STDOUT_FILENO, meaning that by writing to the file descriptior 1 we will no longer be writing to stdout but to fd[1] (or stdout).
+Similarly, we'll swap the file descriptor from fd[1] (or outfile) for STDOUT_FILENO, meaning that by writing to the file descriptior 1 we will no longer be writing to stdout but to fd[1] (or outfile).
 Once this was done, it's a matter of finding the right path to the given command and to execute it with ```execve```, which will replace the current process with a new one to run the given command (which is why you need one process per command).
 
 For more on pipex, check out [Ben's repo](https://github.com/IamTheKaaZZ/pipex), [José's repo](https://github.com/J0Santos/42-pipex) or my future minishell partner [Knulpinette's repo](https://github.com/Knulpinette/Cursus42/tree/main/02-pipex).
