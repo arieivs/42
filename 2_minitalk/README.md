@@ -120,3 +120,6 @@ Once this was done, it's a matter of finding the right path to the given command
 
 For more on pipex, check out [Ben's repo](https://github.com/IamTheKaaZZ/pipex), [José's repo](https://github.com/J0Santos/42-pipex) or my future minishell partner [Knulpinette's repo](https://github.com/Knulpinette/Cursus42/tree/main/02-pipex).
 
+<br />
+
+Have a nice chat! 💬
