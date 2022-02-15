@@ -105,12 +105,18 @@ A way to dissecate each byte into its 8 bits is by using Bitwise operations.
 <br />
 
 ## 📬 A word on Pipex
-I shall require a further explanation on pipex and write about it then, here is what I know so far.
+Watch [Code Vault's videos on pipes](https://code-vault.net/course/46qpfr4tkz:1603732431896/lesson/16non3fdoh:1603732431950) and read [this tutorial on pipex](https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901) (watch it, some things are mentioned in a wrong way).
 
-Pipes read and write in files.
-The output of the first command should be stored in a file, which will then be used as the input for the following command.
+A pipe has two ends, one to be read and another one to be written, and is used to send information from one process to another one.
+It should be used in a single direction, meaning, if process 1 is sending information via a pipe to process 2, the same pipe should not be used to send information from process 2 to process 1.
+A second pipe should be opened for that.
 
-Read [this tutorial on pipex](https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901) and watch [Code Vault's videos on pipes](https://code-vault.net/course/46qpfr4tkz:1603732431896/lesson/16non3fdoh:1603732431950).
+On pipex, we will use at least two processes: process 1 reads from infile, executes cmd1 and writes the output to the writing end of the pipe, here mentioned as fd[1]; process 2 reads from the reading end of the pipe, here referred to as fd[0], executes cmd2 and writes the output to the outfile.
+The actions to be performed in the two processes are very similar.
+One should close the end of the pipe which will not be used - as long as one of the sides of the pipe is open, it will keep on waiting on information from it and won't stop executing.
+Using ```dup2``` one must swap the file descriptor from the infile (or fd[0]) for STDIN_FILENO, meaning that by reading from file descriptor 0 we will no longer be reading from stdin but from the infile (or fd[0]).
+Similarly, we'll swap the file descriptor from fd[1] (or outfile) for STDOUT_FILENO, meaning that by writing to the file descriptior 1 we will no longer be writing to stdout but to fd[1] (or stdout).
+Once this was done, it's a matter of finding the right path to the given command and to execute it with ```execve```, which will replace the current process with a new one to run the given command (which is why you need one process per command).
 
 For more on pipex, check out [Ben's repo](https://github.com/IamTheKaaZZ/pipex), [José's repo](https://github.com/J0Santos/42-pipex) or my future minishell partner [Knulpinette's repo](https://github.com/Knulpinette/Cursus42/tree/main/02-pipex).
 
