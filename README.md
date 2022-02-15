@@ -29,8 +29,9 @@ Rank 2:
 * 🥞 [Push Swap](https://github.com/arieivs/42/tree/master/2_push_swap): sorting algorithms for stacks.
 
 Rank 3:
-* 🏛 [Philosophers](https://github.com/arieivs/42/tree/master/3_philosophers): introduction to threads;
+* 🧵 [Philosophers](https://github.com/arieivs/42/tree/master/3_philosophers): introduction to threads;
+* 🐚 [Minishell](https://github.com/Knulpinette/42_minishell): create your own simple shell;
 
 
-[Preparing for Exames](https://github.com/markveligod/examrank-02-03-04-05-06)
+[Preparing for Exams](https://github.com/markveligod/examrank-02-03-04-05-06)
 
