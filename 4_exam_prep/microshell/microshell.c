@@ -40,15 +40,14 @@ int	cd(char **av, char **envp)
 	return (0);
 }
 
-int	execute_in_child(char **av, char **envp)
+void	execute_in_child(char **av, char **envp, int fd_in, int fd_out)
 {
-	(void)av;
-	(void)envp;
-	printf("I'm in parent to have a child\n");
-	exit(0);
-	return (0);
+	(void)fd_in;
+	(void)fd_out;
+	// do the thing with the fds
+	execve(av[0], av, envp);
+	exit(127); /* If execve didn't run, the command doesn't exist */
 }
-
 
 int	execute_instruction(int instruction_size, char **av, char **envp)
 {
@@ -59,6 +58,7 @@ int	execute_instruction(int instruction_size, char **av, char **envp)
 	int		fd_in_next = 0;
 	int		fds_pipe[2];
 	pid_t	pid;
+	int		status;
 	int		exit_code = 0; // makes sense?
 
 	(void)envp;
@@ -80,10 +80,16 @@ int	execute_instruction(int instruction_size, char **av, char **envp)
 		else
 		{
 			pid = fork();
+			if (pid == -1)
+				exit(1); // make error function and display message
 			if (pid == 0)
-				exit_code = execute_in_child(av + i, envp);
+				execute_in_child(av + i, envp, fd_in, fd_out);
 			else
-				waitpid(pid, NULL, 0);
+			{
+				waitpid(pid, &status, 0);
+				if (WIFEXITED(status))
+					exit_code = WEXITSTATUS(status);
+			}
 		}
 		if (fd_in != 0)
 			close(fd_in);
