@@ -1,0 +1,11 @@
+# Testing cd
+cd .. ";" /bin/pwd ";" cd . ";" /bin/pwd ";" cd microshell ";" /bin/pwd ";" cd hey ";" cd ";" cd .. hey yo ";" /bin/pwd
+
+# Testing pipes
+/bin/ls "|" /usr/bin/grep h "|" /usr/bin/wc ";" /bin/echo hey ";"
+
+/bin/echo hey "|" /bin/echo there "|" /bin/echo how "|" /bin/echo are "|" /bin/echo you "|" /bin/echo feeling "|" /bin/echo today "|" /bin/echo dear "|" /bin/echo mister "|" /bin/echo world "|" /bin/echo or "|" /bin/echo are "|" /bin/echo you "|" /bin/echo an "|" /bin/echo old "|" /bin/echo god "|" /bin/echo instead "|" /bin/echo no "|" /bin/echo matter "|" /bin/echo what "|" /bin/echo you "|" /bin/echo are "|" /bin/echo I "|" /bin/echo would "|" /bin/echo like "|" /bin/echo to "|" /bin/echo say "|" /bin/echo hello world
+
+# Testing wrong executables
+/bin/las "|" /bin/sleep 2
+
