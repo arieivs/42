@@ -5,11 +5,6 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdio.h>
-
-typedef struct s_microshell {
-	int		nb_instructions;
-	int		*nb_commands;
-	char	**envp;
-}				t_microshell;
+# include <sys/wait.h>
 
 #endif
