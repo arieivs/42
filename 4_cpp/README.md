@@ -6,3 +6,4 @@
 * https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md (Writting Guidelines)
 * https://stackoverflow.com/questions/10157122/object-creation-on-the-stack-heap (memory allocation)
 * https://www.cplusplus.com/doc/oldtutorial/ (C++98)
+* [Orthodox Canonical Class form](https://www.francescmm.com/orthodox-canonical-class-form/)
