@@ -14,7 +14,7 @@ DFLAGS	=	-g -fsanitize=address
 RM		=	rm -f
 RM_DIR	=	rm -rf
 
-$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.c
+$(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp
 					@mkdir -p $(OBJS_DIR)
 					$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
