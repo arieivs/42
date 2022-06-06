@@ -2,6 +2,7 @@
 # define CONTACT_CLASS_HPP
 
 class Contact {
+	// these need to be private and have getters and setters instead
 	public:
 		char	*first_name;
 		char	*last_name;

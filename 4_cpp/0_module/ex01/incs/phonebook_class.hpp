@@ -7,7 +7,7 @@ class PhoneBook {
 		~PhoneBook(void);
 
 		// add function
-		// search function
+		// search function -> use c++ iomanips(WTF?)
 
 	private:
 		// the list of 8 contacts
