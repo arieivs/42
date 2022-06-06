@@ -5,6 +5,15 @@ class PhoneBook {
 	public:
 		PhoneBook(void);
 		~PhoneBook(void);
+
+		// add function
+		// search function
+
+	private:
+		// the list of 8 contacts
+		// next_index
+		// aux functions for search:
+		//	displayAll, askUserIndex, displayOne
 };
 
 #endif
