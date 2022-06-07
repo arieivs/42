@@ -96,6 +96,13 @@ int		PhoneBook::ask_user_for_index(void) const
 		std::cout << "Which contact do you wish to see? Write its index: ";
 		std::cin >> index;
 		std::cout << std::endl;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(); /* Clear cin so that it doesn't go crazy */
+			std::cout << "Please give a number" << std::endl;
+			continue ;
+		}
 		if (index >= 1 && index <= this->nb_contacts)
 			break ;
 		std::cout << "Index out of range, please give a number beween 1 and ";
