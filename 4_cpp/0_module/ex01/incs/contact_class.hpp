@@ -1,20 +1,29 @@
 #ifndef CONTACT_CLASS_HPP
 # define CONTACT_CLASS_HPP
 
-class Contact {
-	// these need to be private and have getters and setters instead
-	public:
-		char	*first_name;
-		char	*last_name;
-		char	*nickname;
-		char	*phone_number;
-		char	*darkest_secret;
+# include <iostream>
 
-		Contact(char *first_name, char *last_name, char*nickname,
-			char *phone_number, char *darkest_secret);
+class Contact {
+	public:
+		Contact(void);
 		~Contact(void);
 
-		int	compare(Contact *other);
+		std::string	get_first_name(void) const;
+		std::string	get_last_name(void) const;
+		std::string	get_nickname(void) const;
+		std::string	get_phone_number(void) const;
+		std::string	get_darkest_secret(void) const;
+		void		set_contact_details(std::string first_name,
+						std::string last_name, std::string nickname,
+						std::string phone_number, std::string darkest_secret);
+		bool		compare(Contact *other);
+
+	private:
+		std::string	first_name;
+		std::string	last_name;
+		std::string	nickname;
+		std::string	phone_number;
+		std::string	darkest_secret;
 };
 
 #endif
