@@ -31,7 +31,7 @@ fclean:		clean
 
 re:			fclean all
 
-debug:		CFLAGS += DFLAGS
+debug:		CFLAGS += $(DFLAGS)
 debug:		all
 
 .PHONY:		all clean fclean re debug
