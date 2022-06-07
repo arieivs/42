@@ -18,6 +18,9 @@ if (std::cin.fail())
 	std::cin.ignore();
 }
 
+Right now if I press ctrl+D while waiting for user input, I close std::cin, thus it enters a sort of infinite crazy loop.
+https://stackoverflow.com/questions/5146344/problem-with-consecutive-cins
+
 ## Strings
 https://en.cppreference.com/w/cpp/string/basic_string
 
