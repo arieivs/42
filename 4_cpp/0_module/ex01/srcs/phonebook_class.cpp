@@ -18,7 +18,7 @@ std::string	PhoneBook::ask_user_for_input(std::string field) const
 {
 	std::string	new_value;
 
-	std::cout << "What's the new contact's " << field << " ?" << std::endl;
+	std::cout << "What's the new contact's " << field << "?" << std::endl;
 	/* using std::getline(std::cin, new_value) instead of std::cin >> new_value
 	so that I can evaluate what the user wrote after each line
 	default behaviour of std::cin is to wait until something is written */
@@ -39,6 +39,7 @@ void	PhoneBook::add_contact(void)
 	std::string	new_phone_number;
 	std::string	new_darkest_secret;
 
+	std::cout << "🙋‍♀️ Adding a new contact! 🙋‍♂️" << std::endl;
 	new_first_name = PhoneBook::ask_user_for_input("first name");
 	new_last_name = PhoneBook::ask_user_for_input("last name");
 	new_nickname = PhoneBook::ask_user_for_input("nickname");
@@ -116,6 +117,12 @@ void	PhoneBook::search(void) const
 {
 	int	index;
 
+	std::cout << "🔍 Searching... 👀" << std::endl;
+	if (this->nb_contacts <= 0)
+	{
+		std::cout << "Your phonebook is empty! Add a contact first" << std::endl;
+		return ;
+	}
 	PhoneBook::display_all();
 	index = PhoneBook::ask_user_for_index();
 	PhoneBook::display_one_contact(index);
