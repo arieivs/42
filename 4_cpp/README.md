@@ -9,6 +9,15 @@
 * [Orthodox Canonical Class form](https://www.francescmm.com/orthodox-canonical-class-form/)
 * [Scope Resolution Operator ::](https://www.geeksforgeeks.org/scope-resolution-operator-in-c/)
 
+## IO stream
+if we want to get an int from std::cin and something that doesn't match that data type is given, it fails, and potentially goes crazy.
+https://stackoverflow.com/questions/39282953/how-to-reset-stdcin-when-using-it
+if (std::cin.fail())
+{
+	std::cin.clear();
+	std::cin.ignore();
+}
+
 ## Strings
 https://en.cppreference.com/w/cpp/string/basic_string
 
