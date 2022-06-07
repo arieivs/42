@@ -6,12 +6,15 @@ class PhoneBook {
 		PhoneBook(void);
 		~PhoneBook(void);
 
-		// add function
+		void	add_contact(void);
 		// search function -> use c++ iomanips(WTF?)
+		void		display_all(void); // TODO pass this to private
 
 	private:
-		// the list of 8 contacts
-		// next_index
+		Contact	contacts[8];
+		int		next_index;
+
+		std::string	ask_user_for_input(std::string field);
 		// aux functions for search:
 		//	displayAll, askUserIndex, displayOne
 };
