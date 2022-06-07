@@ -7,15 +7,18 @@ class PhoneBook {
 		~PhoneBook(void);
 
 		void	add_contact(void);
-		// search function -> use c++ iomanips(WTF?)
-		void		display_all(void); // TODO pass this to private
+		void	search(void);
 
 	private:
 		Contact	contacts[8];
 		int		next_index;
 
+		/* auxiliary for add_contact */
 		std::string	ask_user_for_input(std::string field);
-		// aux functions for search:
+		/* auxiliary for search */
+		void		write_row_display_all(std::string content, bool is_last_row);
+		void		display_all(void); 
+
 		//	displayAll, askUserIndex, displayOne
 };
 

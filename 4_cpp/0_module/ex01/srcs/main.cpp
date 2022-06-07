@@ -8,7 +8,7 @@ int	main(void)
 	for (i = 0; i < 10; i++)
 	{
 		agenda.add_contact();
-		agenda.display_all();
+		agenda.search();
 	}
 	return (0);
 }

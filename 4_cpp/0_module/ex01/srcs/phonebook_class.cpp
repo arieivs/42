@@ -48,19 +48,41 @@ void	PhoneBook::add_contact(void)
 	this->next_index = (this->next_index + 1) % 8;
 }
 
+void	PhoneBook::write_row_display_all(std::string content, bool is_last_row)
+{
+	if (content.length() > 10)
+	{
+		std::cout << std::setw(9);
+		std::cout << content.substr(0, 9) << ".";
+	}
+	else
+	{
+		std::cout << std::setw(10);
+		std::cout << content;
+	}
+	is_last_row ? std::cout << std::endl : std::cout << "|";
+}
+
 void	PhoneBook::display_all(void)
 {
 	int	i;
 
+	write_row_display_all("INDEX", false);
+	write_row_display_all("FIRST NAME", false);
+	write_row_display_all("LAST NAME", false);
+	write_row_display_all("NICKNAME", true);
 	for (i = 0; i < 8; i++)
 	{
 		if (this->contacts[i].get_first_name().empty())
 			break ;
-		std::cout << this->contacts[i].get_first_name() << "|";
-		std::cout << this->contacts[i].get_last_name() << "|";
-		std::cout << this->contacts[i].get_nickname() << "|";
-		std::cout << this->contacts[i].get_phone_number() << "|";
-		std::cout << this->contacts[i].get_darkest_secret() << std::endl;
+		std::cout << std::setw(10) << i + 1 << "|";
+		write_row_display_all(this->contacts[i].get_first_name(), false);
+		write_row_display_all(this->contacts[i].get_last_name(), false);
+		write_row_display_all(this->contacts[i].get_nickname(), true);
 	}
-	// TODO 10 characters wide columns
+}
+
+void	PhoneBook::search(void)
+{
+	PhoneBook::display_all();
 }
