@@ -3,6 +3,7 @@
 PhoneBook::PhoneBook(void)
 {
 	this->next_index = 0;
+	this->nb_contacts = 0;
 	std::cout << "PhoneBook created" << std::endl;
 	return ;
 }
@@ -46,6 +47,8 @@ void	PhoneBook::add_contact(void)
 	this->contacts[this->next_index].set_contact_details(new_first_name,
 		new_last_name, new_nickname, new_phone_number, new_darkest_secret);
 	this->next_index = (this->next_index + 1) % 8;
+	if (this->nb_contacts < 8)
+		this->nb_contacts++;
 }
 
 void	PhoneBook::write_row_display_all(std::string content, bool is_last_row)
@@ -82,7 +85,29 @@ void	PhoneBook::display_all(void)
 	}
 }
 
+int		PhoneBook::ask_user_for_index(void)
+{
+	int		index;
+
+	while (true)
+	{
+		std::cout << "Which contact do you wish to see? Write its index: ";
+		std::cin >> index;
+		std::cout << std::endl;
+		if (index >= 1 && index <= this->nb_contacts)
+			break ;
+		std::cout << "Index out of range, please give a number beween 1 and ";
+		std::cout << this->nb_contacts << std::endl;
+	}
+	return (index - 1);
+}
+
 void	PhoneBook::search(void)
 {
+	int	index;
+
 	PhoneBook::display_all();
+	index = PhoneBook::ask_user_for_index();
+	std::cout << "Chose contact with index " << index << std::endl;
 }
+
