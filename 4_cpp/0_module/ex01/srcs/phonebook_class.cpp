@@ -14,7 +14,7 @@ PhoneBook::~PhoneBook(void)
 	return ;
 }
 
-std::string	PhoneBook::ask_user_for_input(std::string field)
+std::string	PhoneBook::ask_user_for_input(std::string field) const
 {
 	std::string	new_value;
 
@@ -51,7 +51,8 @@ void	PhoneBook::add_contact(void)
 		this->nb_contacts++;
 }
 
-void	PhoneBook::write_row_display_all(std::string content, bool is_last_row)
+void	PhoneBook::write_row_display_all(std::string content,
+			bool is_last_row) const
 {
 	if (content.length() > 10)
 	{
@@ -66,7 +67,7 @@ void	PhoneBook::write_row_display_all(std::string content, bool is_last_row)
 	is_last_row ? std::cout << std::endl : std::cout << "|";
 }
 
-void	PhoneBook::display_all(void)
+void	PhoneBook::display_all(void) const
 {
 	int	i;
 
@@ -85,7 +86,7 @@ void	PhoneBook::display_all(void)
 	}
 }
 
-int		PhoneBook::ask_user_for_index(void)
+int		PhoneBook::ask_user_for_index(void) const
 {
 	int		index;
 
@@ -102,12 +103,21 @@ int		PhoneBook::ask_user_for_index(void)
 	return (index - 1);
 }
 
-void	PhoneBook::search(void)
+void	PhoneBook::display_one_contact(int i) const
+{
+	std::cout << this->contacts[i].get_first_name() << std::endl;
+	std::cout << this->contacts[i].get_last_name() << std::endl;
+	std::cout << this->contacts[i].get_nickname() << std::endl;
+	std::cout << this->contacts[i].get_phone_number() << std::endl;
+	std::cout << this->contacts[i].get_darkest_secret() << std::endl;
+}
+
+void	PhoneBook::search(void) const
 {
 	int	index;
 
 	PhoneBook::display_all();
 	index = PhoneBook::ask_user_for_index();
-	std::cout << "Chose contact with index " << index << std::endl;
+	PhoneBook::display_one_contact(index);
 }
 

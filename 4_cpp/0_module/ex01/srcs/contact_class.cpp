@@ -51,7 +51,7 @@ void	Contact::set_contact_details(std::string first_name, std::string last_name,
 	this->darkest_secret = darkest_secret;
 }
 
-bool	Contact::compare(Contact *other)
+bool	Contact::compare(Contact *other) const
 {
 	if (!this->first_name.empty() && !this->last_name.empty() &&
 		this->first_name.compare(other->first_name) == 0 &&

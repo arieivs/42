@@ -7,7 +7,7 @@ class PhoneBook {
 		~PhoneBook(void);
 
 		void	add_contact(void);
-		void	search(void);
+		void	search(void) const;
 
 	private:
 		Contact	contacts[8];
@@ -15,13 +15,13 @@ class PhoneBook {
 		int		nb_contacts;
 
 		/* auxiliary for add_contact */
-		std::string	ask_user_for_input(std::string field);
+		std::string	ask_user_for_input(std::string field) const;
 		/* auxiliary for search */
-		void		write_row_display_all(std::string content, bool is_last_row);
-		void		display_all(void); 
-		int			ask_user_for_index(void);
-
-		//	displayAll, askUserIndex, displayOne
+		void		write_row_display_all(std::string content,
+						bool is_last_row) const;
+		void		display_all(void) const;
+		int			ask_user_for_index(void) const;
+		void		display_one_contact(int index) const;
 };
 
 #endif
