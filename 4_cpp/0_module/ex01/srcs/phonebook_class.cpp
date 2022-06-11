@@ -4,13 +4,13 @@ PhoneBook::PhoneBook(void)
 {
 	this->next_index = 0;
 	this->nb_contacts = 0;
-	std::cout << "PhoneBook created" << std::endl;
+	DEBUG(std::cout << "PhoneBook created" << std::endl;)
 	return ;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "PhoneBook destroyed" << std::endl;
+	DEBUG(std::cout << "PhoneBook destroyed" << std::endl;)
 	return ;
 }
 

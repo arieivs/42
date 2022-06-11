@@ -31,6 +31,7 @@ fclean:		clean
 
 re:			fclean all
 
+debug:		INCLUDES += -DDEBUG_MODE
 debug:		CFLAGS += $(DFLAGS)
 debug:		all
 
