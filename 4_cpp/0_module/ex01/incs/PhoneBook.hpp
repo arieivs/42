@@ -1,6 +1,9 @@
 #ifndef PHONEBOOK_CLASS_HPP
 # define PHONEBOOK_CLASS_HPP
 
+# include "basic_phonebook.hpp"
+# include "Contact.hpp"
+
 class PhoneBook {
 	public:
 		PhoneBook(void);
