@@ -55,6 +55,7 @@ void	PhoneBook::add_contact(void)
 void	PhoneBook::write_row_display_all(std::string content,
 			bool is_last_row) const
 {
+	DEBUG(std::cout << "(" << content.length() << ")";)
 	if (content.length() > 10)
 	{
 		std::cout << std::setw(9);
