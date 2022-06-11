@@ -24,6 +24,8 @@ void	Account::_displayTimestamp(void)
 			  << std::setfill('0') << std::setw(2) << (now_local->tm_hour)
 			  << std::setfill('0') << std::setw(2) << (now_local->tm_min)
 			  << std::setfill('0') << std::setw(2) << (now_local->tm_sec) << "] ";
+	/* for making it easier to compare with the logs: */
+	/*std::cout << "[19920104_091532] ";*/
 }
 
 Account::Account(int initial_deposit):
