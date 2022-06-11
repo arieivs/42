@@ -28,5 +28,9 @@ https://stackoverflow.com/questions/1524356/c-deprecated-conversion-from-string-
 
 std::string automatically allocates memory dynamically to the string, and frees it in the destructor.
 
+When there's utf-8 characters involved, things might get tricky... the size is refering to the amount of bytes needed, so if a character (like é) uses more bytes (in this case 2) it may make things more complicated... Luckily we have american keyboards at school
+
+https://stackoverflow.com/questions/50403342/how-do-i-properly-use-stdstring-on-utf-8-in-c
+
 ## CPP00
 Wondering whether to have the instance variables as parameters from the constructor... which kinda makes more sence to me. In the end I didn't do it cos since we will be creating all the contacts before we have that information, all those values would just be null. So... might as well just go the "naive" way.
