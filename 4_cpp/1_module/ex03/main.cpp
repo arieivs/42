@@ -1,16 +1,25 @@
 #include "Weapon.hpp"
 #include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int	main(void)
 {
-	Weapon	sword = Weapon("sword");
-	Weapon	axe = Weapon("axe");
-	HumanA	alice = HumanA("Alice", axe);
+	{
+		Weapon	kniffe = Weapon("samurai sword");
+		HumanA	alice("Alice", kniffe);
 
-	std::cout << sword.getType() << std::endl;
-	std::cout << axe.getType() << std::endl;
-	sword.setType("dagger");
-	std::cout << sword.getType() << std::endl;
-	alice.attack();
+		alice.attack();
+		kniffe.setType("sneaky dagger");
+		alice.attack();
+	}
+	{
+		Weapon	kniffe = Weapon("samurai sword");
+		HumanB	bob("Bob");
+
+		bob.setWeapon(kniffe);
+		bob.attack();
+		kniffe.setType("sneaky dagger");
+		bob.attack();
+	}
 	return (0);
 }
