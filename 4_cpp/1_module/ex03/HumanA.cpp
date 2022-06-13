@@ -7,7 +7,8 @@ HumanA::HumanA(std::string name, Weapon& weapon):
 	std::cout << "Human " << name << " created" << std::endl;
 }
 
-HumanA::~HumanA(void) {
+HumanA::~HumanA(void)
+{
 	std::cout << "Human " << name << " destroyed" << std::endl;
 }
 

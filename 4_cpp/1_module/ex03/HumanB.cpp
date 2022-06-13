@@ -5,7 +5,8 @@ HumanB::HumanB(std::string name): name(name), weapon(NULL)
 	std::cout << "Human " << name << " created" << std::endl;
 }
 
-HumanB::~HumanB(void) {
+HumanB::~HumanB(void)
+{
 	std::cout << "Human " << this->name << " destroyed" << std::endl;
 }
 
