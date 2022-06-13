@@ -13,4 +13,6 @@ class Zombie {
 		std::string	_name;
 };
 
+Zombie	*newZombie(std::string name);
+
 #endif

@@ -2,11 +2,11 @@
 
 int	main(void)
 {
-	Zombie	frankie = Zombie("Frankie");
-	Zombie	*jason = new Zombie("Jason");
+	Zombie	*frankie;
+	//Zombie	*jason = new Zombie("Jason");
 
-	frankie.announce();
-	jason->announce();
-	delete jason;
+	frankie = newZombie("Frankie");
+	frankie->announce();
+	delete frankie;
 	return (0);
 }
