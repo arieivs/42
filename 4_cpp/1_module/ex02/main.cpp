@@ -7,8 +7,10 @@ int	main(void)
 	std::string&	stringREF = str;
 
 	/* Print the memory addresses */
-	// how do I print a memory address?
-	
+	std::cout << &str << std::endl;
+	std::cout << stringPTR << std::endl;
+	std::cout << &stringREF << std::endl;
+
 	/* Print the values */
 	std::cout << str << std::endl;
 	std::cout << *stringPTR << std::endl;
