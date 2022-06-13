@@ -1,6 +1,6 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name): name(name)
+HumanB::HumanB(std::string name): name(name), weapon(NULL)
 {
 	std::cout << "Human " << name << " created" << std::endl;
 }
@@ -14,11 +14,10 @@ void	HumanB::setWeapon(Weapon& newWeapon)
 	this->weapon = &newWeapon;
 }
 
-/*
-Do not call attack() on a HumanB without a weapon
-Checking if a member variable has been initialised doesn't seem to be easy in C98
-*/
 void	HumanB::attack(void)
 {
-	std::cout << name << " attacks with their " << weapon->getType() << std::endl;
+	std::cout << name << " attacks";
+	if (weapon != NULL)
+		std::cout << " with their " << weapon->getType();
+	std::cout << std::endl;
 }

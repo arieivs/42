@@ -16,6 +16,7 @@ int	main(void)
 		Weapon	kniffe = Weapon("samurai sword");
 		HumanB	bob("Bob");
 
+		bob.attack();
 		bob.setWeapon(kniffe);
 		bob.attack();
 		kniffe.setType("sneaky dagger");
