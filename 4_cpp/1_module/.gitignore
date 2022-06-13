@@ -1,4 +1,7 @@
 *.o
+objs/
 zombies
 brain
 war
+sed
+*.replace
