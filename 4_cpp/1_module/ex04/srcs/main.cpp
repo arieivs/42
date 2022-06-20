@@ -46,11 +46,23 @@ int	close_or_error(std::string filename, std::ifstream *in_file, std::ofstream *
 	return (0);
 }
 
-// later on it should return something...
-void	sed(std::string content, std::string s1, std::string s2)
+/*
+std::string:npos -> https://cplusplus.com/reference/string/string/npos/
+*/
+void	sed(std::string *content, std::string s1, std::string s2)
 {
-	std::cout << content;
-	std::cout << s1 << " " << s2 << std::endl;
+	std::size_t	found = 0;
+	std::size_t	len1;
+
+	len1 = s1.length();
+	if (len1 == 0)
+		return ;
+	while ((found = content->find(s1, found)) != std::string::npos)
+	{
+		content->erase(found, len1);
+		content->insert(found, s2);
+		found++;
+	}
 }
 
 /*
@@ -61,6 +73,10 @@ the whole contents of the file into a std::string"
 */
 int	main(int ac, char **av)
 {
+	std::ifstream	in_file;
+	std::ofstream	out_file;
+	std::string		content;
+
 	if (ac != 4)
 	{
 		std::cerr << "Wrong parameters:"
@@ -68,16 +84,11 @@ int	main(int ac, char **av)
 				  << std::endl;
 		return (1);
 	}
-
-	std::ifstream	in_file;
-	std::ofstream	out_file;
-	std::string		content;
-
 	if (open_or_error(av[1], &in_file, &out_file))
 		return (1);
 	content = std::string(std::istreambuf_iterator<char>(in_file), std::istreambuf_iterator<char>());
-	sed(content, av[2], av[3]);
-	out_file << content; // later on the new content
+	sed(&content, av[2], av[3]);
+	out_file << content;
 	if (close_or_error(av[1], &in_file, &out_file))
 		return (1);
 	return (0);
