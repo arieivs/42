@@ -42,6 +42,31 @@ void	Harl::error(void)
 
 void	Harl::complain(std::string level)
 {
-	// TODO switch statement
-	std::cout << level << std::endl;
+	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int			level_index = -1;
+	int			i;
+
+	for (i = 0; i < 4; i++)
+	{
+		if (levels[i].compare(level) == 0)
+		{
+			level_index = i;
+			break;
+		}
+	}
+	switch(level_index)
+	{
+		case 0:
+			Harl::debug();
+		case 1:
+			Harl::info();
+		case 2:
+			Harl::warning();
+		case 3:
+			Harl::error();
+			break;
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]"
+					  << std::endl;
+	}
 }
