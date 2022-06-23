@@ -36,3 +36,9 @@ https://stackoverflow.com/questions/4063146/getting-the-actual-length-of-a-utf-8
 
 ## CPP00
 Wondering whether to have the instance variables as parameters from the constructor... which kinda makes more sence to me. In the end I didn't do it cos since we will be creating all the contacts before we have that information, all those values would just be null. So... might as well just go the "naive" way.
+
+## Pointers to members functions
+https://stackoverflow.com/questions/43205893/array-of-pointers-on-member-functions-of-current-class
+https://isocpp.org/wiki/faq/pointers-to-members
+
+moral of the story: user typedef
