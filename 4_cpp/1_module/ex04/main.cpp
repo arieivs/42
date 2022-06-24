@@ -17,13 +17,13 @@ int	open_or_error(std::string filename, std::ifstream *in_file, std::ofstream *o
 	in_file->open(filename);
 	if (in_file->fail())
 	{
-		std::cerr << "Could not open the file " << filename << std::endl;
+		std::cout << "Could not open the file " << filename << std::endl;
 		return (1);
 	}
 	out_file->open(filename + ".replace");
 	if (out_file->fail())
 	{
-		std::cerr << "Could not create the replace output file" << std::endl;
+		std::cout << "Could not create the replace output file" << std::endl;
 		return (1);
 	}
 	return (0);
@@ -34,13 +34,13 @@ int	close_or_error(std::string filename, std::ifstream *in_file, std::ofstream *
 	in_file->close();
 	if (in_file->fail())
 	{
-		std::cerr << "Could not close the file " << filename << std::endl;
+		std::cout << "Could not close the file " << filename << std::endl;
 		return (1);
 	}
 	out_file->close();
 	if (out_file->fail())
 	{
-		std::cerr << "Could not close the replace output file" << std::endl;
+		std::cout << "Could not close the replace output file" << std::endl;
 		return (1);
 	}
 	return (0);
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 
 	if (ac != 4)
 	{
-		std::cerr << "Wrong parameters:"
+		std::cout << "Wrong parameters:"
 				  << " please provide <filename> <string1> <string2>"
 				  << std::endl;
 		return (1);
