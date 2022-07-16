@@ -1,25 +1,21 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
-# ifdef DEBUG_MODE
-#  define DEBUG(x) x
-# else
-#  define DEBUG(x)  
-# endif
-
 # include <iostream>
 
 class Fixed {
 	public:
 		Fixed(void);
-		//Fixed(parameters?);
-		//Fixed(Fixed const & src);
+		Fixed(Fixed const & src);
 		~Fixed(void);
 
-		//Fixed&	operator=(Fixed const & src);
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
+		Fixed&	operator=(Fixed const & src);
 
 	private:
-		// instance variables
+		int					_n;
+		static int const	_n_fractional_bits;
 };
 
 #endif
