@@ -19,21 +19,21 @@ Fixed::Fixed(int const n) {
 }
 
 Fixed::Fixed(float const n) {
-	float	rounded;
-	//int		natural;
-	int		exponent;
-	float	exponent_f;
+	int			exponent;
 	union_float	uf;
 
 	std::cout << "Float constructor called" << std::endl;
+	/* previous ideas
 	rounded = roundf(n);
-	//natural = (int)rounded; // what am i doing
-	exponent_f = (n * (1 << 1) * (1 >> 23)); // not working
+	exponent_f = (n * (1 << 23) * (1 >> 24)); // not working
 	exponent = (int)(n * (1 << 1) * (1 >> 23)) - 127; // not working
 	std::cout << "Exponent of " << n << ": " << exponent_f << " h " << exponent << " r " << rounded << std::endl;
+	*/
 	uf.f = n;
-	std::cout << "signal " << uf.signal << " exponent " << uf.exponent << " mantissa " << uf.mantissa << std::endl;
-
+	DEBUG(std::cout << "Signal: " << uf.signal << " Exponent: " << uf.exponent << " Mantissa: " << uf.mantissa << std::endl;)
+	exponent = uf.exponent - EXP_BIAS;
+	DEBUG(std::cout << "Actual exponent (bias corrected): " << exponent << std::endl;)
+	
 	// TODO
 	return ;
 }
