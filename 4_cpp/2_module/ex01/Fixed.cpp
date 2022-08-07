@@ -8,9 +8,9 @@ Fixed::Fixed(void) {
 	return ;
 }
 
-/* int = 32 bits
-fixed point = 24 bits int + last 8 bits for fractional part
-thus we need to shit 8 bits to the left */
+/* Int to Fixed point:
+We need extra 8 bits in the end for fixed point fractional bits,
+thus we need to shit 8 bits to the left. */
 Fixed::Fixed(int const n) {
 	std::cout << "Int constructor called" << std::endl;
 	this->_n = n << _n_fractional_bits;
@@ -19,8 +19,21 @@ Fixed::Fixed(int const n) {
 }
 
 Fixed::Fixed(float const n) {
+	float	rounded;
+	//int		natural;
+	int		exponent;
+	float	exponent_f;
+	union_float	uf;
+
 	std::cout << "Float constructor called" << std::endl;
-	(void) n; // tmp
+	rounded = roundf(n);
+	//natural = (int)rounded; // what am i doing
+	exponent_f = (n * (1 << 1) * (1 >> 23)); // not working
+	exponent = (int)(n * (1 << 1) * (1 >> 23)) - 127; // not working
+	std::cout << "Exponent of " << n << ": " << exponent_f << " h " << exponent << " r " << rounded << std::endl;
+	uf.f = n;
+	std::cout << "signal " << uf.signal << " exponent " << uf.exponent << " mantissa " << uf.mantissa << std::endl;
+
 	// TODO
 	return ;
 }
@@ -53,7 +66,6 @@ void	Fixed::setRawBits(int const raw) {
 	this->_n = raw;
 }
 
-/* we need to shit 8 bits to the right */
 int		Fixed::toInt(void) const {
 	int	n;
 

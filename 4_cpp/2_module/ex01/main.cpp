@@ -5,10 +5,10 @@ int	main(void) {
 	Fixed a;
 
 	std::cout << std::endl << "FROM INT" << std::endl;
-	Fixed const b( 10 );
+	Fixed const b( -10 );
 
-	// std::cout << "FROM FLOAT" << std::endl;
-	// Fixed const c( 42.42f );
+	std::cout << std::endl << "FROM FLOAT" << std::endl;
+	Fixed const c( 212.0f );
 
 	std::cout << std::endl << "COPY" << std::endl;
 	Fixed const d( b );
