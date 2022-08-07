@@ -1,7 +1,14 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+# ifdef DEBUG_MODE
+#  define DEBUG(x) x
+# else
+#  define DEBUG(x)  
+# endif
+
 # include <iostream>
+# define INT_SIZE 32
 
 class Fixed {
 	public:
@@ -14,8 +21,8 @@ class Fixed {
 		Fixed&	operator=(Fixed const & src);
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
-		float	toFloat(void) const;
 		int		toInt(void) const;
+		float	toFloat(void) const;
 
 	private:
 		int					_n;

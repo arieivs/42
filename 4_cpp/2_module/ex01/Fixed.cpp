@@ -8,10 +8,13 @@ Fixed::Fixed(void) {
 	return ;
 }
 
+/* int = 32 bits
+fixed point = 24 bits int + last 8 bits for fractional part
+thus we need to shit 8 bits to the left */
 Fixed::Fixed(int const n) {
 	std::cout << "Int constructor called" << std::endl;
-	(void) n; // tmp
-	// TODO
+	this->_n = n << _n_fractional_bits;
+	DEBUG(std::cout << "Value stored: " << this->_n << std::endl;)
 	return ;
 }
 
@@ -50,16 +53,17 @@ void	Fixed::setRawBits(int const raw) {
 	this->_n = raw;
 }
 
+/* we need to shit 8 bits to the right */
+int		Fixed::toInt(void) const {
+	int	n;
+
+	n = this->_n >> _n_fractional_bits;
+	return (n);
+}
+
 float	Fixed::toFloat(void) const {
 	float	f;
 	// TODO
 	f = 1.2; // tmp
 	return (f);
-}
-
-int		Fixed::toInt(void) const {
-	int	n;
-	// TODO
-	n = 1; // tmp
-	return (n);
 }
