@@ -3,7 +3,7 @@
 int const	Fixed::_n_fractional_bits = 8;
 
 Fixed::Fixed(void) {
-	std::cout << "Default constructor called" << std::endl;
+	DEBUG(std::cout << "Default constructor called" << std::endl;)
 	this->_n = 0;
 	return ;
 }
@@ -12,7 +12,7 @@ Fixed::Fixed(void) {
 We need extra 8 bits in the end for fixed point fractional bits,
 thus we need to shit 8 bits to the left. */
 Fixed::Fixed(int const n) {
-	std::cout << "Int constructor called" << std::endl;
+	DEBUG(std::cout << "Int constructor called" << std::endl;)
 	this->_n = n << _n_fractional_bits;
 	return ;
 }
@@ -24,36 +24,36 @@ so that we accomodate for the bits being used for the fractional part
 https://embeddedartistry.com/blog/2018/07/12/simple-fixed-point-conversion-in-c/
 */
 Fixed::Fixed(float const n) {
-	std::cout << "Float constructor called" << std::endl;
+	DEBUG(std::cout << "Float constructor called" << std::endl;)
 	this->_n = (int)roundf(n * (1 << _n_fractional_bits));
 	return ;
 }
 
 Fixed::Fixed(Fixed const & src) {
-	std::cout << "Copy constructor called" << std::endl;
+	DEBUG(std::cout << "Copy constructor called" << std::endl;)
 	*this = src;
 	return ;
 }
 
 Fixed::~Fixed(void) {
-	std::cout << "Destructor called" << std::endl;
+	DEBUG(std::cout << "Destructor called" << std::endl;)
 	return ;
 }
 
 Fixed&	Fixed::operator=(Fixed const & src) {
-	std::cout << "Copy assignment operator called" << std::endl;
+	DEBUG(std::cout << "Copy assignment operator called" << std::endl;)
 	if (this != &src)
 		this->_n = src.getRawBits();
 	return *this;
 }
 
 int		Fixed::getRawBits(void) const {
-	std::cout << "getRawBits member function called" << std::endl;
+	DEBUG(std::cout << "getRawBits member function called" << std::endl;)
 	return this->_n;
 }
 
 void	Fixed::setRawBits(int const raw) {
-	std::cout << "setRawBits member function called" << std::endl;
+	DEBUG(std::cout << "setRawBits member function called" << std::endl;)
 	this->_n = raw;
 }
 
@@ -103,17 +103,40 @@ bool	Fixed::operator!=(Fixed const & other) const {
 }
 
 Fixed	Fixed::operator+(Fixed const & other) const {
-	return this->_n + other._n;
+	Fixed	result;
+
+	result.setRawBits(this->_n + other._n);
+	return result;
 }
 
 Fixed	Fixed::operator-(Fixed const & other) const {
-	return this->_n - other._n;
+	Fixed	result;
+
+	result.setRawBits(this->_n - other._n);
+	return result;
 }
 
+/* Multiplication:
+Fixed point => we're multiplying the "int" represented there by 2^-_fractional_bits
+thus a * b = bin_a * 2^-8 * bin_b * 2_-8 = bin_a * bin_b * 2^-16 = a * bin_b * 2^-8
+thus we need to correct the order of magnitude afterwards by * 2^-8
+which is why we bitshift >> _n_fractional_bits
+https://www.allaboutcircuits.com/technical-articles/multiplication-examples-using-the-fixed-point-representation/
+Note that the highest value a fixed point can have is 2^(32-1-8) = 2^23 = 8 388 608
+which applies to the result of the multiplication before the bitshift,
+thus this multiplication operation is somewhat limited...
+*/
 Fixed	Fixed::operator*(Fixed const & other) const {
-	return this->_n * other._n;
+	Fixed	result;
+
+	result.setRawBits((this->_n * other._n) >> _n_fractional_bits);
+	return result;
 }
 
+/* Division by 0 is possible and it outputs 0... */
 Fixed	Fixed::operator/(Fixed const & other) const {
-	return this->_n / other._n; // TODO check for edge cases
+	Fixed	result;
+
+	result.setRawBits((this->_n / other._n) << _n_fractional_bits);
+	return result;
 }
