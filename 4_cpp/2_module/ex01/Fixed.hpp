@@ -10,16 +10,6 @@
 # include <iostream>
 # include <cmath>
 
-typedef union	{
-	float		f;
-	struct
-	{
-		unsigned int	mantissa : 23;
-		unsigned int	exponent : 8;
-		unsigned int	signal : 1;
-	};
-}	union_float;
-
 class Fixed {
 	public:
 		Fixed(void);
@@ -38,5 +28,7 @@ class Fixed {
 		int					_n;
 		static int const	_n_fractional_bits;
 };
+
+std::ostream &	operator<<(std::ostream & out, Fixed const & n);
 
 #endif

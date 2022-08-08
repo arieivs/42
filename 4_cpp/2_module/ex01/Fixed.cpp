@@ -20,19 +20,13 @@ Fixed::Fixed(int const n) {
 
 /* Float to Fixed point:
 n * (1 << _n_fractional_bits) => we're multiplying by 2^_n_fractional_bits
+this way, we will convert it to an int, 2^_n_fractional_bits bigger than what it "should" be
+so that we accomodate for the bits being used for the fractional part
+https://embeddedartistry.com/blog/2018/07/12/simple-fixed-point-conversion-in-c/
 */
 Fixed::Fixed(float const n) {
 	std::cout << "Float constructor called" << std::endl;
 	this->_n = (int)roundf(n * (1 << _n_fractional_bits));
-
-	DEBUG(union_float	uf1;)
-	DEBUG(union_float	uf2;)
-	DEBUG(uf1.f = n;)
-	DEBUG(uf2.f = (n * (1 << _n_fractional_bits));)
-	DEBUG(std::cout << "Signal: " << uf1.signal << " Exponent: " << uf1.exponent << " Mantissa: " << uf1.mantissa << std::endl;)
-	DEBUG(std::cout << "Signal: " << uf2.signal << " Exponent: " << uf2.exponent << " Mantissa: " << uf2.mantissa << std::endl;)
-	DEBUG(std::cout << "Getting there: " << (1 << _n_fractional_bits) << " " << (n * (1 << _n_fractional_bits)) << " " << roundf(n * (1 << _n_fractional_bits)) << std::endl;)
-	DEBUG(std::cout << "Value stored: " << this->_n << std::endl;)
 	return ;
 }
 
@@ -78,4 +72,9 @@ float	Fixed::toFloat(void) const {
 	DEBUG(std::cout << "Converting Fixed point to Float" << std::endl;)
 	f = (float)this->_n / (float)(1 << _n_fractional_bits);
 	return (f);
+}
+
+std::ostream &	operator<<(std::ostream & out, Fixed const & n) {
+	out << n.toFloat();
+	return out;
 }

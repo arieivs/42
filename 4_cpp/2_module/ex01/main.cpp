@@ -8,7 +8,7 @@ int	main(void) {
 	Fixed const b( -10 );
 
 	std::cout << std::endl << "FROM FLOAT" << std::endl;
-	Fixed const c( -0.042f );
+	Fixed const c( 42.42f );
 
 	std::cout << std::endl << "COPY" << std::endl;
 	Fixed const d( b );
@@ -16,17 +16,11 @@ int	main(void) {
 	std::cout << std::endl << "OPERATOR =" << std::endl;
 	a = Fixed( 1234.4321f );
 
-	// std::cout << std::endl << "CHECK VALUES" << std::endl;
-	// std::cout << "a is " << a << std::endl;
-	// std::cout << "b is " << b << std::endl;
-	// std::cout << "c is " << c << std::endl;
-	// std::cout << "d is " << d << std::endl;
-
-	std::cout << std::endl << "CONVERT TO FLOAT" << std::endl;
-	std::cout << "a is " << a.toFloat() << " as float" << std::endl;
-	std::cout << "b is " << b.toFloat() << " as float" << std::endl;
-	std::cout << "c is " << c.toFloat() << " as float" << std::endl;
-	std::cout << "d is " << d.toFloat() << " as float" << std::endl;
+	std::cout << std::endl << "CHECK VALUES (CONVERT TO FLOAT)" << std::endl;
+	std::cout << "a is " << a << std::endl;
+	std::cout << "b is " << b << std::endl;
+	std::cout << "c is " << c << std::endl;
+	std::cout << "d is " << d << std::endl;
 
 	std::cout << std::endl << "CONVERT TO INT" << std::endl;
 	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
