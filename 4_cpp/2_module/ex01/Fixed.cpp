@@ -18,23 +18,21 @@ Fixed::Fixed(int const n) {
 	return ;
 }
 
+/* Float to Fixed point:
+n * (1 << _n_fractional_bits) => we're multiplying by 2^_n_fractional_bits
+*/
 Fixed::Fixed(float const n) {
-	int			exponent;
-	union_float	uf;
-
 	std::cout << "Float constructor called" << std::endl;
-	/* previous ideas
-	rounded = roundf(n);
-	exponent_f = (n * (1 << 23) * (1 >> 24)); // not working
-	exponent = (int)(n * (1 << 1) * (1 >> 23)) - 127; // not working
-	std::cout << "Exponent of " << n << ": " << exponent_f << " h " << exponent << " r " << rounded << std::endl;
-	*/
-	uf.f = n;
-	DEBUG(std::cout << "Signal: " << uf.signal << " Exponent: " << uf.exponent << " Mantissa: " << uf.mantissa << std::endl;)
-	exponent = uf.exponent - EXP_BIAS;
-	DEBUG(std::cout << "Actual exponent (bias corrected): " << exponent << std::endl;)
-	
-	// TODO
+	this->_n = (int)roundf(n * (1 << _n_fractional_bits));
+
+	DEBUG(union_float	uf1;)
+	DEBUG(union_float	uf2;)
+	DEBUG(uf1.f = n;)
+	DEBUG(uf2.f = (n * (1 << _n_fractional_bits));)
+	DEBUG(std::cout << "Signal: " << uf1.signal << " Exponent: " << uf1.exponent << " Mantissa: " << uf1.mantissa << std::endl;)
+	DEBUG(std::cout << "Signal: " << uf2.signal << " Exponent: " << uf2.exponent << " Mantissa: " << uf2.mantissa << std::endl;)
+	DEBUG(std::cout << "Getting there: " << (1 << _n_fractional_bits) << " " << (n * (1 << _n_fractional_bits)) << " " << roundf(n * (1 << _n_fractional_bits)) << std::endl;)
+	DEBUG(std::cout << "Value stored: " << this->_n << std::endl;)
 	return ;
 }
 
@@ -69,13 +67,15 @@ void	Fixed::setRawBits(int const raw) {
 int		Fixed::toInt(void) const {
 	int	n;
 
+	DEBUG(std::cout << "Converting Fixed point to Int" << std::endl;)
 	n = this->_n >> _n_fractional_bits;
 	return (n);
 }
 
 float	Fixed::toFloat(void) const {
 	float	f;
-	// TODO
-	f = 1.2; // tmp
+	
+	DEBUG(std::cout << "Converting Fixed point to Float" << std::endl;)
+	f = (float)this->_n / (float)(1 << _n_fractional_bits);
 	return (f);
 }

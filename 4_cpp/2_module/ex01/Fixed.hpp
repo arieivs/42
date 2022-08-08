@@ -7,14 +7,6 @@
 #  define DEBUG(x)  
 # endif
 
-# define INT_SIZE 32
-/* Float Exponent Mask: 01111111100000000000000000000000
-equivalent to 1.0 * 2^(255-127) = 3,402823669E38 
-# define EXP_MASK 2139095040*/ // old stuff
-# define SIG_BITS 1
-# define EXP_BITS 8
-# define MANT_BITS 23
-# define EXP_BIAS 127
 # include <iostream>
 # include <cmath>
 
@@ -22,9 +14,9 @@ typedef union	{
 	float		f;
 	struct
 	{
-		unsigned int	mantissa : MANT_BITS;
-		unsigned int	exponent : EXP_BITS;
-		unsigned int	signal : SIG_BITS;
+		unsigned int	mantissa : 23;
+		unsigned int	exponent : 8;
+		unsigned int	signal : 1;
 	};
 }	union_float;
 
