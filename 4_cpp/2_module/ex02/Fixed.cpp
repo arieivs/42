@@ -14,7 +14,6 @@ thus we need to shit 8 bits to the left. */
 Fixed::Fixed(int const n) {
 	std::cout << "Int constructor called" << std::endl;
 	this->_n = n << _n_fractional_bits;
-	DEBUG(std::cout << "Value stored: " << this->_n << std::endl;)
 	return ;
 }
 
@@ -79,6 +78,26 @@ std::ostream &	operator<<(std::ostream & out, Fixed const & n) {
 	return out;
 }
 
-bool	Fixed::Fixed>(Fixed cosnt & other) const {
-	return this->_n.toFloat() > other->_n.toFloat();
+bool	Fixed::operator>(Fixed const & other) const {
+	return this->_n > other._n;
+}
+
+bool	Fixed::operator<(Fixed const & other) const {
+	return this->_n < other._n;
+}
+
+bool	Fixed::operator>=(Fixed const & other) const {
+	return this->_n >= other._n;
+}
+
+bool	Fixed::operator<=(Fixed const & other) const {
+	return this->_n <= other._n;
+}
+
+bool	Fixed::operator==(Fixed const & other) const {
+	return this->_n == other._n;
+}
+
+bool	Fixed::operator!=(Fixed const & other) const {
+	return this->_n != other._n;
 }

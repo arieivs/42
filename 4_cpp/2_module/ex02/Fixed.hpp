@@ -23,7 +23,12 @@ class Fixed {
 		void	setRawBits(int const raw);
 		int		toInt(void) const;
 		float	toFloat(void) const;
-		bool	Fixed>(Fixed cosnt & other) const;
+		bool	operator>(Fixed const & other) const;
+		bool	operator<(Fixed const & other) const;
+		bool	operator>=(Fixed const & other) const;
+		bool	operator<=(Fixed const & other) const;
+		bool	operator==(Fixed const & other) const;
+		bool	operator!=(Fixed const & other) const;
 
 	private:
 		int					_n;
