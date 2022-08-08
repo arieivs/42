@@ -13,6 +13,12 @@ int	main(void) {
 	std::cout << ((a == b) ? "a == b" : "a is not == b") << std::endl;
 	std::cout << ((a != b) ? "a != b" : "a is not != b") << std::endl;
 
+	std::cout << std::endl << "ARITHMETIC OPERATORS" << std::endl;
+	std::cout << "a + b = " << (a + b) << std::endl;
+	std::cout << "a - b = " << (a - b) << std::endl;
+	std::cout << "a * b = " << (a * b) << std::endl;
+	std::cout << "a / b = " << (a / b) << std::endl;
+
 	std::cout << std::endl << "CLEAN UP" << std::endl;
 	return (0);
 }

@@ -101,3 +101,19 @@ bool	Fixed::operator==(Fixed const & other) const {
 bool	Fixed::operator!=(Fixed const & other) const {
 	return this->_n != other._n;
 }
+
+Fixed	Fixed::operator+(Fixed const & other) const {
+	return this->_n + other._n;
+}
+
+Fixed	Fixed::operator-(Fixed const & other) const {
+	return this->_n - other._n;
+}
+
+Fixed	Fixed::operator*(Fixed const & other) const {
+	return this->_n * other._n;
+}
+
+Fixed	Fixed::operator/(Fixed const & other) const {
+	return this->_n / other._n; // TODO check for edge cases
+}

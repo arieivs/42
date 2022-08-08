@@ -29,6 +29,10 @@ class Fixed {
 		bool	operator<=(Fixed const & other) const;
 		bool	operator==(Fixed const & other) const;
 		bool	operator!=(Fixed const & other) const;
+		Fixed	operator+(Fixed const & other) const;
+		Fixed	operator-(Fixed const & other) const;
+		Fixed	operator*(Fixed const & other) const;
+		Fixed	operator/(Fixed const & other) const;
 
 	private:
 		int					_n;
