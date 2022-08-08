@@ -140,3 +140,34 @@ Fixed	Fixed::operator/(Fixed const & other) const {
 	result.setRawBits((this->_n / other._n) << _n_fractional_bits);
 	return result;
 }
+
+/* Pre and Post In/decrementing:
+Pre - in/decrement it and then return it to do whatever with the updated value
+Post - create a copy, in/decrement the original, and then return the copy to do
+       whatever with the old value
+	 - it receives a dummy int (standard/for differentiation purposes I think)
+https://docs.microsoft.com/en-us/cpp/cpp/increment-and-decrement-operator-overloading-cpp?view=msvc-170
+*/
+Fixed	Fixed::operator++(void) {
+	this->_n++;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int) {
+	Fixed	copy = Fixed(*this);
+
+	this->_n++;
+	return (copy);
+}
+
+Fixed	Fixed::operator--(void) {
+	this->_n--;
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int) {
+	Fixed	copy = Fixed(*this);
+
+	this->_n--;
+	return (copy);
+}

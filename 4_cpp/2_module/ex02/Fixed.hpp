@@ -33,6 +33,10 @@ class Fixed {
 		Fixed	operator-(Fixed const & other) const;
 		Fixed	operator*(Fixed const & other) const;
 		Fixed	operator/(Fixed const & other) const;
+		Fixed	operator++(void);
+		Fixed	operator++(int);
+		Fixed	operator--(void);
+		Fixed	operator--(int);
 
 	private:
 		int					_n;
