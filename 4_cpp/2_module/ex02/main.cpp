@@ -1,7 +1,7 @@
 #include "Fixed.hpp"
 
 int	main(void) {
-	std::cout << "CONSTRUCTING..." << std::endl;
+	DEBUG(std::cout << "CONSTRUCTORS" << std::endl;)
 	Fixed a(5.05f);
 	Fixed b(2);
 	Fixed c(0);
@@ -36,6 +36,12 @@ int	main(void) {
 	std::cout << e++ << std::endl;
 	std::cout << e << std::endl;
 
-	std::cout << std::endl << "CLEAN UP" << std::endl;
+	std::cout << std::endl << "MAX & MIN" << std::endl;
+	std::cout << "max(a, b) = " << Fixed::max(a, b) << std::endl;
+	std::cout << "max(3, 4.5f) = " << Fixed::max(3, 4.5f) << std::endl;
+	std::cout << "min(a, b) = " << Fixed::min(a, b) << std::endl;
+	std::cout << "min(3, 4.5f) = " << Fixed::min(3, 4.5f) << std::endl;
+
+	DEBUG(std::cout << std::endl << "CLEAN UP" << std::endl;)
 	return (0);
 }

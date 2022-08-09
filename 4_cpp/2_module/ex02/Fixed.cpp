@@ -171,3 +171,27 @@ Fixed	Fixed::operator--(int) {
 	this->_n--;
 	return (copy);
 }
+
+Fixed &	Fixed::max(Fixed & foo, Fixed & bar) {
+	if (bar > foo)
+		return (bar);
+	return (foo);
+}
+
+Fixed const &	Fixed::max(Fixed const & foo, Fixed const & bar) {
+	if (bar > foo)
+		return (bar);
+	return (foo);
+}
+
+Fixed &	Fixed::min(Fixed & foo, Fixed & bar) {
+	if (bar < foo)
+		return (bar);
+	return (foo);
+}
+
+Fixed const &	Fixed::min(Fixed const & foo, Fixed const & bar) {
+	if (bar < foo)
+		return (bar);
+	return (foo);
+}
