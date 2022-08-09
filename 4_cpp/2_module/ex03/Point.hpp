@@ -15,7 +15,6 @@ class Point {
 	public:
 		Point(void);
 		Point(float const x, float const y);
-		Point(Fixed const x, Fixed const y);
 		Point(Point const & src);
 		~Point(void);
 
