@@ -6,7 +6,7 @@ https://www.geeksforgeeks.org/check-whether-a-given-point-lies-inside-a-triangle
 BSP = Binary Space Partitioning
 */
 
-Fixed	areaTriangle(Point const a, Point const b, Point const c) {
+static Fixed	areaTriangle(Point const a, Point const b, Point const c) {
 	Fixed	area;
 
 	area = (a.getX() * (b.getY() - c.getY()) + b.getX() * (c.getY() - a.getY()) + c.getX() * (a.getY() - b.getY()))/2;

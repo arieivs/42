@@ -3,7 +3,6 @@
 int const	Fixed::_n_fractional_bits = 8;
 
 Fixed::Fixed(void) {
-	DEBUG(std::cout << "Default constructor called" << std::endl;)
 	this->_n = 0;
 	return ;
 }
@@ -12,7 +11,6 @@ Fixed::Fixed(void) {
 We need extra 8 bits in the end for fixed point fractional bits,
 thus we need to shit 8 bits to the left. */
 Fixed::Fixed(int const n) {
-	DEBUG(std::cout << "Int constructor called" << std::endl;)
 	this->_n = n << _n_fractional_bits;
 	return ;
 }
@@ -24,43 +22,36 @@ so that we accomodate for the bits being used for the fractional part
 https://embeddedartistry.com/blog/2018/07/12/simple-fixed-point-conversion-in-c/
 */
 Fixed::Fixed(float const n) {
-	DEBUG(std::cout << "Float constructor called" << std::endl;)
 	this->_n = (int)roundf(n * (1 << _n_fractional_bits));
 	return ;
 }
 
 Fixed::Fixed(Fixed const & src) {
-	DEBUG(std::cout << "Copy constructor called" << std::endl;)
 	*this = src;
 	return ;
 }
 
 Fixed::~Fixed(void) {
-	DEBUG(std::cout << "Destructor called" << std::endl;)
 	return ;
 }
 
 Fixed&	Fixed::operator=(Fixed const & src) {
-	DEBUG(std::cout << "Copy assignment operator called" << std::endl;)
 	if (this != &src)
 		this->_n = src.getRawBits();
 	return *this;
 }
 
 int		Fixed::getRawBits(void) const {
-	DEBUG(std::cout << "getRawBits member function called" << std::endl;)
 	return this->_n;
 }
 
 void	Fixed::setRawBits(int const raw) {
-	DEBUG(std::cout << "setRawBits member function called" << std::endl;)
 	this->_n = raw;
 }
 
 int		Fixed::toInt(void) const {
 	int	n;
 
-	DEBUG(std::cout << "Converting Fixed point to Int" << std::endl;)
 	n = this->_n >> _n_fractional_bits;
 	return (n);
 }
@@ -68,7 +59,6 @@ int		Fixed::toInt(void) const {
 float	Fixed::toFloat(void) const {
 	float	f;
 	
-	DEBUG(std::cout << "Converting Fixed point to Float" << std::endl;)
 	f = (float)this->_n / (float)(1 << _n_fractional_bits);
 	return (f);
 }

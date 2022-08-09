@@ -1,17 +1,14 @@
 #include "Point.hpp"
 
 Point::Point(void) : _x(Fixed()), _y(Fixed()) {
-	DEBUG(std::cout << "Point Default constructor called" << std::endl;)
 	return ;
 }
 
 Point::Point(float const x, float const y) : _x(Fixed(x)), _y(Fixed(y)) {
-	DEBUG(std::cout << "Point Float constructor called" << std::endl;)
 	return ;
 }
 
 Point::Point(Point const & src) : _x(src._x), _y(src._y) {
-	DEBUG(std::cout << "Point Copy constructor called" << std::endl;)
 	return ;
 }
 
@@ -22,13 +19,11 @@ either way, = assignment won't work... cos _x and _y are constant
 so we might as well just return *this and do nothing...
 */
 Point	Point::operator=(Point const & src) {
-	DEBUG(std::cout << "Point Copy assignment operator called" << std::endl);
 	Point	temp(src);
 	return (temp);
 }
 
 Point::~Point(void) {
-	DEBUG(std::cout << "Point Destructor called" << std::endl;)
 }
 
 Fixed const &	Point::getX(void) const {

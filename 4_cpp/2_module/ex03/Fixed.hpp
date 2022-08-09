@@ -1,12 +1,6 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
-# ifdef DEBUG_MODE
-#  define DEBUG(x) x
-# else
-#  define DEBUG(x)  
-# endif
-
 # include <iostream>
 # include <cmath>
 
