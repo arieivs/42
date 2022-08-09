@@ -5,7 +5,7 @@ int	main(void) {
 	Fixed a(5.05f);
 	Fixed b(2);
 	Fixed c(0);
-	Fixed d(999.9f);
+	Fixed d(9999.9f);
 	Fixed e;
 
 	std::cout << std::endl << "COMPARISON OPERATORS" << std::endl;
@@ -27,7 +27,6 @@ int	main(void) {
 	std::cout << "a / d = " << (a / d) << std::endl;
 	std::cout << "d / b = " << (d / b) << std::endl;
 	std::cout << "c / a = " << (c / a) << std::endl;
-	std::cout << "d / c = " << (d / c) << std::endl;
 
 	std::cout << std::endl << "IN/DECREMENT" << std::endl;
 	std::cout << e << std::endl;

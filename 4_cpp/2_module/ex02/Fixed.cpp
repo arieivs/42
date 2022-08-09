@@ -123,21 +123,20 @@ thus we need to correct the order of magnitude afterwards by * 2^-8
 which is why we bitshift >> _n_fractional_bits
 https://www.allaboutcircuits.com/technical-articles/multiplication-examples-using-the-fixed-point-representation/
 Note that the highest value a fixed point can have is 2^(32-1-8) = 2^23 = 8 388 608
-which applies to the result of the multiplication before the bitshift,
-thus this multiplication operation is somewhat limited...
+thus we cast it to (signed long long) to be less limiting.
 */
 Fixed	Fixed::operator*(Fixed const & other) const {
 	Fixed	result;
 
-	result.setRawBits((this->_n * other._n) >> _n_fractional_bits);
+	result.setRawBits(((signed long long)this->_n * (signed long long)other._n) >> _n_fractional_bits);
 	return result;
 }
 
-/* Division by 0 is possible and it outputs 0... */
+/* Division by 0 leads to error */
 Fixed	Fixed::operator/(Fixed const & other) const {
 	Fixed	result;
 
-	result.setRawBits((this->_n / other._n) << _n_fractional_bits);
+	result.setRawBits(((signed long long)this->_n << _n_fractional_bits) / other._n);
 	return result;
 }
 
