@@ -1,11 +1,12 @@
 # CPP Modules
+Piscine all over again? Not really.
 
 ## Useful links
-* https://github.com/qingqingqingli/CPP/wiki
-* https://www.youtube.com/watch?v=yDkv5ypOfoU (tutorial dimitri suggested)
-* https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md (Writting Guidelines)
-* https://stackoverflow.com/questions/10157122/object-creation-on-the-stack-heap (memory allocation)
-* https://www.cplusplus.com/doc/oldtutorial/ (C++98)
+* [C++98 Documentation](https://www.cplusplus.com/doc/oldtutorial/)
+* [CPP Modules Wiki](https://github.com/qingqingqingli/CPP/wiki)
+* [C++ Tutorial](https://www.youtube.com/watch?v=yDkv5ypOfoU)
+* [C++ Writing Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
+* [Object creation on the stack vs heap](https://stackoverflow.com/questions/10157122/object-creation-on-the-stack-heap)
 * [Orthodox Canonical Class form](https://www.francescmm.com/orthodox-canonical-class-form/)
 * [Scope Resolution Operator ::](https://www.geeksforgeeks.org/scope-resolution-operator-in-c/)
 
@@ -33,9 +34,6 @@ When there's utf-8 characters involved, things might get tricky... the size is r
 https://stackoverflow.com/questions/50403342/how-do-i-properly-use-stdstring-on-utf-8-in-c
 
 https://stackoverflow.com/questions/4063146/getting-the-actual-length-of-a-utf-8-encoded-stdstring
-
-## CPP00
-Wondering whether to have the instance variables as parameters from the constructor... which kinda makes more sence to me. In the end I didn't do it cos since we will be creating all the contacts before we have that information, all those values would just be null. So... might as well just go the "naive" way.
 
 ## Pointers to members functions
 https://stackoverflow.com/questions/43205893/array-of-pointers-on-member-functions-of-current-class
