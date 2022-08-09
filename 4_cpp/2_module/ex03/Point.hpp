@@ -15,9 +15,13 @@ class Point {
 	public:
 		Point(void);
 		Point(float const x, float const y);
-		Point &	operator=(Point const & src);
+		Point(Fixed const x, Fixed const y);
 		Point(Point const & src);
 		~Point(void);
+
+		Point	operator=(Point const & src);
+		Fixed const &	getX(void) const;
+		Fixed const &	getY(void) const;
 
 	private:
 		Fixed const	_x;
