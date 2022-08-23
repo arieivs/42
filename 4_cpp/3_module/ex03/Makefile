@@ -10,7 +10,7 @@ INCS		:=	-I$(INCS_DIR)
 
 CC		=	c++
 CFLAGS	=	-Wall -Werror -Wextra -std=c++98
-DFLAGS	=	-fsanitize=address -g
+DFLAGS	=	-Wshadow -fsanitize=address -g
 RM		=	rm -f
 
 $(OBJS_DIR)/%.o:	$(SRCS_DIR)/%.cpp

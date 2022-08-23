@@ -4,7 +4,7 @@
 # include <iostream>
 # include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap {
+class FragTrap : public virtual ClapTrap {
 	public:
 		FragTrap(void);
 		FragTrap(std::string name);
@@ -12,6 +12,7 @@ class FragTrap : public ClapTrap {
 		~FragTrap(void);
 		FragTrap&	operator=(FragTrap const & src);
 
+		void	attack(const std::string& target);
 		void	highFivesGuys(void);
 };
 

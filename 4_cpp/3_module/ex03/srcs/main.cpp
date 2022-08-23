@@ -1,15 +1,26 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void) {
 	std::cout << "CONSTRUCTORS" << std::endl;
-	FragTrap	social_butterfly = FragTrap("Social Butterfly");
-	FragTrap	nice_guy = FragTrap("Nice Guy");
+	DiamondTrap	quimera = DiamondTrap("Quimera");
+	DiamondTrap	frankenstein = DiamondTrap("Frankenstein");
 
-	std::cout << std::endl << "ATTACK AND HIGH FIVES" << std::endl;
-	social_butterfly.attack("Nice Guy");
-	nice_guy.takeDamage(social_butterfly.getAttackDamage());
-	nice_guy.beRepaired(5);
-	nice_guy.highFivesGuys();
+	std::cout << std::endl << "ATTACK AND MORE" << std::endl;
+	quimera.attack("Frankenstein");
+	frankenstein.takeDamage(quimera.getAttackDamage());
+	frankenstein.beRepaired(5);
+	quimera.whoAmI();
+	quimera.guardGate();
+	frankenstein.whoAmI();
+	frankenstein.highFivesGuys();
+
+	std::cout << std::endl << "COPY CONSTRUCTORS" << std::endl;
+	DiamondTrap	quimera2 = DiamondTrap(quimera);
+	DiamondTrap	frankenstein2;
+
+	frankenstein2 = frankenstein;
+	quimera2.whoAmI();
+	frankenstein2.whoAmI();
 
 	std::cout << std::endl << "DESTRUCTORS" << std::endl;
 	return (0);
