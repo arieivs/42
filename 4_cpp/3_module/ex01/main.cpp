@@ -1,26 +1,29 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void) {
-	ClapTrap	baloney = ClapTrap("Baloney");
-	ClapTrap	bogos = ClapTrap("Bogos");
+	std::cout << "CONSTRUCTORS" << std::endl;
+	ScavTrap	hodor = ScavTrap("Hodor");
+	ScavTrap	gate_keeper = ScavTrap("Gate Keeper");
 
-	/* Ideal scenario */
-	baloney.attack("Bogos");
-	bogos.takeDamage(baloney.getAttackDamage());
-	bogos.beRepaired(5);
+	std::cout << std::endl << "ATTACK AND GUARD" << std::endl;
+	hodor.attack("Gate Keeper");
+	gate_keeper.takeDamage(hodor.getAttackDamage());
+	gate_keeper.beRepaired(5);
+	gate_keeper.guardGate();
 
-	/* Edge case scenario */
-	bogos.attack("Baloney");
-	baloney.takeDamage(12);
-	baloney.beRepaired(5);
+	std::cout << std::endl << "EDGE CASE" << std::endl;
+	gate_keeper.attack("Hodor");
+	hodor.takeDamage(120);
+	hodor.beRepaired(5);
 
-	/* Copying */
-	ClapTrap	bogos2 = ClapTrap(bogos);
-	ClapTrap	baloney2;
+	std::cout << std::endl << "COPY CONSTRUCTORS" << std::endl;
+	ScavTrap	gate_keeper2 = ScavTrap(gate_keeper);
+	ScavTrap	hodor2;
 
-	baloney2 = baloney;
-	bogos2.beRepaired(0);
-	baloney2.beRepaired(0);
+	hodor2 = hodor;
+	gate_keeper2.beRepaired(0);
+	hodor2.beRepaired(0);
 
+	std::cout << std::endl << "DESTRUCTORS" << std::endl;
 	return (0);
 }
