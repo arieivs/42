@@ -18,8 +18,11 @@ ScavTrap::ScavTrap(std::string name) :
 	return ;
 }
 
-ScavTrap::ScavTrap(ScavTrap const & src) {
-	this->_name = src._name;
+/* without : ClapTrap(src._name) it calls the default constructor
+ * with it, it calls the parameterized constructor
+ * both work, this option does less operations
+*/
+ScavTrap::ScavTrap(ScavTrap const & src) : ClapTrap(src._name) {
 	this->_hit_points = src._hit_points;
 	this->_energy_points = src._energy_points;
 	this->_attack_damage = src._attack_damage;
@@ -33,10 +36,7 @@ ScavTrap::~ScavTrap(void) {
 }
 
 ScavTrap&	ScavTrap::operator=(ScavTrap const & src) {
-	this->_name = src._name;
-	this->_hit_points = src._hit_points;
-	this->_energy_points = src._energy_points;
-	this->_attack_damage = src._attack_damage;
+	ClapTrap::operator=(src);
 	std::cout << "ScavTrap Copy assignment operator called" << std::endl;
 	return (*this);
 }

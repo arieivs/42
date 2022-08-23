@@ -18,8 +18,7 @@ FragTrap::FragTrap(std::string name) :
 	return ;
 }
 
-FragTrap::FragTrap(FragTrap const & src) {
-	this->_name = src._name;
+FragTrap::FragTrap(FragTrap const & src) : ClapTrap(src._name) {
 	this->_hit_points = src._hit_points;
 	this->_energy_points = src._energy_points;
 	this->_attack_damage = src._attack_damage;
@@ -33,10 +32,7 @@ FragTrap::~FragTrap(void) {
 }
 
 FragTrap&	FragTrap::operator=(FragTrap const & src) {
-	this->_name = src._name;
-	this->_hit_points = src._hit_points;
-	this->_energy_points = src._energy_points;
-	this->_attack_damage = src._attack_damage;
+	ClapTrap::operator=(src);
 	std::cout << "FragTrap Copy assignment operator called" << std::endl;
 	return (*this);
 }
