@@ -31,14 +31,10 @@ void	Cat::makeSound(void) const {
 }
 
 std::string	Cat::getIdea(int i) const {
-	if (i < 0 || i >= 100)
-		return NULL;
-	return brain->ideas[i];
+	return brain->getIdea(i);
 }
 
 void	Cat::setIdea(int i, std::string idea) {
-	if (i < 0 || i >= 100)
-		return ;
-	brain->ideas[i] = idea;
+	brain->setIdea(i, idea);
 }
 

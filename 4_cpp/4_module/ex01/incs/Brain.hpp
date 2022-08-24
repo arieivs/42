@@ -2,6 +2,7 @@
 # define BRAIN_HPP
 
 # include <iostream>
+# define NR_IDEAS 100
 
 class Brain {
 	public:
@@ -10,7 +11,12 @@ class Brain {
 		Brain&	operator=(Brain const & src);
 		~Brain(void);
 
-		std::string	ideas[100];
+		std::string*	getIdeas(void);
+		std::string		getIdea(int i) const;
+		void			setIdea(int i, std::string idea);
+	
+	private:
+		std::string	ideas[NR_IDEAS];
 };
 
 #endif
