@@ -12,7 +12,9 @@ class Dog : public Animal {
 		Dog&	operator=(Dog const & src);
 		~Dog(void);
 
-		virtual void	makeSound(void) const;
+		virtual void		makeSound(void) const;
+		virtual std::string	getIdea(int i) const;
+		virtual void		setIdea(int i, std::string idea);
 	
 	private:
 		Brain*	brain;

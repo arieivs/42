@@ -29,3 +29,15 @@ void	Cat::makeSound(void) const {
 	std::cout << "Miauuuu..." << std::endl;
 }
 
+std::string	Cat::getIdea(int i) const {
+	if (i < 0 || i >= 100)
+		return NULL;
+	return brain->ideas[i];
+}
+
+void	Cat::setIdea(int i, std::string idea) {
+	if (i < 0 || i >= 100)
+		return ;
+	brain->ideas[i] = idea;
+}
+
