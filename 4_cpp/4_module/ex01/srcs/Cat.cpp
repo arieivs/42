@@ -9,13 +9,14 @@ Cat::Cat(void) : Animal() {
 
 Cat::Cat(Cat const & src) {
 	std::cout << "Cat copy constructor" << std::endl;
-	type = src.type;
+	*this = src;
 	return ;
 }
 
 Cat&	Cat::operator=(Cat const & src) {
 	std::cout << "Cat copy assignment operator" << std::endl;
 	type = src.type;
+	brain = new Brain(*src.brain);
 	return (*this);
 }
 
