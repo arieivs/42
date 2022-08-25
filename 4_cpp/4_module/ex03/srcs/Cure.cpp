@@ -5,13 +5,16 @@ Cure::Cure(void) : AMateria("cure") {
 	return ;
 }
 
+/* not using src - is that wrong? */
 Cure::Cure(Cure const & src) : AMateria ("cure") {
 	std::cout << "Cure copy constructor" << std::endl;
+	(void)src;
 	return ;
 }
 
 Cure&	Cure::operator=(Cure const & src) {
 	std::cout << "Cure copy assignment operator" << std::endl;
+	(void)src;
 	type = "cure";
 	return (*this);
 }
@@ -21,7 +24,7 @@ Cure::~Cure(void) {
 	return ;
 }
 
-Cure*	clone(void) const {
+Cure*	Cure::clone(void) const {
 	Cure*	cure_clone = new Cure();
 
 	return (cure_clone);

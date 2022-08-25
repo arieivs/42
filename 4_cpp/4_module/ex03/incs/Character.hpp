@@ -4,6 +4,8 @@
 # include <iostream>
 # include "ICharacter.hpp"
 # include "AMateria.hpp"
+# include "Ice.hpp"
+# include "Cure.hpp"
 # define INVENTORY_SPACE 4
 
 class Character : public ICharacter {

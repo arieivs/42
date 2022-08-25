@@ -4,6 +4,8 @@
 # include <iostream>
 # include "IMateriaSource.hpp"
 # include "AMateria.hpp"
+# include "Ice.hpp"
+# include "Cure.hpp"
 # define INVENTORY_SPACE 4
 
 class MateriaSource : public IMateriaSource {

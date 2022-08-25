@@ -5,13 +5,16 @@ Ice::Ice(void) : AMateria("ice") {
 	return ;
 }
 
+/* not using src - is that wrong? */
 Ice::Ice(Ice const & src) : AMateria ("ice") {
 	std::cout << "Ice copy constructor" << std::endl;
+	(void)src;
 	return ;
 }
 
 Ice&	Ice::operator=(Ice const & src) {
 	std::cout << "Ice copy assignment operator" << std::endl;
+	(void)src;
 	type = "ice";
 	return (*this);
 }
@@ -21,14 +24,14 @@ Ice::~Ice(void) {
 	return ;
 }
 
-Ice*	clone(void) const {
+Ice*	Ice::clone(void) const {
 	Ice*	ice_clone = new Ice();
 
 	return (ice_clone);
 }
 
 void	Ice::use(ICharacter& target) {
-	std::cout << "* shoots and ice bolt at "
+	std::cout << "* shoots an ice bolt at "
 			  << target.getName() << " *" << std::endl;
 }
 

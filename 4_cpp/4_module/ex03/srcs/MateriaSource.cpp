@@ -11,15 +11,20 @@ MateriaSource::MateriaSource(MateriaSource const & src) {
 	return ;
 }
 
+/* assuming materia can only be ice or cure, no other options */
 MateriaSource&	MateriaSource::operator=(MateriaSource const & src) {
 	int	i;
 
 	std::cout << "MateriaSource copy assignment operator" << std::endl;
 	for (i = 0; i < _occupied_slots; i++)
 		delete _inventory[i];
-	_occupied_slots = src.occupied_slots;
-	for (i = 0; i < _occupied_slots; i++)
-		_inventory[i] = new AMateria(src._inventory[i]->getType());
+	_occupied_slots = src._occupied_slots;
+	for (i = 0; i < _occupied_slots; i++) {
+		if (src._inventory[i]->getType() == "ice")
+			_inventory[i] = new Ice();
+		else
+			_inventory[i] = new Cure();
+	}
 	return (*this);
 }
 
@@ -40,6 +45,12 @@ void	MateriaSource::learnMateria(AMateria* m) {
 }
 
 AMateria*	MateriaSource::createMateria(std::string const & type) {
-	// TODO
+	int	i;
+
+	for (i = 0; i < _occupied_slots; i++) {
+		if (_inventory[i]->getType() == type)
+			return _inventory[i]->clone();
+	}
+	return (0);
 }
 

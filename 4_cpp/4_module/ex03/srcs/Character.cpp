@@ -20,16 +20,21 @@ Character::Character(Character const & src) {
 	return ;
 }
 
+/* assuming materia can only be ice or cure, no other options */
 Character&	Character::operator=(Character const & src) {
 	int	i;
 
 	std::cout << "Character copy assignment operator" << std::endl;
-	_name = src.name;
+	_name = src._name;
 	for (i = 0; i < _occupied_slots; i++)
 		delete _inventory[i];
-	_occupied_slots = src.occupied_slots;
-	for (i = 0; i < _occupied_slots; i++)
-		_inventory[i] = new AMateria(src._inventory[i]->getType());
+	_occupied_slots = src._occupied_slots;
+	for (i = 0; i < _occupied_slots; i++) {
+		if (src._inventory[i]->getType() == "ice")
+			_inventory[i] = new Ice();
+		else
+			_inventory[i] = new Cure();
+	}
 	return (*this);
 }
 
@@ -54,17 +59,13 @@ void	Character::equip(AMateria* m) {
 }
 
 void	Character::unequip(int idx) {
+	(void)idx;
 	// I don't understand what they want from me
 }
 
 void	Character::use(int idx, ICharacter& target) {
-	if (idx >= _occupied_slots)
+	if (idx < 0 || idx >= _occupied_slots)
 		return ;
-	if (_inventory[idx].getType() == "ice")
-		Ice::use(target);
-	else if (_inventory[idx].getType() == "cure")
-		Cure::use(target);
-	else
-		AMateria::use(target);
-	// Is there a smarter way to do this?
+	_inventory[idx]->use(target);
 }
+
