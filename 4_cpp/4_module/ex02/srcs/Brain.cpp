@@ -31,7 +31,7 @@ std::string*	Brain::getIdeas(void) {
 
 std::string	Brain::getIdea(int i) const {
 	if (i < 0 || i >= NR_IDEAS)
-		return NULL;
+		return "";
 	return ideas[i];
 }
 
