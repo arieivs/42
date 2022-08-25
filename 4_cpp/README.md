@@ -65,6 +65,20 @@ The [-Wshadow compilation flag](https://gcc.gnu.org/onlinedocs/gcc/Warning-Optio
 For example if a child class and its parent class both have an attribute with the same name, there is a risk of shadowing.
 
 ### 👻 ```virtual```
-TODO
+Imagine that we have a class Animal, and a class Dog which publicly inherits from it. We can do something like this:
+```
+Animnal*	a_dog = new Dog();
+```
+In order to do this, the Animal's destructor needs to be virtual, else it will be undefined behaviour.
+[More here](https://www.geeksforgeeks.org/base-class-pointer-pointing-to-derived-class-object/).
+Why? Before explaining, let's give another example.
 
-<br/>
+Imagine both classes have a makeSound() method, which prints different outputs to the std::cout.
+If we call ```a_dog.makeSound()```, we will call the function defined on the Animal class.
+Why? Because the resolution of function calls is static, meaning it's decided at compilation time, and our compiler thinks a_dog is an Animal.
+Solution? Add the prefix ```virtual``` to the makeSound() member function, both in the Animal and Dog classes. 
+In this way the resolution of this function call will be dynamic, thus it will be decided during execution.
+At that point our programme knows that a_dog is a Dog and will call the makeSound() function defined in the Dog class.
+
+The situation is exactly the same for the destructors example.
+By having a virtual destructor, we make sure we destroy the Dog object properly.
