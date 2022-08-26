@@ -16,22 +16,24 @@ class Bureaucrat {
 
 		std::string const	getName(void) const;
 		int					getGrade(void) const;
+		void				decrementGrade(void);
+		void				incrementGrade(void);
 		
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
-				// WTF??
 		};
 
 		class GradeTooLowException : public std::exception {
 			public:
 				virtual const char* what() const throw();
-				// WTF??
 		};
+
 	private:
 		std::string const	_name;
 		int					_grade;
 
+		int	sanitizeGrade(int grade);
 };
 
 std::ostream&	operator<<(std::ostream& o, Bureaucrat const & b);

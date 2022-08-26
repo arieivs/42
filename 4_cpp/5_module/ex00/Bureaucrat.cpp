@@ -7,35 +7,10 @@ Bureaucrat::Bureaucrat(void) :
 	return ;
 }
 
-const char*	Bureaucrat::GradeTooHighException::what() const throw() {
-	return "Grade is too high!";// improve
-}
-
-const char*	Bureaucrat::GradeTooLowException::what() const throw() {
-	return "Grade is too low!"; // improve
-}
-
 Bureaucrat::Bureaucrat(std::string const name, int grade) :
 	_name(name) {
 	std::cout << "Bureaucrat parameterized constructor" << std::endl;
-	//_grade = grade;
-	try {
-		if (grade < HIGHEST_GRADE) 
-			throw Bureaucrat::GradeTooHighException();
-		else if (grade > LOWEST_GRADE)
-			throw Bureaucrat::GradeTooLowException();
-		else
-			_grade = grade;
-	}
-	catch (Bureaucrat::GradeTooHighException& e) {
-		std::cout << e.what() << std::endl;
-		_grade = HIGHEST_GRADE;
-	}
-	catch (Bureaucrat::GradeTooLowException& e) {
-		std::cout << e.what() << std::endl;
-		_grade = LOWEST_GRADE;
-	}
-	// TODO with exception
+	_grade = sanitizeGrade(grade);
 	return ;
 }
 
@@ -64,6 +39,40 @@ std::string const	Bureaucrat::getName(void) const {
 
 int	Bureaucrat::getGrade(void) const {
 	return _grade;
+}
+
+void	Bureaucrat::decrementGrade(void) {
+	_grade = sanitizeGrade(_grade + 1);
+}
+
+void	Bureaucrat::incrementGrade(void) {
+	_grade = sanitizeGrade(_grade - 1);
+}
+
+const char*	Bureaucrat::GradeTooHighException::what() const throw() {
+	return "Grade is too high! The highest possible grade will be given.";
+}
+
+const char*	Bureaucrat::GradeTooLowException::what() const throw() {
+	return "Grade is too low! The lowest possible grade will be given.";
+}
+
+int	Bureaucrat::sanitizeGrade(int grade) {
+	try {
+		if (grade < HIGHEST_GRADE) 
+			throw Bureaucrat::GradeTooHighException();
+		if (grade > LOWEST_GRADE)
+			throw Bureaucrat::GradeTooLowException();
+		return (grade);
+	}
+	catch (Bureaucrat::GradeTooHighException& e) {
+		std::cout << e.what() << std::endl;
+		return (HIGHEST_GRADE);
+	}
+	catch (Bureaucrat::GradeTooLowException& e) {
+		std::cout << e.what() << std::endl;
+		return (LOWEST_GRADE);
+	}
 }
 
 std::ostream&	operator<<(std::ostream& o, Bureaucrat const & b) {

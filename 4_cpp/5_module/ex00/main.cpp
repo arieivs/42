@@ -11,16 +11,21 @@ int	main(void) {
 		std::cout << std::endl << john << std::endl << john2 << std::endl
 				  << john3 << std::endl << std::endl;
 		
-		// try increment and decrement within normal
+		john.decrementGrade();
+		john2.incrementGrade();
+		std::cout << john << std::endl << john2 << std::endl << std::endl;
 	}
 	{
-		std::cout << "EXCEPTIONAL PEOPLE" << std::endl;
+		std::cout << std::endl << "EXCEPTIONAL PEOPLE" << std::endl;
 		Bureaucrat	simon = Bureaucrat("Simon", 160);
 		Bureaucrat	laura = Bureaucrat("Laura", -2);
 		
-		std::cout << std::endl << simon << std::endl << laura << std::endl;
-		// do we still create the bureaucrat?
-		// increment and decrement to outside boundaries
+		std::cout << std::endl << simon << std::endl
+				  << laura << std::endl << std::endl;
+
+		simon.decrementGrade();
+		laura.incrementGrade();
+		std::cout << simon << std::endl << laura << std::endl << std::endl;
 	}
 	return (0);
 }
