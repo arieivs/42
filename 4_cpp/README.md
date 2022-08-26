@@ -82,3 +82,9 @@ At that point our programme knows that a_dog is a Dog and will call the makeSoun
 
 The situation is exactly the same for the destructors example.
 By having a virtual destructor, we make sure we destroy the Dog object properly.
+
+<br/>
+
+## 🚨 Exceptions
+The guy who shoots the videos on intra was clearly having a bad day when he shot these ones...
+So here's some extra guidance on exceptions, [here](https://www.geeksforgeeks.org/exception-handling-c/) and [here](https://cplusplus.com/doc/tutorial/exceptions/).
