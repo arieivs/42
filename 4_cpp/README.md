@@ -40,7 +40,7 @@ More on [std::string with utf-8 here](https://stackoverflow.com/questions/504033
 std::size_t	i = 0;
 
 while (i != std::string::npos)
-	i++;
+    i++;
 ```
 
 <br/>
@@ -50,13 +50,13 @@ while (i != std::string::npos)
 ```
 Zombie	*zombies = new Zombie[N];
 for (i = 0; i < N; i++)
-	zombies[i] = Zombie(name);
+    zombies[i] = Zombie(name);
 ```
 2) Using a double pointer:
 ```
 Zombie	**zombies = new Zombie*[N];
 for (i = 0; i < N; i++)
-		zombies[i] = new Zombie(name);
+    zombies[i] = new Zombie(name);
 ```
 [Learn more here](https://www.geeksforgeeks.org/how-to-initialize-array-of-objects-with-parameterized-constructors-in-c/).
 
@@ -78,6 +78,7 @@ Thus we can utilize istreambuf_iterator with an ifstream stream and read the who
 ```
 std::ifstream	in_file;
 std::string	content;
+
 content = std::string(std::istreambuf_iterator<char>(in_file), std::istreambuf_iterator<char>());
 ```
 
@@ -113,7 +114,7 @@ For example if a child class and its parent class both have an attribute with th
 ### 👻 ```virtual```
 Imagine that we have a class Animal, and a class Dog which publicly inherits from it. We can do something like this:
 ```
-Animnal*	a_dog = new Dog();
+Animnal*    a_dog = new Dog();
 ```
 In order to do this, the Animal's destructor needs to be virtual, else it will be undefined behaviour.
 [More here](https://www.geeksforgeeks.org/base-class-pointer-pointing-to-derived-class-object/).
