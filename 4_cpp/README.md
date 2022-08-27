@@ -35,6 +35,52 @@ The size of a string is measured by the number of bytes needed to contain it, so
 More on [std::string with utf-8 here](https://stackoverflow.com/questions/50403342/how-do-i-properly-use-stdstring-on-utf-8-in-c) and [getting its size here](https://stackoverflow.com/questions/4063146/getting-the-actual-length-of-a-utf-8-encoded-stdstring).
 (Luckily we have american keyboards at school.)
 
+[std::string:npos](https://cplusplus.com/reference/string/string/npos/) AKA "until the end of the string" should be used to iterate over a string:
+```
+std::size_t	i = 0;
+
+while (i != std::string::npos)
+	i++;
+```
+
+<br/>
+
+## 🎬 Initializing an array of objects with parameterized constructors
+1) Using a dummy constructor - the default constructor in Orthodox Canonical Form:
+```
+Zombie	*zombies = new Zombie[N];
+for (i = 0; i < N; i++)
+	zombies[i] = Zombie(name);
+```
+2) Using a double pointer:
+```
+Zombie	**zombies = new Zombie*[N];
+for (i = 0; i < N; i++)
+		zombies[i] = new Zombie(name);
+```
+[Learn more here](https://www.geeksforgeeks.org/how-to-initialize-array-of-objects-with-parameterized-constructors-in-c/).
+
+<br/>
+
+## 🗂 File Streams
+### ⚠️ Checking if open/close failed
+```
+in_file.open(filename);
+if (in_file == NULL)
+if ((in_file.rdstate() & std::ifstream::failbit) != 0)
+if (in_file.fail())
+```
+More on [iostate flags](https://cplusplus.com/reference/ios/ios_base/iostate/).
+
+### 📖 Reading from a File into a String
+"istreambuf_iterator is an input iterator that reads successive characters from the std::basic_streambuf object.
+Thus we can utilize istreambuf_iterator with an ifstream stream and read the whole contents of the file into a std::string" cit.
+```
+std::ifstream	in_file;
+std::string	content;
+content = std::string(std::istreambuf_iterator<char>(in_file), std::istreambuf_iterator<char>());
+```
+
 <br/>
 
 ## ⏩ Pointers to members functions
