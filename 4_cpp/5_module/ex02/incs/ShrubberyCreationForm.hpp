@@ -2,6 +2,7 @@
 # define SHRUBBERY_CREATION_FORM_HPP
 
 # include <iostream>
+# include <fstream>
 # include <exception>
 # include "Bureaucrat.hpp"
 # define HIGHEST_GRADE 1
@@ -22,7 +23,7 @@ class ShrubberyCreationForm : public Form {
 	private:
 		std::string	_target;
 
-		void		writeAsciiTree(void) const;
+		bool		writeAsciiTree(void) const;
 };
 
 #endif

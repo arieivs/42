@@ -36,12 +36,32 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 bool	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	if (!Form::canExecute(executor))
 		return (false);
-	writeAsciiTree();
-	return (true);
+	return (writeAsciiTree());
 }
 
-void	ShrubberyCreationForm::writeAsciiTree(void) const {
-	// TODO
-	std::cout << "To actually write an Ascii Tree..." << std::endl;
+/* if open/close fail, an ios_base::failure exception should be thrown
+ * https://cplusplus.com/reference/fstream/fstream/open/
+ * thus I'm not creating my own exception */
+bool	ShrubberyCreationForm::writeAsciiTree(void) const {
+	std::ofstream	out_file;
+	std::string		content;
+
+	out_file.open(_target + "_shrubbery");
+	if (out_file.fail()) {
+		std::cout << "Could not create target file" << std::endl;
+		return (false);
+	}
+	out_file << "   x" << std::endl
+			 << "  xxx" << std::endl
+			 << " xxxxx" << std::endl
+			 << "xxxxxxx" << std::endl
+			 << "   x" << std::endl
+			 << "   x" << std::endl;
+	out_file.close();
+	if (out_file.fail()) {
+		std::cout << "Could not close targetfile" << std::endl;
+		return (false);
+	}
+	return (true);
 }
 
