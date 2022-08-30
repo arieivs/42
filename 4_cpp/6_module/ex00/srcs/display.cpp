@@ -23,10 +23,11 @@ void	display(conversions_t* conversions) {
 		std::cout << conversions->n << std::endl;
 	
 	std::cout << "float: ";
-	std::cout << conversions->f << "f" << std::endl;
+	std::cout << std::fixed << std::setprecision(1) << conversions->f
+			  << "f" << std::endl;
 
 	std::cout << "double: ";
-	std::cout << conversions->d << std::endl;
-	// TODO think .0 at the end
+	std::cout << std::fixed << std::setprecision(1) << conversions->d
+			  << std::endl;
 }
 	

@@ -6,6 +6,7 @@
 # include <string>
 # include <cmath>
 # include <cfloat>
+# include <iomanip>
 # define CHAR 1
 # define INT 2
 # define FLOAT 3
