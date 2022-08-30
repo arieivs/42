@@ -10,7 +10,7 @@ int	main(int ac, char **av) {
 		return (1);
 	}
 	conversions = initialize_conversions();
-	type = check_type(av[1], &conversions);
+	type = get_original_type(av[1], &conversions);
 	switch(type) {
 		case 1:
 			std::cout << "CHAR " << conversions.c << std::endl;

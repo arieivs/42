@@ -1,4 +1,4 @@
-NAME	=	conversion
+NAME	=	convert
 
 SRCS_DIR	=	srcs
 SRCS		:=	$(shell find $(SRCS_DIR) -name *.cpp)
