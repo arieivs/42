@@ -9,8 +9,6 @@ conversions_t	initialize_conversions(void) {
 	conversions.d = 0.0;
 	conversions.is_char_impossible = false;
 	conversions.is_int_impossible = false;
-	conversions.is_float_impossible = false;
-	conversions.is_double_impossible = false;
 	conversions.is_pseudo_literal = false;
 	return (conversions);
 }
@@ -92,8 +90,10 @@ int	get_original_type(std::string arg, conversions_t* conversions) {
 		convert_str_to_i(arg, conversions);
 		return (INT);
 	}
-	if (arg[i] && arg[i] == '.')
-		i++;
+	/* both floats and doubles require a . so anything else is unwanted */
+	if (arg[i] && arg[i] != '.')
+		return (OTHER);
+	i++;
 	while (i != std::string::npos && (arg[i] >= '0' && arg[i] <= '9'))
 		i++;
 	if (!arg[i]) {
