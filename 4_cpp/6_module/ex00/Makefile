@@ -30,6 +30,7 @@ fclean:		clean
 
 re:			fclean all
 
+debug:		INCS += -DDEBUG_MODE
 debug:		CFLAGS += $(DFLAGS)
 debug:		all
 

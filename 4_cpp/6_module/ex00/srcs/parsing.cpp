@@ -7,8 +7,11 @@ conversions_t	initialize_conversions(void) {
 	conversions.n = 0;
 	conversions.f = 0.0f;
 	conversions.d = 0.0;
-	conversions.is_char_possible = true;
-	conversions.is_int_possible = true;
+	conversions.is_char_impossible = false;
+	conversions.is_int_impossible = false;
+	conversions.is_float_impossible = false;
+	conversions.is_double_impossible = false;
+	conversions.is_pseudo_literal = false;
 	return (conversions);
 }
 
@@ -21,7 +24,7 @@ void	convert_str_to_i(std::string str, conversions_t* conversions) {
 	ss1 >> n;
 	ss2 >> long_n;
 	if (n != long_n)
-		conversions->is_int_possible = false;
+		conversions->is_int_impossible = true;
 	else
 		conversions->n = n;
 }
@@ -34,8 +37,10 @@ void	convert_str_to_f(std::string str, conversions_t* conversions) {
 
 	ss1 >> f;
 	ss2 >> d;
-	if (fabs(f - d) >= FLT_EPSILON)
-		conversions->is_float_possible = false;
+	if (d >= std::numeric_limits<float>::max()) {
+		conversions->f = (1.0/0.0);
+		conversions->is_pseudo_literal = true;
+	}
 	else
 		conversions->f = f;
 }
@@ -48,8 +53,10 @@ void	convert_str_to_d(std::string str, conversions_t* conversions) {
 
 	ss1 >> d;
 	ss2 >> long_d;
-	if (fabs(d - long_d) >= DBL_EPSILON)
-		conversions->is_double_possible = false;
+	if (long_d >= std::numeric_limits<double>::max()) {
+		conversions->d = (1.0/0.0);
+		conversions->is_pseudo_literal = true;
+	}
 	else
 		conversions->d = d;
 }
@@ -62,16 +69,18 @@ int	get_original_type(std::string arg, conversions_t* conversions) {
 		conversions->c = arg[0];
 		return (CHAR);
 	}
-	/* double special cases */
+	/* double special cases - pseudo literals */
 	if (arg.compare("nan") == 0 || arg.compare("-inf") == 0 ||
 		arg.compare("+inf") == 0 || arg.compare("inf") == 0) {
 		convert_str_to_d(arg, conversions);
+		conversions->is_pseudo_literal = true; /* needed for NAN */
 		return (DOUBLE);
 	}
-	/* float special cases */
+	/* float special cases - pseudo literals */
 	if (arg.compare("nanf") == 0 || arg.compare("-inff") == 0 ||
 		arg.compare("+inff") == 0 || arg.compare("inff") == 0) {
 		convert_str_to_f(arg, conversions);
+		conversions->is_pseudo_literal = true; /* needed for NAN */
 		return (FLOAT);
 	}
 	/* int, float, double may start with + or - */
