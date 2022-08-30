@@ -43,6 +43,15 @@ while (i != std::string::npos)
     i++;
 ```
 
+Stringstreams can be used to convert strings into other data types:
+```
+std::stringstream	ss(str);
+float				f;
+
+ss >> f;
+```
+
+
 <br/>
 
 ## 🎬 Initializing an array of objects with parameterized constructors
@@ -135,3 +144,9 @@ By having a virtual destructor, we make sure we destroy the Dog object properly.
 ## 🚨 Exceptions
 The guy who shoots the videos on intra was clearly having a bad day when he shot these ones...
 So here's some extra guidance on exceptions, [here](https://www.geeksforgeeks.org/exception-handling-c/) and [here](https://cplusplus.com/doc/tutorial/exceptions/).
+
+<br/>
+
+## ♾ Limits
+How to check if a float or double (or... anything) is past the limit? [std::numeric_limits<T>::max()](https://en.cppreference.com/w/cpp/types/numeric_limits/max).
+
