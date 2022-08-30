@@ -64,13 +64,13 @@ int	get_original_type(std::string arg, conversions_t* conversions) {
 	}
 	/* double special cases */
 	if (arg.compare("nan") == 0 || arg.compare("-inf") == 0 ||
-		arg.compare("+inf") == 0) {
+		arg.compare("+inf") == 0 || arg.compare("inf") == 0) {
 		convert_str_to_d(arg, conversions);
 		return (DOUBLE);
 	}
 	/* float special cases */
 	if (arg.compare("nanf") == 0 || arg.compare("-inff") == 0 ||
-		arg.compare("+inff") == 0) {
+		arg.compare("+inff") == 0 || arg.compare("inff") == 0) {
 		convert_str_to_f(arg, conversions);
 		return (FLOAT);
 	}
