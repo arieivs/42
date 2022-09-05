@@ -26,12 +26,9 @@ Character::Character(Character const & src) :
 	_used_inventory(0) {
 	std::cout << "Character copy constructor" << std::endl;
 	for (int i = 0; i < INVENTORY_SPACE; i++) {
-		if (src._inventory[i] && src._inventory[i]->getType() == "ice")
-			_inventory[i] = new Ice();
-		else if (src._inventory[i] && src._inventory[i]->getType() == "cure")
-			_inventory[i] = new Cure();
-		else
-			_inventory[i] = 0;
+		_inventory[i] = 0;
+		if (src._inventory[i] != 0)
+			_inventory[i] = src._inventory[i]->clone();
 	}
 	return ;
 }
@@ -50,10 +47,8 @@ Character&	Character::operator=(Character const & src) {
 	}
 	/* copying inventory */
 	for (i = 0; i < INVENTORY_SPACE; i++) {
-		if (src._inventory[i] && src._inventory[i]->getType() == "ice")
-			_inventory[i] = new Ice();
-		else if (src._inventory[i] && src._inventory[i]->getType() == "cure")
-			_inventory[i] = new Cure();
+		if (src._inventory[i] != 0)
+			_inventory[i] = src._inventory[i]->clone();
 	}
 	/* deleting used inventory */
 	while (_used_inventory) {
@@ -95,7 +90,7 @@ void	Character::equip(AMateria* m) {
 	i = first_free_slot();
 	if (i == -1)
 		return ;
-	_inventory[i] = m;
+	_inventory[i] = m->clone();
 }
 
 void	Character::unequip(int idx) {

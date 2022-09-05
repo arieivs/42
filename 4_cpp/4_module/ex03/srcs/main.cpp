@@ -6,6 +6,7 @@
 int main() {
 	{
 		/* SUBJECT */
+		std::cout << "SUBJECT TESTS" << std::endl;
 		IMateriaSource*	src = new MateriaSource();
 		ICharacter*	me = new Character("me");
 		AMateria*	tmp;
@@ -26,16 +27,6 @@ int main() {
 		me->use(1, *bob);
 		std::cout << std::endl;
 		
-		/* UNEQUIP */
-		me->unequip(0);
-		std::cout << "Unequiped" << std::endl;
-		me->use(0, *bob);
-		std::cout << "Tried to use unexistent" << std::endl;
-		//me->equip(tmp);
-		//std::cout << "Equiped again" << std::endl;
-		//me->use(0, *bob);
-		std::cout << std::endl;
-
 		delete bob;
 		delete me;
 		delete src;
@@ -43,6 +34,7 @@ int main() {
 	}
 	{
 		/* MINE */
+		std::cout << "ADDITIONAL TESTS" << std::endl;
 		Character		alice("alice");
 		MateriaSource	src;
 		AMateria*		tmp;
@@ -75,31 +67,7 @@ int main() {
 		alice.equip(tmp);
 		std::cout << "Equiped again" << std::endl;
 		alice.use(0, alicia);
-		std::cout << std::endl << std::endl;
-	}
-	{
-		/* Areias */
-		AMateria *temp = new Ice;
-		AMateria *tempi = new Cure;
-		std::string basic = "main";
-		std::string interf = "inter";
-		Character quirky(basic);
-		Character inter(interf);
-
-		AMateria *other = temp->clone();
-		quirky.equip(temp);
-		quirky.use(0, inter);
-		inter = quirky;
-		inter.use(0, quirky);
-
-		Character mats(quirky);
-		mats.use(0, quirky);
-		mats.equip(tempi);
-		mats.use(1, inter);
-
-		delete temp;
-		delete tempi;
-		delete other;
+		std::cout << std::endl;
 	}
 	return (0);
 }
