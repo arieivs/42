@@ -8,6 +8,11 @@
 # include "Cure.hpp"
 # define INVENTORY_SPACE 4
 
+typedef struct AMateriaListStruct {
+	AMateria*					used_materia;
+	struct AMateriaListStruct*	next;
+}	AMateriaList;
+
 class Character : public ICharacter {
 	public:
 		Character(void);
@@ -22,10 +27,11 @@ class Character : public ICharacter {
 		void	use(int idx, ICharacter& target);
 	
 	private:
-		std::string	_name;
-		AMateria*	_inventory[INVENTORY_SPACE];
-		int			_occupied_slots;
-		// used_inventory? to delete after unequip?
+		std::string		_name;
+		AMateria*		_inventory[INVENTORY_SPACE];
+		AMateriaList*	_used_inventory;
+
+		int		first_free_slot(void);
 };
 
 #endif
