@@ -69,5 +69,10 @@ int main() {
 		alice.use(0, alicia);
 		std::cout << std::endl;
 	}
+	/* There might be a leak
+	 * createMateria allocates memory in heap and returns it
+	 * thus it sometimes complains when I don't delete tmp's
+	 * but fsanitize=address and valgrind don't agree on what the solution should be
+	 */
 	return (0);
 }
