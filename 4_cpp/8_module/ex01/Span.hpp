@@ -1,7 +1,9 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
+# include <iostream>
 # include <vector>
+# include <algorithm>
 
 class Span {
 	public:
@@ -11,14 +13,23 @@ class Span {
 		Span&	operator=(Span const & src);
 		~Span(void);
 
-		addNumber(int n);
-		shortestSpan(void) const;
-		longestSpan(void) const;
+		void	addNumber(int n);
+		int		longestSpan(void) const;
+		int		shortestSpan(void) const;
+
+		class SpanIsFullException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class SpanNotFoundException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
 
 	private:
-		unsigned int	_max_size;
-		unsigned int	_size;
-		std::vector<in> _vect;
+		unsigned int		_max_size;
+		std::vector<int>	_vect;
 };
 
 #endif
