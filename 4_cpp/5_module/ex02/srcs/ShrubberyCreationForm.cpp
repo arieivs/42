@@ -46,7 +46,7 @@ bool	ShrubberyCreationForm::writeAsciiTree(void) const {
 	std::ofstream	out_file;
 	std::string		content;
 
-	out_file.open(_target + "_shrubbery");
+	out_file.open((_target + "_shrubbery").c_str());
 	if (out_file.fail()) {
 		std::cout << "Could not create target file" << std::endl;
 		return (false);
