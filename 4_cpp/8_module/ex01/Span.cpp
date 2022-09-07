@@ -48,6 +48,7 @@ void	Span::addNumber(int n) {
 	_vect.push_back(n);
 }
 
+// range of iterators... is that it?
 void	Span::addNumbers(int* begin, int* end) {
 	if ((_vect.size() + (end - begin)) >= _max_size) {
 		throw Span::SpanIsFullException();
