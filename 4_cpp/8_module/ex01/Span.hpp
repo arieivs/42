@@ -15,6 +15,7 @@ class Span {
 		~Span(void);
 
 		void	addNumber(int n);
+		void	addNumbers(int* begin, int* end);
 		int		longestSpan(void) const;
 		int		shortestSpan(void) const;
 

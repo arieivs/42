@@ -48,6 +48,14 @@ void	Span::addNumber(int n) {
 	_vect.push_back(n);
 }
 
+void	Span::addNumbers(int* begin, int* end) {
+	if ((_vect.size() + (end - begin)) >= _max_size) {
+		throw Span::SpanIsFullException();
+		return ;
+	}
+	_vect.insert(_vect.end(), begin, end);
+}
+
 /* std::vector<const int>::iterator = std::vector<int>::const_iterator */
 int	Span::longestSpan(void) const {
 	int									longest_span;
