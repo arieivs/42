@@ -4,6 +4,7 @@
 # include <iostream>
 # include <vector>
 # include <algorithm>
+# include <limits>
 
 class Span {
 	public:

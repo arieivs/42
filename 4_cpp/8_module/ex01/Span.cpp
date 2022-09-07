@@ -65,8 +65,21 @@ int	Span::longestSpan(void) const {
 }
 
 int	Span::shortestSpan(void) const {
-	//TODO
-	return (0);
+	int							shortest_span = std::numeric_limits<int>::max();
+	std::vector<int>			ordered_vect(_vect);
+	std::vector<int>::iterator	it;
+	std::vector<int>::iterator	ite = ordered_vect.end();
+
+	if (_vect.size() == 0) {
+		throw Span::SpanNotFoundException();
+		return (-1);
+	}
+	std::sort(ordered_vect.begin(), ite);
+	for (it = ordered_vect.begin(); it + 1 != ite; it++) {
+		if (*(it + 1) - *it < shortest_span)
+			shortest_span = *(it + 1) - *it;
+	}
+	return (shortest_span);
 }
 
 const char*	Span::SpanIsFullException::what() const throw() {

@@ -24,5 +24,14 @@ int	main(void) {
 	catch (Span::SpanNotFoundException& e) {
 		std::cout << e.what() << std::endl;
 	}
+	try {
+		range_span = span.shortestSpan();
+		std::cout << "Shortest span: " << range_span << std::endl;
+		range_span = empty_span.shortestSpan();
+		std::cout << "Shortest span: " << range_span << std::endl;
+	}
+	catch (Span::SpanNotFoundException& e) {
+		std::cout << e.what() << std::endl;
+	}
 	return (0);
 }
