@@ -2,6 +2,8 @@
 # define IDENTIFY_HPP
 
 # include <time.h>
+# include <typeinfo> /* basd_cast */
+# include <stdlib.h> /* rand and srand */
 # include "Base.hpp"
 # include "A.hpp"
 # include "B.hpp"

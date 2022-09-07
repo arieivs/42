@@ -7,6 +7,7 @@
 # include <cmath>
 # include <cfloat>
 # include <iomanip>
+# include <limits>
 # define CHAR 1
 # define INT 2
 # define FLOAT 3

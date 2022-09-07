@@ -2,6 +2,7 @@
 # define CONVERSION_HPP
 
 # include <iostream>
+# include <stdint.h> /* uintptr_t */
 
 typedef struct {
 	std::string	name;
