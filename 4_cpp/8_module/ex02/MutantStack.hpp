@@ -13,6 +13,13 @@ template<typename T>
 class MutantStack : public std::stack<T> {
 	public:
 		// needs to be orthodox right?
+		MutantStack(void) : std::stack<T>() {}
+		MutantStack(MutantStack const & src) : std::stack<T>(src) {}
+		MutantStack&	operator=(MutantStack const & src) {
+			std::stack<T>::operator=(src);
+			return (*this);
+		}
+		~MutantStack(void) {}
 
 		class iterator : public std::iterator<std::bidirectional_iterator_tag,
 											  MutantStack<T>,

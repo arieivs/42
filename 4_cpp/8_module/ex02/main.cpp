@@ -1,5 +1,6 @@
 #include "MutantStack.hpp"
 #include <list>
+#include <vector>
 #include <iostream>
 
 int main(void) {
@@ -27,6 +28,10 @@ int main(void) {
 	lst.push_front(5);
 	lst.push_front(737);
 	lst.push_front(0);
+
+	std::cout << std::endl << "MUTANT STACK - DIFFERENT CONSTRUCTORS" << std::endl;
+	int					arr[] = {1, 2, 3, 4, 5};
+	std::vector<int>	vect(arr, arr + 5);
 
 	std::cout << std::endl << "ITERATORS - BEGIN, IN/DECREMENT AND DEREFERENCE" << std::endl;
 	std::cout << "Mutant Stack" << std::endl;
