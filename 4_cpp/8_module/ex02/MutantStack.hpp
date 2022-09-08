@@ -3,10 +3,12 @@
 
 # include <stack>
 # include <iterator>
-// these classes also need to be orthodox?
-// https://en.cppreference.com/w/cpp/iterator/iterator
-// https://cplusplus.com/reference/iterator/iterator/
-// https://www.learncpp.com/cpp-tutorial/stl-iterators-overview/
+
+/* Useful resources:
+ * https://en.cppreference.com/w/cpp/iterator/iterator
+ * https://cplusplus.com/reference/iterator/iterator/
+ * https://www.learncpp.com/cpp-tutorial/stl-iterators-overview/
+ */
 template<typename T>
 class MutantStack : public std::stack<T> {
 	public:
@@ -20,6 +22,7 @@ class MutantStack : public std::stack<T> {
 			private:
 				std::stack<T>	_stack;
 				std::stack<T>	_backwards_stack;
+
 			public:
 				iterator(void) : _stack(), _backwards_stack() {}
 				iterator(MutantStack<T> mstack) : _stack(mstack), _backwards_stack() {}
@@ -84,6 +87,12 @@ class MutantStack : public std::stack<T> {
 				bool		operator!=(iterator other) const {
 					return (_stack != other._stack || _backwards_stack != other._backwards_stack);
 				}
+				/* I thought about protecting this. A lot.
+				 * Yet I didn't find a solution effective for an empty stack.
+				 * Additionally if you call top() on an std::stack you get a segmentation fault.
+				 * on std::list::begin() "If the container is empty, the returned iterator value shall not be dereferenced."
+				 * on std::list::front() "Calling this function on an empty container causes undefined behavior."
+				 */
 				T const &	operator*() const {
 					return _stack.top();
 				}

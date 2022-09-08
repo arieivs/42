@@ -62,12 +62,12 @@ int main(void) {
 	
 	std::cout << std::endl << "ITERATORS - END AND LOOPS" << std::endl;
 	std::cout << "Mutant Stack" << std::endl;
-	/*MutantStack<int>::iterator ite = mstack.end();
+	MutantStack<int>::iterator ite = mstack.end();
 	while (it != ite) {
 		std::cout << *it << " ";
 		++it;
 	}
-	std::cout << std::endl;*/
+	std::cout << std::endl;
 	std::cout << std::endl << "vs List" << std::endl;
 	std::list<int>::iterator lite = lst.end();
 	while (lit != lite) {
@@ -78,6 +78,6 @@ int main(void) {
 
 	std::cout << std::endl << "CREATING A STACK FROM A MUTANT STACK" << std::endl;
 	std::stack<int> s(mstack);
-	std::cout << "If I'm being printed, everything went fine" << std::endl << std::endl;
+	std::cout << "If I'm being printed, everything went fine" << std::endl;
 	return 0;
 }
