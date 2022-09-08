@@ -12,7 +12,6 @@
 template<typename T>
 class MutantStack : public std::stack<T> {
 	public:
-		// needs to be orthodox right?
 		MutantStack(void) : std::stack<T>() {}
 		MutantStack(MutantStack const & src) : std::stack<T>(src) {}
 		MutantStack&	operator=(MutantStack const & src) {

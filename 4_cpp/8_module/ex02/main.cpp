@@ -1,6 +1,5 @@
 #include "MutantStack.hpp"
 #include <list>
-#include <vector>
 #include <iostream>
 
 int main(void) {
@@ -29,9 +28,12 @@ int main(void) {
 	lst.push_front(737);
 	lst.push_front(0);
 
-	std::cout << std::endl << "MUTANT STACK - DIFFERENT CONSTRUCTORS" << std::endl;
-	int					arr[] = {1, 2, 3, 4, 5};
-	std::vector<int>	vect(arr, arr + 5);
+	std::cout << std::endl << "MUTANT STACK - COPYING" << std::endl;
+	{
+		MutantStack<int>	mstack;
+		MutantStack<int>	mstack2(mstack);
+		std::cout << "Created a mutant stack from a mutant stack - all clear!" << std::endl;
+	}
 
 	std::cout << std::endl << "ITERATORS - BEGIN, IN/DECREMENT AND DEREFERENCE" << std::endl;
 	std::cout << "Mutant Stack" << std::endl;
@@ -84,5 +86,5 @@ int main(void) {
 	std::cout << std::endl << "CREATING A STACK FROM A MUTANT STACK" << std::endl;
 	std::stack<int> s(mstack);
 	std::cout << "If I'm being printed, everything went fine" << std::endl;
-	return 0;
+	return (0);
 }
