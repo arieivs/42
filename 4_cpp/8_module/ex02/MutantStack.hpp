@@ -23,6 +23,14 @@ class MutantStack : public std::stack<T> {
 			public:
 				iterator(void) : _stack(), _backwards_stack() {}
 				iterator(MutantStack<T> mstack) : _stack(mstack), _backwards_stack() {}
+				iterator(MutantStack<T> mstack, bool reverse) : _stack(mstack), _backwards_stack() {
+					if (reverse) {
+						while (!_stack.empty()) {
+							_backwards_stack.push(_stack.top());
+							_stack.pop();
+						}
+					}
+				}
 				iterator(iterator const & src) : _stack(src._stack),
 												 _backwards_stack(src._backwards_stack) {}
 				iterator&	operator=(iterator const & src) {
@@ -35,31 +43,39 @@ class MutantStack : public std::stack<T> {
 				iterator&	operator++() {
 					T	element = _stack.top();
 
-					_stack.pop();
-					_backwards_stack.push(element);
+					if (!_stack.empty()) {
+						_stack.pop();
+						_backwards_stack.push(element);
+					}
 					return (*this);
 				}
 				iterator	operator++(int) {
 					iterator	previous = *this;
 					T	element = _stack.top();
 
-					_stack.pop();
-					_backwards_stack.push(element);
+					if (!_stack.empty()) {
+						_stack.pop();
+						_backwards_stack.push(element);
+					}
 					return (previous);
 				}
 				iterator&	operator--() {
 					T	element = _backwards_stack.top();
 
-					_backwards_stack.pop();
-					_stack.push(element);
+					if (!_backwards_stack.empty()) {
+						_backwards_stack.pop();
+						_stack.push(element);
+					}
 					return (*this);
 				}
 				iterator	operator--(int) {
 					iterator	previous = *this;
 					T	element = _backwards_stack.top();
 
-					_backwards_stack.pop();
-					_stack.push(element);
+					if (!_backwards_stack.empty()) {
+						_backwards_stack.pop();
+						_stack.push(element);
+					}
 					return (previous);
 				}
 				bool		operator==(iterator other) const {
@@ -77,7 +93,7 @@ class MutantStack : public std::stack<T> {
 			return iterator(*this);
 		}
 		iterator	end(void) {
-			return iterator(*(this + this->size())); // seg fault... but it should be end, no?
+			return iterator(*this, true);
 		}
 };
 
