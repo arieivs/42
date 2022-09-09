@@ -49,6 +49,14 @@ class Array {
 			return _array[i];
 		}
 
+		const T&	operator[](unsigned int i) const {
+			if (i >= _size) {
+				throw IndexOutBounds();
+				return _array[0];
+			}
+			return _array[i];
+		}
+
 		class IndexOutBounds : public std::exception {
 			public:
 				virtual const char* what() const throw() {
