@@ -10,7 +10,17 @@ void	iter(T* arr, std::size_t len, F f) {
 		f(arr[i]);
 }
 
-/* function with const parameter */
+/* function with parameter of type T& - specific case*/
+/* int vs size_t -> changing the type is a way to avoid ambiguity */
+template<typename T>
+void	iter(T* arr, int len, void(*f)(T &)) {
+	int	i;
+
+	for (i = 0; i < len; i++)
+		f(arr[i]);
+}
+
+/* function with parameter of type T const & - specific case*/
 template<typename T>
 void	iter(T* arr, std::size_t len, void(*f)(T const &)) {
 	std::size_t	i;

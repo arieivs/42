@@ -16,16 +16,13 @@ void	printLouder(std::string& str) {
 	std::cout << "!" << std::endl;
 }
 
-/* template function */
+/* template function with parameter (T&) */
 template <typename T>
-T	multiplyByFive(T t)
-{
-	T	times_five = t * 5;
-	std::cout << times_five << std::endl;
-	return (times_five);
+void	printTripple(T& t) {
+	std::cout << t * 3 << std::endl;
 }
 
-/* template function with const parameter */
+/* template function with parameter (T const &) */
 template<typename T>
 void	print( T const & x ) {
 	std::cout << x << std::endl;
@@ -49,23 +46,24 @@ int	main(void) {
 	int			arr_ints[] = {1, 2, 3, 4, 5};
 	std::string	arr_strs[] = {"Hello darkness", "My old friend"};
 
-	iter(arr_ints, 5, &printDouble);
-	iter(arr_strs, 2, &printLouder);
+	iter(arr_ints, 5, printDouble);
+	iter(arr_strs, 2, printLouder);
 
-	std::cout << std::endl << "TESTING instantiated template function" << std::endl;
+	std::cout << std::endl << "TESTING template function with parameter (T&)" << std::endl;
 	float	arr_flts[] = {1.1, 2.2, 3.3, 4.4, 5.5};
 
-	iter(arr_flts, 5, multiplyByFive<float>);
+	iter(arr_flts, 5, printTripple);
+	/* if we instatiate it like this, the generic case works: */
+	/*iter(arr_flts, 5, printTripple<float>);*/
 
-	std::cout << std::endl << "TESTING non-instantiated function with const parameter" << std::endl;
+	std::cout << std::endl << "TESTING template function with parameter (T const &)" << std::endl;
 	const int		tab[] = { 0, 1, 2, 3, 4 };
 	const FakeInt	tab2[] = { FakeInt(), FakeInt(), FakeInt(), FakeInt(), FakeInt()};
 	
 	iter(tab, 5, print);
 	iter(tab2, 5, print);
-	/* if we instatiate them like this: */
+	/* if we instatiate them like this, the generic case works: */
 	/*iter(tab, 5, print<const int>);
 	iter(tab2, 5, print<const FakeInt>);*/
-	/* the generic case works */
 	return (0);
 }
