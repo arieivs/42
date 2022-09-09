@@ -51,24 +51,31 @@ int	main(void) {
 	}
 	{
 		std::cout << std::endl << "RANGE" << std::endl;
-		int		arr[ARR_SIZE];
-		int		i;
-		Span	span(ARR_SIZE + 1);
-		int		range_span;
+		int					arr[ARR_SIZE];
+		int					i;
+		std::vector<int>	vect;
+		Span				span(ARR_SIZE + 1);
+		Span				span2(ARR_SIZE + 1);
+		int					range_span;
+		int					range_span2;
 
 		for (i = 0; i < ARR_SIZE; i++)
 			arr[i] = i;
+		vect = std::vector<int>(arr, arr + ARR_SIZE);
 		try {
 			span.addNumbers(arr, arr + ARR_SIZE);
+			span2.addNumbers(vect.begin(), vect.end());
 		}
 		catch (Span::SpanIsFullException& e) {
 			std::cout << e.what() << std::endl;
 		}
 		try {
 			range_span = span.longestSpan();
-			std::cout << "Longest span: " << range_span << std::endl;
+			range_span2 = span2.longestSpan();
+			std::cout << "Longest span: " << range_span << ", " << range_span2 << std::endl;
 			range_span = span.shortestSpan();
-			std::cout << "Shortest span: " << range_span << std::endl;
+			range_span2 = span2.shortestSpan();
+			std::cout << "Shortest span: " << range_span << ", " << range_span2 << std::endl;
 		}
 		catch (Span::SpanNotFoundException& e) {
 			std::cout << e.what() << std::endl;

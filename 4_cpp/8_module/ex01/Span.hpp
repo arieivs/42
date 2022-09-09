@@ -16,8 +16,11 @@ class Span {
 
 		void	addNumber(int n);
 		void	addNumbers(int* begin, int* end);
+		void	addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 		int		longestSpan(void) const;
 		int		shortestSpan(void) const;
+
+		void	printNumbers(void) const;
 
 		class SpanIsFullException : public std::exception {
 			public:

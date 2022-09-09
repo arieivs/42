@@ -15,7 +15,7 @@ Span::Span(unsigned int max_size) :
 	}
 	catch (std::length_error& e) {
 		size_t	sys_max_size = _vect.max_size();
-		_vect.reserve(sys_max_size); // should I?
+		_vect.reserve(sys_max_size);
 		std::cout << e.what() << " - span created with size "
 				  << sys_max_size << std::endl;
 	}
@@ -48,8 +48,17 @@ void	Span::addNumber(int n) {
 	_vect.push_back(n);
 }
 
-// range of iterators... is that it?
+/* a pseudo range of iterators, more useful if you ask me */
 void	Span::addNumbers(int* begin, int* end) {
+	if ((_vect.size() + (end - begin)) >= _max_size) {
+		throw Span::SpanIsFullException();
+		return ;
+	}
+	_vect.insert(_vect.end(), begin, end);
+}
+
+/* an actual range of iterators */
+void	Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
 	if ((_vect.size() + (end - begin)) >= _max_size) {
 		throw Span::SpanIsFullException();
 		return ;
@@ -91,6 +100,15 @@ int	Span::shortestSpan(void) const {
 	return (shortest_span);
 }
 
+void	Span::printNumbers(void) const {
+	std::vector<int>::const_iterator	ite = _vect.end();
+	std::vector<int>::const_iterator	it;
+
+	for (it = _vect.begin(); it != ite; it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
+
 const char*	Span::SpanIsFullException::what() const throw() {
 	return "Span has no space left";
 }
@@ -98,5 +116,3 @@ const char*	Span::SpanIsFullException::what() const throw() {
 const char*	Span::SpanNotFoundException::what() const throw() {
 	return "Span is empty";
 }
-
-/* https://cplusplus.com/reference/vector/vector/ */
