@@ -25,11 +25,12 @@ int	main(void) {
 			span.addNumber(7);
 			span.addNumber(3);
 			span.addNumber(1);
-			span.addNumber(2);
+			span.addNumber(2); /* this one won't be added */
 		}
 		catch (Span::SpanIsFullException& e) {
 			std::cout << e.what() << std::endl;
 		}
+		span.printNumbers();
 		try {
 			range_span = span.longestSpan();
 			std::cout << "Longest span: " << range_span << std::endl;
