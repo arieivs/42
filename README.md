@@ -30,8 +30,11 @@ Rank 2:
 
 Rank 3:
 * 🧵 [Philosophers](https://github.com/arieivs/42/tree/master/3_philosophers): introduction to threads;
-* 🐚 [Minishell](https://github.com/Knulpinette/42_minishell): create your own simple shell;
+* 🐚 [Minishell](https://github.com/Knulpinette/42_03_minishell): create your own simple shell;
 
+Rank 4:
+* ➕ [CPP Modules](https://github.com/arieivs/42/tree/master/4_cpp): learn C++;
+* 💬 [NetPractice](https://github.com/arieivs/42/tree/master/4_netpractice): set up small networks and level up!
 
 [Preparing for Exams](https://github.com/markveligod/examrank-02-03-04-05-06)
 
