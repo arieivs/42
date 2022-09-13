@@ -8,3 +8,7 @@ Let's play a game - how to set up a network?
 * [Calculating Network IDs & Subnet masks](https://www.youtube.com/watch?v=ddM9AcreVqY)
 * [CertBros](https://www.youtube.com/channel/UCZg4PvX48mgXQVySgIulX-Q) has nice videos explaining different protocols
 * [NetPractice Explained](https://github.com/lpaube/NetPractice)
+
+</br>
+
+Happy networking! 🕸
