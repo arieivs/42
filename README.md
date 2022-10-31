@@ -35,6 +35,7 @@ Rank 3:
 Rank 4:
 * ➕ [CPP Modules](https://github.com/arieivs/42/tree/master/4_cpp): learn C++;
 * 💬 [NetPractice](https://github.com/arieivs/42/tree/master/4_netpractice): set up small networks and level up!
+* 🎮​ [Cub3D](https://github.com/arieivs/42_04_cub3d): raycaster in C for a Wolfenstein-inspired simple game;
 
 [Preparing for Exams](https://github.com/markveligod/examrank-02-03-04-05-06)
 
