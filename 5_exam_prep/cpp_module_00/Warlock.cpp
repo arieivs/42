@@ -20,7 +20,7 @@ std::string const &	Warlock::getTitle(void) const {
 }
 
 void	Warlock::setTitle(std::string const & new_title) {
-	title = new_title; // need some protection?
+	title = new_title;
 }
 
 void	Warlock::introduce() const {
