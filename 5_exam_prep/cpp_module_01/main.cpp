@@ -1,25 +1,22 @@
 #include "Warlock.hpp"
+#include "Dummy.hpp"
+#include "Fwoosh.hpp"
 
-/*int	main(void) {
-	Warlock	bob; 							//Does not compile
-	Warlock	bob("Bob", "the magnificent");	//Compiles
-	Warlock	jim("Jim", "the nauseating");	//Compiles
-	bob = jim;								//Does not compile
-	Warlock jack(jim);						//Does not compile
-}*/
+int main(void)
+{
+	Warlock richard("Richard", "the Titled");
 
-int	main(void) {
-	Warlock const	richard("Richard", "Mistress of Magma");
+	Dummy bob;
+	Fwoosh* fwoosh = new Fwoosh();
+
+	richard.learnSpell(fwoosh);
 
 	richard.introduce();
-	std::cout << richard.getName() << " - " << richard.getTitle() << std::endl;
+	richard.launchSpell("Fwoosh", bob);
 
-	Warlock*	jack = new Warlock("Jack", "the Long");
-
-	jack->introduce();
-	jack->setTitle("the Mighty");
-	jack->introduce();
-	delete jack;
-
-	return (0);
+	richard.forgetSpell("Fwoosh");
+	richard.launchSpell("Fwoosh", bob);
+	// shouldn't we delete fwoosh? but this is the main from subject...
+	// does this mean there's something wrong with my clone?
+	delete fwoosh;
 }

@@ -2,6 +2,9 @@
 # define WARLOCK_HPP
 
 # include <iostream>
+# include <vector>
+# include "ASpell.hpp"
+# include "ATarget.hpp"
 
 /*
  * Coplien's form:
@@ -27,10 +30,14 @@ class Warlock {
 		std::string const &	getTitle(void) const;
 		void				setTitle(std::string const & new_title);
 		void				introduce() const;
+		void				learnSpell(ASpell* spell);
+		void				forgetSpell(std::string spell_name);
+		void				launchSpell(std::string spell_name, ATarget& target);
 
 	private:
-		std::string	name;
-		std::string	title;
+		std::string				name;
+		std::string				title;
+		std::vector<ASpell*>	spells;
 
 		Warlock(Warlock const & src);
 		Warlock const &	operator=(Warlock const & src);

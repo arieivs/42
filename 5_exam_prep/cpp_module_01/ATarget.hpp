@@ -12,12 +12,12 @@ class ATarget {
 		ATarget(std::string type);
 		ATarget(ATarget const & src);
 		ATarget&	operator=(ATarget const & src);
-		~ATarget(void);
+		virtual ~ATarget(void);
 
-		std::string	getType(void) const;
-		void		getHitBySpell(ASpell const & spell);
+		std::string			getType(void) const;
+		void				getHitBySpell(ASpell const & spell) const;
 
-		ATarget*	clone(void) const = 0;
+		virtual ATarget*	clone(void) const = 0;
 
 	protected:
 		std::string	type;

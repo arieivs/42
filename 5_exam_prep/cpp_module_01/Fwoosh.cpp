@@ -10,7 +10,7 @@ Fwoosh&	Fwoosh::operator=(Fwoosh const & src) {
 	return (*this);
 }
 
-~Fwoosh::Fwoosh(void) {};
+Fwoosh::~Fwoosh(void) {};
 
 ASpell*	Fwoosh::clone(void) const {
 	ASpell*	fwoosh = new Fwoosh();

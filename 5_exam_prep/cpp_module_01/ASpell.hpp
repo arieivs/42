@@ -12,13 +12,13 @@ class ASpell {
 		ASpell(std::string name, std::string effects);
 		ASpell(ASpell const & src);
 		ASpell&	operator=(ASpell const & src);
-		~ASpell(void);
+		virtual ~ASpell(void);
 
-		std::string	getName(void) const;
-		std::string	getEffects(void) const;
-		void		launch(ATarget const & target);
+		std::string		getName(void) const;
+		std::string		getEffects(void) const;
+		void			launch(ATarget const & target) const;
 
-		ASpell*	clone(void) const = 0;
+		virtual ASpell*	clone(void) const = 0;
 
 	protected:
 		std::string	name;
