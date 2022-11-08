@@ -4,38 +4,39 @@
 # services
 #   image: used to pull built images; has precedence over build
 #   depend_on: condition is service_started by default
-services:
-  nginx:
-    build: requirements/nginx
-    container_name: inception_nginx
-    env_file: .env
-    configs:
-      - nginx_config
-    restart: unless-stopped
-    networks: dream
-    # to figure out/ important to other 
-    depends_on:
-      - No idea
-    ports: Exposes container ports.
-    secrets: hmmm...?
-    domainname: is that the thing we should use to svieira.42.fr = localhost ?
-    entrypoint: this will override ENTRYPOINT in dockerfile (and CMD maybe as well?)
-    expose: defines the ports that Compose implementations MUST expose from container. vs ports?
-    extend: service? no idea
-    
+services:	
+	nginx:
+		build: requirements/nginx
+		container_name: inception_nginx
+		env_file: .env
+		configs:
+			- nginx_config
+		restart: unless-stopped
+		volumes: website # TODO configure this; which kind? bind(shared)/no-bind?
+		networks: dream
+		# to figure out/ important to other 
+		#depends_on: # shouldn't be needed for nginx, but for others
+			#- No idea
+		#ports: Exposes container ports. # still need to understand
+		#secrets: hmmm...? # dont think I need this, I have .env... should be used for SSL?
+		#domainname: is that the thing we should use to svieira.42.fr = localhost ?
+		#entrypoint: this will override ENTRYPOINT in dockerfile (and CMD maybe as well?)
+		#expose: defines the ports that Compose implementations MUST expose from container. vs ports?
+		#extend: service? no idea
 
 configs:
-  nginx_config:
-    file: requirements/nginx/conf/...?
+	nginx_config:
+		file: requirements/nginx/conf/...? # do I really need a config?
 
+# TODO:
 volumes:
-  database:
-    driver: no idea!!
+	database:
+		driver: no idea!!
 
-  wordpress:
-    driver: no idea!!
+	website:
+		driver: no idea!!
 
 networks:
-  dream: {} not defined yet!
+	dream: {} not defined yet!
 
-secrets: do i need them???
+#secrets: do i need them???
