@@ -1,0 +1,41 @@
+# DOCKER COMPOSE 🐳
+# 📚 Reference: https://docs.docker.com/compose/compose-file/
+
+# services
+#   image: used to pull built images; has precedence over build
+#   depend_on: condition is service_started by default
+services:
+  nginx:
+    build: requirements/nginx
+    container_name: inception_nginx
+    env_file: .env
+    configs:
+      - nginx_config
+    restart: unless-stopped
+    networks: dream
+    # to figure out/ important to other 
+    depends_on:
+      - No idea
+    ports: Exposes container ports.
+    secrets: hmmm...?
+    domainname: is that the thing we should use to svieira.42.fr = localhost ?
+    entrypoint: this will override ENTRYPOINT in dockerfile (and CMD maybe as well?)
+    expose: defines the ports that Compose implementations MUST expose from container. vs ports?
+    extend: service? no idea
+    
+
+configs:
+  nginx_config:
+    file: requirements/nginx/conf/...?
+
+volumes:
+  database:
+    driver: no idea!!
+
+  wordpress:
+    driver: no idea!!
+
+networks:
+  dream: {} not defined yet!
+
+secrets: do i need them???
