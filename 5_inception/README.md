@@ -5,7 +5,7 @@ Get to the next level with docker containers
 * [Inception Guide (without volumes)](https://github.com/NEKuipers/Inception/blob/master/Inception_guide.txt)
 * [Inception from przemek](https://github.com/psleziak42/inception_docker)
 * Digital Ocean tutorials
-[ft_services](https://github.com/edithturn/42sv-ft-services) - kubernetes, more complex!
+* [ft_services](https://github.com/edithturn/42sv-ft-services) - kubernetes, more complex!
 
 ## Some collected thoughts
 * network defined in docker-compose.yml
@@ -15,3 +15,12 @@ Get to the next level with docker containers
 * docker compose calls dockerfile
 * dockerfile creates image and starts the container and runs all the config files
 
+
+3306/tcp -> 127.0.0.1:3666 means port 3306 inside container is exposed on to port 3666 of host.
+
+## Docker commands
+docker ps --all
+docker stop <container_id>
+docker rm <container_id>
+docker images
+docker rmi <image_id>

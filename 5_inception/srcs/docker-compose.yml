@@ -1,9 +1,17 @@
 # DOCKER COMPOSE 🐳
 # 📚 Reference: https://docs.docker.com/compose/compose-file/
 
+version: "3.7"
+
+# project name
+#   accessible via COMPOSE_PROJECT_NAME
+name: inception
+
 # services
 #   image: used to pull built images; has precedence over build
 #   depend_on: condition is service_started by default
+#   ports: to the outside world
+#   expose: between containers
 services:	
 	nginx:
 		build: requirements/nginx
@@ -12,31 +20,40 @@ services:
 		configs:
 			- nginx_config
 		restart: unless-stopped
-		volumes: website # TODO configure this; which kind? bind(shared)/no-bind?
 		networks: dream
+		ports: 443:443
+		volumes: website
 		# to figure out/ important to other 
 		#depends_on: # shouldn't be needed for nginx, but for others
 			#- No idea
 		#ports: Exposes container ports. # still need to understand
-		#secrets: hmmm...? # dont think I need this, I have .env... should be used for SSL?
 		#domainname: is that the thing we should use to svieira.42.fr = localhost ?
-		#entrypoint: this will override ENTRYPOINT in dockerfile (and CMD maybe as well?)
-		#expose: defines the ports that Compose implementations MUST expose from container. vs ports?
-		#extend: service? no idea
+		#entrypoint: this will override ENTRYPOINT in dockerfile, and CMD maybe as well?
 
+
+# configs
+#   config content is mounted as a file in the container
+#   location of the mount point within the container defaults to /<config-name>
 configs:
 	nginx_config:
-		file: requirements/nginx/conf/...? # do I really need a config?
+		name: nginx_config
+		file: requirements/nginx/conf/nginx.conf
+# default would be <project_name>_nginx_config
+# do I really need a config?
 
-# TODO:
-volumes:
-	database:
-		driver: no idea!!
-
-	website:
-		driver: no idea!!
-
+# networks
+#   docker compose creates a network for all its services by default
+#   driver: default network driver is bridge
+#   more on networks: https://docs.docker.com/network/
 networks:
-	dream: {} not defined yet!
+	dream:
+		name: dream
 
-#secrets: do i need them???
+# volumes
+#   external: true - it already exists on the platform;
+#                    the resource is not managed by Compose
+volumes:
+	website:
+		name: website
+	#database:
+		#name: database

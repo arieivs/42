@@ -1,4 +1,4 @@
-start:
-		docker compose up
+up:
+		docker-compose --verbose --file srcs/docker-compose.yml up
 
-.PHONY:	start
+.PHONY:	up
