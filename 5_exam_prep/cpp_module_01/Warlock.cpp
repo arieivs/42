@@ -17,7 +17,8 @@ Warlock::Warlock(std::string name, std::string title) :
 }
 
 Warlock::~Warlock(void) {
-	spells.clear(); // is this necessary?
+	for (unsigned int i = 0; i < spells.size(); i++)
+		delete spells[i];
 	std::cout << name << ": My job here is done!" << std::endl;
 }
 
@@ -45,6 +46,7 @@ void	Warlock::learnSpell(ASpell* spell) {
 void	Warlock::forgetSpell(std::string spell_name) {
 	for (unsigned int i = 0; i < spells.size(); i++) {
 		if (spells[i]->getName() == spell_name) {
+			delete spells[i];
 			spells.erase(spells.begin() + i);
 			break ;
 		}
@@ -59,7 +61,3 @@ void	Warlock::launchSpell(std::string spell_name, ATarget& target) {
 		}
 	}
 }
-
-
-
-

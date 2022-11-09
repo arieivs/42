@@ -14,6 +14,7 @@ void	SpellBook::learnSpell(ASpell* spell) {
 void	SpellBook::forgetSpell(std::string const & spell_name) {
 	for (unsigned int i = 0; i < spells.size(); i++) {
 		if (spells[i]->getName() == spell_name) {
+			delete spells[i];
 			spells.erase(spells.begin() + i);
 			break ;
 		}
