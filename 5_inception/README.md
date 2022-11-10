@@ -3,7 +3,7 @@ Get to the next level with docker containers
 
 <br/>
 
-## 🔗​ Key Resources
+## 🔗​ Useful Resources
 * Docker documentation
 * Digital Ocean tutorials
 * [Przemek's Inception Readme](https://github.com/psleziak42/inception_docker)
@@ -11,11 +11,12 @@ Get to the next level with docker containers
 
 <br/>
 
-## ​🖥️​ 1. Virtual Machine
+## ​🖥️​ Virtual Machine
 Make sure to move VirtualBox default folder to sgoinfre at school.
 
 I chose to use the same OS as our computers at school, [Ubuntu Focal 20.04](https://releases.ubuntu.com/focal/).
-The important thing is to choose a disk image with a GUI (so that you can open the web browser and check your website) and that fulfills [docker's OS requirements](https://docs.docker.com/engine/install/ubuntu/).
+The important thing is to choose a disk image with a GUI (so that you can open the web browser and check your website) and that fulfills [docker's OS requirements](https://docs.docker.com/engine/install/).
+Make sure to move the disk image to sgoinfre, or you'll run out of space.
 
 It's advised to choose 2GB of RAM so that your machine is not too slow.
 Memory-wise, you will need 8.6GB just for installing this ubuntu version.
@@ -28,7 +29,7 @@ Next up, [install docker](https://docs.docker.com/engine/install/ubuntu/) (docke
 
 Setting up a shared folder to access your project repository will make things easier.
 To do that, in VirtualBox go to Settings > Shared, and add the folder you want to share (here referred to as <computer_folder>).
-Set it to auto mount and click OK.
+Set it to auto mount, permanent, and click OK.
 Inside your virtual machine, create a new folder (here referred to as <vm_folder>).
 Then run the following command:
 ```
@@ -37,14 +38,14 @@ sudo mount -t vboxsf <computer_folder> <vm_folder>
 
 <br/>
 
-## 🐳 2. Docker compose
+## ​​🐋​ Docker compose
 The [docker compose documentation](https://docs.docker.com/compose/compose-file/) is your best friend.
 
 ​⚠️ Important: docker-compose.yml doesn't like tabs! Use spaces for identation.
 
 <br/>
 
-## 3. Docker files
+## ​​🐳​ Dockerfiles
 Check ft_server
 
 Reviewing some useful Docker commands:

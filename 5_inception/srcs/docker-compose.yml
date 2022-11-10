@@ -24,8 +24,8 @@ services:
       - dream
     ports:
       - 443:443
-    volumes:
-      - website
+#    volumes:
+#      - website
     # to figure out/ important to other 
     #depends_on: # shouldn't be needed for nginx, but for others
       #- No idea
@@ -55,8 +55,10 @@ networks:
 # volumes
 #   external: true - it already exists on the platform;
 #                    the resource is not managed by Compose
-volumes:
-  website:
-    name: website
+#volumes:
+#  website:
+#    name: website
   #database:
     #name: database
+# next up: understand error
+# Error response from daemon: invalid mount config for type "volme": invalid mount path: mount path must be absolute
