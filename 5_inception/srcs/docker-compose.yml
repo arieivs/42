@@ -13,31 +13,34 @@ name: inception
 #   ports: to the outside world
 #   expose: between containers
 services:	
-	nginx:
-		build: requirements/nginx
-		container_name: inception_nginx
-		env_file: .env
-		configs:
-			- nginx_config
-		restart: unless-stopped
-		networks: dream
-		ports: 443:443
-		volumes: website
-		# to figure out/ important to other 
-		#depends_on: # shouldn't be needed for nginx, but for others
-			#- No idea
-		#ports: Exposes container ports. # still need to understand
-		#domainname: is that the thing we should use to svieira.42.fr = localhost ?
-		#entrypoint: this will override ENTRYPOINT in dockerfile, and CMD maybe as well?
+  nginx:
+    build: "./requirements/nginx"
+    container_name: inception_nginx
+    env_file: .env
+    configs:
+      - nginx_config
+    restart: unless-stopped
+    networks:
+      - dream
+    ports:
+      - 443:443
+    volumes:
+      - website
+    # to figure out/ important to other 
+    #depends_on: # shouldn't be needed for nginx, but for others
+      #- No idea
+    #ports: Exposes container ports. # still need to understand
+    #domainname: is that the thing we should use to svieira.42.fr = localhost ?
+    #entrypoint: this will override ENTRYPOINT in dockerfile, and CMD maybe as well?
 
 
 # configs
 #   config content is mounted as a file in the container
 #   location of the mount point within the container defaults to /<config-name>
 configs:
-	nginx_config:
-		name: nginx_config
-		file: requirements/nginx/conf/nginx.conf
+  nginx_config:
+    name: nginx_config
+    file: requirements/nginx/conf/nginx.conf
 # default would be <project_name>_nginx_config
 # do I really need a config?
 
@@ -46,14 +49,14 @@ configs:
 #   driver: default network driver is bridge
 #   more on networks: https://docs.docker.com/network/
 networks:
-	dream:
-		name: dream
+  dream:
+    name: dream
 
 # volumes
 #   external: true - it already exists on the platform;
 #                    the resource is not managed by Compose
 volumes:
-	website:
-		name: website
-	#database:
-		#name: database
+  website:
+    name: website
+  #database:
+    #name: database
