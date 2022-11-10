@@ -50,12 +50,17 @@ Check ft_server
 
 Reviewing some useful Docker commands:
 ```
+docker images
 docker ps --all
+docker build . -t <image_name>
+docker run --name <container_name> -d -p 80:80 -p 443:443 <image_name>
+docker exec -it <container_name> bash
+docker start <container_id>
 docker stop <container_id>
 docker rm <container_id>
-docker images
 docker rmi <image_id>
 ```
+right now -p 443:443 doesnt work, need to understand the ports and ssl
 
 <br/>
 

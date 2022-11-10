@@ -11,7 +11,9 @@ RUN 	apt-get upgrade -y
 RUN 	apt-get -y install nginx
 
 # keep Nginx running in the foreground
-RUN 	echo "daemon off;" >> /etc/nginx/nginx.conf
+#RUN		nginx -g 'daemon off;'
+CMD		["nginx", "-g", "daemon off;"]
+#RUN 	echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # do I need to replace default config files with my own?
 
